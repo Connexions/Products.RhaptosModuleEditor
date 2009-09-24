@@ -1,5 +1,14 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="rhaptos">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Products.RhaptosModuleEditor"
+      directory="profiles/default"
+      description="Extension profile for Products.RhaptosModuleEditor."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 <!-- AT doens't use this; gives us a modified event on create
   <subscriber

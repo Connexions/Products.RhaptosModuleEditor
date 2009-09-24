@@ -19,8 +19,6 @@ from Products.CMFCore import utils, CMFCorePermissions
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFDiffTool import CMFDiffTool
 
-from Products.GenericSetup import BASE, EXTENSION
-from Products.GenericSetup import profile_registry
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
 import ModuleEditor
@@ -57,13 +55,6 @@ def initialize(context):
                       permission = CMFCorePermissions.AddPortalContent,
                       extra_constructors = contentConstructors).initialize(context)
     
-    profile_registry.registerProfile('rhaptos-default',
-                                     'RhaptosModuleEditor',
-                                     'Extension profile for a RhaptosSite',
-                                     'profiles/default',
-                                     'RhaptosModuleEditor',
-                                     EXTENSION,
-                                     for_=IPloneSiteRoot)
 
 from Extensions import Install  # import to test syntax of install script on start
 del Install
