@@ -1,0 +1,12 @@
+[default]
+title=Publish
+
+[validators]
+validators = validate_module_publish
+
+[actions]
+action.confirm = traverse_to:string:confirm_publish
+action.failure = traverse_to_action:string:publish
+action.success = traverse_to:string:publishContent
+action.role_error = traverse_to_action:string:roles
+action.invalid = traverse_to:string:module_invalid

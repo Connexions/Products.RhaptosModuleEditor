@@ -1,0 +1,3 @@
+[actions]
+action.success = traverse_to:string:content_roles
+action.failure = traverse_to:string:content_roles

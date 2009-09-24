@@ -1,0 +1,3 @@
+[default]
+title = Sarissa cross browser XML library
+cache = HTTPCache

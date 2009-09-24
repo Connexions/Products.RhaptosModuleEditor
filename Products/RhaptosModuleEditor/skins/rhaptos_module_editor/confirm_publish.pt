@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<tal:block tal:define="default_tab string:publish">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment>
+   i18n by:kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+      <h2 i18n:translate="heading_confirm_publishing">Confirm publishing</h2>
+
+      <p i18n:translate="text_confpub_areyousure">
+	Are you sure? Publishing this content will make it
+	publicly viewable on the web.  Once you publish it, you
+	cannot retract it (although you are welcome to publish
+	successive revisions).
+      </p>
+      <table align="center" width="85%">
+	<tr valign="top">
+	  <td align="center" width="50%">
+	    <form method="post" action="publishContent">
+	      <input type="hidden" name="message" tal:attributes="value request/message" />
+	      <input class="standalone" type="submit" name="publish" value="Yes, Publish" i18n:attributes="value yespublish"/>
+	    </form>
+	  </td>
+	    <td align="center" width="50%">
+	    <form method="post" action=".">
+	      <input class="standalone" type="submit" name="cancel" value="No, Cancel" i18n:attributes="value nocancel"/>
+	      <input type="hidden" 
+                name="portal_status_message" 
+                value="Canceled."
+                i18n:attributes="value value_canceled" />
+	    </form>
+	    </td>
+	</tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+</tal:block>

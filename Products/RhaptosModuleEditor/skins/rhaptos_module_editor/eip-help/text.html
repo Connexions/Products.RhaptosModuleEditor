@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;text&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;text&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+      The <code class="codeline">text</code> tag is used to place
+      plain text into modules. It is intended for use as a fallback
+      for media that cannot be displayed in PDF, such as <a href="flash" class="cnxn">
+      flash</a> or <a href="video" class="cnxn">video</a>.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;para id="txt-example"&gt;
+  Text goes here:
+  &lt;media id="txt-media-example"
+         display="block"
+         alt="A block of text."&gt;
+    &lt;text&gt;
+      This is example text; this element used
+      mostly for fallback.
+    &lt;/text&gt;
+  &lt;/media&gt;
+  You should have seen text.
+&lt;/para&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div class="para" id="txt-example">
+  Text goes here:
+            <div class="media">
+      This is example text; this element used
+      mostly for fallback.
+            </div>
+  You should have seen text.
+          </div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>src</b> <i>(optional)</i>: 
+      
+      The location of the text file. It must be a URL value. If the text is stored
+      as a resource with the module, the file name itself can be used (e.g. "file.txt").
+<div class="note">
+<h3 class="note-header"><span class="cnx_label">Note: </span></h3>
+CNXML 0.6 does not validate URLs that contain
+ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
+Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
+reference "&amp;amp;". More information can be found on the
+<a class="link" href="http://www.w3.org/TR/xhtml1/#C_12" target="_blank">W3C's page</a>.
+</div>
+        </li>
+<li class="item">
+<b>mime-type</b> <i>(optional)</i>: 
+      
+      The MIME type of the text. This optional value tells each
+      visitor's browser what sort of information is contained
+      in the text.
+          A list of common Internet media MIME types can be found
+            <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">here</a>.
+        </li>
+<li class="item">
+<b>longdesc</b> <i>(optional)</i>: 
+      
+      The URL of a file containing a long description of the text.  
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="param">param</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="media">media</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

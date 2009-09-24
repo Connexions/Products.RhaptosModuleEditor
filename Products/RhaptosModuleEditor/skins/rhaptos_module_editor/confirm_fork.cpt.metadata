@@ -1,0 +1,11 @@
+[validators]
+validators = validate_fork
+
+validators..fork = validate_fork
+validators..cancel = 
+
+[actions]
+action.success = traverse_to:string:forkContent
+
+action.success..cancel = redirect_to:string:?portal_status_message=Canceled.
+action.success..fork = traverse_to:string:forkContent

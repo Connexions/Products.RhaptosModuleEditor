@@ -1,0 +1,9 @@
+[default]
+title=Edit Title
+
+[validators]
+validators = validate_module_metadata
+
+[actions]
+action.success = traverse_to:string:concreteize
+action.failure = traverse_to:string:content_title

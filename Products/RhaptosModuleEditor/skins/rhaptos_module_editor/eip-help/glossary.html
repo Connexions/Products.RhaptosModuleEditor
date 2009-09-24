@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;glossary&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;glossary&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">glossary</code> tag is used to insert 
+  entries into a glossary that appears at the end of your CNXML 
+  document. These entries are definitions of terms in your 
+  document that you may not want to appear in the body of text. 
+  For more information see <a href="http://cnx.org/content/m11215/latest/" target="_blank" class="link">CNXML Reference 
+  Extensions</a>.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;glossary id='module-glossary'&gt;
+  &lt;definition id='quarter-def'&gt;
+    &lt;term&gt;quarter&lt;/term&gt;
+    &lt;meaning&gt;
+      One fourth of something.
+    &lt;/meaning&gt;
+    &lt;example id='quarter-example'&gt;
+      &lt;para id='glossary-para1'&gt;
+        "He cut the pie into quarters and 
+      gave all four people a piece."
+      &lt;/para&gt;
+    &lt;/example&gt;
+  &lt;/definition&gt;
+&lt;/glossary&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+ <div class="glossary-container" id="module-glossary">
+<h2 class="glossary-header">Glossary</h2>
+  <dl class="definition glossary" id="quarter-def">
+<dt><dfn class="term">quarter:</dfn></dt>
+<dd>
+<div class="meaning" id="fs-id3823956">
+      One fourth of something.
+    </div>
+<div class="example" id="quarter-example">
+<h3 class="example-header"><span class="cnx_label">Example: </span></h3>
+<p class="para" id="glossary-para1">
+        "He cut the pie into quarters and 
+      gave all four people a piece."
+      </p>
+</div>
+</dd>
+</dl>
+</div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet"><li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li></ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="definition">definition</a> (one or more)</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">document</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+      i18n:domain="rhaptos">
+
+<tal:comment tal:replace="nothing">
+This file is to allow for easy overriding of help lines in the module
+    editing interface.
+  </tal:comment>
+
+  <div metal:define-macro="subject" i18n:domain="rhaptos" class="formHelp" id="subject_help"
+    i18n:translate="help_subject">Select the subject categories that apply to this 
+      <span i18n:name="portal_type" tal:content="here/portal_type/lower">
+        module</span>.
+  </div>
+
+</div>

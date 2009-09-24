@@ -1,0 +1,12 @@
+<list xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <media tal:repeat="m python:context.contentValues(filter={'portal_type':'Image'})" 
+    tal:attributes="id m/getId;
+                    src m/absolute_url;
+                    height m/height;
+                    width m/width;"
+    />
+</list>
+
+
+    
+  

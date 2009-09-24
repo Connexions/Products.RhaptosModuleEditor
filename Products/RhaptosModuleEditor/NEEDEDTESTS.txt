@@ -1,0 +1,12 @@
+NEEDEDTESTS
+if we had proper unit testing, we'd want to be sure to include theses cases...
+(add to this file as you come across areas that could use verification, and/or fix bugs)
+
+Saving of good CNXML of current version
+ - is the SearchableText right?
+Saving of good CNXML of old version
+ - is the SearchableText right?
+Saving of non-CNXML XML 
+ - is the SearchableText right?
+Saving of invalid XML/junk
+ - is the SearchableText right?

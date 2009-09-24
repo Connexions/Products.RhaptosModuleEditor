@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment>
+   i18n by: kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border', 1)" />
+
+    <div metal:fill-slot="main" tal:define="errors options/state/getErrors">
+      
+      <h1 i18n:translate="heading_modinvalid_validityerrors">Validity errors</h1>
+
+      <p i18n:translate="text_modinvalid_youvegoterrors">
+	Your module has errors.  Please correct them and try again.
+      </p>
+      
+      <p style="border: black solid 1px; padding: 5px; background-color: rgb(255, 224, 224);"
+	 tal:define="error_validity errors/validity | options/error_validity | nothing"
+         tal:repeat="e error_validity">
+	<a tal:define="line python:e[0]" tal:attributes="href string:module_source?line:int=${line}#l${line}">
+	  <b tal:content="string:Line ${line}">[Line num]</b></a>:
+	<span tal:replace="python:e[1]">[Error message]</span>
+      </p>
+      
+      <p i18n:translate="text_modinvalid_goback">Return to editing the <span i18n:name="module"><a i18n:translate="text_modinvalid_module" href=".">module</a></span></p>
+
+    </div>
+  </body>
+</html>

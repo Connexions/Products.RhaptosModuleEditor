@@ -1,0 +1,13 @@
+[default]
+title=Edit Roles
+
+[validators]
+validators = validate_role_add
+
+validators..add = validate_role_add
+validators..update = 
+
+[actions]
+action.success = traverse_to:string:addPeople
+action.success..add = traverse_to:string:addPeople
+action.success..update = traverse_to:string:update_roles

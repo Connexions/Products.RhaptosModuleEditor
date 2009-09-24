@@ -1,0 +1,7 @@
+[default]
+title=Make portal_factory temp object real
+
+[actions]
+action.success.Module = traverse_to:string:update_metadata
+action.success = traverse_to:string:content_edit
+action.failure = traverse_to:string:content_title

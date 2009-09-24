@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <body>
+
+    <div metal:fill-slot="main" tal:define="number request/number | python:1;
+                                            line request/line | nothing">
+
+      <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+      <h2>Module source</h2>
+
+      <p>
+	<a tal:attributes="href string:${template/id}?number:int=0"
+	tal:condition="number" i18n:translate="label_hide_line_numbers">Hide line numbers</a>
+	<a tal:attributes="href template/id"
+	tal:condition="not:number" i18n:translate="label_show_line_numbers">Show line numbers</a>
+      </p>
+      <pre><tal:l tal:repeat="l here/getSourceLines"><span tal:define="num repeat/l/number" 
+	                                                   tal:attributes="id string:l$num;
+	                                                       style python:test(line==num, 'background-color:#FFE0E0', nothing)"><tal:number tal:condition="number" tal:content="string:$num   " /><tal:line tal:replace="l"/></span>
+</tal:l></pre>
+    </div>
+  </body>
+</html>

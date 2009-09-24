@@ -1,0 +1,216 @@
+<tal:block tal:define="default_tab python:None">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="rhaptos"
+      metal:use-macro="here/module_template/macros/master">
+
+  <tal:comment>
+    original i18n by: kochelek@rice.edu
+    subsequent insanity by kef and jenn
+  </tal:comment>
+
+  <body>
+
+    <div metal:fill-slot="main" tal:define="format request/format | string:plain">
+
+      <tal:block tal:condition="python:format=='msword'">
+        <h2 i18n:translate="heading_modimpfrm_msword">Import module content from
+          <span i18n:name="Microsoft_Word">Microsoft Word</span></h2>
+        <p i18n:translate="text_modimpfrm_replaceall">
+          <strong i18n:name="warning"><em style="color: darkred; font-weight: bold"
+            i18n:translate="text_modimpfrm_warning_with_exclamation">Warning!</em></strong>
+          <span i18n:name="replace"><strong i18n:translate="text_modimpfrm_replace_all_contents">This will replace all 
+            contents</strong></span> of a module 
+          <span i18n:name="including_images"><strong i18n:translate="text_modimpfrm_including_images">including images
+            and other files</strong></span> with a <span i18n:name="Word">Word</span> document converted
+            into CNXML, and its associated images and files.</p>
+        <p i18n:translate="text_modimpfrm_wordofcaution">
+          <span i18n:name="Word">Word</span> documents can be extremely varied. We have attempted to
+            handle many common cases, with the goal of extracting the text from your document so
+            that you can mark it up in CNXML without having to retype the content. Some cautions:</p>
+        <ul>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldformattinggone">Bold and Italics will be   
+              Ignored:</strong>
+            <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, 
+              italics, and colors are ignored, unless you use the provided
+              <a href="/help/Connexions-Document.dot"
+                 i18n:name="label_modimpfrm_doctemplate">document template</a>
+              and tag those items as emphasis, citations, glossary terms, etc.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldimageswillbreak">Images:</strong>
+            <span i18n:translate="text_modimpfrm_imageswillbreak">Many images will be imported
+              without trouble. Images contained in figures or tables, created directly in
+              <span i18n:name="Word">Word</span>, or embedded in the document through links
+              may not work correctly.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldwearebetterthanword">Styling Tips:</strong>
+            <span i18n:translate="text_modimpfrm_wearebetterthanword">If you use CNXML-specific 
+              styles from the <span i18n:name="Word">Word</span> template to create your
+              <span i18n:name="Word">Word</span> document, you will get much more faithful
+              conversion for elements like terms, citations, code, and others. See the styling
+              information in our full instructions, below.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_bolduseheaders">Use Headings to Get Sections:</strong>
+            <span i18n:translate="text_modimpfrm_useheaders">
+              Even without CNXML-specific styling, you can make sure that your section organization
+              is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
+              in your original document.</span></li>
+          <li>
+            <a i18n:translate="link_modimpfrm_fullinstructions"
+              href="/help/UsingMSWord" style="font-weight: bold">Full instructions</a>
+              <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
+              <span i18n:name="Word">Word</span> with Connexions</span></li>
+          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/Connexions-Document.dot"
+                 style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a></li>
+        </ul>
+      </tal:block>
+      <tal:block tal:condition="python:format=='openoffice'">
+        <h2 i18n:translate="heading_modimpfrm_msword">Import module content from
+          <span i18n:name="OpenOffice">OpenOffice</span></h2>
+        <p i18n:translate="text_modimpfrm_replaceall">
+          <strong i18n:name="warning"><em style="color: darkred; font-weight: bold"
+            i18n:translate="text_modimpfrm_warning_with_exclamation">Warning!</em></strong>
+            <span i18n:name="replace"><strong i18n:translate="text_modimpfrm_replace_all_contents">This
+              will replace all contents</strong></span> of a module
+              <span i18n:name="including_images">
+                <strong i18n:translate="text_modimpfrm_including_images">including images
+                  and other files</strong></span>
+              with a <span i18n:name="OpenOffice">OpenOffice</span> document converted into
+              CNXML, and its associated images and files.</p>
+        <p i18n:translate="text_modimpfrm_wordofcaution">
+          <span i18n:name="OpenOffice">OpenOffice</span> documents can be extremely varied.
+            We have attempted to handle many common cases, with the goal of extracting the
+            text from your document so that you can mark it up in CNXML without having to
+            retype the content. Some cautions:</p>
+        <ul>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldformattinggone">Bold and Italics will be Ignored:</strong>
+            <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, italics, and
+              colors are ignored, unless you use the provided
+              <a href="/help/Connexions-Document.dot" i18n:name="label_modimpfrm_doctemplate">document template</a>
+              and tag those items as emphasis, citations, glossary terms, etc.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldimageswillbreak">Images:</strong>
+            <span i18n:translate="text_modimpfrm_imageswillbreak">Many images will be
+              imported without trouble. Images contained in figures or tables, created
+              directly in the word processor, or embedded in the document through links
+              may not work correctly.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_boldwearebetterthanword">Styling Tips:</strong>
+            <span i18n:translate="text_modimpfrm_wearebetterthanword">
+              If you use CNXML-specific styles from the document template to create your OpenOffice document,
+              you will get much more faithful conversion for elements like terms, citations, code, and others.
+              See the styling information in our full instructions, below.</span></li>
+          <li>
+            <strong i18n:translate="text_modimpfrm_bolduseheaders">Use Headings to Get Sections:</strong>
+            <span i18n:translate="text_modimpfrm_useheaders">
+              Even without CNXML-specific styling, you can make sure that your section organization
+              is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
+              in your original document.</span></li>
+          <li>
+            <a i18n:translate="link_modimpfrm_fullinstructions"
+              href="/help/UsingMSWord" style="font-weight: bold">Full instructions</a>
+              <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
+              <span i18n:name="MSWord">MS Word</span> with Connexions (also mostly applicable to OpenOffice)</span></li>
+          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/Connexions-Document.dot"
+                 style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a>
+                 <span i18n:translate="text_modimpfrm_usewithOO">to use with OpenOffice</span></li>
+        </ul>
+      </tal:block>
+      <tal:block tal:condition="python:format=='latex'">
+        <h2 i18n:translate="heading_modimpfrm_latex">Import module content from LaTeX files</h2>
+          <p> Before importing, ensure that you have prepared your document <strong>exactly as directed</strong> on the <a href="/help/UsingLaTeX">LaTeX importer instruction page</a>.</p>
+          <p> <em style="color: darkred; font-weight: bold;">Warning!</em>This will replace all contents of a module including images and other files with a LaTeX document converted into CNXML, and its associated images and files.</p>
+      </tal:block>
+      <tal:block tal:condition="python:format=='authentic'">
+        <h2 i18n:translate="heading_modimpfrm_xmlspyauth">Import module content from XMLSpy or Authentic</h2>
+        <p i18n:translate="text_modimpfrm_overwrite">This will overwrite the index.cnxml of a module with an
+          Authentic-style CNXML file.</p>
+        <p i18n:translate="text_modimpfrm_uploadaltova">
+          Use this importer to upload files that you have edited using Altova's XMLSpy or
+          Authentic editors. In almost all cases, this will be a file that you downloaded
+          in the XMLSpy/Authentic format, edited with one of those editors, and are now
+          ready to preview online.
+        </p>
+      </tal:block>
+      <tal:block tal:condition="python:format=='xhtml'">
+        <h2 i18n:translate="heading_modimpfrm_xhtml">Import module content from XHTML</h2>
+        <p i18n:translate="text_modimpfrm_overwritexhtml">This will overwrite the index.cnxml of a
+          module with an XHTML file converted into CNXML.</p>
+        <p i18n:translate="text_modimpfrm_experimental">
+          <strong i18n:name="note"><em i18n:translate="text_note">Note:</em></strong> This is highly experimental!
+        </p>
+        <p i18n:translate="text_modimpfrm_xhtmlvaried">
+          XHTML documents can be extremely varied. We have attempted to handle many common cases,
+          with the goal of extracting the text from your document so that you can mark it up
+          in CNXML without having to retype the content. Some cautions:
+        </p>
+        <ul>
+          <li i18n:translate="text_modimpfrm_headingshtml">You can make sure that your section
+          organization is preserved during import by using HTML headings tags
+          (&lt;h1&gt; &lt;h2&gt; &lt;h3&gt; ) in your original document.</li>
+        </ul>
+      </tal:block>
+      <tal:block tal:condition="python:format=='plain'">
+        <h2 i18n:translate="heading_modimpfrm_plainCNXML">Import module content as plain CNXML</h2>
+        <p i18n:translate="text_modimpfrm_standardoverwritecnxml">This will overwrite the index.cnxml
+          of a module with a standard CNXML file of your own.</p>
+        <p i18n:translate="text_modimpfrm_uploadCNXMLonly">
+          Use this importer to upload plain CNXML that you have downloaded and edited on your
+          local machine. <!--If you are using the XMLSpy or Authentic editors, please use the
+          XMLSpy-specific importer.-->
+        </p>
+      </tal:block>
+      <tal:block tal:condition="python:format=='zip'">
+        <h2 i18n:translate="heading_modimpfrm_zipfile">Import Zip File (CNXML + files) </h2>
+        <p i18n:translate="text_modimpfrm_zip2mod">This will place the contents of a zip file,
+          possibly including an index.cnxml, into a module. Files and images in the module
+          but not in the zip file will be left alone. Any subdirectories in the zip file
+          will be ignored.</p>
+        <p i18n:translate="text_modimpfrm_zipwarn">
+          Use this importer to upload a zip file; its contents will be placed in the module.
+          If you have exported a module as a zip file, you may re-import it here. The contents of the
+          zip file will replace any contents of that name already in the module.</p>
+        <p i18n:translate="text_modimpfrm_greatway">This is a great way to upload multiple images
+          or to edit a CNXML file offline.</p>
+        <!--<p i18n:translate="text_modimpfrm_usetherightone">If you are using the XMLSpy
+          or Authentic editors, please use the XMLSpy-specific importer.</p>-->
+        <p tal:condition="nothing" i18n:translate="text_modimpfrm_xhtmlnote">
+          <strong>XHTML note!</strong> If you downloaded the "viewable" zip export, all
+          the viewable parts will be ignored on import, including the 
+          <span i18n:name="index_html"><code>index.xhtml</code></span>
+          file and any subdirectories, including those for styles.</p>
+      </tal:block>
+
+      <form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
+            tal:attributes="action template/getId">
+        <input type="file" name="importFile" size="25" />
+        <input type="hidden" name="format" tal:attributes="value format" />
+        <input type="hidden" name="came_from" value="module_text"
+               tal:define="came_from request/came_from | options/came_from | nothing"
+               tal:condition="came_from"
+               tal:attributes="value came_from" />
+        <input class="context uploadButton" type="submit" name="submit" value="Import"
+               i18n:attributes="value value_modimpfrm_import" />
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+        <p i18n:translate="text_modimpfrm_warningoverwrite">
+          <strong i18n:name="warning">
+            <em style="color: darkred; font-weight: bold"
+              i18n:translate="text_warning_with_exclamation">Warning!</em></strong>
+            This will overwrite existing module contents.
+        </p>
+
+      </form>
+
+    </div>
+  </body>
+</html>
+
+</tal:block>

@@ -1,0 +1,172 @@
+<tal:block tal:define="content_override python:False">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment tal:replace="nothing">
+   i18n by: kochelek@rice.edu
+  </tal:comment>
+
+  <style metal:fill-slot="css_slot">
+    .leftheadings td, .leftheadings th{
+      vertical-align: top;
+    }
+  </style>
+
+  <body>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border', 1)" />
+
+    <div metal:fill-slot="main" tal:define="license_data here/getLicenseData">
+
+      <p i18n:translate="text_contpubd_alreadypubd">
+	This item has been published.  If you wish to create a new
+	revision, you must check out a copy to the workspace for editing
+	(<a href="/help/reference/status">What does "Checked out" mean</a>?)
+      </p>
+      <table class="leftheadings linkdata" tal:define="obj python:here.getPublishedObject().latest">
+        <tr>
+          <th i18n:translate="listingheader_contpubd_name">Name:</th>
+          <td>
+            <span i18n:translate="" tal:content="python:obj.Title()">title</span>
+            (<a i18n:translate="label_contpubd_viewonline"
+                tal:attributes="href obj/url">view published version online</a>)
+          </td>
+        </tr>
+        <tr>
+          <th i18n:translate="listingheader_contpubd_ID">ID:</th>
+          <td tal:content="obj/objectId">ID</td>
+        </tr>
+        <tr tal:condition="obj/getCollectionType | nothing">
+          <th i18n:translate="listingheader_contpubd_collectionType">Collection Type:</th>
+          <td tal:content="python:obj.getCollectionType(display='full')">Type</td>
+        </tr>
+        <tr>
+          <th i18n:translate="listingheader_contpubd_version">Version:</th>
+          <td tal:content="obj/version">version</td>
+        </tr>
+        <tr tal:define="lang obj/language | nothing;
+                        lang_split python:lang and lang.split('-')[0] or None;"
+            tal:condition="lang">
+          <th i18n:translate="listingheader_contpubd_language">Language:</th>
+          <td>
+            <span tal:content="python:here.portal_languages.getNameForLanguageCode(lang_split)">[language]</span>
+            (<span tal:content="lang">[language]</span>)
+          </td>
+        </tr>
+        <tr tal:condition="obj/license"
+            tal:define="license_version python:context.license.rstrip('/').split('/')[-1]">
+          <th i18n:translate="text_license_header">License:</th>
+          <td>
+            <a i18n:translate="label_creative_commons_attribution_license"
+               tal:attributes="href obj/getLicense | obj/license">Creative Commons Attribution License</a>
+            (<span tal:replace="license_data/label">[CC-BY 3.0]</span>)
+          </td>
+        </tr>
+        <tr>
+          <th i18n:translate="listingheader_contpubd_created">Created:</th>
+          <td tal:define="time obj/getCreated | obj/created"
+              tal:content="time/aCommon">created</td>
+        </tr>
+        <tr>
+          <th i18n:translate="listingheader_contpubd_revised">Revised:</th>
+          <td tal:define="time obj/getRevised | obj/revised"
+              tal:content="time/aCommon">revised</td>
+        </tr>
+	<tr>
+	  <th i18n:translate="text_authors_header">Authors:</th>
+	  <td>
+	    <span tal:repeat="p obj/authors">
+	      <tal:badauthor tal:on-error="string:(${p})">
+		<tal:author tal:define="u python:here.desecured.getMemberById(p)">
+		  <a tal:content="python:u.getProperty('fullname')"
+		    tal:attributes="href string:/member_profile/${p}">[name]</a></tal:author></tal:badauthor><tal:comma tal:condition="not:repeat/p/end">, </tal:comma>
+	    </span>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <th i18n:translate="text_maintainers_header">Maintainers:</th>
+	  <td>
+	    <span tal:repeat="p obj/maintainers">
+	      <tal:badauthor tal:on-error="string:(${p})">
+	      <tal:author tal:define="u python:here.desecured.getMemberById(p)">
+		<a tal:content="python:u.getProperty('fullname')"
+		  tal:attributes="href string:/member_profile/${p}">[name]</a></tal:author></tal:badauthor><tal:comma tal:condition="not:repeat/p/end">, </tal:comma>
+	    </span>
+	  </td>
+	</tr>
+	
+	<tr>
+	  <th i18n:translate="text_licensors_header">Licensors:</th>
+	  <td>
+	    <span tal:repeat="p obj/licensors">
+	      <tal:badauthor tal:on-error="string:(${p})">
+	      <tal:author tal:define="u python:here.desecured.getMemberById(p)">
+		<a tal:content="python:u.getProperty('fullname')"
+		  tal:attributes="href string:/member_profile/${p}">[name]</a></tal:author></tal:badauthor><tal:comma tal:condition="not:repeat/p/end">, </tal:comma>
+	    </span>
+	  </td>
+	</tr>
+        <tr tal:repeat="role python:obj.roles.items()"
+            tal:define="opt_roles_dict here/portal_collaboration/optional_role_info">
+          <th i18n:translate="" tal:content="python:opt_roles_dict[role[0]][1]+':'">[Optional Role Name]</th>
+          <td>
+            <span tal:repeat="p python:role[1]">
+              
+              <tal:badauthor tal:on-error="string:(${p})">
+                <tal:author tal:define="u python:here.desecured.getMemberById(p)">
+                  <a tal:content="python:u.getProperty('fullname')"
+                    tal:attributes="href string:/member_profile/${p}">[name]</a></tal:author></tal:badauthor><tal:comma tal:condition="not:repeat/p/end">, </tal:comma>
+            </span>
+          </td>
+        </tr>
+	<tr>
+	  <th i18n:translate="listingheader_contpubd_subject">Subject:</th>
+	  <td>
+	    <span tal:repeat="subj obj/subject | obj/getSubject">
+	      <span tal:replace="subj" /><span tal:condition="not:repeat/subj/end">, </span>
+	    </span>
+	  </td>
+	</tr>
+	<tr>
+	  <th i18n:translate="listingheader_contpubd_keywords">Keywords:</th>
+	  <td>
+	    <span tal:repeat="keyword obj/keywords">
+	      <span tal:replace="keyword" /><span tal:condition="not:repeat/keyword/end">, </span>
+	    </span>
+	  </td>
+	</tr>
+	<tr><th i18n:translate="listingheader_contpubd_abstract">Summary:</th><td><span tal:replace="obj/abstract">abstract</span></td></tr>
+	<tr tal:define="parent obj/getParent" tal:condition="parent">
+	  <th i18n:translate="listingheader_contpubd_basedon">Based On:</th>
+	  <td i18n:translate="text_contpubd_parent_by"><a class="link"
+              i18n:name="parent_link" tal:attributes="href parent/url" tal:content="parent/title">[title]</a> by 
+            <span i18n:name="author_list">
+              <tal:authors tal:repeat="p here/parentAuthors">
+                <tal:badauthor tal:on-error="string:(${p})">
+                  <tal:author tal:define="u
+                    python:here.desecured.getMemberById(p)">
+                    <a tal:content="python:u.getProperty('fullname')"
+                      tal:attributes="href string:/member_profile/${p}">[name]</a></tal:author></tal:badauthor><tal:comma tal:condition="not:repeat/p/end">, </tal:comma>
+              </tal:authors>
+            </span>
+	  </td>
+	</tr>
+        <tr>
+          <th>
+            <form method="post" action="content_checkout">
+              <input type="submit" name="checkout" value="Checkout"
+                     i18n:attributes="value chkout" class="standalone" />
+            </form>
+          </th>
+          <td />
+        </tr>
+      </table>
+      
+    </div>
+  </body>
+</html>
+
+</tal:block>

@@ -1,0 +1,171 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      i18n:domain="rhaptos">
+
+  <body>
+    <div metal:define-macro="publishblocker">
+      <tal:block tal:define="publishblocked here/publishBlocked;
+                             publisherror publishblocked/failtype | nothing;
+                             publisherrorfaildata publishblocked/faildata | nothing;
+                             publishtemplate python:template.id=='module_publish';">
+        <div tal:condition="publishblocked"
+             tal:define="notetype python:test(publishtemplate, 'PUBLISH BLOCKED', 'WARNING');
+                         baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml'];
+                         color python:test(publisherror in baderrors, 'yellow', '#fe7');
+                         stylestring python:'border: 2px solid #e70;; background-color: %s;; padding: 0.5em;; margin: 0.5em 0;;' % color">
+
+          <tal:block tal:condition="python:publisherror=='cnxmlfivedismissed'">
+            <tal:external define="global readonly python:True" />
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new
+<a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
+<b>You need to upgrade this module</b> to version 0.6 before publishing it or editing metadata,
+roles, or links. The conversion process will generate a temporary backup.
+More information is available at the <a tal:attributes="href string:$portal_url/help/upgrading-your-module-to-cnxml-0.6">upgrade help page</a>. 
+
+<form action="upgrade_cnxml" style="margin-top: 0.5em; text-align: center">
+  <input type="submit" value="Upgrade Now" class="context" />
+</form>
+  </div>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='cnxmlfive'">
+            <tal:external define="global readonly python:True" />
+            <div tal:attributes="style stylestring">
+
+<h1>CNXML Upgrade Needed</h1>
+
+  <p>Connexions is moving to the new <a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
+    <b>You need to upgrade this module</b> to version 0.6 before you can publish it or make metadata changes.  You have three options:
+    <ul>
+      <li><b>Import</b>: If you are using one of the importers to create your content, import as usual; the result will 
+automatically be in the new language version.</li>
+      <li><b>Upgrade Now</b>: If you're not using an importer, this is the recommended pathway. Your CNXML will 
+automatically be converted to the new version.</li>
+      <li><b>Open Full Source Editor</b>: You can postpone the upgrade and continue to make changes to your existing CNXML 
+0.5, but you will still have to upgrade before publishing. See below for a list of other functions that are disabled until 
+upgrade.
+    </ul>
+  <p>
+    
+  <form action="." method="post"
+        style="margin-top: 1em; margin-bottom: 0.5em; text-align: center">
+    <input class="context" style="margin-right: 0.5em; font-size: 110%" type="submit"              
+           name="upgrade_cnxml:action" value="Upgrade Now" />
+    <input class="context" style="margin-left: 0.5em; font-size: 110%" type="submit"
+           name="dismiss_blockmsg:action" value="Open full source editor" />
+  </form>
+
+  <p>We recommend that you use the automated upgrade immediately. If you continue editing in CNXML 0.5, you will not have 
+access to Edit-in-Place, or to online or print preview.  You will also not be able to edit roles, metadata or links, or 
+use the Suggest Edits function.</p>
+
+  <p>The automated upgrade will keep a backup copy of your CNXML 0.5 code in a file within the module called 
+"index.cnxml.pre-v06". This file will be deleted upon publication of the 0.6 version of the module. If you want to keep a 
+more permanent backup, you can use the <a tal:attributes="href string:$portal_url/help/ImportAndExport#plainxml">CNXML 
+export feature</a> to save a copy to your local machine.</p>
+
+<p>More information about the automatic conversion process is available at the
+  <a tal:attributes="href string:$portal_url/help/upgrading-your-module-to-cnxml-0.6">upgrade help page</a>. 
+For information on the language changes, see the <!-- <a href="XXX">CNXML 0.6 specification</a> or the <a href="whatsnew">summary of differences from CNXML 0.5</a>-->
+<a href="http://cnx.org/content/m19563/latest/">What's New module</a>.
+</p>
+</div>
+          </tal:block>
+
+          <tal:block tal:condition="python:publisherror=='brokencnxmlfive'">
+            <tal:external define="global readonly python:True" />
+            <div tal:attributes="style stylestring">
+
+<p>
+  <b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new
+  <a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
+  <b>You need to upgrade this module</b> to version 0.6 before publishing it or editing metadata,
+  roles, or links.
+</p>
+<p>
+  HOWEVER: This module cannot be upgraded due to broken CNXML 0.5. Usually this means the XML is not well-formed.
+  If the problem is corrected, upgrade may proceed.
+  The error is:
+</p>
+<code tal:content="publisherrorfaildata/message">not well-formed (invalid token): line 68, column 6</code>
+<p>(<a href="module_source">view line numbers</a>)</p>
+
+</div>
+          </tal:block>
+
+          <tal:block tal:condition="python:publisherror=='superseded'">
+            <tal:define tal:define="currentVersion publisherrorfaildata/thisversion;
+                                    publishedVersion publisherrorfaildata/pubversion">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> This module is <b>unpublishable</b> in its current state because it has 
+been superseded by later revisions. <b>To fix this problem,</b> use the <a href="diff">View Changes</a> feature to make a 
+note of the work you have done on this copy of the module; then <a href="confirm_discard">discard</a> the module and check 
+out a fresh copy to edit.<br /><br />
+
+<b>Details:</b> This copy of the module is based on version <span tal:replace="currentVersion">1.0</span>, but the current 
+published version is <span tal:replace="publishedVersion">1.1</span>.
+</div>
+            </tal:define>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='olderversion'">
+            <tal:define tal:define="cnxmlversion publisherrorfaildata/cnxmlversion">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> This module is <b>unpublishable</b> in its current state because it is in 
+an old version of CNXML<span tal:condition="cnxmlversion"> (CNXML <span tal:replace="cnxmlversion" />)</span>. We recommend 
+that you start over with a new module. If you choose to copy some of this module's text into the new one, be aware that some 
+of the tag structure may be invalid.
+</div>
+            </tal:define>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='notcnxml'">
+            <tal:block tal:define="blank python:len(context.getDefaultFile().getSource()) &lt;= 1">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> The contents of this module <span tal:replace="python:test(blank, 'are 
+blank', 'do not appear to be CNXML')" />. Either <a href="confirm_discard">discard</a> the module and start over, or use one 
+of the import options to generate new contents for the module.
+</div>
+            </tal:block>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='noindex'">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> This module has no index file. Either <a 
+href="confirm_discard">discard</a> the module and start over, or use one of the import options to generate new contents for 
+the module.
+</div>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='notitle'">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> This object has an invalid title. You will not be able to publish until 
+you enter a title on the <a href="module_metadata">metadata page</a>.
+</div>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='notmaint'and publishtemplate">
+            <div tal:attributes="style stylestring">
+
+<p><b tal:content="string:${notetype}:">WARNING:</b> You do not have <b>maintainer permissions</b> on the published version 
+of this object, so you will not be able to publish the current revision. Other options are to
+          <span i18n:translate="text_publish_suggest_edits">
+            <span i18n:name="suggest_edits_link">
+              <a href="module_send_patch" i18n:translate="label_suggest_your_edits">suggest your edits</a>
+            </span> to the module's maintainers, or</span>
+          <span i18n:translate="text_publish_fork">
+            <span i18n:name="fork_link">
+              <a href="confirm_fork" i18n:translate="label_create_new_module">create a new module</a>
+            </span> of your own based on this one.</span>
+</p>
+</div>
+          </tal:block>
+
+        </div>
+
+      </tal:block>
+    </div>
+
+  </body>
+
+</html>

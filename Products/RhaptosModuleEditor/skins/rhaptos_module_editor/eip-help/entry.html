@@ -1,0 +1,267 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;entry&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;entry&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">entry</code> tag identifies a table cell in a 
+        <a href="row" class="cnxn">row</a>.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;table id="report_card" summary="The first column 
+    lists each course. Each row in the second column 
+    delineates a semester. The corresponding row in
+    the third column shows that semester's grade.  
+    The footer tallies the student's average."&gt;
+  &lt;title&gt;Report card&lt;/title&gt;
+  &lt;tgroup cols="3"&gt;
+    &lt;colspec colnum="1" colname="c1" /&gt;
+    &lt;colspec colnum="2" colname="c2" /&gt;
+    &lt;colspec colnum="3" colname="c3" /&gt;
+    &lt;thead&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Course&lt;/entry&gt;
+        &lt;entry&gt;Semester&lt;/entry&gt;
+        &lt;entry&gt;Grade&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/thead&gt;
+    &lt;tfoot&gt;
+      &lt;row&gt;
+        &lt;entry namest="c1" nameend="c2"&gt;
+          Average:
+        &lt;/entry&gt;
+        &lt;entry&gt;85.5%&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/tfoot&gt;
+    &lt;tbody&gt;
+      &lt;row&gt;
+        &lt;entry morerows="1"&gt;Biology&lt;/entry&gt;
+        &lt;entry&gt;1&lt;/entry&gt;
+        &lt;entry&gt;86%&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entry&gt;2&lt;/entry&gt;
+        &lt;entry&gt;91%&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entry morerows="1"&gt;English&lt;/entry&gt;
+        &lt;entry&gt;1&lt;/entry&gt;
+        &lt;entry&gt;87%&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entry&gt;2&lt;/entry&gt;
+        &lt;entry&gt;78%&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/tbody&gt;
+  &lt;/tgroup&gt;
+&lt;/table&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div id="report_card" class="table">
+            <table style="border: 1px solid ;" summary="The first column lists each course. Each row in the second column delineates a semester. The corresponding row in the third column shows that semester's grade.  The footer tallies the student's average." align="center" cellpadding="0" cellspacing="0">
+              <caption class="table-text" align="bottom">
+                <span class="cnx_label">Table 1: </span>
+                <strong class="title">Report card</strong>
+              </caption>
+              <thead valign="bottom">
+                <tr>
+                  <th style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Course</th>
+                  <th style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Semester</th>
+                  <th style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">Grade</th>
+                </tr>
+              </thead>
+              <tbody valign="top">
+                <tr>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;" rowspan="2">Biology</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">1</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">86%</td>
+                </tr>
+                <tr>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">2</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">91%</td>
+                </tr>
+                <tr>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;" rowspan="2">English</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">1</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">87%</td>
+                </tr>
+                <tr>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">2</td>
+                  <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">78%</td>
+                </tr>
+              </tbody>
+              <tfoot valign="top">
+                <tr>
+                  <th style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 0 none ! important; text-align: left ! important;" colspan="2">
+                    Average:
+                  </th>
+                  <th style="border: 0 none  ! important; text-align: left ! important;">85.5%</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>morerows</b> <i>(optional)</i>: 
+      
+          How many more rows the <code class="codeline">entry</code> will span vertically.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">0 - 
+              The <code class="codeline">entry</code> will span no rows (default).
+            </li>
+            <li class="item">a positive integer - 
+              The number of rows in the span after the current one.
+            </li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>colname</b> <i>(optional)</i>: 
+      
+    Name referring to the "colname" attribute in the corresponding <a href="colspec" class="cnxn">colspec</a> for the <code class="codeline">entry</code>'s column.
+        </li>
+<li class="item">
+<b>spanname</b> <i>(optional)</i>: 
+      
+    Name of horizontal spanning of columns.  Must correspond to the value of a "spanname" attribute in the <a href="spanspec" class="cnxn">spanspec</a> of an 
+    ancestor <a href="entrytbl" class="cnxn">entrytbl</a> or <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>namest</b> <i>(optional)</i>: 
+      
+    Name of the furthest left column in a horizontal spanning of columns.  Must correspond to the value of a "colname" attribute in 
+    the <a href="colspec" class="cnxn">colspec</a> of an ancestor <a href="entrytbl" class="cnxn">entrytbl</a> or <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>nameend</b> <i>(optional)</i>: 
+      
+    Name of the furthest right column in a horizontal spanning of columns.  Must correspond to the value of a "colname" attribute in 
+    the <a href="colspec" class="cnxn">colspec</a> of an ancestor <a href="entrytbl" class="cnxn">entrytbl</a> or <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>colsep</b> <i>(optional)</i>: 
+      
+    Sets whether the internal column rulings are displayed or not (ignored for the rightmost column of a <a href="table" class="cnxn">table</a>, where the 
+    "frame" value applies, and for the rightmost column of an <a href="entrytbl" class="cnxn">entrytbl</a>, where the <a href="entrytbl" class="cnxn">entrytbl</a>'s 
+    "colsep" value applies).
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">0 - Do not display column rulings.</li>
+            <li class="item">any positive integer - Display column rulings.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "colsep" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, <a href="entrytbl" class="cnxn">entrytbl</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>rowsep</b> <i>(optional)</i>: 
+      
+    Sets whether the internal row rulings are displayed or not (ignored for the last <a href="row" class="cnxn">row</a> of the <a href="table" class="cnxn">table</a>, where 
+    the "frame" value applies, and for the last <a href="row" class="cnxn">row</a> of an <a href="entrytbl" class="cnxn">entrytbl</a>, where the <a href="entrytbl" class="cnxn">entrytbl</a>'s 
+    "rowsep" value applies).
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">0 - Do not display row rulings.</li>
+            <li class="item">any positive integer - Display row rulings.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "rowsep" value (<a href="row" class="cnxn">row</a>, <a href="spanspec" class="cnxn">spanspec</a> 
+    specified by the "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, <a href="entrytbl" class="cnxn">entrytbl</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>align</b> <i>(optional)</i>: 
+      
+    Sets how the text will be aligned.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">left - Left aligned.</li>
+            <li class="item">right - Right aligned.</li>
+            <li class="item">center - Center aligned.</li>
+            <li class="item">justify - Right and left aligned.</li>
+            <li class="item">char - Aligns to the leftmost occurrence of the value of the char attribute.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "align" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, <a href="entrytbl" class="cnxn">entrytbl</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>char</b> <i>(optional)</i>: 
+      
+    The character used in the align attribute.  
+    Default is implied from the nearest ancestor with a declared or implied "char" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, <a href="entrytbl" class="cnxn">entrytbl</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>charoff</b> <i>(optional)</i>: 
+      
+    The pertcentage of the column width to the left of the char 
+    used in the align attribute.  
+    Default is implied from the nearest ancestor with a declared or implied "charoff" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, <a href="entrytbl" class="cnxn">entrytbl</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>valign</b> <i>(optional)</i>: 
+      
+          Vertical position of the text within the <a href="entry" class="cnxn">entry</a>.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">top</li>
+            <li class="item">middle</li>
+            <li class="item">bottom</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "valign" value (<a href="row" class="cnxn">row</a>).
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="para">para</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="space">space</a>, <a class="cnxn" href="definition">definition</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="exercise">exercise</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents"><a class="cnxn" href="row">row</a></div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

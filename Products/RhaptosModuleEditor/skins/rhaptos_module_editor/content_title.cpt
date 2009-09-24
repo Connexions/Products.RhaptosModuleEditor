@@ -1,0 +1,177 @@
+<tal:block
+  tal:define="isCollection       python:here.portal_type == 'Collection';
+              isModule           python:here.portal_type == 'Module';
+              newCollectionTitle python:'New collection: Metadata';
+              newModuleTitle     python:'New module: Metadata';
+              overTitle          python:isCollection and newCollectionTitle or
+                                        isModule     and newModuleTitle;">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment>
+   i18n by: kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border', 1)" />
+
+    <style metal:fill-slot="css_slot" tal:content="structure here/language_locale.css">
+       #keywords { width: 50% }
+    </style>
+
+    <div metal:fill-slot="content_title_header">
+      <tal:block tal:condition="isCollection">
+        <h1 i18n:translate="heading_new_collection_metadata">New collection: Metadata</h1>
+      </tal:block>
+      <tal:block tal:condition="isModule">
+        <h1 i18n:translate="heading_new_module_metadata"    >New module: Metadata</h1>
+      </tal:block>
+    </div>
+
+    <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
+                                            type python:here.Type().lower();">
+
+      <form action="." name="edit_form" method="post" tal:attributes="action template/getId">
+
+        <fieldset tal:define="target request/location | nothing;"
+                  tal:condition="request/location | request/type_name | nothing">
+          <legend i18n:translate="label_location">Location</legend>
+          <p i18n:translate="text_select_wg">Select an area in which to work on your content:</p>
+
+          <select name="location" tal:define="optionsmacros context/search_macros/macros">
+            <metal:reuse use-macro="optionsmacros/personalwsoption" />
+            <metal:reuse use-macro="optionsmacros/workgroupoptions" />
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend i18n:translate="label_metadata">Metadata</legend>
+          <tal:block tal:condition="isCollection">
+            <p i18n:translate="text_create_collection_metadata">
+              Choose a title for your collection.
+              Please read the <a href="/help/authorguide">Author Guide</a> for tips on choosing titles.
+              You can edit this information later from the "Metadata" tab.
+            </p>
+          </tal:block>
+          <tal:block tal:condition="isModule">
+            <p i18n:translate="text_create_module_metadata">
+              Choose a title for your module.
+              Please read the <a href="/help/authorguide">Author Guide</a> for tips on choosing titles.
+              You can edit this information later from the "Metadata" tab.
+            </p>
+          </tal:block>
+
+          <div metal:use-macro="here/module_metadata/macros/title_edit" />
+
+          <div metal:use-macro="here/module_metadata/macros/language_selection" />
+
+          <div tal:condition="here/collectionType | nothing">
+            <metal:data use-macro="python:here.widget('collectionType',mode='edit')" />
+          </div>
+
+          <div metal:use-macro="here/module_metadata/macros/subject" />
+
+          <div metal:use-macro="here/module_metadata/macros/keywords" />
+
+          <div metal:use-macro="here/module_metadata/macros/abstract" />
+
+    <tal:siyavula condition="context/@@siyavula">
+    <div class="field"
+        tal:condition="python:context.portal_catalog(portal_type='XMLTemplate')"
+        tal:define="error errors/template_uid| nothing;
+                    template_uid request/template_uid | string:;
+                    templatefolder_uid request/templatefolder_uid | nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+      <label i18n:translate="label_template">Template</label>
+      <div i18n:translate="help_template_creation" class="formHelp">
+        If you wish to base your entire module on a single template, select the
+        appropriate organization and template.
+      </div>
+      <div tal:content="error">Validation error output</div>
+
+      <span tal:replace='structure string:&lt;script type="text/javascript"&gt;&lt;!--'/>
+        function content_title_change_templatefolder(sender)
+        {
+            <tal:folders repeat="folder python:context.portal_catalog(portal_type='XMLTemplateFolder')">
+              var el = document.getElementById('folder-select-' + '<span tal:replace="folder/UID"/>');
+              if (el)
+              {
+                el.name = '';
+                el.style.display = 'none';
+              }
+            </tal:folders>
+
+            var el = document.getElementById('folder-select-dummy');
+            el.name = '';
+            el.style.display = 'none';
+
+            var el = document.getElementById('folder-select-' + sender.value);
+            if (el)
+            {
+                el.name = 'template_uid';
+                el.style.display = 'inline';
+            }
+        }
+      <span tal:replace="structure string:--&gt;&lt;/script&gt;"/>
+     
+      <select name="templatefolder_uid"
+              tal:attributes="tabindex tabindex/next"
+              onChange="content_title_change_templatefolder(this);">
+        <option value="dummy">-- Select --</option>
+        <tal:folders repeat="folder python:context.portal_catalog(portal_type='XMLTemplateFolder')">
+          <option tal:condition="python:context.portal_catalog(portal_type='XMLTemplate', path=folder.getPath())"
+                  tal:attributes="value folder/UID;
+                                  selected python:templatefolder_uid == folder.UID"
+                  tal:content="folder/pretty_title_or_id">
+          </option>
+        </tal:folders>
+      </select>
+
+      <tal:folders repeat="folder python:context.portal_catalog(portal_type='XMLTemplateFolder')">
+      <select name=""
+              tal:define="folderUID folder/UID;
+                          selectedfolder python:folderUID == templatefolder_uid;
+                          displaystyle python:selectedfolder and 'inline' or 'none'"
+              tal:attributes="tabindex tabindex/next;
+                              id string:folder-select-$folderUID;
+                              style string:display:$displaystyle;
+                              name python:selectedfolder and 'template_uid' or None">
+        <option value="">-- Select --</option>
+        <option tal:repeat="template python:context.portal_catalog(portal_type='XMLTemplate', path=folder.getPath())"
+                tal:attributes="value template/UID;
+                                selected python:template_uid == template.UID"
+                tal:content="template/pretty_title_or_id">
+        </option>
+      </select>
+      </tal:folders>
+      <select id="folder-select-dummy"
+              tal:define="showdummy python:not templatefolder_uid or templatefolder_uid == 'dummy';
+                          displaystyle python:showdummy and 'inline' or 'none'"
+              tal:attributes="style string:display:$displaystyle">
+        <option value="">-- Select --</option>
+      </select>
+    </div>
+    </tal:siyavula>
+
+        </fieldset>
+
+        <input type="hidden" name="license" value="http://creativecommons.org/licenses/by/3.0/"
+                tal:attributes="value request/license | here/getDefaultLicense" />
+
+        <input type="submit"
+                class="context"
+                name="form.button.next"
+                tal:attributes="tabindex tabindex/next;"
+                value="Next >>" i18n:attributes="value value_next_with_arrows"/>
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+      </form>
+    </div>
+  </body>
+</html>
+
+</tal:block>

@@ -1,0 +1,89 @@
+<metal:block xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:define-macro="master" 
+      tal:define="content_override content_override | here/getContentOverridePage;
+                  dummy python:content_override and request.RESPONSE.redirect(content_override)">
+
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+          metal:use-macro="container/main_template/macros/master"
+          i18n:domain="rhaptos">
+      
+      <metal:block fill-slot="css_slot">
+        <metal:block define-slot="css_slot" />
+      </metal:block>
+
+      <metal:block fill-slot="javascript_head_slot">
+        <metal:block define-slot="javascript_head_slot" />
+      </metal:block>
+
+      <tal:comment tal:replace="nothing">
+	CNX note: add 'super' slot over-ride for modified main_template
+	- requires contents of original slot, because the default contents go away
+      </tal:comment>
+      <metal:block fill-slot="super">
+        <metal:block define-slot="super">
+	  <div metal:use-macro="here/global_contentviews/macros/content_views">
+	    The content views (View, Edit, Properties, Workflow)
+	  </div>
+
+	  <div metal:use-macro="here/global_contentviews/macros/content_actions">
+	    The content bar
+	  </div>
+        </metal:block>
+      </metal:block>
+
+      <metal:block fill-slot="top_slot">
+	<metal:block define-slot="top_slot">
+	</metal:block>
+      </metal:block>
+
+      <body>
+
+        <div metal:fill-slot="content_title_header">
+          <tal:block
+            tal:define="content_object context/nearestCourse | context/nearestRhaptosObject | nocall:context;"
+            metal:define-macro="moduletitle">
+            <div id="container-full_screen" style="display: none;">
+              <a id="link-full_screen"
+                 title="Click this to expand the editing area. Click again to return to normal view."
+                 href=""
+                 tal:define="path       python:content_object.absolute_url(relative=1);
+                             jsCallback string:javascript:toggleFullScreenMode('$path');; ;"
+                 tal:attributes="href jsCallback">
+                <img id="icon-full_screen"
+                     alt=""
+                     src="fullscreenexpand_icon.gif"/>
+                <span id="text-full_screen">Hide sidebars</span>
+              </a>
+            </div>
+            <div tal:define="content_object_type content_object/portal_type;
+                             parent_url python:content_object.navigationParent(content_object, template.getId());
+                             parent content_object/getParentNode;
+                             parent_title parent/pretty_title_or_id | nothing">
+              <h1>
+                <tal:block replace="structure python:getattr(here, content_object.getIcon(1))"/>
+                <span tal:replace="content_object_type">Collection or Module</span>:
+                <span tal:replace="content_object/pretty_title_or_id">Content Object Title</span>
+              </h1>
+              <div class="workarea_locator"
+                   tal:condition="parent_url">In:
+                 <a href=""
+                    tal:attributes="href parent_url">
+                   <span tal:replace="parent_title">Work Group Name</span>
+                 </a>
+              </div>
+            </div>
+          </tal:block>
+        </div>
+
+	<div metal:fill-slot="main">
+	  <tal:block tal:condition="not:content_override">
+	    <div metal:define-slot="main">incoming content</div>
+	  </tal:block>
+	</div>
+    
+      </body>
+    </html>
+
+</metal:block>

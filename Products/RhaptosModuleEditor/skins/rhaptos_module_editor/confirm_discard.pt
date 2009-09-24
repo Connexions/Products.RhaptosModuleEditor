@@ -1,0 +1,107 @@
+<tal:block
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="content_object  context/nearestCourse | context/nearestRhaptosObject | nocall:context;
+              inWorkSpace     python:content_object.getParentNode().portal_type == 'Workspace';
+              isCollection    python:context.portal_type == 'Collection';
+              isModule        python:context.portal_type == 'Module';
+              default_tab     python:None;">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment>
+   i18n by: kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+
+    <div metal:fill-slot="main" tal:define="type here/aq_base/archetype_name|here/portal_type|here/meta_type">
+
+      <tal:block tal:condition="isCollection">
+        <h2 i18n:translate="heading_discard_collection_changes">Discard changes to this collection</h2>
+      </tal:block>
+      <tal:block tal:condition="isModule">
+        <h2 i18n:translate="heading_discard_module_changes">Discard changes to this module</h2>
+      </tal:block>
+
+      <tal:block tal:condition="python:here.state=='created'">
+	<p i18n:translate="text_confdisc_warningunpublished">
+	  <span i18n:name="warning">
+	    <strong i18n:translate="text_warning">Warning:</strong>
+	  </span> This content has never been
+	  published. If you discard, you will lose all of the
+	  editing you have done.
+	</p>
+	<table align="center" width="85%">
+	  <tr valign="top">
+	    <td align="center" width="33%">
+	      <form method="post" action="deleteContent">
+		<input type="submit" class="destructive" name="delete" value="Delete" i18n:attributes="value label_btn_delete;"/>
+	      </form>
+	      <small i18n:translate="text_confdisc_destroyitem">Completely destroy the item, deleting it from
+                <span tal:condition="inWorkSpace">your Personal Workspace</span><span tal:condition="not:inWorkSpace">the workgroup</span>.</small>
+	    </td>
+	    <td align="center" width="33%">
+	      <form method="post" action=".">
+		<input type="hidden" 
+                  name="portal_status_message"
+                  value="Canceled."
+                  i18n:attributes="value value_canceled" />
+		<input type="submit" class="standalone" name="cancel" value="Cancel" i18n:attributes="value value_nocancel"/>
+	      </form>
+	      <small i18n:translate="text_confdisc_canceldisc">Cancel the discard operation and return to editing.</small>
+	    </td>
+	  </tr>
+	</table>
+      </tal:block>
+      <tal:block tal:condition="python:here.state!='created'">
+	<p i18n:translate="text_confdisc_warningsurediscard">
+	  <span i18n:name="warning">
+	    <strong i18n:translate="text_warning">Warning:</strong> 
+	  </span> Your changes have not been
+	  published.  If you discard, you will lose the changes
+	  you have made.
+	  <span i18n:name="viewlistofchanges" tal:condition="python:type == 'Module'" tal:omit-tag="">
+	    (<a href="diff" i18n:translate="label_view_list_changes">view list of changes</a>)
+	  </span>
+	</p>
+	<table>
+	  <tr valign="top">
+	    <td align="center" width="33%">
+	      <form method="post" action="discardContent">
+		<input type="submit" class="destructive" name="discard" value="Discard" i18n:attributes="value label_confdisc_yesdiscard"/>
+	      </form>
+	      <small i18n:translate="text_confdisc_nukeit">
+		Discard the changes to the item in
+                <span tal:condition="inWorkSpace">your Personal Workspace</span><span tal:condition="not:inWorkSpace">this workgroup</span>,
+		returning it to its last published state.
+	      </small>
+	    </td>
+            <td align="center" width="33%">
+              <form method="post" action="deleteContent">
+                <input type="submit" class="destructive" name="delete" value="Delete" i18n:attributes="value label_btn_delete;"/>
+              </form>
+              <small i18n:translate="text_confdisc_destroyitem">Completely destroy the item, deleting it from
+                <span tal:condition="inWorkSpace">your Personal Workspace</span><span tal:condition="not:inWorkSpace">the workgroup</span>. (This will not delete any already published versions from the repository.)</small>
+            </td>
+	    <td align="center" width="33%">
+	      <form method="post" action=".">
+		<input type="hidden" 
+                  name="portal_status_message" 
+                  value="Canceled."
+                  i18n:attributes="value value_canceled" />
+		<input type="submit" class="standalone" name="cancel" value="Cancel" i18n:attributes="value value_nocancel"/>
+	      </form>
+	      <small i18n:translate="text_confdisc_cancelreturn">Cancel the discard operation and return to editing.</small>
+	    </td>
+	  </tr>
+	</table>
+      </tal:block>
+
+    </div>
+  </body>
+</html>
+
+</tal:block>

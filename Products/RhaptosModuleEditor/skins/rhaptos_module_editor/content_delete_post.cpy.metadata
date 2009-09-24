@@ -1,0 +1,4 @@
+[actions]
+action.success = redirect_to_action:string:contents
+action.success.Collection = redirect_to_action:string:view
+action.success.SubCollection = redirect_to_action:string:view

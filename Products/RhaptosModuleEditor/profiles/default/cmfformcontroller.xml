@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<cmfformcontroller>
+  <!-- folder_copy... -->
+  <!-- action.success.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_copy"
+    status="success"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+  <!-- action.failure.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_copy"
+    status="failure"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+  
+  <!-- folder_cut... -->
+  <!-- action.success.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_cut"
+    status="success"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+
+  <!-- action.failure.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_cut"
+    status="failure"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+
+  <!-- folder_delete... -->
+  <!-- action.success.Module=redirect_to:string:content_delete_post -->
+  <action
+    object_id="folder_delete"
+    status="success"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:content_delete_post"
+    />
+
+  <!-- action.failure.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_delete"
+    status="failure"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+
+  <!-- folder_paste... -->
+  <!-- action.success.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_paste"
+    status="success"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+
+  <!-- action.failure.Module=redirect_to:string:module_files -->
+  <action
+    object_id="folder_paste"
+    status="failure"
+    context_type="Module"
+    button=""
+    action_type="redirect_to"
+    action_arg="string:module_files"
+    />
+
+
+</cmfformcontroller>

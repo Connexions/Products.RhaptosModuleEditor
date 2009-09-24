@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;solution&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;solution&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">solution</code> tag is used to reveal the 
+  answer to a question presented to the reader. The 
+        <a href="problem" class="cnxn">problem</a> and optional 
+        <code class="codeline">solution</code> tags appear inside the <a href="exercise" class="cnxn">exercise</a> 
+  tag to present a question or task and an answer, respectively, 
+  to the reader. 
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;exercise id="texas-exercise"&gt;
+  &lt;problem id="texas-problem"&gt;
+    &lt;para id="texas-problem-para"&gt;
+      What is the capital of Texas?
+    &lt;/para&gt;
+  &lt;/problem&gt;
+  &lt;solution id="texas-solution"&gt;
+    &lt;para id="texas-solution-para"&gt;
+      Austin is the capital of Texas.
+    &lt;/para&gt;
+  &lt;/solution&gt;
+&lt;/exercise&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+            <div class="exercise" id="texas-exercise">
+<h3 class="exercise-header">
+                <span class="cnx_label">Exercise 1</span>
+</h3>
+              <div class="problem" id="texas-problem">
+                <p class="para" id="texas-problem-para">
+                     What is the capital of Texas?
+                </p>
+              </div>
+              <div class="solution" id="texas-solution" style="display: none;">
+                <h4 class="solution-header"><span class="cnx_label">Solution</span></h4>
+                <p class="para" id="texas-solution-para">
+                     Austin is the capital of Texas.
+                </p>
+              </div>
+              <div class="solution-toggles" style="display: block;">
+<a href="#" onclick="toggleSolution('texas-exercise',1); return false;"><span class="solution-toggle">
+                      [
+                      Show Solution
+                      ]
+                  </span><span class="solution-toggle" style="display: none;">
+                      [ 
+                      Hide Solution
+                      ]
+                  </span></a>
+              </div>
+            </div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>print-placement</b> <i>(optional)</i>: 
+      
+          Determines where the solution will be placed relative to other content in the PDF version of the document.  Setting the 
+          "print-placement" value on <code class="codeline">solution</code> can be useful for overriding the value of "print-placement" set 
+          in <a href="exercise" class="cnxn">exercise</a> if the exercise has more than one <code class="codeline">solution</code>.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">end - When viewing the PDF version of the content, the exercise will
+              be moved to the end of the chapter (default, except for an <code class="codeline">exercise</code> contained in an   
+              <a href="example" class="cnxn">example</a>).</li>
+            <li class="item">here - The exercise will be displayed inline with the rest of the text (default for an exercise 
+              contained in an <a href="example" class="cnxn">example</a>).</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>type</b> <i>(optional)</i>: 
+      
+          Defines the type of solution. Type can be any user-defined value
+          that reflects the purpose of the solution.
+        </li>
+<li class="item">
+<b>id</b> <i>(required)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="section">section</a>, <a class="cnxn" href="definition">definition</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="exercise">exercise</a>, <a class="cnxn" href="para">para</a>
+</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents"><a class="cnxn" href="exercise">exercise</a></div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

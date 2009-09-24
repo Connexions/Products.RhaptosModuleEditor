@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <style metal:fill-slot="css_slot">
+    th { font-weight: bold !important;
+         text-align: left }
+    .listing th { text-align: center }
+    .listing td { padding-top: 0.5em; padding-bottom: 0.5em }
+  </style>
+  <body>
+
+    <div metal:fill-slot="main" tal:define="links here/getLinks">
+
+      <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+      <metal:macro metal:define-macro="links_form">
+      <h2>Edit featured links</h2>
+      <p>
+        <b i18n:translate="text_note_colon">
+          Note:
+        </b>
+        <span i18n:translate="text_links_public">
+          Make sure that all of your links are published and/or publicly available.
+        </span>
+      </p>
+      <p tal:condition="links">
+        <b i18n:translate="text_link_strength_key_header">
+          Link strength key:
+        </b>
+        <span i18n:translate="text_link_strength_key_text">
+          3: Strongly related link; 2: Related link, 1: Weakly related link
+        </span>
+      </p>
+      <p tal:condition="not:links"><em i18n:translate="text_no_links_defined">No links defined.</em></p>
+      
+      <form method="post" action="."
+            tal:condition="links"
+            tal:define="readonly readonly | nothing"
+            tal:attributes="action template/getId">
+        <table class="listing">
+            <tr>
+              <th i18n:translate="listingheader_title">Title</th>
+              <th i18n:translate="listingheader_link_type">Type</th>
+              <th i18n:translate="listingheader_strength">Strength</th>
+              <th i18n:translate="listingheader_delete">URL</th>
+              <th i18n:translate="listingheader_delete">Delete</th>
+            </tr>
+	  <span tal:omit-tag="" tal:repeat="link links">
+	    <tr tal:attributes="bgcolor python:test(repeat['link'].odd(),'ffffff','dddddd')">
+	      <input type="hidden" name="links.id:records" tal:attributes="value link/id" />
+              <td>
+                <div tal:condition="readonly" tal:content="link/title">Link title</div>
+                <input tal:condition="not:readonly"
+                       type="text" name="links.title:records"
+                       size="20" style="font-size: 1.1em;"
+                       tal:attributes="value link/title;" />
+              </td>
+              <td tal:define="name string:links.category:records">
+                <select metal:use-macro="template/macros/category | context/module_links/macros/category">
+                  <option>Example</option>
+                </select>
+              </td>
+              <td tal:define="name string:links.strength:int:records;
+                              currentstrength python:link and link.strength or None">
+                <div tal:condition="readonly" tal:content="currentstrength" style="text-align:center">3</div>
+                <select tal:condition="not:readonly"
+                        name="newLink.strength:int:record"
+                        tal:attributes="name name | default">
+                  <option tal:attributes="selected python:currentstrength == 3 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="3">
+                    3
+                  </option>
+                  <option tal:attributes="selected python:currentstrength == 2 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="2">
+                    2
+                  </option>
+                  <option tal:attributes="selected python:currentstrength == 1 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="1">
+                    1
+                  </option>
+                </select>
+              </td>
+              <td tal:attributes="bgcolor python:test(repeat['link'].odd(),'ffffff','dddddd')">
+                <div tal:condition="readonly" tal:content="link/target">http://example.com</div>
+                <input tal:condition="not:readonly"
+                       type="text" name="links.target:records"
+                       size="20" style="font-size: 1.1em;"
+                       tal:attributes="value link/target" />
+                &#160;&#160;
+                <a tal:attributes="href link/target"
+                   i18n:translate="text_link_visit"
+                   style="font-size: .8em;">VISIT</a>
+              </td>
+              <td>
+                <input type="checkbox" class="noborder" name="delete:list"
+                       tal:attributes="value link/id"
+                       tal:condition="not:readonly"/>
+              </td>
+	    </tr>
+	  </span>
+	</table>
+
+	<p>
+          <input type="submit" class="context"
+                 name="form.button.update" value="Update Links"
+                 tal:condition="not:readonly"
+                 i18n:attributes="value value_update_links"/>
+	</p>
+	<input type="hidden" name="form.submitted" value="1" />
+      </form>
+
+      <hr />
+
+      <p tal:condition="readonly | nothing" i18n:translate="text_link_readonly">
+        Link editing unavailable. See message above.
+      </p>
+      <form method="post"
+            tal:define="link request/newLink | nothing;
+                        readonly readonly | nothing"
+            tal:condition="not:readonly"
+            tal:attributes="action template/id">
+
+        <h2 i18n:translate="heading_add_new_link">Add new featured link:</h2>
+
+	<table style="margin-top: .5em">
+	  <tr>
+	    <th style="padding-right: .5em" i18n:translate="text_new_link_name_header">Enter a title for the link:</th>
+	    <td>
+	      <input type="text" name="newLink.title:record" size="50" tal:attributes="value link/title | nothing" />
+	    </td>
+	  </tr>
+	  <tr>
+	    <th i18n:translate="text_new_link_type_header">Type:</th>
+	    <td>
+              <div metal:define-macro="category" tal:omit-tag="">
+                <div tal:condition="readonly" tal:content="link/category/capitalize">Example</div>
+                <select tal:condition="not:readonly"
+                        name="newLink.category:record"
+                        tal:define="currentcat python:link and link.category or None"
+                        tal:attributes="name name | default">
+                  <option tal:repeat="linktype here/getLinkTypes"
+                          tal:content="linktype/capitalize"
+                          tal:attributes="value linktype;
+                                          selected python:currentcat == linktype and 'selected' or None"
+                          i18n:attributes="value"
+                          i18n:translate="">[category]</option>
+                </select>
+              </div>
+	    </td>
+	  </tr>
+	  
+          <tr>
+            <th i18n:translate="text_new_link_strength_header">Strength:</th>
+              <td>
+                <select name="newLink.strength:int:record"
+                        tal:define="currentstrength python:link and link.strength or None"
+                        tal:attributes="name name | default">
+                  <option tal:attributes="selected python:currentstrength == 3 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="3">
+                    3 : Strongly related link
+                  </option>
+                  <option tal:attributes="selected python:currentstrength == 2 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="2">
+                    2 : Related link
+                  </option>
+                  <option tal:attributes="selected python:currentstrength == 1 and 'selected' or nothing"
+                          i18n:translate="option_link_strong"
+                          value="1">
+                    1 : Weakly related link
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </table>
+
+	<div style="margin-top: 3ex; font-weight: bold" i18n:translate="text_new_link_URL_header">Enter either a Connexions ID or a URL:</div>
+	<table style="padding-top: 1ex">
+	  <tr valign="bottom">
+	    <th style="padding-right: 10px" i18n:translate="text_new_link_id_header">ID</th>
+	    <th i18n:translate="text_new_link_version_header">Version</th>
+	    <td rowspan="3" valign="middle" style="padding: 0 30 0 30"><b i18n:translate="text_new_link_or_header">OR:</b></td>
+	    <th i18n:translate="text_new_link_url_header">URL:</th>
+	  </tr>
+	  <tr>
+	    <td>
+	      <input type="text" name="newLink.objectId:record" size="8" tal:attributes="value link/objectId | nothing" />
+	    </td>
+	    <td>
+	      <input type="text" name="newLink.version:record" size="6" tal:attributes="value link/version | nothing" />
+	    </td>
+	    <td><input type="text" name="newLink.target:record" size="40" tal:attributes="value link/target | nothing" /></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td style="font-size: small" i18n:translate="text_new_link_optional">(optional)</td>
+	    <td></td>
+	  </tr>
+	</table>
+
+	<input type="submit" class="context" name="form.button.add"
+	value="  Add  " i18n:attributes="value value_add_with_double_spaces"/>	  
+	<input type="hidden" name="form.submitted" value="1" />
+
+      </form>
+
+      </metal:macro>
+    </div>
+  </body>
+</html>

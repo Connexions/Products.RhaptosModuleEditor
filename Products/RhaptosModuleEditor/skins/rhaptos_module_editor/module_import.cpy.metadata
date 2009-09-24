@@ -1,0 +1,6 @@
+[actions]
+action.success = redirect_to_action:string:view
+action.failure = traverse_to:string:module_import_form
+
+action.module_text  = redirect_to_action:string:view
+action.module_files = redirect_to:string:module_files

@@ -1,0 +1,13 @@
+[default]
+title=Edit Links
+
+[validators]
+validators = validate_link_add
+validators..add = validate_link_add
+validators..update = 
+
+[actions]
+action.failure = traverse_to:string:module_links
+action.success = traverse_to:string:addLink
+action.success..add = traverse_to:string:addLink
+action.success..update = traverse_to:string:update_links

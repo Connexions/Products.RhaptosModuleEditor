@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;subfigure&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;subfigure&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">subfigure</code> tag is used when you want 
+  to include multiple figures, tables, or blocks of code within a 
+  single <a href="figure" class="cnxn">figure</a> tag. You should use the 
+        <code class="codeline">subfigure</code> tag only if the subfigures are 
+  related and you want to display them together. The 
+        <code class="codeline">subfigure</code> tag is similar to the 
+        <a href="figure" class="cnxn">figure</a> tag, except that it cannot contain another 
+        <code class="codeline">subfigure</code> tag.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;figure id="dogs-fig" orient="horizontal"&gt;
+  &lt;title&gt;Some very cute dogs&lt;/title&gt;
+  &lt;subfigure id="dogs-subfig1"&gt;
+    &lt;media id="dog-1"
+           alt="A dog sitting on a bed"&gt;
+      &lt;image mime-type="image/jpeg" 
+             src="image1.jpg" /&gt;
+    &lt;/media&gt;
+  &lt;/subfigure&gt;
+  &lt;subfigure id="dogs-subfig2"&gt;
+    &lt;media id="dog-2"
+           alt="A dog looking on"&gt;
+      &lt;image mime-type="image/jpeg" 
+             src="image2.jpg" /&gt;
+    &lt;/media&gt;
+  &lt;/subfigure&gt;
+&lt;/figure&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div class="figure" id="dogs-fig"><table cellspacing="0" cellpadding="0" width="50%" border="0" align="center">
+<caption align="bottom" class="figure-caption"><strong class="cnx_label">Figure 1</strong></caption>
+<thead><tr><th class="figure-name"><strong class="title">Some very cute dogs</strong></th></tr></thead>
+<tbody><tr><td class="inner-figure"><table cellspacing="0" cellpadding="0" border="0" class="horizontal-subfigure">
+<tfoot><tr>
+<th class="horizontal-subfigure-caption"><strong class="cnx_label">(a) </strong></th>
+<th class="horizontal-subfigure-caption"><strong class="cnx_label">(b) </strong></th>
+</tr></tfoot>
+<tbody><tr>
+<td class="inner-horizontal-subfigure" id="dogs-subfig1"><span class="media" id="dog-1"><img src="image1.jpg" alt="A dog sitting on a bed"></span></td>
+<td class="inner-horizontal-subfigure" id="dogs-subfig2"><span class="media" id="dog-2"><img src="image2.jpg" alt="A dog looking on"></span></td>
+</tr></tbody>
+</table></td></tr></tbody>
+</table></div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>type</b> <i>(optional)</i>: 
+      
+          Defines the type of subfigure in order to give specialized control over numbering.
+          Subfigures of the same type are numbered in series (i.e., Figure 1(a), Figure 1(b)...).
+          Type can be used in conjunction with <a href="label" class="cnxn">label</a> so that subfigures of each
+          user-defined type appear with their own label. Type can be any user-defined value 
+          that reflects the purpose of the subfigure.
+        </li>
+<li class="item">
+<b>id</b> <i>(required)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+          First, <code class="codeline">subfigure</code> may contain an optional 
+          <a href="label" class="cnxn">label</a> tag, followed by an optional <a href="title" class="cnxn">title</a> tag.
+        Next, it must contain:
+          <ul>
+            <li> One <a href="media" class="cnxn">media</a> tag, - OR -</li>
+            <li> One <a href="table" class="cnxn">table</a> tag, - OR - </li>
+            <li> One <a href="code" class="cnxn">code</a> tag.   </li>
+          </ul>
+        Finally, <code class="codeline">figure</code> may contain an 
+        optional <a href="caption" class="cnxn">caption</a> tag.
+        </div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents"><a class="cnxn" href="figure">figure</a></div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>
