@@ -56,5 +56,3 @@ def initialize(context):
                       extra_constructors = contentConstructors).initialize(context)
     
 
-from Extensions import Install  # import to test syntax of install script on start
-del Install
