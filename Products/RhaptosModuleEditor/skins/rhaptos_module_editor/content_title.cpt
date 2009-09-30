@@ -78,7 +78,7 @@
 
           <div metal:use-macro="here/module_metadata/macros/abstract" />
 
-    <tal:siyavula condition="context/@@siyavula">
+    <tal:siyavula condition="context/@@siyavula|nothing">
     <div class="field"
         tal:condition="python:context.portal_catalog(portal_type='XMLTemplate')"
         tal:define="error errors/template_uid| nothing;
