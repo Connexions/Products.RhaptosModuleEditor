@@ -9018,7 +9018,7 @@ function extractLinks() {
         if (rel == "source" || rel == "module" || rel == "content" || rel =="update" || rel=="source_fragment") {
             // XXX could we use a more robust mozilla
             //   method of transforming relative to absolute URL?
-            gURLs[rel] = "http://" + window.location.host +  links.item(i).getAttribute("href");
+            gURLs[rel] = links.item(i).getAttribute("href");
         }
     }
 }

@@ -4,7 +4,7 @@
    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 /* ******************* e d i t  i n  p l a c e ******************** */
-
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (do not remove this :) */
 #cnx_main{
   border: 2px solid black;
   background: #f8f8f8;
@@ -342,7 +342,7 @@ input, .eipAddHere select, #cnx_main .eipEditContainer input{
 
 .eipInsertElementLink:hover{
   padding-right: 12px;
-  background-image: url(/eip/eipInsertArrow.png);
+  background-image: url(&dtml-portal_url;/eip/eipInsertArrow.png);
   background-repeat: no-repeat;
   background-position: right .45em;
 }
