@@ -162,7 +162,7 @@
                              id string:archetypes-fieldname-master_language">
 
           <script type="text/javascript" charset="iso-8859-1"
-            src="/hiding_functions.js">
+            src="/hiding_functions.js" tal:attributes="src string:$portal_url/hiding_functions.js;">
           </script>
 
           <label i18n:translate="label_language">Language</label>
@@ -210,7 +210,7 @@
             <!-- cut & paste here to work from -->
 
             <script type="text/javascript" charset="iso-8859-1"
-                    src="/modifySelectList.js">
+                    src="/modifySelectList.js" tal:attributes="src string:$portal_url/modifySelectList.js;">
             </script>
             <script>
       <!--
