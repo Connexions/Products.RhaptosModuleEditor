@@ -26,17 +26,18 @@ $Id: $
 
 import Products.RhaptosModuleEditor
 
-from Products.RhaptosTest import base
+from Products.RhaptosTest.base import RhaptosTestCase
 
 
-base.PRODUCTS_TO_LOAD_ZCML = [('configure.zcml', Products.RhaptosModuleEditor),]
-base.PRODUCTS_TO_INSTALL = ['RhaptosModuleEditor',]
+class TestRhaptosModuleEditor(RhaptosTestCase):
 
+    products_to_load_zcml = [('configure.zcml', Products.RhaptosModuleEditor),]
 
-class TestRhaptosModuleEditor(base.RhaptosTestCase):
+    def setUp(self):
+        RhaptosTestCase.setUp(self)
 
-    def test_pass(self):
-        assert 1 == 1
+    def test_module_editor(self):
+        self.assertEqual(1, 1)
 
 
 def test_suite():
