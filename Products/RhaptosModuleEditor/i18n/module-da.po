@@ -602,9 +602,9 @@ msgstr "Bruger"
 
 
 #: /skins/rhaptos_module_editor/module_editroles_form.pt 
-#. <th colspan="3" i18n:translate="">Roles (<a href="/help/reference/roles">help</a>)</th>
-msgid "Roles (<a href=\"/help/reference/roles\">help</a>)"
-msgstr "Roller (<a href=\"/help/reference/roles\">hjælp</a>)"
+#. <th colspan="3" i18n:translate="">Roles (<a href="/help/authoring/authorguide#roles">help</a>)</th>
+msgid "Roles (<a href=\"/help/authoring/authorguide#roles\">help</a>)"
+msgstr "Roller (<a href=\"/help/authoring/authorguide#roles\">hjælp</a>)"
 
 
 #: /skins/rhaptos_module_editor/module_editroles_form.pt 
@@ -635,9 +635,9 @@ msgstr "Copyright-indehaver"
 
 
 #: /skins/rhaptos_module_editor/module_editroles_form.pt 
-#. <th class="pending top" colspan="3" i18n:translate="">Roles Pending Approval (<a href="/help/reference/roles">help</a>)</th>
-msgid "Roles Pending Approval (<a href=\"/help/reference/roles\">help</a>)"
-msgstr "Roller, der afventer godkendelse (<a href=\"/help/reference/roles\">hjælp</a>)"
+#. <th class="pending top" colspan="3" i18n:translate="">Roles Pending Approval (<a href="/help/authoring/authorguide#roles">help</a>)</th>
+msgid "Roles Pending Approval (<a href=\"/help/authoring/authorguide#roles\">help</a>)"
+msgstr "Roller, der afventer godkendelse (<a href=\"/help/authoring/authorguide#roles\">hjælp</a>)"
 
 
 #: /skins/rhaptos_module_editor/module_editroles_form.pt 
@@ -750,10 +750,10 @@ msgstr "Vend tilbage til editering af <a href=\"module_editcontents_form\">modul
 #. <p i18n:translate="notCheckedOut_a">
 #    This module has been published.  If you wish to create a new
 #    revision, you must check out a copy to the workspace for editing
-#    (<a href="/help/reference/status">What does "Checked out" mean</a>?)
+#    (<a href="/help/authoring/authorguide#status">What does "Checked out" mean</a>?)
 #  </p>
 msgid "notCheckedOut_a"
-msgstr "Dette modul er blevet publiseret. Hvis du ønsker at skabe en ny udgave er du nødt til at 'check out' en kopi til arbejdsrummet for editering (<a href=\"/help/reference/status\">Hvad betyder \"Check out\"</a>?)"
+msgstr "Dette modul er blevet publiseret. Hvis du ønsker at skabe en ny udgave er du nødt til at 'check out' en kopi til arbejdsrummet for editering (<a href=\"/help/authoring/authorguide#status\">Hvad betyder \"Check out\"</a>?)"
 
 
 #: /skins/rhaptos_module_editor/module_notCheckedOut.pt 

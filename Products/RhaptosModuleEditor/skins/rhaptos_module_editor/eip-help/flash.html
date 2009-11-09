@@ -56,7 +56,8 @@
          height="108"/&gt;
   &lt;image mime-type="image/png"
          src="dancing-cnx-still.png" 
-         print-width="4in" /&gt;
+         print-width="4in" 
+         for="pdf"/&gt;
 &lt;/media&gt;
         </code></pre></div>
         <p class="para">Results in this display:</p>
@@ -69,8 +70,7 @@
 	
 <p class="additionalnote">This example demonstrates using alternate media for the PDF version
 of the module. Flash elements cannot be inserted into PDF files. In this case, the Web-ready Flash file
-will be displayed when viewing the module online and the second element
-specified, a still shot from the animation, will be used for the PDF version.
+will be displayed when viewing the module online and the second element, a still shot from the animation, will be used for the PDF version.
 </p>
       </div>
       <div id="cnx_eip_help_attributes_list" class="list">
@@ -85,7 +85,7 @@ specified, a still shot from the animation, will be used for the PDF version.
       alongside the module, the file name itself can be used (e.g. "file.flv").
         <div class="note">
 <h3 class="note-header"><span class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -100,6 +100,18 @@ reference "&amp;amp;". More information can be found on the
       in the Flash file.
           A list of common Internet media MIME types can be found
             <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">here</a>.
+        </li>
+<li class="item">
+<b>for</b> <i>(optional)</i>: 
+      
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">default - This element is used for both PDF and online versions unless another, version-specific element is present (default).</li>
+            <li class="item">pdf - This element is used only for the PDF version of the content.</li>
+            <li class="item">online - This element is used only for the online version of the content.</li>
+          </ul></div>
         </li>
 <li class="item">
 <b>wmode</b> <i>(optional)</i>: 
@@ -188,12 +200,12 @@ reference "&amp;amp;". More information can be found on the
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="param">param</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>, Unicode text</div>
+<a class="cnxn" href="param">param</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>, Unicode text</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_parents">
-<a class="cnxn" href="media">media</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+<a class="cnxn" href="media">media</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
 </div>
     <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
 <!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">

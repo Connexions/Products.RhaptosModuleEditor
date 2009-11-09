@@ -59,7 +59,7 @@
       <tag>audio</tag>
       <tag>flash</tag>
       <tag>video</tag>
-      <tag>text</tag>
+      <!--<tag>text</tag>-->
       <tag>java-applet</tag>
       <tag>image</tag>
       <tag>labview</tag>
@@ -208,7 +208,7 @@
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref>media</tagref>
+        <tagref note="block display only">media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -219,7 +219,7 @@
       <parents>
         <tagref note="one, optional">title</tagref>
         <tagref note="one, optional">label</tagref>
-        <tagref>preformat</tagref>
+        <tagref note="code must be block display">preformat</tagref>
         <tagref>para</tagref>
         <tagref>cite-title</tagref>
         <tagref>cite</tagref>
@@ -228,10 +228,10 @@
         <tagref>term</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>quote</tagref>
+        <tagref note="code must be block display">quote</tagref>
         <tagref>foreign</tagref>
         <tagref>footnote</tagref>
-        <tagref>note</tagref>
+        <tagref note="code must be block display">note</tagref>
         <tagref>item</tagref>
         <tagref>code</tagref>
         <tagref>figure</tagref>
@@ -240,8 +240,8 @@
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagref note="code must be block display">content</tagref>
+        <tagref note="code must be block display">section</tagref>
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -314,7 +314,7 @@
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -412,7 +412,7 @@
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>entry</tagref>
         <tagsetref name="structural" />  
       </parents>
@@ -531,7 +531,7 @@
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -621,12 +621,12 @@
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
+        <tagref note="block display only">code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref>media</tagref>
+        <tagref note="block display only">media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -649,7 +649,7 @@
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -876,14 +876,14 @@
       <children>
         <tagref>section</tagref>
         <tagref>example</tagref>
-        <tagref>code</tagref>
+        <tagref note="block display only">code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>para</tagref>
         <tagref>definition</tagref>
         <tagref>figure</tagref>  
         <tagref>note</tagref>  
-        <tagref>media</tagref>  
+        <tagref note="block display only">media</tagref>  
         <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
@@ -1295,7 +1295,7 @@
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -1375,7 +1375,7 @@
         <tagref note="one, optional">label</tagref>
         <tagref note="one, optional">title</tagref>
         <tagref>para</tagref>
-        <tagref>code</tagref>
+        <tagref note="block display only">code</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>  
@@ -1383,7 +1383,7 @@
         <tagref>preformat</tagref>  
         <tagref>quote</tagref>  
         <tagref>note</tagref>  
-        <tagref>media</tagref>
+        <tagref note="block display only">media</tagref>
         <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
@@ -1668,7 +1668,7 @@ is a classic novel.
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -1792,7 +1792,7 @@ is a classic novel.
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -2879,7 +2879,7 @@ is a classic novel.
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -3029,12 +3029,12 @@ is a classic novel.
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
+        <tagref note="block display only">code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref>media</tagref>
+        <tagref note="block display only">media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -3057,7 +3057,7 @@ is a classic novel.
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -3363,7 +3363,7 @@ is a classic novel.
       </div>
       <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -3420,7 +3420,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>item</tagref>
         <tagref>code</tagref>
         <tagref>caption</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
@@ -3539,7 +3539,7 @@ reference "&amp;amp;". More information can be found on the
       and explain its overall structure. The contents of the 
       summary will not show on the screen, but can be used to 
       help visually impaired readers that are listening to the 
-      content understand the table.
+      content understand the table.  <a href="terminology#cnx_eip_help_define_table_summary_section">Learn more</a>.
         </attribute>
         <attribute name="frame" required="optional">
       Position of lines drawn around table.
@@ -3597,7 +3597,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>item</tagref>
         <tagref>figure</tagref>
         <tagref>subfigure</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -3740,7 +3740,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -3969,7 +3969,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
       </parents>
     </tag>
 
@@ -3999,15 +3999,15 @@ reference "&amp;amp;". More information can be found on the
   &lt;image mime-type=&quot;image/jpeg&quot; 
          src=&quot;image1.jpg&quot; /&gt;
   &lt;image mime-type=&quot;application/postscript&quot; 
-         src=&quot;image1.eps&quot; /&gt;
+         src=&quot;image1.eps&quot; 
+         for=&quot;pdf&quot;/&gt;
 &lt;/media&gt;
         </input>
         <output>
           <span class="media" id="greyhound"><img src="image1.jpg" alt="A greyhound relaxing on a bed."/></span>
         </output>
-<p class="additionalnote">This example demonstrates using alternate images for the PDF version
-of the module. The Web-ready JPEG image will be displayed when viewing the module online and the second image
-specified, a higher-resolution EPS file, will be used for the PDF version.
+<p class="additionalnote">This example demonstrates the use of the <code class="codeline">for</code> attribute to specify an alternate image for the PDF version
+of the module. The Web-ready JPEG image, here used as the default option, will be displayed when viewing the module online and the second image, a higher-resolution EPS file, will be used for the PDF version.
 </p>
       </exampleexample>
       <attributes id="optional">
@@ -4016,7 +4016,7 @@ specified, a higher-resolution EPS file, will be used for the PDF version.
       alongside the module, the file name itself is sufficient (e.g. "img.jpg").
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4031,6 +4031,15 @@ reference "&amp;amp;". More information can be found on the
         types are: "image/jpeg" (for .jpg images), "image/gif" (for .gif images), and
         "image/png" (for .png images).  A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+        </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
         </attribute>
         <attribute name="height" required="optional">
       The height of the image in pixels. Must be a nonnegative integer.
@@ -4111,7 +4120,7 @@ reference "&amp;amp;". More information can be found on the
       alongside the module, the file name itself can be used (e.g. "clip.mp3").
 <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4125,6 +4134,16 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>
+		
         <attribute name="standby" required="optional">
       A message to display while the audio data is loading.
         </attribute>
@@ -4220,7 +4239,7 @@ reference "&amp;amp;". More information can be found on the
       alongside the module, the file name itself can be used (e.g. "clip.mp3").
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4234,6 +4253,16 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>
+
         <attribute name="standby" required="optional">
       A message to display while the video data is loading.
         </attribute>
@@ -4342,6 +4371,16 @@ reference "&amp;amp;". More information can be found on the
         in the object. <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>
+		
         <attribute name="codebase" required="optional">
       A URI specifying the where the applet's files are located.  If this attribute is not set, the browser will by default assume the 
       applet's files are located in the current directory. 
@@ -4358,7 +4397,7 @@ reference "&amp;amp;". More information can be found on the
       alongside the module, the file name itself can be used.
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4435,7 +4474,7 @@ reference "&amp;amp;". More information can be found on the
       alongside the module, the file name itself can be used (e.g. "report.doc").
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4449,14 +4488,16 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
-<!--
-        <attribute name="height" required="optional">
-      The height of the file in pixels.
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
         </attribute>
-        <attribute name="width" required="optional">
-      The width of the file in pixels.
-        </attribute>
--->     
+
         <attribute name="longdesc" required="optional">
       The URL of a file containing a long description of the download. 
       Not all readers will be able to see your included media in
@@ -4500,7 +4541,7 @@ reference "&amp;amp;". More information can be found on the
   type</link>.
   <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all media <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4509,14 +4550,16 @@ reference "&amp;amp;". More information can be found on the
       </description>
       <exampleexample>
         <input>
-&lt;media id="foto_de_perro"
-       alt="Un perro sentado en una cama"&gt;
+&lt;media id="dog_on_couch"
+       alt="A dog sitting on a couch."&gt;
+	   
   &lt;image mime-type="image/jpeg"
          src="image1.jpg" /&gt;
+		 
 &lt;/media&gt;
         </input>
         <output>
-          <img src="image1.jpg" alt="Un perro sentado en una cama"/>
+          <img src="image1.jpg" alt="A dog sitting on a couch"/>
         </output>
       </exampleexample>
       <attributes id="required">
@@ -4552,7 +4595,7 @@ reference "&amp;amp;". More information can be found on the
         <tagsetref name="mediaobjects" />
       </children>
       <parents>
-        <tagref>preformat</tagref>
+        <tagref note="media must be block display">preformat</tagref>
         <tagref>para</tagref>
         <tagref>title</tagref>
         <tagref>label</tagref>
@@ -4563,17 +4606,17 @@ reference "&amp;amp;". More information can be found on the
         <tagref>term</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>quote</tagref>
+        <tagref note="media must be block display">quote</tagref>
         <tagref>foreign</tagref>
         <tagref>footnote</tagref>
         <tagref>equation</tagref>
-        <tagref>note</tagref>
+        <tagref note="media must be block display">note</tagref>
         <tagref>item</tagref>
-        <tagref>code</tagref>
+        <tagref note="media must be block display">code</tagref>
         <tagref>figure</tagref>
         <tagref>subfigure</tagref>
         <tagref>caption</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
@@ -4581,8 +4624,8 @@ reference "&amp;amp;". More information can be found on the
         <tagref>proof</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagref note="media must be block display">content</tagref>
+        <tagref note="media must be block display">section</tagref>
       </parents>
     </tag>
 
@@ -4621,7 +4664,8 @@ reference "&amp;amp;". More information can be found on the
          height=&quot;108&quot;/&gt;
   &lt;image mime-type=&quot;image/png&quot;
          src=&quot;dancing-cnx-still.png&quot; 
-         print-width=&quot;4in&quot; /&gt;
+         print-width=&quot;4in&quot; 
+         for=&quot;pdf&quot;/&gt;
 &lt;/media&gt;
         </input>
         <output>
@@ -4634,8 +4678,7 @@ reference "&amp;amp;". More information can be found on the
 	</output>
 <p class="additionalnote">This example demonstrates using alternate media for the PDF version
 of the module. Flash elements cannot be inserted into PDF files. In this case, the Web-ready Flash file
-will be displayed when viewing the module online and the second element
-specified, a still shot from the animation, will be used for the PDF version.
+will be displayed when viewing the module online and the second element, a still shot from the animation, will be used for the PDF version.
 </p>
       </exampleexample>
       <attributes id="optional">
@@ -4644,7 +4687,7 @@ specified, a still shot from the animation, will be used for the PDF version.
       alongside the module, the file name itself can be used (e.g. "file.flv").
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4657,6 +4700,15 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>		
         <attribute name="wmode" required="optional">
           <values>
             <value name="window">Creates a seperate rectangular window.</value>
@@ -4762,7 +4814,7 @@ reference "&amp;amp;". More information can be found on the
       alongside the module, the file name itself can be used (e.g. "file.vi").
         <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4786,6 +4838,15 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>		
         <attribute name="height" required="optional">
       The height of the LabVIEW file in pixels.
         </attribute>
@@ -4825,6 +4886,12 @@ reference "&amp;amp;". More information can be found on the
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
+	
+<!--
+
+NOTE - <text> is currently implemented differently for online and in print.  For time being, as this is an underused element, we 
+are temporarily dropping our documentation as we don't want to teach people to use it the wrong way, nor do we want to confuse them with documentation that is inconsistent with the current implementation.  When resolved, need to uncomment this element as well as all instances of "<tagref>text</tagref>".
+
 
     <tag name="text">
       <description>
@@ -4835,29 +4902,32 @@ reference "&amp;amp;". More information can be found on the
       </description>
       <exampleexample>
         <input>
-&lt;para id=&quot;txt-example&quot;&gt;
-  Text goes here:
-  &lt;media id=&quot;txt-media-example&quot;
-         display=&quot;block&quot;
-         alt=&quot;A block of text.&quot;&gt;
-    &lt;text&gt;
-      This is example text; this element used
-      mostly for fallback.
-    &lt;/text&gt;
-  &lt;/media&gt;
-  You should have seen text.
-&lt;/para&gt;
+&lt;media id=&quot;building-on-past&quot;
+       alt=&quot;Building on the past.&quot;&gt;
+  &lt;video mime-type=&quot;video/mpeg&quot; 
+         src=&quot;Building_on_the_Past.mpg&quot;
+         autoplay=&quot;false&quot;
+         width=&quot;320&quot; height=&quot;260&quot; 
+         for=&quot;online&quot;/&gt;
+  &lt;text for=&quot;default&quot;&gt;
+         If you have access to the internet, please review the 
+         &quot;Building on the Past&quot; video located 
+         &lt;link url=&quot;Building_on_the_Past.mpg&quot;&gt;on the website&lt;/link&gt;.
+         For those of you who do not have access to this movie,
+         please refer to Handout 1A as an alternate exercise.
+  &lt;/text&gt;
+         
         </input>
         <output>
           <div class="para" id="txt-example">
-  Text goes here:
-            <div class="media">
-      This is example text; this element used
-      mostly for fallback.
-            </div>
-  You should have seen text.
+  If you have access to the internet, please review the 
+  &quot;Building on the Past&quot; video located on the
+  website<sup>1</sup>.  For those of you who do not have
+  access to this movie, please refer to Handout 1A as an
+  alternate exercise.
           </div>
         </output>
+<p class="additionalnote">The output shown above would be displayed in the PDF version of the content; the online version of the content would display the movie itself.</p>		
       </exampleexample>
       <attributes id="optional">
         <attribute name="src" required="optional">
@@ -4865,7 +4935,7 @@ reference "&amp;amp;". More information can be found on the
       as a resource with the module, the file name itself can be used (e.g. "file.txt").
 <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -4879,14 +4949,15 @@ reference "&amp;amp;". More information can be found on the
           <note>A list of common Internet media MIME types can be found
             <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
         </attribute>
-<!--
-        <attribute name="height" required="optional">
-      The height of the text in pixels.
-        </attribute>
-        <attribute name="width" required="optional">
-      The width of the text in pixels.
-        </attribute>
--->
+        <attribute name="for" required="optional">
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  <note>If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.</note>
+          <values>
+            <value name="default">This element is used for both PDF and online versions unless another, version-specific element is present (default).</value>
+            <value name="pdf">This element is used only for the PDF version of the content.</value>
+            <value name="online">This element is used only for the online version of the content.</value>
+          </values>
+        </attribute>	
         <attribute name="longdesc" required="optional">
       The URL of a file containing a long description of the text.  
         </attribute>
@@ -4905,6 +4976,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
+		<tagref>link</tagref>
         <tagsetref name="mediaobjects" />
         <text />
       </children>
@@ -4913,6 +4985,8 @@ reference "&amp;amp;". More information can be found on the
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
+
+-->
 
     <tag name="commentary">
       <description>
@@ -5076,12 +5150,12 @@ Roses are red
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
+        <tagref note="block display only">code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref>media</tagref>
+        <tagref note="block display only">media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -5104,7 +5178,7 @@ Roses are red
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>example</tagref>
         <tagref>problem</tagref>
         <tagref>solution</tagref>
@@ -5443,7 +5517,7 @@ class="problem" id="se-problem">
         <tagref>item</tagref>
         <tagref>code</tagref>
         <tagref>caption</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
@@ -5535,7 +5609,7 @@ class="problem" id="se-problem">
         <tagref>item</tagref>
         <tagref>code</tagref>
         <tagref>caption</tagref>
-        <tagref>text</tagref>
+        <!--<tagref>text</tagref>-->
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>

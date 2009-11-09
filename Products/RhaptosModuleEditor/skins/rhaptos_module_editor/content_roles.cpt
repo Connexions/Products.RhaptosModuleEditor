@@ -187,8 +187,10 @@
 
       <h4 i18n:translate="heading_controles_changeroles">
 	  Change Roles:
-          <span style="white-space:nowrap" i18n:name="role_help_link">(<a
-              href="/help/reference/roles" 
+          <span style="white-space:nowrap" i18n:name="role_help_link"
+              tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
+              href="/help/authoring/authorguide#roles" 
+              tal:attributes="href string:${help/absolute_url}#roles"
               i18n:translate="label_role_help_link">What do these roles mean?</a>)</span>
       </h4>
 
@@ -354,9 +356,11 @@
 	  copyright holders.  Users who already have roles on this
 	  content will not appear in the search results.
           <span style="white-space:nowrap"
-            i18n:name="roles_help_link">(<a
+            i18n:name="roles_help_link"
+            tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
               i18n:translate="label_controles_whatrolesmean" 
-              href="/help/reference/roles">What do these roles mean?</a>)</span>
+              href="/help/authoring/authorguide#roles"
+              tal:attributes="href string:${help/absolute_url}#roles">What do these roles mean?</a>)</span>
 	</p>
 	<input type="text" name="search" tal:attributes="value search" />
 	<input type="submit" class="searchButton"

@@ -20,5 +20,5 @@ else:
   dismissed[cur_user] = seenlist
   context.manage_changeProperties({'messagesDismissed': dismissed})
 
-psm = 'CNXML 0.6 upgrade postponed.'
+psm = 'CNXML 0.7 upgrade postponed.'
 return state.set(portal_status_message=psm)

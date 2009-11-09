@@ -214,6 +214,12 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             else:
                 setattr(self, 'objectId', self.id)
 
+    def isPublic(self):
+        """Boolean answer true iff collection is in versioned repository.
+        Based currently on value of 'state' attribute.
+        """
+        return self.state == 'public'
+    
     security.declarePublic('SearchableText')
     def SearchableText(self):
         """Return the text of the module for searching"""
@@ -299,6 +305,10 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """Return a handle to ourself, even in an acquisition context"""
         return self
 
+    def url(self):
+        """Return a full url to this object, like on RhaptosCollection or ModuleView"""
+        return self.absolute_url()
+
     def setState(self, targetstate):
         """Set the state of the module forcefully."""
         self.state = targetstate
@@ -328,7 +338,9 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     security.declareProtected(View, 'getMetadata')
     def getMetadata(self):
-        """Return the metdata for this module as a dictionary"""
+        """Return the metdata for this module as a dictionary.
+        See also this method in RhaptosCollection.types.Collection
+        """
         metadata = {}
 
         # Pull some metadata from properties...
@@ -339,22 +351,28 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         for att in ['objectId', 'roles']:
             metadata[att] = getattr(self, att)
 
+        # ...look inside the optional roles: translators, editors typically
+        for role, members in self.roles.items():
+            metadata[role] = members
+        
         # ... and calculate others
         curFiles = self.objectIds()
         metadata['added'] = [x for x in curFiles if x not in self._files]
         metadata['removed'] = [x for x in self._files if x not in curFiles]
         
+        repos = getToolByName(self, 'content')
+        metadata['repository'] = repos.absolute_url()
+        
+        pubobj = self.getPublishedObject()
+        if pubobj:
+            metadata['url'] = pubobj.url
+        
         pobj = self.getParent()
         parent = {}
         if pobj:
-            parent['href'] = pobj.url
-            parent['objectId'] = self.getParentId()
-            parent['title'] = pobj.Title()
-            parent['license'] = pobj.license
-            parent['authors'] = pobj.authors
-            parent['licensors'] = pobj.licensors
+            parent['url'] = pobj.url
         metadata['parent'] = parent
-
+        
         return metadata
 
     def getLinks(self):
@@ -566,7 +584,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def excludedIds(self):
         """Return excluded items when performing diffs"""
-        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06']
+        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07']
         exclude.extend(self.objectIds('Collaboration Request'))
         return exclude
         
@@ -685,7 +703,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         if file:
             # FIXME: all these do an update_data; we really only need one...
             file.setTitle(self.title)
-            file.setMetadata(self.getMetadata())
+            file.setMetadata()
             file.setFeaturedLinks(self._links)
 
         # Fix content type since metadata setting messes it up

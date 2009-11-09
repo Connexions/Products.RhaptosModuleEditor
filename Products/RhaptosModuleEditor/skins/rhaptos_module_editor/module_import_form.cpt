@@ -38,7 +38,7 @@
               Ignored:</strong>
             <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, 
               italics, and colors are ignored, unless you use the provided
-              <a href="/help/Connexions-Document.dot"
+              <a href="/help/authoring/templates/Connexions-Document.dot"
                  i18n:name="label_modimpfrm_doctemplate">document template</a>
               and tag those items as emphasis, citations, glossary terms, etc.</span></li>
           <li>
@@ -60,12 +60,13 @@
               Even without CNXML-specific styling, you can make sure that your section organization
               is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
               in your original document.</span></li>
-          <li>
+          <li tal:define="help nocall:portal/help/authoring/wordimporter | nothing" tal:condition="nocall:help">
             <a i18n:translate="link_modimpfrm_fullinstructions"
-              href="/help/UsingMSWord" style="font-weight: bold">Full instructions</a>
+              href="/help/authoring/wordimporter" style="font-weight: bold"
+              tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
               <span i18n:name="Word">Word</span> with Connexions</span></li>
-          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/Connexions-Document.dot"
+          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.dot"
                  style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a></li>
         </ul>
       </tal:block>
@@ -92,7 +93,7 @@
             <strong i18n:translate="text_modimpfrm_boldformattinggone">Bold and Italics will be Ignored:</strong>
             <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, italics, and
               colors are ignored, unless you use the provided
-              <a href="/help/Connexions-Document.dot" i18n:name="label_modimpfrm_doctemplate">document template</a>
+              <a href="/help/authoring/templates/Connexions-Document.dot" i18n:name="label_modimpfrm_doctemplate">document template</a>
               and tag those items as emphasis, citations, glossary terms, etc.</span></li>
           <li>
             <strong i18n:translate="text_modimpfrm_boldimageswillbreak">Images:</strong>
@@ -112,19 +113,20 @@
               Even without CNXML-specific styling, you can make sure that your section organization
               is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
               in your original document.</span></li>
-          <li>
+          <li tal:define="help nocall:portal/help/authoring/wordimporter | nothing" tal:condition="nocall:help">
             <a i18n:translate="link_modimpfrm_fullinstructions"
-              href="/help/UsingMSWord" style="font-weight: bold">Full instructions</a>
+              href="/help/authoring/wordimporter" style="font-weight: bold"
+              tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
               <span i18n:name="MSWord">MS Word</span> with Connexions (also mostly applicable to OpenOffice)</span></li>
-          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/Connexions-Document.dot"
+          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.dot"
                  style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a>
                  <span i18n:translate="text_modimpfrm_usewithOO">to use with OpenOffice</span></li>
         </ul>
       </tal:block>
       <tal:block tal:condition="python:format=='latex'">
         <h2 i18n:translate="heading_modimpfrm_latex">Import module content from LaTeX files</h2>
-          <p> Before importing, ensure that you have prepared your document <strong>exactly as directed</strong> on the <a href="/help/UsingLaTeX">LaTeX importer instruction page</a>.</p>
+          <p tal:define="help nocall:portal/help/authoring/lateximporter | nothing" tal:condition="nocall:help"> Before importing, ensure that you have prepared your document <strong>exactly as directed</strong> on the <a href="/help/authoring/lateximporter" tal:attributes="href help/absolute_url">LaTeX importer instruction page</a>.</p>
           <p> <em style="color: darkred; font-weight: bold;">Warning!</em>This will replace all contents of a module including images and other files with a LaTeX document converted into CNXML, and its associated images and files.</p>
       </tal:block>
       <tal:block tal:condition="python:format=='authentic'">

@@ -11,7 +11,8 @@
   <body>
 
     <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
-                                            publishBlocked here/publishBlocked;
+                                            versioninfo context/rmeVersionInfo;
+                                            publishBlocked python:context.publishBlocked(versioninfo);
                                             license_data here/getLicenseData;
                                             license_version license_data/version;
                                             license_label license_data/label;

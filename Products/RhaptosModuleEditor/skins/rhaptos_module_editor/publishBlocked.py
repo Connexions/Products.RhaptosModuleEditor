@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=versioninfo
 ##title= Returns false if no problems with publication, or error dict otherwise
 # returned error dict 'failtype' is code for type of failure; 'faildata' addl. info if necessary
 
@@ -15,13 +15,14 @@ if not context.portal_type == 'Module':
     return False
 
 # Missing index file check
-if not context.getDefaultFile():
+indexcnxml = versioninfo['indexcnxml']
+if not indexcnxml:
     err['failtype'] = 'noindex'
     return err
 
 # Checks to see if there's a published version of this object
-pubobj = context.getPublishedObject()
-latest = pubobj and pubobj.latest or None
+pubobj = versioninfo['pubobj']
+latest = versioninfo['latest']
 
 # Superseded check
 if latest:
@@ -31,7 +32,7 @@ if latest:
         return err
 
 # Now that we know we have an index file, get its CNXML version
-cnxmlvers = context.getDefaultFile().getVersion()
+cnxmlvers = versioninfo['cnxmlvers']
 
 # Not-cnxml check
 if cnxmlvers == None:

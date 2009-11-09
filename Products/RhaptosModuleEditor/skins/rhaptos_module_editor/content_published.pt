@@ -12,20 +12,37 @@
     .leftheadings td, .leftheadings th{
       vertical-align: top;
     }
+    .leftheadings{
+      margin: 1em 0;
+    }
+    .compact_list li{
+      margin-bottom: 0;
+    }
   </style>
 
   <body>
 
     <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border', 1)" />
 
-    <div metal:fill-slot="main" tal:define="license_data here/getLicenseData">
+    <div metal:fill-slot="main"
+         tal:define="license_data here/getLicenseData;
+                     robj context/getPublishedObject;
+                     obj python:robj.latest;
+                     vobj python:robj[obj.version]">
 
       <p i18n:translate="text_contpubd_alreadypubd">
 	This item has been published.  If you wish to create a new
 	revision, you must check out a copy to the workspace for editing
-	(<a href="/help/reference/status">What does "Checked out" mean</a>?)
+	<tal:help tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">
+	  (<a href="/help/authoring/authorguide#status" tal:attributes="href string:${help/absolute_url}#status">What does "Checked out" mean</a>?)
+	</tal:help>
       </p>
-      <table class="leftheadings linkdata" tal:define="obj python:here.getPublishedObject().latest">
+      <form method="post" action="content_checkout">
+        <input type="submit" name="checkout" value="Checkout"
+                i18n:attributes="value text_button_checkout" class="standalone" />
+      </form>
+
+      <table class="leftheadings linkdata">
         <tr>
           <th i18n:translate="listingheader_contpubd_name">Name:</th>
           <td>
@@ -114,7 +131,7 @@
           <th i18n:translate="" tal:content="python:opt_roles_dict[role[0]][1]+':'">[Optional Role Name]</th>
           <td>
             <span tal:repeat="p python:role[1]">
-              
+
               <tal:badauthor tal:on-error="string:(${p})">
                 <tal:author tal:define="u python:here.desecured.getMemberById(p)">
                   <a tal:content="python:u.getProperty('fullname')"
@@ -138,7 +155,10 @@
 	    </span>
 	  </td>
 	</tr>
-	<tr><th i18n:translate="listingheader_contpubd_abstract">Summary:</th><td><span tal:replace="obj/abstract">abstract</span></td></tr>
+        <tr>
+          <th i18n:translate="listingheader_contpubd_abstract">Summary:</th>
+          <td><span tal:replace="structure obj/abstract_render">abstract</span></td>
+        </tr>
 	<tr tal:define="parent obj/getParent" tal:condition="parent">
 	  <th i18n:translate="listingheader_contpubd_basedon">Based On:</th>
 	  <td i18n:translate="text_contpubd_parent_by"><a class="link"
@@ -154,17 +174,39 @@
             </span>
 	  </td>
 	</tr>
-        <tr>
-          <th>
-            <form method="post" action="content_checkout">
-              <input type="submit" name="checkout" value="Checkout"
-                     i18n:attributes="value chkout" class="standalone" />
-            </form>
-          </th>
-          <td />
-        </tr>
       </table>
-      
+
+      <tal:block
+          tal:define="id                 obj/objectId;
+                      version            obj/version;
+                      utils              python:modules['Products.CMFCore.utils'];
+                      ptool              python:utils.getToolByName(context, 'rhaptos_print');
+                      doesCollXmlExist   python:ptool.doesFileExist(id, version, 'xml');
+                      doesCompleteExist  python:ptool.doesFileExist(id, version, 'complete.zip');
+                      inCollection       exists:context/nearestCourse"
+            tal:condition="python:inCollection and (doesCollXmlExist or doesCompleteExist)">
+        <h5>
+          Downloads for export/external use:
+          <span class="normal-text-in-header">
+          (<a href="/help/authoring/import-export#exportcollection">What's this?</a>)
+          </span>
+        </h5>
+        <ul class="compact_list">
+           <li tal:condition="doesCollXmlExist">
+              <span>Collection structure XML:</span>
+              <a href="source"
+                 tal:attributes="href string:${vobj/url}/source"
+                 tal:content="string:${id}_${version}_collection.xml">col10363_3.6_collection.xml</a>
+           </li>
+           <li tal:condition="doesCompleteExist">
+              <span>All collection files (including module XML and media files):</span>
+              <a href=""
+                 tal:content="string:${id}_${version}_complete.zip"
+                 tal:attributes="href string:${vobj/url}/complete">col10363_3.4_complete.zip</a>
+           </li>
+        </ul>
+      </tal:block>
+
     </div>
   </body>
 </html>

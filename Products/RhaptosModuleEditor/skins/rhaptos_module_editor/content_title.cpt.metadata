@@ -2,7 +2,7 @@
 title=Edit Title
 
 [validators]
-validators = validate_module_metadata
+validators = validate_module_metadata, validate_abstract
 
 [actions]
 action.success = traverse_to:string:concreteize

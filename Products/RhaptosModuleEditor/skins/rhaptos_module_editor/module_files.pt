@@ -207,7 +207,8 @@ old Rhaptos notes:
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id   item/pretty_title_or_id;
                                    item_description     item/Description;
-                                   item_type            item/Type;
+                                   item_type            item/portal_type;
+                                   item_type_title      item/Type;
                                    item_mime            item/mimetype | nothing;
                                    item_size            item/getObjSize;
                                    item_modified        item/ModificationDate;
@@ -251,7 +252,7 @@ old Rhaptos notes:
                             class="notDraggable">
                         <span tal:attributes="class item_type_class">
                         <a href="#" tal:attributes="href  python:test(indexObj, 'module_text', url);
-                                                  title string: $item_type: $item_description;
+                                                  title string: $item_type_title: $item_description;
                                                   class string:$item_wf_state_class visualIconPadding;">
                             <strong tal:omit-tag="python:not (isBrowserDefault or indexObj)">
                             <span tal:content="item_title_or_id">
@@ -267,7 +268,7 @@ old Rhaptos notes:
                     </td>
 
                     <td class="notDraggable">
-                      <span tal:content="python:item_mime or item_type"> text/xml </span>
+                      <span tal:content="python:item_mime or item_type_title"> text/xml </span>
                     </td>
                     <td class="notDraggable">
                       <span tal:condition="not: item_size"> &nbsp; </span>

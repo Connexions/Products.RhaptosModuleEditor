@@ -18,7 +18,7 @@ if content is None:
     except KeyError:
         raise TypeError, "No content provided"
 
-results = XMLService.validate(content)
+results = XMLService.validate(content, url="http://cnx.rice.edu/technology/cnxml/schema/rng/0.7/cnxml-fragment.rng")
 
 if results:
     request.RESPONSE.setStatus(400, "Invalid CNXML")

@@ -3,25 +3,45 @@
 
   <body>
     <div metal:define-macro="publishblocker">
-      <tal:block tal:define="publishblocked here/publishBlocked;
+      <tal:block tal:define="versioninfo versioninfo | context/rmeVersionInfo;
+                             upgrade upgrade | python:context.ninjaUpgrade(versioninfo);
+                             versioninfo python:upgrade and context.rmeVersionInfo() or versioninfo;
+                             publishblocked publishBlocked | python:context.publishBlocked(versioninfo);
                              publisherror publishblocked/failtype | nothing;
                              publisherrorfaildata publishblocked/faildata | nothing;
-                             publishtemplate python:template.id=='module_publish';">
+                             publishtemplate python:template.id=='module_publish'">
+        <div tal:condition="upgrade"
+             style="border: 1px solid #e70; background-color: #fdf3e8; padding: .5em; margin: 1em 0; font-size: .9em;">
+          This module has been automatically upgraded to CNXML 0.7, which is the latest version of the language.
+          This change involves minor differences to the inclusion of alternate images for printed versions
+          that do not affect most authors.
+          <span tal:define="help nocall:portal/help/delta/cnxml-0.7-upgrade | nothing"
+                tal:condition="nocall:help">
+            Please visit
+            <a href="/help/delta/cnxml-0.7-upgrade"
+               tal:attributes="href help/absolute_url">our upgrade information page</a>
+            for additional details.
+          </span>
+        </div>
+        
         <div tal:condition="publishblocked"
              tal:define="notetype python:test(publishtemplate, 'PUBLISH BLOCKED', 'WARNING');
                          baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml'];
                          color python:test(publisherror in baderrors, 'yellow', '#fe7');
                          stylestring python:'border: 2px solid #e70;; background-color: %s;; padding: 0.5em;; margin: 0.5em 0;;' % color">
-
           <tal:block tal:condition="python:publisherror=='cnxmlfivedismissed'">
             <tal:external define="global readonly python:True" />
             <div tal:attributes="style stylestring">
 
-<b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new
-<a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
-<b>You need to upgrade this module</b> to version 0.6 before publishing it or editing metadata,
+<b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new version 0.7 of CNXML.
+<b>You need to upgrade this module</b> to version 0.7 before publishing it or editing metadata,
 roles, or links. The conversion process will generate a temporary backup.
-More information is available at the <a tal:attributes="href string:$portal_url/help/upgrading-your-module-to-cnxml-0.6">upgrade help page</a>. 
+<span tal:define="help nocall:portal/help/delta/cnxml-0.7-upgrade | nothing"
+      tal:condition="nocall:help">
+  More information is available at the
+  <a href="/help/delta/cnxml-0.7-upgrade"
+     tal:attributes="href help/absolute_url">upgrade help page</a>.
+</span>
 
 <form action="upgrade_cnxml" style="margin-top: 0.5em; text-align: center">
   <input type="submit" value="Upgrade Now" class="context" />
@@ -34,15 +54,15 @@ More information is available at the <a tal:attributes="href string:$portal_url/
 
 <h1>CNXML Upgrade Needed</h1>
 
-  <p>Connexions is moving to the new <a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
-    <b>You need to upgrade this module</b> to version 0.6 before you can publish it or make metadata changes.  You have three options:
+  <p>Connexions is moving to the new version 0.7 of CNXML.
+    <b>You need to upgrade this module</b> to version 0.7 before you can publish it or make metadata changes.  You have three options:
     <ul>
       <li><b>Import</b>: If you are using one of the importers to create your content, import as usual; the result will 
 automatically be in the new language version.</li>
       <li><b>Upgrade Now</b>: If you're not using an importer, this is the recommended pathway. Your CNXML will 
 automatically be converted to the new version.</li>
-      <li><b>Open Full Source Editor</b>: You can postpone the upgrade and continue to make changes to your existing CNXML 
-0.5, but you will still have to upgrade before publishing. See below for a list of other functions that are disabled until 
+      <li><b>Open Full Source Editor</b>: You can postpone the upgrade and continue to make changes to your existing CNXML,
+       but you will still have to upgrade before publishing. See below for a list of other functions that are disabled until 
 upgrade.
     </ul>
   <p>
@@ -55,19 +75,28 @@ upgrade.
            name="dismiss_blockmsg:action" value="Open full source editor" />
   </form>
 
-  <p>We recommend that you use the automated upgrade immediately. If you continue editing in CNXML 0.5, you will not have 
+  <p>We recommend that you use the automated upgrade immediately. If you continue editing in an older version of CNXML, you will not have 
 access to Edit-in-Place, or to online or print preview.  You will also not be able to edit roles, metadata or links, or 
 use the Suggest Edits function.</p>
 
-  <p>The automated upgrade will keep a backup copy of your CNXML 0.5 code in a file within the module called 
-"index.cnxml.pre-v06". This file will be deleted upon publication of the 0.6 version of the module. If you want to keep a 
-more permanent backup, you can use the <a tal:attributes="href string:$portal_url/help/ImportAndExport#plainxml">CNXML 
+  <p>The automated upgrade will keep a backup copy of your CNXML code in a file within the module called 
+"index.cnxml.pre-v07". This file will be deleted upon publication of the 0.7 version of the module. If you want to keep a 
+more permanent backup, you can use the <a tal:attributes="href string:$portal_url/help/authoring/import-export#plainxml">CNXML 
 export feature</a> to save a copy to your local machine.</p>
 
-<p>More information about the automatic conversion process is available at the
-  <a tal:attributes="href string:$portal_url/help/upgrading-your-module-to-cnxml-0.6">upgrade help page</a>. 
-For information on the language changes, see the <!-- <a href="XXX">CNXML 0.6 specification</a> or the <a href="whatsnew">summary of differences from CNXML 0.5</a>-->
-<a href="http://cnx.org/content/m19563/latest/">What's New module</a>.
+<p>
+  <span tal:define="help nocall:portal/help/delta/cnxml-0.7-upgrade | nothing"
+        tal:condition="nocall:help">
+    More information about the automatic conversion process is available at the
+    <a href="/help/delta/cnxml-0.7-upgrade"
+      tal:attributes="href help/absolute_url">upgrade help page</a>.
+  </span>
+
+  For information regarding the language changes, please see the
+  <a href="http://cnx.org/content/m19563/latest/">What's New in CNXML 0.6</a>
+  and
+  <a href="http://cnx.org/content/m31872/latest/">What's New in CNXML 0.7</a>
+  modules.
 </p>
 </div>
           </tal:block>
@@ -78,12 +107,12 @@ For information on the language changes, see the <!-- <a href="XXX">CNXML 0.6 sp
 
 <p>
   <b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new
-  <a tal:attributes="href string:$portal_url/news/connexions-introduces-cnxml-0.6">version 0.6 of CNXML</a>.
-  <b>You need to upgrade this module</b> to version 0.6 before publishing it or editing metadata,
+  version 0.7 of CNXML.
+  <b>You need to upgrade this module</b> to version 0.7 before publishing it or editing metadata,
   roles, or links.
 </p>
 <p>
-  HOWEVER: This module cannot be upgraded due to broken CNXML 0.5. Usually this means the XML is not well-formed.
+  HOWEVER: This module cannot be upgraded due to broken CNXML. Usually this means the XML is not well-formed.
   If the problem is corrected, upgrade may proceed.
   The error is:
 </p>

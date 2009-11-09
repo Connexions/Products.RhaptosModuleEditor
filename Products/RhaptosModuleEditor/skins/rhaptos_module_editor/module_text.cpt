@@ -46,12 +46,17 @@
   <body>
 
     <div metal:fill-slot="main" id="edit-main"
-         tal:define="validation_errors here/validate;
-                     publishBlocked here/publishBlocked;
+         tal:define="versioninfo context/rmeVersionInfo;
+                     upgrade python:context.ninjaUpgrade(versioninfo);
+                     versioninfo python:upgrade and context.rmeVersionInfo() or versioninfo;
+                     publishBlocked python:context.publishBlocked(versioninfo);
                      publishBlockFailType publishBlocked/failtype | nothing;
-                     editBlockedForUpgrade python:publishBlocked and publishBlocked['failtype'] == 'cnxmlfive' or False;
+                     editBlockedForUpgrade python:publishBlockFailType == 'cnxmlfive' or False;
+                     validation_errors here/validate;
                      show_validation_errors python:validation_errors and publishBlockFailType != 'brokencnxmlfive';
-                     edit_source options/edit_source | request/edit_source | nothing">
+                     edit_source options/edit_source | request/edit_source | nothing;">
+      <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
+        and thus the validation, etc, needs to be after that.</tal:comment>
 
       <p tal:define="t template/getId" i18n:translate="text_module_editing_options">
 	There are three ways to edit modules: 
@@ -70,10 +75,19 @@
 	  <strong i18n:translate="text_import_export_explanation">import/export</strong>
 	</span>
 	facility (in the box below). 
-	<span i18n:name="editing_help">
-	  <a href="/help/EditingModules"
-	    i18n:translate="help_editing_modules">Help on editing</a>
-	</span>
+        <span i18n:name="editing_help"
+              tal:define="help nocall:portal/help/authoring/editmodule | nothing"
+              tal:condition="nocall:help">
+          <tal:comment tal:replace="nothing">
+            the above condition prevents shrinkwRaptos from showing the help link.
+            the <a> below works for both JS and nonJS environments.</tal:comment>
+          <a href="/help/authoring/editmodule"
+             onclick="javascript:"
+             tal:define="help_url help/absolute_url;"
+             tal:attributes="href     help_url;
+                             onclick  string:window.open('${help_url}','eip_help', 'scrollbars=yes,resizable=yes,height=400,width=800');; return false;;"
+             i18n:translate="help_editing_modules">Help on editing</a>
+        </span>
       </p>
 
       <tal:editblocked tal:condition="editBlockedForUpgrade">
@@ -81,7 +95,7 @@
         <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
       </tal:editblocked>
 
-      <div style="border: 1px solid #8cacbb; padding: 0 0.5em; margin-bottom: 1em; background-color: #EEEEEE;"
+      <div class="importexport"
            metal:define-macro="importexport">
         <table style="margin: 0; padding: 0">
 	<tr style="font-size: 90%; vertical-align: top">
@@ -93,26 +107,26 @@
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_wordfiles">Word files</span>
               (<a i18n:translate="label_impexpbox_help"
-                  href="/help/UsingMSWord">help</a>,
+                  href="/help/authoring/wordimporter">help</a>,
                <a i18n:translate="label_impexpbox_templateforword"
-                  href="/help/Connexions-Document.dot">template for Word</a>)
+                  href="/help/authoring/templates/Connexions-Document.dot">template for Word</a>)
             </li>
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_oofiles">OpenOffice files</span>
               (<a i18n:translate="label_impexpbox_help"
-                  href="/help/ImportAndExport#openoffice">help</a>)
+                  href="/help/authoring/import-export#openoffice">help</a>)
             </li>
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_oofiles">LaTeX</span>
               (<a i18n:translate="label_impexpbox_help"
-                  href="/help/UsingLaTeX">help</a>,
+                  href="/help/authoring/lateximporter">help</a>,
                <a i18n:translate="label_impexpbox_templateforlatex"
-                  href="/help/LaTeX_template.tex">template for LaTeX</a>)
+                  href="/help/authoring/templates/LaTeX_template.tex">template for LaTeX</a>)
             </li>
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_multifiles">Uploading multiple files into a module</span>
               (<a i18n:translate="label_impexpbox_help"
-                  href="/help/ImportAndExport#zip">help</a>)
+                  href="/help/authoring/import-export#zip">help</a>)
             </li>
           </ul>
           </td>
@@ -124,14 +138,14 @@
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_modulefiles">a module's files</span>
               (<a i18n:translate="label_impexpbox_zipexporthelp"
-                  href="/help/ImportAndExport#zip">Zip export help</a>)
+                  href="/help/authoring/import-export#zip">Zip export help</a>)
             </li>
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_moduleasxml">the module text as XML</span>
               <tal:comment replace="nothing"><a i18n:translate="label_impexpbox_authentichelp"
-                  href="/help/ImportAndExport#altova">Authentic</a>, <!-- see #7855, #7856 --></tal:comment>
+                  href="/help/authoring/import-export#altova">Authentic</a>, <!-- see #7855, #7856 --></tal:comment>
               (<a i18n:translate="label_impexpbox_plainxml"
-                  href="/help/ImportAndExport#plainxml">plain CNXML</a>)
+                  href="/help/authoring/import-export#plainxml">plain CNXML</a>)
             </li>
           </ul>
           </td>
@@ -183,8 +197,18 @@
       </div>
 
       <tal:editnotblocked tal:condition="not:editBlockedForUpgrade">
-        <div id="eipTopEditHelpLink">
-          <a href="/help/EditingModules" i18n:translate="text_help_editing">Help on editing</a>
+        <div id="eipTopEditHelpLink"
+             tal:define="help nocall:portal/help/authoring/editmodule | nothing"
+             tal:condition="nocall:help">
+          <tal:comment tal:replace="nothing">
+            the above condition prevents shrinkwRaptos from showing the help link.
+            the <a> below works for both JS and nonJS environments.</tal:comment>
+          <a href="/help/authoring/editmodule"
+             onclick="javascript:"
+             tal:define="help_url help/absolute_url;"
+             tal:attributes="href     help_url;
+                             onclick  string:window.open('${help_url}','eip_help', 'scrollbars=yes,resizable=yes,height=400,width=800');; return false;;"
+             i18n:translate="help_editing_modules">Help on editing</a>
         </div>
         <div id="eipTopEditingMode">
           <tal:span tal:condition="not:validation_errors">

@@ -141,11 +141,13 @@
       <xsl:otherwise>
         <li>
           <i>Optional linking attributes (<xsl:apply-templates select="linkingattributesdescription"/>):</i>
-          <ul id="cnx_eip_help_linking_attributes_list" class="list">
-            <xsl:call-template name="linkingattributeshelper">
-              <xsl:with-param name="tag">other</xsl:with-param>
-            </xsl:call-template>
-          </ul>
+          <div id="cnx_eip_help_linking_attributes_list" class="list">
+            <ul class="bullet">
+              <xsl:call-template name="linkingattributeshelper">
+                <xsl:with-param name="tag">other</xsl:with-param>
+              </xsl:call-template>
+            </ul>
+          </div>
         </li>
       </xsl:otherwise>
     </xsl:choose>
@@ -159,20 +161,20 @@
         <xsl:otherwise>optional</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <li>
+    <li class="item">
       <b>url</b>
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       A Web path being linked to.  Verify that the location is stable and will not change.  You cannot use the "url" attribute in 
       combination with the "document", "target-id", "resource", or "version" attributes.
     </li>
-    <li>
+    <li class="item">
       <b>document</b>
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       The id of the module or collection being linked to (default is the present module).
     </li>
-    <li>
+    <li class="item">
       <b>target-id</b>
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
@@ -180,31 +182,33 @@
       or collection).  Can refer to an element in the present module or, alternately, an element on a seperate module if the 
       "document" attribute has been specified.  You cannot use the "target-id" attribute in combination with the "resource" attribute.
     </li>
-    <li>
+    <li class="item">
       <b>resource</b>
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       The name of a resource, such as a supplemental PDF or text document (default is nothing).  The resource must be a part of the 
       present module or, if the "document" attribute has been specified, must be part of the target module.
     </li>
-    <li>
+    <li class="item">
       <b>version</b>
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       The version of the module or collection being linked to (default is the latest version of the module or collection).  Can refer 
       to the module you are on or, alternately, a seperate module or collection if the "document" attribute has been specified.
     </li>
-    <li>
+    <li class="item">
       <b>window</b>
       <xsl:text> </xsl:text>
       <i>(optional)</i>: 
       <div>
         <i>Possible values:</i>
       </div>
-      <ul class="list">
-        <li>replace - The code will navigate to the reference URL in the same current window (default).</li>
-        <li>new - The code will be navigate to the reference URL in a new window</li>
-      </ul>
+      <div class="list">
+        <ul class="bullet">
+          <li class="item">replace - The code will navigate to the reference URL in the same current window (default).</li>
+          <li class="item">new - The code will be navigate to the reference URL in a new window</li>
+        </ul>
+      </div>
     </li>
   </xsl:template>
 

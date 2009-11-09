@@ -1,3 +1,25 @@
+RhaptosModuleEditor-0.64
+  - collection-structure-redesign-1 (Oct. 22, 2009)
+    - Updated links to help files
+    - Updated the "Upgrade to 0.6" message to 0.7
+    - publish block and backup machinery updated for 0.7
+    - create non-prompting automatic upgrade from 0.6 to 0.7 on view
+    - RME gets a bit more API synced with other content-ish things: added 'isPublic' and 'url'
+    - getMetadata updated for new MDML 0.5 template
+    - add 0.7 backup to publish exclude list
+    - mark RME as able to render MDML and abstracts
+    - accept, render, validate CNXML in abstracts
+    - abstract validation broken out from module metadata validation so it can be used elsewhere
+    - PDF now stored/retrieved on call to downloadPDF
+    - 'publishBlocked' takes version info from new 'rmeVersionInfo' method as efficiency refactor
+    - EIP validation uses new fragment schema
+    - support module export zip of published content
+    - fix module_files listing of Unicode objs.
+    - content_published page restyling; also renders abstract and provides downloads of
+       available data products
+    - EIP help updates for CNXML 0.7 and other fixes
+    - import/export box styling now uses globally-available rules
+
 RhaptosModuleEditor-0.63
   - content-actions-move (17 Aug 2009)
     - add and validate GoogleAnalyticsTrackingCode? attribute to module editor

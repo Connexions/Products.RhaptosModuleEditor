@@ -271,6 +271,7 @@
                 <td tal:define="subj python:subjs_one[i]">
                   <input type="checkbox"
                     name="subject:list"
+                    class="noborder"
                     tal:attributes="checked python:(subj.tag in subject) or nothing;
                                     tabindex tabindex/next;
                                     value subj/tag;
@@ -280,6 +281,7 @@
                 <td tal:define="subj python:subjs_two[i]">
                   <input type="checkbox"
                     name="subject:list"
+                    class="noborder"
                     tal:attributes="checked python:(subj.tag in subject) or nothing;
                                     tabindex tabindex/next;
                                     value subj/tag;
@@ -324,7 +326,9 @@
             Enter a summary of the
             <span i18n:name="type">
               <span tal:content="type" i18n:translate="">[type]</span></span>.
-          </div>
+            May contain a limited set of CNXML.
+            <a href="/help/authoring/authorguide#summary">(help)</a>
+	  </div>
 
           <div tal:content="error">Validation error output</div>
           <ul tal:condition="errormsg">

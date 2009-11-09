@@ -49,7 +49,7 @@
       </div>
       <div class="note">
 <h3 class="note-header"><span class="cnx_label">Note: </span></h3>
-CNXML 0.6 does not validate URLs that contain
+Starting with version 0.6, the CNXML language does not permit URLs that contain
 ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
 Check all URLs and replace any ampersands with the entity
 reference "&amp;amp;". More information can be found on the
@@ -60,38 +60,38 @@ reference "&amp;amp;". More information can be found on the
 <strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
 </h2>
 <ul class="bullet">
-<li>
+<li class="item">
 <b>url</b> <i>(conditional)</i>: 
       A Web path being linked to.  Verify that the location is stable and will not change.  You cannot use the "url" attribute in 
       combination with the "document", "target-id", "resource", or "version" attributes.
     </li>
-<li>
+<li class="item">
 <b>document</b> <i>(conditional)</i>: 
       The id of the module or collection being linked to (default is the present module).
     </li>
-<li>
+<li class="item">
 <b>target-id</b> <i>(conditional)</i>: 
       The id of an element in a module or collection, such as a section or an image (default is the root element of the target module 
       or collection).  Can refer to an element in the present module or, alternately, an element on a seperate module if the 
       "document" attribute has been specified.  You cannot use the "target-id" attribute in combination with the "resource" attribute.
     </li>
-<li>
+<li class="item">
 <b>resource</b> <i>(conditional)</i>: 
       The name of a resource, such as a supplemental PDF or text document (default is nothing).  The resource must be a part of the 
       present module or, if the "document" attribute has been specified, must be part of the target module.
     </li>
-<li>
+<li class="item">
 <b>version</b> <i>(conditional)</i>: 
       The version of the module or collection being linked to (default is the latest version of the module or collection).  Can refer 
       to the module you are on or, alternately, a seperate module or collection if the "document" attribute has been specified.
     </li>
-<li>
+<li class="item">
 <b>window</b> <i>(optional)</i>: 
       <div><i>Possible values:</i></div>
-<ul class="list">
-<li>replace - The code will navigate to the reference URL in the same current window (default).</li>
-<li>new - The code will be navigate to the reference URL in a new window</li>
-</ul>
+<div class="list"><ul class="bullet">
+<li class="item">replace - The code will navigate to the reference URL in the same current window (default).</li>
+<li class="item">new - The code will be navigate to the reference URL in a new window</li>
+</ul></div>
 </li>
 <li class="item">
 <b>strength</b> <i>(optional)</i>: 
@@ -119,7 +119,7 @@ reference "&amp;amp;". More information can be found on the
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_parents">
-<a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="entry">entry</a>
+<a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="entry">entry</a>
 </div>
     <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
 <!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">

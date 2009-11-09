@@ -52,14 +52,18 @@
           <tal:block tal:condition="isCollection">
             <p i18n:translate="text_create_collection_metadata">
               Choose a title for your collection.
-              Please read the <a href="/help/authorguide">Author Guide</a> for tips on choosing titles.
+              <tal:help tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">
+                Please read the <a href="/help/authoring/authorguide" tal:attributes="href help/absolute_url">Author Guide</a> for tips on choosing titles.
+              </tal:help>
               You can edit this information later from the "Metadata" tab.
             </p>
           </tal:block>
           <tal:block tal:condition="isModule">
             <p i18n:translate="text_create_module_metadata">
               Choose a title for your module.
-              Please read the <a href="/help/authorguide">Author Guide</a> for tips on choosing titles.
+              <tal:help tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">
+                Please read the <a href="/help/authoring/authorguide" tal:attributes="href help/absolute_url">Author Guide</a> for tips on choosing titles.
+              </tal:help>
               You can edit this information later from the "Metadata" tab.
             </p>
           </tal:block>

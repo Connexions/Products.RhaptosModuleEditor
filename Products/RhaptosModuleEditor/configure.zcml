@@ -40,4 +40,13 @@
       />
 -->
 
+  <!-- Interface marking -->
+  <content class=".ModuleEditor.ModuleEditor">
+    <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLContainer" />
+  </content>
+
+  <content class=".ModuleEditor.ModuleEditor">
+    <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLAbstract" />
+  </content>
+
 </configure>
