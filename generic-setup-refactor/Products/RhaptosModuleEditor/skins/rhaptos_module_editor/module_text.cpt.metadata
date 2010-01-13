@@ -1,0 +1,10 @@
+[default]
+title=Edit Text
+
+[validators]
+validators = validate_module_save
+
+[actions]
+action.success = traverse_to:string:update_text
+action.failure = traverse_to_action:string:view
+

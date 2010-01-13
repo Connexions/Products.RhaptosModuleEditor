@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<tal:block xmlns:tal="http://xml.zope.org/namespaces/tal"
+           xmlns:metal="http://xml.zope.org/namespaces/metal"
+           tal:define="default_tab python:None">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment tal:replace="nothing">
+   i18n by:kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+    <div metal:fill-slot="main" tal:define="type here/aq_base/archetype_name|here/portal_type|here/meta_type;
+                                            item type/lower;
+                                            license_url here/getDefaultLicense;
+                                            license_data python:here.getLicenseData(license_url)">
+
+      <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+<form tal:condition="here/license" action="." method="post" tal:attributes="action template/getId">
+<!-- i18n FIXME: Add the possible values of this tal:replace as msgids -->
+        <tal:block tal:define="isCollection python:here.portal_type == 'Collection';
+                               isModule     python:here.portal_type == 'Module'">
+          <tal:block tal:condition="isCollection">
+            <h2 i18n:translate="heading_confirm_collection_fork">Derive a copy of this collection</h2>
+          </tal:block>
+          <tal:block tal:condition="isModule">
+            <h2 i18n:translate="heading_confirm_module_fork">Derive a copy of this module</h2>
+          </tal:block>
+        </tal:block>
+
+        <p i18n:translate="text_conffork_warnmakenew">
+	  <span i18n:name="warning">
+	    <strong i18n:translate="text_warning">Warning:</strong> 
+	  </span>
+          You are about to create a new
+	  <span i18n:name="item1" tal:replace="item">[item]</span>, derived from this one.  You will have permission
+	  to publish this new <span i18n:name="item2" tal:replace="item">[item]</span>, but note that from this point
+	  on the two will be separate <span i18n:name="item3" tal:replace="item">[item]</span>s. Any changes made to
+	  the original will 
+	  <span i18n:name="not">
+	    <em i18n:translate="text_not">not</em> 
+	  </span>
+          automatically be added to your new copy.  Are you
+	  sure you wish to continue?
+	</p>
+
+	<p i18n:translate="text_conffork_readlicense">
+          <span i18n:name="checkbox"><input class="noborder" type="checkbox" name="agree" /></span> I have read the
+          <span i18n:name="creative_commons_attrib_license">
+            <a tal:attributes="href license_url"
+               tal:content="string:Creative Commons ${license_data/name} License ${license_data/version}"
+               i18n:translate="">Creative Commons Attribution License</a>
+          </span>
+          (<span i18n:name="cc_label">
+            <span tal:replace="license_data/label">CC-BY 3.0</span>
+          </span>) and
+          <span i18n:name="i_agree">
+	    <b i18n:translate="text_i_agree">I agree</b>
+	  </span> to license this new
+          <span i18n:name="item" tal:replace="item">[item]</span> under its terms. I understand that in doing so I
+      </p>
+
+      <ol>
+		<li i18n:translate="text_license_retain_copyright"> 
+	          retain my copyright in the work and </li>
+		<li i18n:translate="text_license_owner_permission"> 
+	          warrant that I am the author or the owner or have
+		  permission to distribute the work in question and
+		</li>
+		<li i18n:translate="text_license_work_distributed"> 
+	        wish this work to be distributed under the terms of the
+	         <a i18n:name="license_link" 
+                    tal:attributes="href license_url"
+                    tal:content="license_data/label">[CC-BY 3.0]</a>
+		 license (<b>including allowing modification of this work
+                 and requiring attribution</b>) and </li>
+		<li i18n:translate="text_license_proper_attribution"> 
+	          agree that proper attribution of my work is any attribution that includes the authors' names, the title of the work, and the 
+	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
+	          URL to the work.  </li>
+      </ol>
+          
+	<input type="submit" 
+	       class="standalone"
+	       name="form.button.fork" 
+	       value="Yes, Create Copy" i18n:attributes="value value_yes_copy;"/>
+
+	<input type="submit" 
+	       class="standalone"
+	       name="form.button.cancel" 
+	       value="No, Cancel" i18n:attributes="value value_no_cancel"/>
+
+	<input type="hidden" name="license" tal:attributes="value here/getDefaultLicense" />
+	<input type="hidden" name="form.submitted" value="1" />
+      </form>
+      <p tal:condition="not:here/license" i18n:translate="text_conffork_noderiv">
+	Sorry, this content does not allow derivative works to be created.
+      </p>
+    </div>
+  </body>
+</html>
+
+</tal:block>

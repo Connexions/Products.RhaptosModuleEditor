@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;text&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;text&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+      The <code class="codeline">text</code> tag is used to place
+      plain text into modules. It is intended for use as a fallback
+      for media that cannot be displayed in PDF, such as <a href="flash" class="cnxn">
+      flash</a> or <a href="video" class="cnxn">video</a>.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para" id="input58">This CNXML:</p>
+<pre class="code codeblock"><code>
+&lt;media id="building-on-past"
+       alt="Building on the past."&gt;
+  &lt;video mime-type="video/mpeg" 
+         src="Building_on_the_Past.mpg"
+         autoplay="false"
+         width="320" height="260" 
+         for="online"/&gt;
+  &lt;text for="default"&gt;
+         If you have access to the internet, please review the 
+         "Building on the Past" video located 
+         &lt;link url="Building_on_the_Past.mpg"&gt;on the website&lt;/link&gt;.
+         For those of you who do not have access to this movie,
+         please refer to Handout 1A as an alternate exercise.
+  &lt;/text&gt;
+         
+        </code></pre>
+        <p class="para" id="output57">Results in this display:</p>
+          <div class="para" id="txt-example">
+  If you have access to the internet, please review the 
+  "Building on the Past" video located on the
+  website<sup>1</sup>.  For those of you who do not have
+  access to this movie, please refer to Handout 1A as an
+  alternate exercise.
+          </div>
+        
+<p class="additionalnote">The output shown above would be displayed in the PDF version of the content; the online version of the content would display the movie itself.</p>		
+      </div>
+      <h2 class="list-header">
+<strong class="name">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul id="cnx_eip_help_attributes_list" class="list">
+<li>
+<b>src</b> <i>(optional)</i>: 
+      
+      The location of the text file. It must be a URL value. If the text is stored
+      as a resource with the module, the file name itself can be used (e.g. "file.txt").
+<div class="note">
+<h3 class="note-header"><span class="cnx_label">Note: </span></h3>
+Starting with version 0.6, the CNXML language does not permit URLs that contain
+ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
+Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
+reference "&amp;amp;". More information can be found on the
+<a class="link" href="http://www.w3.org/TR/xhtml1/#C_12" target="_blank">W3C's page</a>.
+</div>
+        </li>
+<li>
+<b>mime-type</b> <i>(optional)</i>: 
+      
+      The MIME type of the text. This optional value tells each
+      visitor's browser what sort of information is contained
+      in the text.
+          A list of common Internet media MIME types can be found
+            <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank">here</a>.
+        </li>
+<li>
+<b>longdesc</b> <i>(optional)</i>: 
+      
+      The URL of a file containing a long description of the text.  
+        </li>
+<li>
+<b>id</b> <i>(optional)</i>: A unique 
+	identifier, whose value must begin with a letter and contain 
+	only letters, numbers, hyphens, underscores, colons, and/or 
+	periods (no spaces).
+      </li>
+</ul>
+      <h2 class="para-header">
+<strong class="name">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="param">param</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="name">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="media">media</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="text">text</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+</body>
+</html>

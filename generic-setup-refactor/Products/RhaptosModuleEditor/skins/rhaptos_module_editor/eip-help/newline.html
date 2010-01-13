@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;newline&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;newline&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+      The <code class="codeline">newline</code> tag is used to create an explicit line break in a body of text.  It can also be used to 
+      insert one or more blank lines in the document.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;para id="favorite-lyric"&gt;
+  &lt;quote display="inline"&gt;All we 
+  are is dust in the wind.&lt;/quote&gt;
+  &lt;newline /&gt;
+  - &lt;cite&gt;Kansas&lt;/cite&gt;
+&lt;/para&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+
+          <div class="para" id="favorite-lyric">
+<span class="quote inline">"All we 
+  are is dust in the wind."</span>
+  <span class="newline"><br></span>
+  - <cite class="cite">Kansas</cite>
+          </div>
+        
+      </div>
+
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;exercise id="exercise1"&gt;
+  &lt;problem id="ex1problem"&gt;
+    &lt;para id="ex1para"&gt;
+      Name three ways you can conserve water at home.
+      &lt;newline count="2" /&gt;
+      1.
+      &lt;newline count="2" /&gt;
+      2.
+      &lt;newline count="2" /&gt;
+      3.
+    &lt;/para&gt;
+  &lt;/problem&gt;
+&lt;/exercise&gt;
+
+&lt;exercise id="exercise2"&gt;
+  &lt;problem id="ex2problem"&gt;
+    &lt;para id="ex2para"&gt;
+      In the space below, explain why water
+      conservation is important for the environment.
+      &lt;newline count="5" effect="underline" /&gt;
+    &lt;/para&gt;
+  &lt;/problem&gt;
+&lt;/exercise&gt;        
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div id="exercise1" class="exercise">
+            <h3 class="exercise-header">
+              <span class="cnx_label">Exercise 1</span>
+            </h3>
+            <div class="problem" id="problem1">
+              <p id="ex1para" class="para">
+              Name three ways you can conserve water at home.<span class="newline"><br>
+                <br></span>
+              1.<span class="newline"><br>
+                <br></span>
+              2.<span class="newline"><br>
+                <br></span>
+              3.
+              </p>
+            </div>
+          </div>
+          <div id="exercise2" class="exercise">
+            <h3 class="exercise-header">
+              <span class="cnx_label">Exercise 2</span>
+            </h3>
+            <div class="problem" id="ex2problem">
+              <p id="ex2para" class="para">
+              In the space below, explain why water conservation is important for the environment.
+              <span class="newline underline"><hr>
+<hr>
+<hr>
+<hr>
+<hr></span>
+              </p>
+            </div>
+          </div>        
+        
+
+      </div>
+
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>count</b> <i>(optional)</i>: 
+      
+        The number of new lines to be inserted (default is "1").  Must be a positive integer.
+        </li>
+<li class="item">
+<b>effect</b> <i>(optional)</i>: 
+      The presentation style of the line.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">normal - A blank line is inserted (default).</li>
+            <li class="item">underline - An underlined line is inserted.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+          The <code class="codeline">newline</code> tag is an empty tag and does 
+          not contain any children.
+        </div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="entry">entry</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

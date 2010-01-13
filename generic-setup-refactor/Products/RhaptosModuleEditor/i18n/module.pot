@@ -1,0 +1,1065 @@
+ --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2004-07-09 14:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+
+msgid "Parameters"
+msgstr "Parametre"
+
+msgid "module"
+msgstr ""
+
+msgid "course"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/confirm_publish.pt 
+#. <h1 i18n:translate="">Publish: ${obj_title}</h1>
+msgid "Publish: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/confirm_publish.pt
+#. <p i18n:translate="confirm_publish_a">
+#	    Are you sure? Publishing this content will make it
+#	    publically viewable on the web.  Once you publish it, you
+#	    cannot retract it (although you are welcome to publish
+#	    successive reivsions).
+#	  </p>
+msgid "confirm_publish_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/confirm_publish.pt
+#. <input class="standalone" type="submit" name="publish" value="Yes, Publish" i18n:attributes="value"/>
+msgid "Yes, Publish"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/confirm_publish.pt
+#. <input class="standalone" type="submit" name="cancel" value="No, Cancel" i18n:attributes="value"/>
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <input type="submit" 
+#		         class="standalone"
+#		         name="view:action" 
+#                         value="No, Cancel" 
+#			 i18n:attributes="value"/>
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <input type="submit" 
+#	         class="standalone"
+#	         name="cancel" 
+#	         value="No, Cancel"
+#		 i18n:attributes="value"/>
+msgid "No, Cancel"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <h1 i18n:translate="">Discard changes to: ${obj_title}</h1>
+msgid "Discard changes to: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <p i18n:translate="module_discardForm_a">
+#	      <strong>Warning:</strong> This content has never been
+#	      published. If you discard, you will lose all of the
+#	      editing you have done.
+#	    </p>
+msgid "module_discardForm_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <input type="submit" 
+#		         class="destructive" 
+#                         name="revert:action" 
+#                         value="Discard"
+#			 i18n:attributes="value" />
+#: /skins/rhaptos_module_editor/module_template.pt
+#. <input type="submit" name="discard" value="Discard" i18n:attributes="value" class="context" />
+msgid "Discard"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <small i18n:translate="module_discardForm_b">Reinitialize the item as it was originally created. You will lose
+#		    any text, links, files, or metadata changes you have entered
+#		    since creation.</small>
+msgid "module_discardForm_b"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <input type="submit"
+#		         class="destructive" 
+#		         name="deleteContent:action"
+#                         value="Delete"
+#			 i18n:attributes="value" />
+msgid "Delete"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <small i18n:translate="">Completely destroy the new item, deleting it from the workspace</small>
+msgid "Completely destroy the new item, deleting it from the workspace"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <input type="submit"
+#		         class="standalone"
+#                         name="view:action" 
+#                         value="Cancel"
+#			 i18n:attributes="value" />
+msgid "Cancel"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <small i18n:translate="">Cancel the discard operation and return to editing.</small>
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <small i18n:translate="">Cancel the discard operation and return to editing.</small>
+msgid "Cancel the discard operation and return to editing."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <p i18n:translate="module_discardForm_c">
+#	      <strong>Warning:</strong> Your changes have not been
+#	      published.  If you discard, you will lose the changes
+#	      you have made.  Are you sure you want to discard?
+#	    </p>
+msgid "module_discardForm_c"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <input type="submit" 
+#		         class="destructive"
+#		         name="revert:action" 
+#		         value="Yes, Discard" 
+#			 i18n:attributes="value"/>
+msgid "Yes, Discard"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_discardForm.pt 
+#. <small i18n:translate="module_discardForm_d">Discard the changes to the item in this
+#		         workspace, returning it to its last published
+#		         state.</small>
+msgid "module_discardForm_d"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span tal:condition="not:python:here.state == 'published'" i18n:translate="">Manage Files:</span>
+msgid "Manage Files:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <p i18n:tranlate="">This module contains the following items:</p>
+msgid "This module contains the following items:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <option value="Select" i18n:translate="">Select...</option>
+msgid "Select..."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <input class="standalone"
+#                                   type="submit"
+#                                   name="folder_factories:method"
+#                                   value="Add New Item"
+#				   i18n:attributes="value"
+#                                   tabindex=""
+#                                   style="font-size: 100%;"
+#                                   i18n:attributes="value"
+#                                   tal:condition="types"
+#                                   tal:attributes="tabindex tabindex/next|nothing;
+#                                                   value python:test( no_types == 1
+#                                                                    , 'Add New ' + types[0].Title()
+#                                                                    , 'Add New Item');" />
+msgid "Add New Item"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <input class="noborder"
+#                                              type="checkbox"
+#                                              src="select_all_icon.gif"
+#                                              name="selectButton"
+#                                              title="Select all items"
+#                                              alt="Select all items"
+#					      i18n:attributes="title alt"
+#					      onClick="toggleSelect(this); return false;"
+#                                              tal:attributes="src string:$portal_url/select_all_icon.gif"
+#                                              />
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <input class="noborder"
+#                           type="checkbox"
+#                           src="select_all_icon.gif"
+#                           name="selectButton"
+#                           title="Select all items"
+#                           alt="Select all items"
+#			   i18n:attributes="title alt"
+#			   onClick="toggleSelect(this); return false;"
+#                           tal:attributes="src string:$portal_url/select_all_icon.gif"
+#                           />
+msgid "Select all items"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span tal:omit-tag="" i18n:translate="">Name</span>
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <span i18n:translate="">Name</span>
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th i18n:translate="">Name</th>
+msgid "Name"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span tal:omit-tag="" i18n:translate="">Type</span>
+msgid "Type"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span tal:omit-tag="" i18n:translate="">Size</span>
+msgid "Size"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span tal:omit-tag="" i18n:translate="">Modified</span>
+msgid "Modified"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span class="expired" tal:condition="python:isExpired(item)" i18n:translate="">expired</span>
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <span class="expired"
+#                                tal:condition="python:isExpired(item)"
+#                                i18n:translate="">expired</span>
+msgid "expired"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <a tal:attributes="href string:${item/absolute_url}/cnxml_importexport" i18n:translate="">import/export</a>
+msgid "import/export"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editcontents_form.pt 
+#. <input class="context"
+#	           type="submit"
+#	           name=""
+#                   value=""
+#                   tabindex=""
+#                   tal:condition="python:contents or (here.cb_dataValid and button['id'] == 'paste')"
+#                   i18n:attributes="value"
+#                   tal:attributes="value button/name;
+#                                   name button/url;
+#                                   tabindex tabindex/next;" />
+msgid ""
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <h1 i18n:translate="">Edit Links: ${obj_title}</h1>
+msgid "Edit Links: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <em i18n:translate="">No links defined.</em>
+msgid "No links defined."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <th align="left" i18n:translate="">Name&nbsp;&nbsp;</th>
+msgid "Name&nbsp;&nbsp;"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <th i18n:translate="">Link Type&nbsp;&nbsp;</th>
+msgid "Link Type&nbsp;&nbsp;"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <th i18n:translate="">Strength&nbsp;&nbsp;</th>
+msgid "Strength&nbsp;&nbsp;"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <th i18n:translate="">Delete&nbsp;&nbsp;</th>
+msgid "Delete&nbsp;&nbsp;"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <font size="-2" face="Arial, Helvetica, sans-serif" i18n:translate="">&nbsp;&nbsp;URL:</font>
+msgid "&nbsp;&nbsp;URL:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <a tal:attributes="href link/target" i18n:translate="">VISIT</a>
+msgid "VISIT"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <input type="submit" class="context" value="Update Links" i18n:attributes="value">
+msgid "Update Links"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <h2 i18n:translate="">Add New Link:</h2>
+msgid "Add New Link:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <b i18n:translate="">Module ID:</b>
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Module ID:</b>
+msgid "Module ID:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <td align="right" i18n:translate=""><b>Version</b> (optional)<b>:</b></td>
+msgid "<b>Version</b> (optional)<b>:</b>"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <font size="-1" i18n:translate="">Example: m10000</font>
+msgid "Example: m10000"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <font size="-1" i18n:translate="">Example: 2.7, or "latest" (default)</font>
+msgid "Example: 2.7, or \"latest\" (default)"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <font size="-1" i18n:translate="">OR:</font>
+msgid "OR:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <b i18n:translate="">Link URL:</b>
+msgid "Link URL:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <b i18n:translate="">Link Type:</b>
+msgid "Link Type:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <b i18n:translate="">Link Strength:</b>
+msgid "Link Strength:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <input type="submit" class="context" value="  Add  " i18n:attributes="value">
+msgid "  Add  "
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <H3 i18n:translate="">Search for New Links:</H3>
+msgid "Search for New Links:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <td i18n:translate="">Search Connexions:</td>
+msgid "Search Connexions:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <td i18n:translate="">or</td>
+msgid "or"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <td i18n:translate="">Search Google:</td>
+msgid "Search Google:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editlinks_form.pt
+#. <input type="submit" VALUE="Search" i18n:attributes="VALUE">
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <input type="submit" class="context searchButton" name="editRolesSearch" value="Search" i18n:attributes="value"/>
+msgid "Search"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <h1 i18n:translate="">Edit Metadata: ${obj_title}</h1>
+msgid "Edit Metadata: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">License:</b>
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">License:</th>
+msgid "License:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <a tal:condition="here/license" tal:attributes="href here/license" i18n:translate="">Click here for license</a>
+msgid "Click here for license"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">DOCTYPE:</b>
+msgid "DOCTYPE:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Version:</b>
+msgid "Version:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Created:</b>
+msgid "Created:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Revised:</b>
+msgid "Revised:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Authors:</b>
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Authors:</th>
+msgid "Authors:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Maintainers:</b>
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Maintainers:</th>
+msgid "Maintainers:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <b i18n:translate="">Licensors:</b>
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Licensors:</th>
+msgid "Licensors:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <a href="module_editroles_form" i18n:translate="">Edit...</a>
+msgid "Edit..."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <div id="name_help" i18n:translate="" class="help" style="visibility:hidden">Enter the title of this module.</div>
+msgid "Enter the title of this module."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <tal:block i18n:translate="" content="error_name">Error</tal:block>
+#. <tal:block i18n:translate="" content="error_keywords">Error</tal:block>
+#. <tal:block i18n:translate="" content="error_abstract">Error</tal:block>
+#: /skins/rhaptos_module_editor/module_patchForm.pt
+#. <tal:block i18n:translate="" content="error_message">Error</tal:block>
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <tal:block i18n:translate="" content="error_message">Error</tal:block>
+msgid "Error"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <span i18n:translate="">Keywords (one per line)</span>
+msgid "Keywords (one per line)"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <div id="keywords_help" i18n:translate="" class="help" style="visibility:hidden">Enter each keyword on its own line.</div>
+msgid "Enter each keyword on its own line."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <span i18n:translate="">Abstract</span>
+msgid "Abstract"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <div id="abstract_help" i18n:translate="" class="help" style="visibility:hidden">Enter a summary of the module.</div>
+msgid "Enter a summary of the module."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editmetadata_form.pt
+#. <input type="submit"
+#	         class="context"
+#	         name="onMetadataEdit:action"
+#	         tal:attributes="tabindex tabindex/next;"
+#                 value="Save"
+#		 i18n:attributes="value" />
+msgid "Save"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <h1 i18n:translate="">Edit Roles: ${obj_title}</h1>
+msgid "Edit Roles: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <p i18n:translate="">Select people to serve as authors, maintainers, and copyright holders.</p>
+msgid "Select people to serve as authors, maintainers, and copyright holders."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <em tal:condition="not:results" i18n:translate="">None found</em>
+msgid "None found"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <input type="submit" class="context" name="addPeople" value="Add People" i18n:attributes="value"/>
+msgid "Add People"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <p i18n:translate="">Update the roles assigned to individuals.</p>
+msgid "Update the roles assigned to individuals."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th rowspan="2" i18n:translate="">User</th>
+#. <th class="pending top" rowspan="2" i18n:translate="">User</th>
+msgid "User"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th colspan="3" i18n:translate="">Roles (<a href="/help/authoring/authorguide#roles">help</a>)</th>
+msgid "Roles (<a href=\"/help/authoring/authorguide#roles\">help</a>)"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th rowspan="2" i18n:translate="">Remove User</th>
+msgid "Remove User"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th i18n:translate="">Author</th>
+#. <th class="pending" i18n:translate="">Author</th>
+msgid "Author"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th i18n:translate="">Maintainer</th>
+#. <th class="pending" i18n:translate="">Maintainer</th>
+msgid "Maintainer"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th i18n:translate="">Copyright Holder</th>
+#. <th class="pending" i18n:translate="">Copyright Holder</th>
+msgid "Copyright Holder"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th class="pending top" colspan="3" i18n:translate="">Roles Pending Approval (<a href="/help/authoring/authorguide#roles">help</a>)</th>
+msgid "Roles Pending Approval (<a href=\"/help/authoring/authorguide#roles\">help</a>)"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <th class="pending top" rowspan="2" i18n:translate="">Cancel Request</th>
+msgid "Cancel Request"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_editroles_form.pt 
+#. <input type="submit" class="context" name="update" value="Update Roles" i18n:attributes="value" />
+msgid "Update Roles"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_fileFunctions.pt 
+#. <a href="files" 
+#         tal:attributes="href
+#    python:test(file.content_type.startswith('text'),
+#    'text?filename=%s' % file.id(), default)" i18n:translate="">edit</a>
+msgid "edit"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_fileFunctions.pt 
+#. <a tal:attributes="href linkdest" href="preview" i18n:translate="">online</a>
+msgid "online"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_fileFunctions.pt 
+#. <a tal:condition="python:fileext=='.cnxml'" href="source" i18n:translate="">source</a>
+msgid "source"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_fileFunctions.pt 
+#. <a tal:condition="python:fileext=='.cnxml'" href="printed" i18n:translate="">print</a>
+msgid "print"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <h1 i18n:translate="">Derive a Copy from: ${obj_title}</h1>
+msgid "Derive a Copy from: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <p i18n:translate="forkForm_a">
+#	    <strong>Warning:</strong> You are about to create a new
+#	    ${obj_type}, derived from this one.  You will have permission
+#	    to publish this new ${obj_type}, but note that from this point
+#	    on the two will be separate ${obj_type}s. Any changes made to
+#	    the original will <em>not</em> automatically be
+#	    added to your new copy.  Are you sure you wish to
+#	    continue?
+#	  </p>
+msgid "forkForm_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <p i18n:translate="forkForm_b">
+#	    <input type="checkbox" name="agree" />I have read the ${obj_license} and
+#           <b>I agree</b> to license this new ${obj_type} under its terms. 
+#	  </p>
+msgid "forkForm_b"
+msgstr ""
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <a tal:attributes="href here/license" i18n:translate="">license</a>
+msgid "license"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <input type="submit" 
+#	         class="standalone"
+#	         name="fork" 
+#	         value="Yes, Create Copy"
+#		 i18n:attributes="value" />
+msgid "Yes, Create Copy"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_forkForm.pt
+#. <p tal:condition="not:here/license" i18n:translate="">Sorry, this content does not allow derivative works to be created.</p>
+msgid "Sorry, this content does not allow derivative works to be created."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_invalid.pt
+#. <h1 i18n:translate="">Validity errors</h1>
+msgid "Validity errors"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_invalid.pt
+#. <p i18n:translate="">Your module has errors. Please correct them and try again.</p>
+msgid "Your module has errors. Please correct them and try again."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_invalid.pt
+#. <p i18n:translate="">Return to editing the <a href="module_editcontents_form">module</a></p>
+msgid "Return to editing the <a href=\"module_editcontents_form\">module</a>"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <p i18n:translate="notCheckedOut_a">
+#    This module has been published.  If you wish to create a new
+#    revision, you must check out a copy to the workspace for editing
+#    (<a href="/help/authoring/authorguide#status">What does "Checked out" mean</a>?)
+#  </p>
+msgid "notCheckedOut_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Name:</th>
+msgid "Name:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Module ID:</th>
+msgid "Module ID:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Version:</th>
+msgid "Version:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Doctype:</th>
+msgid "Doctype:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Created:</th>
+msgid "Created:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Revised:</th>
+msgid "Revised:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Keywords:</th>
+msgid "Keywords:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Abstract:</th>
+msgid "Abstract:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <th i18n:translate="">Based On:</th>
+msgid "Based On:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_notCheckedOut.pt 
+#. <span i18n:translate="">by</span>
+msgid "by"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_patchForm.pt
+#. <h1 i18n:translate="">Suggest Edits: ${obj_title}</h1>
+msgid "Suggest Edits: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_patchForm.pt
+#. <span i18n:translate="">Description of Edits</span>
+msgid "Description of Edits"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_patchForm.pt
+#. <div id="message_help" i18n:translate="patchForm_a" class="help"
+#	    style="visibility:hidden"> Please enter a description of the changes you've made to the module
+#	    </div>
+msgid "patchForm_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_patchForm.pt
+#. <input type="submit" class="context" name="patch"
+#	  value="Send Edits"  i18n:attributes="value" tal:attributes="tabindex tabindex/next;" />
+msgid "Send Edits"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_preview_form.pt
+#. <h1 i18n:translate="">Preview: ${obj_title}</h1>
+msgid "Preview: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_preview_form.pt
+#. <p i18n:translate="">Preview how this module will look when published:</p>
+msgid "Preview how this module will look when published:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_preview_form.pt
+#. <dl i18n:translate="preview_form_a">
+#	  <dt><a href="module_view">Online Preview</a></dt>
+#	  <dd>View your module as it will display on the web, with the changes you've made.</dd>
+#	  <dt><a href="module_view?format=pdf">Print Preview</a></dt>
+#	  <dd>This may take some time (30 seconds or so).    If a PDF
+#	  cannot be generated or if the PDF is invalid, there may be a
+#	  bug in our system, or there may be errors in your module.
+#	  Please double-check your module (especially any MathML!) and try again.  If the problem persists, please contact us.
+#	  </dd>
+#	  <tal:block tal:condition="python:here.state != 'created'">
+#	  <dt><a href="diff">Change Set</a></dt>
+#	  <dd>View the differences between the published module and
+#	    this local working copy.</dd>
+#	  </tal:block>
+#	</dl>
+msgid "preview_form_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_printpreview.pt
+#. <h1 i18n:translate="">Print module: ${obj_title}</h1>
+msgid "Print module: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_printpreview.pt
+#. <a href="preview?format=pdf" target="printWindow" i18n:translate="">Generate PDF</a>
+msgid "Generate PDF"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_printpreview.pt
+#. <b i18n:translate="">The PDF now opens in a new window.</b>
+msgid "The PDF now opens in a new window."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_printpreview.pt
+#. <h2 i18n:translate="">Please note...</h2>
+msgid "Please note..."
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_printpreview.pt
+#. <span i18n:translate="printpreview_a">
+#	    This may take some time (30 seconds or so). If a PDF
+#	    cannot be generated or if the PDF is invalid, there may be a bug in
+#	    our system, or there may be errors in your module.  Please
+#	    double-check your MathML and try again.  If the problem persists,
+#	    please contact us.
+#	    </span>
+msgid "printpreview_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. <h1 i18n:translate="">New module: Language selection</h1>
+msgid "New module: Language selection"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. <p i18n:translate="mssf_a">
+#      Connexions uses XML to store content, but there are many options
+#      for XML languages.  Please select the language for use in this
+#      new module.
+#    </p>
+msgid "mssf_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. <p 18n:translate="mssf_b">
+#	  The base language used to store your module must be a
+#	  version of our lightweight document markup language: <a
+#	  href="/cnxml/">CNXML</a>.  We <em>highly</em> recommend
+#	  using the latest version (currently CNXML 0.5) available so
+#	  you will automatically receive the latest features.
+#	</p>
+msgid "mssf_b"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. <p i18n:translate="mssf_c">
+#	  If this module will include much mathematical content, you
+#	  may wish to also include support for the <a
+#	  href="http://www.w3.org/">World Wide Web Consortium's</a>
+#	  MathML.
+#	</p>
+msgid "mssf_c"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. p i18n:translate="mssf_d">
+#	  <input type="checkbox" name="mathml" checked="checked" /> Include <a href="http://www.w3.org/TR/REC-MathML/">MathML</a><br />
+#      </p>
+msgid "mssf_d"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_schema_selection_form.pt
+#. <input type="submit"
+#               class="context"  
+#               name="onSchemaSelect:action" value="Next >>" i18n:attributes="value"/>
+msgid "Next >>"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <h1 i18n:translate="">Publish module: ${obj_title}</h1>
+msgid "Publish module: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <p i18n:translate="submitForm_a">
+#	    <strong>Note:</strong> You do not have permission to
+#	    publish a new version of this module.  You may either:
+#	  </p>
+msgid "submitForm_a"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <ul i18n:translate="submitForm_b"> 
+#	    <li><a href="module_patchForm">Suggest your edits</a>
+#	    to the module's maintainers, or</li>
+#	    <li><a href="module_forkForm">Create a new
+#		module</a> of your own based on this one.</li>
+#	  </ul>
+msgid "submitForm_b"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <strong i18n:translate="">Before you publish, did you remember to:</strong>
+msgid "Before you publish, did you remember to:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <ul i18n:translate="submitForm_c">
+#	    <li>Edit the <a href="module_editmetadata_form">metadata</a>, adding keywords and an abstract</li>
+#	    <li>Verify that the <a href="module_editroles_form">roles</a> are correct</li>
+#	    <li>Add related <a href="module_editlinks_form">links</a></li>
+#	    <li>Make sure all <a href="module_editcontents_form">files</a> (images, applets, etc.) are uploaded</li>
+#	    <li>Check that the <a href="module_view">online</a> and <a
+#	    href="module_view?format=pdf">print</a> versions of the module are
+#	    correct</li> 
+#	    <li>Verify that the links in your module are not broken</li>
+#	  </ul>
+msgid "submitForm_c"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <span i18n:translate="">Description of Changes</span>
+msgid "Description of Changes"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <div id="message_help"
+#                 i18n:translate="" class="help" 
+#		 style="visibility:hidden">Please enter a description of the changes you've made to the module</div>
+msgid "Please enter a description of the changes you've made to the module"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_submitForm.pt
+#. <input type="submit" class="context" name="publish" value="Publish" i18n:attributes="value" attributes="tabindex tabindex/next;" />
+#: /skins/rhaptos_module_editor/module_template.pt
+#. <input type="submit" name="submit" value="Publish" i18n:attributes="value" class="context" />
+msgid "Publish"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_template.pt
+#. <input type="submit" name="checkout" value="Checkout" i18n:attributes="value" class="standalone" />
+msgid "Checkout"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_template.pt
+#. <span i18n:translate="">Preview:</span>
+msgid "Preview:"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_viewsource.pt
+#. <h1 i18n:translate="">Module Source: ${obj_title}</h1>
+msgid "Module Source: ${obj_title}"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_viewsource.pt
+#. <a tal:attributes="href string:${template/id}?number:int=0" tal:condition="number" i18n:translate="">Hide line numbers</a>
+msgid "Hide line numbers"
+msgstr ""
+
+
+#: /skins/rhaptos_module_editor/module_viewsource.pt
+#. <a tal:attributes="href template/id" tal:condition="not:number" i18n:translate="">Show line numbers</a>
+msgid "Show line numbers"
+msgstr ""

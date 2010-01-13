@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;equation&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;equation&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+    The <code class="codeline">equation</code> tag is used to set off 
+    equations in CNXML documents by using the Math Mark-up Language 
+    (MathML) or embedded media to display math.
+        <div class="note">
+          <h2 class="note-header">
+            <span class="cnx_label">Note:</span>
+          </h2> 
+        You are strongly encouraged to use 
+          <code class="codeline">equation</code> with <a href="http://cnx.org/content/m9008/latest/" target="_blank" class="link">Content MathML</a> 
+        tags when you want to display mathematical formulas or 
+        equations in your CNXML document.
+        </div>
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;equation id="simpleaddmathml"&gt;
+  &lt;title&gt;Addition using MathML&lt;/title&gt;
+  &lt;m:math&gt;
+    &lt;m:apply&gt;
+      &lt;m:eq/&gt;
+      &lt;m:apply&gt;
+        &lt;m:plus/&gt;
+          &lt;m:cn&gt;1&lt;/m:cn&gt;
+          &lt;m:cn&gt;2&lt;/m:cn&gt;
+        &lt;/m:apply&gt;
+      &lt;m:cn&gt;3&lt;/m:cn&gt;
+    &lt;/m:apply&gt;
+  &lt;/m:math&gt;
+&lt;/equation&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div id="simpleaddmathml" class="equation">
+            <h3 class="equation-header">
+              <strong class="name">Addition using MathML</strong>
+            </h3>
+            <math display="inline" mml="http://www.w3.org/1998/Math/MathML" m="http://www.w3.org/1998/Math/MathML">
+              <semantics>
+                <mrow>
+                  <mrow xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                      <mn>1</mn>
+                      <mo>+</mo>
+                      <mn>2</mn>
+                    </mrow>
+                    <mo>=</mo>
+                    <mn>3</mn>
+                  </mrow>
+                </mrow>
+                <!--
+                  <annotation-xml encoding="MathML-Content">
+                    <apply>
+                      <eq></eq>
+                      <apply>
+                        <plus></plus>
+                        <cn>1</cn>
+                        <cn>2</cn>
+                      </apply>
+                      <cn>3</cn>
+                    </apply>
+                  </annotation-xml>
+                -->
+              </semantics>
+            </math>
+            <span class="equation-number">(1)</span>
+          </div>
+        
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;equation id="simpleaddplain"&gt;
+  &lt;title&gt;Addition without MathML&lt;/title&gt;
+  1 + 2 = 3
+&lt;/equation&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div id="simpleaddplain" class="equation">
+            <h3 class="equation-header">
+              <strong class="name">
+                    Addition without MathML
+              </strong>
+            </h3>
+          1 + 2 = 3
+            <span class="equation-number">(2)</span>
+          </div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>type</b> <i>(optional)</i>: 
+      
+      Defines the type of equation in order to give specialized control over numbering.
+              Equations of the same type are numbered in series (i.e., Equation (1), Equation (2)...).
+              Type can be used in conjunction with <a href="label" class="cnxn">label</a> so that equations of each
+              user-defined type appear with their own label. Type can be any user-defined value that 
+              reflects the purpose of the equation.
+        </li>
+<li class="item">
+<b>id</b> <i>(required)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">First, <code class="codeline">equation</code> may contain an optional <a href="label" class="cnxn">label</a> tag.
+        Next, it may contain an optional <a href="title" class="cnxn">title</a> tag. Finally, <code class="codeline">equation</code>
+        must contain either <a href="media" class="cnxn">media</a>, MathML, or Unicode Text.</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="content">content</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="entry">entry</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

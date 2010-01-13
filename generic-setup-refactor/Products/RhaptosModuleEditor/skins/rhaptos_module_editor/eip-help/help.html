@@ -1,0 +1,171 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction to CNXML tags</title>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/plone/document.css" />
+<link rel="stylesheet" type="text/css" href="/eip-help/eip-help.css" />
+<script type="text/javascript" src="/js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header">
+<h1 id="cnx_eip_help_title">Introduction to CNXML tags</h1>
+</div>
+<div class="reference-link">
+<div>Introduction to CNXML tags</div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+
+<table border="0" cellspacing="0" cellpadding="0" id="cnx_eip_help_taglist">
+<thead>
+<tr>
+<th valign="top">Tags in the Edit-In-Place drop-down menu</th>
+<th valign="top">Block tags you must manually insert</th>
+<th valign="top">Inline tags you must manually insert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top">
+<div class="list">
+<ul class="bullet">
+<li class="item"><a class="cnxn" href="para">para</a></li>
+<li class="item"><a class="cnxn" href="section">section</a></li>
+<li class="item"><a class="cnxn" href="code">code</a> (block)</li>
+<li class="item"><a class="cnxn" href="list">list</a></li>
+<li class="item"><a class="cnxn" href="equation">equation</a></li>
+<li class="item"><a class="cnxn" href="note">note</a></li>
+<li class="item"><a class="cnxn" href="exercise">exercise</a></li>
+<li class="item"><a class="cnxn" href="example">example</a></li>
+<li class="item"><a class="cnxn" href="table">table</a></li>
+</ul>
+</div>
+</td>
+<td valign="top">
+<div class="list">
+<ul class="bullet">
+<li class="item"><a class="cnxn" href="rule">rule</a></li>
+<li class="item"><a class="cnxn" href="definition">definition</a></li>
+<li class="item"><a class="cnxn" href="quote">quote</a> (block)</li>
+<li class="item"><a class="cnxn" href="figure">figure</a></li>
+<li class="item"><a class="cnxn" href="preformat">preformat</a> (block)</li>
+</ul>
+</div>
+</td>
+<td valign="top">
+<div class="list">
+<ul class="bullet">
+<li class="item"><a class="cnxn" href="media">media</a></li>
+<li class="item"><a class="cnxn" href="emphasis">emphasis</a></li>
+<li class="item"><a class="cnxn" href="quote">quote</a> (inline)</li>
+<li class="item"><a class="cnxn" href="foreign">foreign</a></li>
+<li class="item"><a class="cnxn" href="code">code</a> (inline)</li>
+<li class="item"><a class="cnxn" href="sub">sub</a></li>
+<li class="item"><a class="cnxn" href="sup">sup</a></li>
+<li class="item"><a class="cnxn" href="preformat">preformat</a> (inline)</li>
+<li class="item"><a class="cnxn" href="link">link</a></li>
+<li class="item"><a class="cnxn" href="cite">cite</a></li>
+<li class="item"><a class="cnxn" href="term">term</a></li>
+<li class="item"><a class="cnxn" href="title">title</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p id="cnx_eip_help_1" class="para">
+
+When you select an element from the drop-down menu and click "Add Here," 
+Edit-In-Place inserts a text box in which you can enter your information 
+for that CNXML element. The opening and closing bracketed tags (<a 
+href="terminology#cnx_eip_help_define_tag_section">what's this?</a>) are 
+written and inserted for you. To add elements to your module that are 
+not in the drop-down menu you must manually write in the code.  To do 
+this, click "Switch to Editing Full Source" (for the full module) or 
+open an editable element by clicking on it (for small changes to a 
+single portion of the module).  For many elements, such as <a 
+class="cnxn" href="emphasis">emphasis</a>, or <a class="cnxn" 
+href="note">note</a>, this is not complicated. Just add the opening and 
+closing tags (<a 
+href="terminology#cnx_eip_help_define_tag_section">what's this?</a>) 
+around the text you want to modify, as shown in the following 
+examples: 
+</p>
+
+<div class="example" id="cnx_eip_help_example">
+<h2 class="example-header">
+<span class="cnx_label">Example 1:</span>
+<strong class="title">emphasis</strong>
+</h2>
+
+<p class="para" id="input1">This CNXML:</p>
+
+<div class="code"><pre class="codeblock"><code>It is &lt;emphasis&gt;very important&lt;/emphasis&gt; to turn 
+the gas off when you have finished using the stove. 
+Otherwise you might cause an explosion.
+</code></pre></div>
+
+<p class="para" id="output1">Results in this display:</p>
+<p class="para" id="cnx_eip_help_example_para">
+It is <em class="emphasis">very important</em> to turn the gas off when 
+you have finished using the stove.  Otherwise, you might cause an 
+explosion.
+</p>
+
+</div>
+
+<div class="example" id="cnx_eip_help_example_2">
+<h2 class="example-header">
+<span class="cnx_label">Example 2:</span>
+<strong class="title">note</strong>
+</h2>
+
+<p class="para" id="input2">This CNXML:</p>
+
+<div class="code"><pre class="codeblock"><code>It is very important to turn the gas off when you 
+have finished using the stove. &lt;note&gt;Otherwise, you 
+might cause an explosion.&lt;/note&gt;
+</code></pre></div>
+
+<p class="para" id="output2">Results in this display:</p>
+
+<div class="para" id="cnx_eip_help_example_2_para">
+It is very important to turn the gas off when you have finished using 
+the stove.
+<div class="note">
+<h3 class="note-header">
+<span class="cnx_label">Note:</span>
+</h3>
+Otherwise, you might cause an explosion.
+</div>
+</div>
+
+</div>
+
+<p class="para" id="cnx_eip_help_para_2">
+
+Other elements are more complicated, either by the need for attributes 
+(<a href="terminology#cnx_eip_help_define_attribute_section">what's 
+this?</a>) or by strict usage requirements, such as child/parent 
+relationships (<a 
+href="terminology#cnx_eip_help_define_child_parent_section">what's 
+this?</a>).  Information on attributes, children, and parents, as well 
+as examples of each element's use, can be found in the <a 
+href="tags">Complete CNXML tag list</a>.
+
+</p>
+
+<p class="para" id="cnx_eip_help_additional_topics">
+Additional help topics: 
+<a target="_blank" href="http://cnx.org/content/col10151/latest/">Connexions Tutorial and Reference</a>,
+<a target="_blank" href="http://cnx.org/aboutus/technology/cnxml">About CNXML</a>
+</p>
+
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+
+</body>
+</html>

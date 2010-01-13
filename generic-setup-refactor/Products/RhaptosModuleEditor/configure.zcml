@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="rhaptos">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Products.RhaptosModuleEditor"
+      directory="profiles/default"
+      description="Extension profile for Products.RhaptosModuleEditor."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+<!-- AT doens't use this; gives us a modified event on create
+  <subscriber
+      for="Products.UniFile.interfaces.IUnifiedFile
+           zope.app.container.interfaces.IObjectAddedEvent"
+      handler=".eventHandlers.moduleContentsModified"
+      />
+-->
+
+  <subscriber
+      for="Products.UniFile.interfaces.IUnifiedFile
+           zope.app.container.interfaces.IObjectModifiedEvent"
+      handler=".eventHandlers.moduleContentsModified"
+      />
+
+<!-- unused; handled by content_delete_post now
+  <subscriber
+      for="Products.UniFile.interfaces.IUnifiedFile
+           zope.app.container.interfaces.IObjectRemovedEvent"
+      handler=".eventHandlers.moduleContentsModified"
+      />
+-->
+
+<!-- unneeded; kept as example
+  <subscriber
+      for="Products.RhaptosModuleEditor.interfaces.IActiveNotifierContainer
+           OFS.interfaces.IObjectWillBeRemovedEvent"
+      handler=".eventHandlers.beforeModEditorDelete"
+      />
+-->
+
+  <!-- Interface marking -->
+  <content class=".ModuleEditor.ModuleEditor">
+    <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLContainer" />
+  </content>
+
+  <content class=".ModuleEditor.ModuleEditor">
+    <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLAbstract" />
+  </content>
+
+</configure>

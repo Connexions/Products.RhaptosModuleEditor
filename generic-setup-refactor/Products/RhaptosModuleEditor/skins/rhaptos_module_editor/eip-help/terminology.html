@@ -1,0 +1,303 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Understanding XML terminology</title>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/plone/document.css" />
+<link rel="stylesheet" type="text/css" href="/eip-help/eip-help.css" />
+<script type="text/javascript" src="/js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header">
+<h1 id="cnx_eip_help_title">Understanding XML terminology</h1>
+</div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div>Understanding XML terminology</div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+
+<div class="section" id="cnx_eip_help_define_xml_section">
+<h2 class="section-header">
+<strong class="title">What are XML and CNXML?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_xml_para">
+<dfn class="term">XML</dfn> stands for eXtensible Markup Language, and 
+is a way to surround text to convey information about its content or 
+format.  <a target="_blank" href="http://cnx.org/aboutus/technology/cnxml">CNXML</a> is the 
+particular brand of XML used in <a target="_blank" 
+href="http://cnx.org">Connexions</a>.  Here is an example of some markup 
+in CNXML:
+</p>
+
+<div class="example" id="cnx_eip_help_define_xml_example">
+<h3 class="example-header">
+<span class="cnx_label">Example 1</span>
+</h3>
+<div><pre id="cnx_eip_help_define_xml_pre" class="codeblock"><code><b>&lt;para&gt;</b>
+  This is a paragraph in <b>&lt;term&gt;</b>CNXML<b>&lt;/term&gt;</b>.
+  Notice that the markup contains tags that 
+  express the meaning of it.
+<b>&lt;/para&gt;</b>
+</code></pre></div>
+</div>
+</div>
+
+<div class="section" id="cnx_eip_help_define_tag_section">
+<h2 class="section-header">
+<strong class="title">What is a Tag?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_tag_para">
+<dfn class="term">Tags</dfn> are the markers used to enclose the text 
+they define.  In the <a href="#cnx_eip_help_define_xml_example">above 
+example</a>, <code class="codeline">para</code> and <code 
+class="codeline">term</code> are the tags being used.  In XML, the 
+opening (first) tag is surrounded by angle brackets (<code 
+class="codeline">&lt;</code> and <code class="codeline">&gt;</code>) and 
+the closing (second) tag is also surrounded by angle brackets, but the 
+name of the tag is preceded by a slash (<code 
+class="codeline">/</code>).  Also, the closing tag never contains any 
+attribute information.
+</p>
+</div>
+
+<div class="section" id="cnx_eip_help_define_attribute_section">
+<h2 class="section-header">
+<strong class="title">What is an Attribute?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_attribute_para">
+Sometimes in XML, the <a href="#cnx_eip_help_define_tag_section">tag 
+name</a> is not sufficient to contain all the information one might 
+want to convey.  For example, in CNXML, there are two types of 
+<code class="codeline">code</code> tags: 'inline' (the code is included 
+in the current line of text) or 'block' (it is set apart from the text).  
+This information can be included in <dfn class="term">attributes</dfn>, 
+which are nestled between the name of the opening tag and its 2nd angle 
+bracket (<code class="codeline">&gt;</code>), as in the example below:
+</p>
+
+<div class="example" id="cnx_eip_help_define_attribute_example">
+<h3 class="example-header">
+<span class="cnx_label">Example 2</span>
+</h3>
+<pre id="cnx_eip_help_define_attribute_pre" class="code codeblock"><code><b>&lt;para&gt;</b>
+  This is a paragraph written in 
+  <b>&lt;code display="inline"&gt;</b>CNXML<b>&lt;/code&gt;</b>.  
+  In the output, the word 'CNXML' would not 
+  be offset from the rest of the text.
+<b>&lt;/para&gt;</b>
+</code></pre>
+</div>
+
+<p class="para" id="cnx_eip_help_define_attribute_para_2">
+In this example, <code class="codeline">display</code> is the <dfn 
+class="term">attribute name</dfn> and <code 
+class="codeline">inline</code> is the <dfn class="term">attribute 
+value</dfn>.  The attribute name is always followed by the equal sign 
+(<code class="codeline">=</code>) and the attribute value is always 
+surrounded by double or single quotes (<code class="codeline">"</code> 
+or <code class="codeline">'</code>).  In CNXML, the attributes one can 
+use for a given tag are strictly defined. 
+</p> 
+</div>
+
+
+<div class="section" id="cnx_eip_help_define_child_parent_section">
+<h2 class="section-header">
+<strong class="title">What is a Child/Parent?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_child_parent_para_1">
+In XML, <a href="#cnx_eip_help_define_tag_section">tags</a> are 
+contained inside other tags.  In the <a 
+href="#cnx_eip_help_define_attribute_example">above example</a>, a 
+<code class="codeline">code</code> tag is nested inside a <code 
+class="codeline">para</code> tag.  It can be said that <code 
+class="codeline">code</code> is a <dfn class="term">child</dfn> of <code 
+class="codeline">para</code> and that <code class="codeline">para</code> 
+is a <dfn class="term">parent</dfn> of <code 
+class="codeline">code</code>.  In XML, it is not valid to write tags 
+that do not properly nest, such as in this example, where the <code 
+class="codeline">emphasis</code> tag ends before its child, <code 
+class="codeline">foreign</code>, also ends:
+</p>
+
+<div class="example" id="cnx_eip_help_define_child_parent_example">
+<h3 class="example-header">
+<span class="cnx_label">Example 3: </span> <strong class="title">Invalid nesting</strong>
+</h3>
+<div class="code"><pre class="codeblock"><code>It is <b>&lt;emphasis&gt;&lt;foreign&gt;</b>muy<b>&lt;/emphasis&gt;</b> 
+importante<b>&lt;/foreign&gt;</b> that you write proper XML.
+</code></pre></div>
+</div>
+
+<p class="para" id="cnx_eip_help_define_child_parent_para_2">
+However, "siblings" nested inside a single tag are allowed:
+</p>
+
+<div class="example" id="cnx_eip_help_define_child_parent_example_2">
+<h3 class="example-header">
+<span class="cnx_label">Example 4</span>
+</h3>
+<div class="code"><pre class="codeblock"><code><b>&lt;para&gt;</b>
+  Shakespeare wrote both <b>&lt;cite&gt;</b>MacBeth<b>&lt;/cite&gt;</b>
+  and <b>&lt;cite&gt;</b>Hamlet<b>&lt;/cite&gt;</b>.
+<b>&lt;/para&gt;</b>
+</code></pre></div>
+</div>
+
+<p class="para" id="cnx_eip_help_define_child_parent_para_3">
+In CNXML, the children that a given tag can contain are strictly 
+defined.
+</p>
+
+</div>
+
+
+<div class="section" id="cnx_eip_help_define_escaping_section">
+<h2 class="section-header">
+<strong class="title">What is escaping?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_escaping_para">
+<dfn class="term">Escaping</dfn> allows one to write certain 
+characters that would otherwise be parsed by <a 
+href="#cnx_eip_help_define_xml_section">XML</a> processors for 
+another purpose.  For example, if you want to use the "less than" 
+symbol, you would have to write it in XML as <code 
+class="codeline">&amp;lt;</code>, since that angle bracket (<code 
+class="codeline">&lt;</code>) is parsed by the processors to mark the 
+beginning of an opening or closing <a 
+href="#cnx_eip_help_define_tag_section">tag</a>.  The following 
+characters should be escaped:
+</p>
+<div class="list">
+<ul class="bullet">
+<li class="item"><code class="codeline">&amp;</code> (escaped by writing 
+<code class="codeline">&amp;amp;</code>)</li>
+<li class="item"><code class="codeline">&lt;</code> (escaped by writing 
+<code class="codeline">&amp;lt;</code>)</li>
+<li class="item"><code class="codeline">&gt;</code> (escaped by writing 
+<code class="codeline">&amp;gt;</code>)</li>
+</ul>
+</div>
+</div>
+
+
+<div class="section" id="cnx_eip_help_define_cdata_section">
+<h2 class="section-header">
+<strong class="title">What is CDATA?</strong>
+</h2>
+<p class="para" id="cnx_eip_help_define_cdata_para">
+If the text of your paragraph or code block uses a lot of characters 
+that otherwise would need to be <a 
+href="#cnx_eip_help_define_escaping_section">escaped</a>, you might find 
+it convenient to use CDATA, or (Unparsed) Character Data, to eliminate 
+the need to transform each character in need of escaping.  This is 
+accomplished by beginning the section in question with <code 
+class="codeline">&lt;![CDATA[</code> and ending it with <code 
+class="codeline">]]&gt;</code>, as highlighted in this example:
+</p>
+
+<div class="example" id="cnx_eip_help_define_cdata_example">
+<h3 class="example-header">
+<span class="cnx_label">Example 5</span>
+</h3>
+<div class="code"><pre class="codeblock"><code>&lt;code display="block"&gt;
+<b>&lt;![CDATA[</b>
+&lt;html&gt;
+  &lt;title&gt;This is an HTML document&lt;/title&gt;
+  &lt;body&gt;This is its body text&lt;/body&gt;
+&lt;/html&gt;
+<b>]]&gt;</b>
+&lt;/code&gt;
+</code></pre></div>
+<p class="para" id="cnx_eip_help_define_cdata_example_para">
+In <a href="#cnx_eip_help_define_xml_section">CNXML</a>, failing to add 
+the highlighted lines in the above code will result in a validation 
+error. The validator would interpret the <code 
+class="codeline">html</code> tag as unknown CNXML inside the 
+<code class="inline">code</code> tag.
+</p>
+</div>
+</div>
+
+
+<div class="section" id="cnx_eip_help_define_table_summary_section">
+<h2 class="section-header">
+<strong class="title">What are table summaries?</strong>
+</h2>
+<div class="para" id="cnx_eip_help_define_table_summary_para_1">
+When inserting a table into your document, a table summary is required. 
+The table summary should describe the main purpose of the table, explain its overall structure, and
+can serve one or more of the following functions:
+<div class="list">
+<ul class="bullet">
+<li>Summaries can be read by screen readers to help convey the information presented in the table.
+This is incredibly useful as it adds an accessibility option for those with visual or cognitive disabilities. The contents of the summary will not show on the screen, but can be used to help visually impaired readers that are listening to the content understand the table.</li>
+<li>Summaries are a useful way to organize your data to be more easily read by search engines and indexed.
+</li>
+<li>In more complex tables, such as tables with multiple column and/or row headers, the table summary can help
+the user quickly understand and make sense of the information the table is trying to convey to the user.</li>
+</ul> 
+</div>
+</div>
+
+
+<div class="example" id="cnx_eip_help_define_table_summary_example">
+<h3 class="example-header">
+<span class="cnx_label">Example 6</span>
+</h3>
+<p class="para" id="cnx_eip_help_define_table_summary_para_2">
+In the following example, to place a summary for a table showing the number of petition signatures two students 
+obtained over the course of a five day week, we set the "summary" attribute of the 
+<a href="table" class="cnxn">table</a> tag, or add it in the "Description" textarea for tables in Edit-in-Place.
+</p>
+<div class="code"><pre class="codeblock">
+<code>&lt;table id=&quot;signatures&quot; summary=&quot;This table shows the 
+  number of petition signatures both Jon and Mary 
+  collected each day of the weekend. Jon collected a 
+  total of 41 signatures while Mary collected 72.&quot;&gt;
+  &lt;title&gt;
+    Number of Signature Collected Over the Weekend
+  &lt;/title&gt;
+  &lt;tgroup cols=&quot;4&quot;&gt;
+    &lt;thead&gt;
+      &lt;row&gt;
+        &lt;entry/&gt;
+        &lt;entry&gt;Friday&lt;/entry&gt;
+        &lt;entry&gt;Saturday&lt;/entry&gt;
+        &lt;entry&gt;Sunday&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Jon&lt;/entry&gt;
+        &lt;entry&gt;7&lt;/entry&gt;
+        &lt;entry&gt;15&lt;/entry&gt;
+        &lt;entry&gt;19&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Mary&lt;/entry&gt; 
+        &lt;entry&gt;34&lt;/entry&gt;
+        &lt;entry&gt;7&lt;/entry&gt;
+        &lt;entry&gt;31&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/tbody&gt;
+  &lt;/tgroup&gt;
+&lt;/table&gt;
+</code></pre></div>
+</div>
+</div>
+
+
+<p class="para" id="cnx_eip_help_additional_topics">
+Additional help topics: 
+<a target="_blank" href="http://cnx.org/content/col10151/latest/">Connexions Tutorial and Reference</a>, 
+<a target="_blank" href="http://cnx.org/aboutus/technology/cnxml">About CNXML</a>
+</p>
+
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+
+</body>
+</html>

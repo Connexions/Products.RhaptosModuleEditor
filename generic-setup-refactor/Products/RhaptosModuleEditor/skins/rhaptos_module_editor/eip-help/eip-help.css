@@ -1,0 +1,64 @@
+body{
+  padding: 0 1em 1em;
+}
+
+#cnx_module_header{
+  margin: 0;
+}
+
+.note, .example{
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+pre, code, table{
+  font-size: 1em;
+}
+
+table#cnx_eip_help_taglist{
+  margin-bottom: 1.5em;
+  width: 100%;
+}
+
+#cnx_eip_help_taglist td, #cnx_eip_help_taglist th{
+  width: 33%;
+  padding-right: .5em;
+}
+
+#cnx_eip_help_taglist th{
+  text-align: left;
+  vertical-align: top;
+  padding-bottom: .5em;
+}
+
+.reference-link{
+  text-align: right;
+  margin-bottom: 1.5em;
+}
+
+.close-this-window{
+  text-align: right;
+  margin: .5em 0 0;
+}
+
+.whats-this{
+  font-weight: normal;
+  display: block;
+  text-align: right;
+  margin-top: -1.2em;
+}
+
+.para, .list{
+  margin-bottom: 2em;
+}
+
+.list .list{
+  margin-top: .5em;
+  margin-bottom: .5em;
+  list-style-type: disc;
+}
+
+.example .section-header{
+  font-size: 150%;
+  border-bottom-width: 1px;
+}

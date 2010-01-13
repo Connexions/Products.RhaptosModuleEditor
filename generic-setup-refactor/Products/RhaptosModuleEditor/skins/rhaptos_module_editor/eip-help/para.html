@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;para&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;para&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">para</code> tag contains a paragraph of 
+  text. The text may contain other CNXML elements and markup.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;para id="para1"&gt;
+  Prince Andrei was on duty that day and in 
+  constant attendance on the Commander in 
+  Chief.
+&lt;/para&gt;
+&lt;para id="para2"&gt;
+  At six o'clock in the evening Kutuzov went 
+  to the Emperor's headquarters, and after 
+  remaining but a short time with him, went 
+  to the Grand Marshal of the Court, Count 
+  Tolstoy.  
+&lt;/para&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <p class="para" id="para1">
+      Prince Andrei was on duty that day and in constant 
+      attendance on the Commander in Chief.
+          </p>
+          <p class="para" id="para2">
+      At six o'clock in the evening Kutuzov went to the Emperor's 
+      headquarters, and after remaining but a short time with him, 
+      went to the Grand Marshal of the Court, Count Tolstoy.  
+          </p>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet"><li class="item">
+<b>id</b> <i>(required)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li></ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="space">space</a>, <a class="cnxn" href="definition">definition</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="exercise">exercise</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="content">content</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="entry">entry</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

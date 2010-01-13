@@ -1,0 +1,323 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;entrytbl&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;entrytbl&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">entrytbl</code> tag takes the place of an 
+        <a href="entry" class="cnxn">entry</a>, but fits into a single <a href="row" class="cnxn">row</a> of 
+        <a href="tbody" class="cnxn">tbody</a> in a tgroup. The content model is the same as 
+  that of a <a href="tgroup" class="cnxn">tgroup</a> except that <a href="tfoot" class="cnxn">tfoot</a> is 
+  ommitted and <code class="codeline">entrytbl</code> is self-excluding.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;table id="periodic_table"
+       summary="A few elements and
+       their atomic properties."&gt;
+  &lt;tgroup cols="2"&gt;
+    &lt;tbody&gt;
+      &lt;row&gt;
+        &lt;entrytbl cols="2"&gt;
+          &lt;colspec colnum="1" colname="hyd1"/&gt;
+          &lt;colspec colnum="2" colname="hyd2"/&gt;
+          &lt;thead&gt;
+            &lt;row&gt;
+              &lt;entry namest="hyd1" nameend="hyd2"&gt;
+                Hydrogen
+              &lt;/entry&gt;
+            &lt;/row&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Number:&lt;/entry&gt;
+              &lt;entry&gt;1&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Symbol:&lt;/entry&gt;
+              &lt;entry&gt;H&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Weight:&lt;/entry&gt;
+              &lt;entry&gt;1.0079&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Radius:&lt;/entry&gt;
+              &lt;entry&gt;78 pm&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Melting Point:&lt;/entry&gt;
+              &lt;entry&gt;-259.34 C&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Boiling Point:&lt;/entry&gt;
+              &lt;entry&gt;-252.87 C&lt;/entry&gt;
+            &lt;/row&gt;
+          &lt;/tbody&gt;
+        &lt;/entrytbl&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entrytbl cols="2"&gt;
+          &lt;colspec colnum="1" colname="lit1"/&gt;
+          &lt;colspec colnum="2" colname="lit2"/&gt;
+          &lt;thead&gt;
+            &lt;row&gt;
+              &lt;entry namest="lit1" nameend="lit2"&gt;
+                Lithium
+              &lt;/entry&gt;
+            &lt;/row&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Number:&lt;/entry&gt;
+              &lt;entry&gt;3&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Symbol:&lt;/entry&gt;
+              &lt;entry&gt;Li&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Weight:&lt;/entry&gt;
+              &lt;entry&gt;6.941&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Atomic Radius:&lt;/entry&gt;
+              &lt;entry&gt;152 pm&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Melting Point:&lt;/entry&gt;
+              &lt;entry&gt;108.5 C&lt;/entry&gt;
+            &lt;/row&gt;
+            &lt;row&gt;
+              &lt;entry&gt;Boiling Point:&lt;/entry&gt;
+              &lt;entry&gt;1342 C&lt;/entry&gt;
+            &lt;/row&gt;
+          &lt;/tbody&gt;
+        &lt;/entrytbl&gt;
+      &lt;/row&gt;
+    &lt;/tbody&gt;
+  &lt;/tgroup&gt;
+&lt;/table&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div class="table" id="periodic_table"><table cellspacing="0" cellpadding="0" align="center" summary="A few elements and their atomic properties." style="border: 1px solid ;">
+<caption align="bottom" class="table-text"><span class="cnx_label">Table 1</span></caption>
+<tbody valign="top">
+                <tr>
+                  <td class="entrytbl" style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; padding: 0 ! important; height: 100%;"><table width="100%" cellspacing="0" cellpadding="0" style="border: 0 none  ! important; margin: 0 ! important; height: 100%;">
+                      <thead valign="bottom">
+                        <tr>
+                          <th colspan="2" style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">
+    Hydrogen
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody valign="top">
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Number:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">1</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Symbol:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">H</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Weight:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">1.0079</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Radius:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">78 pm</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Melting Point:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">-259.34 C</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 0 none ! important; text-align: left ! important;">Boiling Point:</td>
+                          <td style="border: 0 none  ! important; text-align: left ! important;">-252.87 C</td>
+                        </tr>
+                      </tbody>
+                    </table></td>
+                </tr>
+                <tr>
+                  <td class="entrytbl" style="border: 0 none  ! important; padding: 0 ! important; height: 100%;"><table width="100%" cellspacing="0" cellpadding="0" style="border: 0 none  ! important; margin: 0 ! important; height: 100%;">
+                      <thead valign="bottom">
+                        <tr>
+                          <th colspan="2" style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">
+    Lithium
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody valign="top">
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Number:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">3</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Symbol:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">Li</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Weight:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">6.941</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Atomic Radius:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">152 pm</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 1px solid; text-align: left ! important;">Melting Point:</td>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 0 none ! important; border-bottom: 1px solid; text-align: left ! important;">108.5 C</td>
+                        </tr>
+                        <tr>
+                          <td style="border-top: 0 none ! important; border-left: 0 none ! important; border-right: 1px solid; border-bottom: 0 none ! important; text-align: left ! important;">Boiling Point:</td>
+                          <td style="border: 0 none  ! important; text-align: left ! important;">1342 C</td>
+                        </tr>
+                      </tbody>
+                    </table></td>
+                </tr>
+              </tbody>
+</table></div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>cols</b> <i>(required)</i>: 
+      
+    Number of columns in the <a href="entrytbl" class="cnxn">entrytbl</a>.  Must be a positive integer.
+        </li>
+<li class="item">
+<b>colname</b> <i>(optional)</i>: 
+      
+    Name referring to the "colname" attribute in the corresponding <a href="colspec" class="cnxn">colspec</a> for the <code class="codeline">entrytbl</code>'s 
+    column.
+        </li>
+<li class="item">
+<b>spanname</b> <i>(optional)</i>: 
+      
+    Name of horizontal spanning of columns.  Must correspond to the value of a "spanname" attribute in a <a href="spanspec" class="cnxn">spanspec</a> of the 
+    ancestor <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>namest</b> <i>(optional)</i>: 
+      
+    Name of the furthest left column in a horizontal spanning of columns.  Must correspond to the value of a "colname" attribute in a 
+    <a href="colspec" class="cnxn">colspec</a> of the ancestor <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>nameend</b> <i>(optional)</i>: 
+      
+    Name of the furthest right column in a horizontal spanning of columns.  Must correspond to the value of a "colname" attribute in a 
+    <a href="colspec" class="cnxn">colspec</a> of the ancestor <a href="tgroup" class="cnxn">tgroup</a>.
+        </li>
+<li class="item">
+<b>colsep</b> <i>(optional)</i>: 
+      
+    Sets whether the internal column rulings are displayed or not (ignored for the rightmost column of the <a href="table" class="cnxn">table</a>, where 
+    the "frame" value applies).
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">0 - Do not display column rulings.</li>
+            <li class="item">any other integer - Display column rulings.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "colsep" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>rowsep</b> <i>(optional)</i>: 
+      
+    Sets whether the internal row rulings are displayed or not (ignored for the last <a href="row" class="cnxn">row</a> of the table, where the "frame" 
+    value applies).
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">0 - Do not display row rulings.</li>
+            <li class="item">any other integer - Display row rulings.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "rowsep" value (<a href="row" class="cnxn">row</a>, <a href="spanspec" class="cnxn">spanspec</a> 
+    specified by the "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>align</b> <i>(optional)</i>: 
+      
+    Sets how the text will be aligned.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">left - Left aligned.</li>
+            <li class="item">right - Right aligned.</li>
+            <li class="item">center - Center aligned.</li>
+            <li class="item">justify - Right and left aligned.</li>
+            <li class="item">char - Aligns to the leftmost occurrence of the value of the char attribute.</li>
+          </ul></div>
+    Default is implied from the nearest ancestor with a declared or implied "align" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>char</b> <i>(optional)</i>: 
+      
+    The character used in the align attribute.  
+    Default is implied from the nearest ancestor with a declared or implied "char" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>charoff</b> <i>(optional)</i>: 
+      
+    The pertcentage of the column width to the left of the char 
+    used in the align attribute.  
+    Default is implied from the nearest ancestor with a declared or implied "charoff" value (<a href="spanspec" class="cnxn">spanspec</a> specified by the 
+    "spanname" attribute, <a href="colspec" class="cnxn">colspec</a>, or <a href="tgroup" class="cnxn">tgroup</a>).
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="colspec">colspec</a> (zero or more), <a class="cnxn" href="spanspec">spanspec</a> (zero or more), <a class="cnxn" href="thead">thead</a> (zero or one), <a class="cnxn" href="tbody">tbody</a> (one)</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents"><a class="cnxn" href="row">row</a></div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

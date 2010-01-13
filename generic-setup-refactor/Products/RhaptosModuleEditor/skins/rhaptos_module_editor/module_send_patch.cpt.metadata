@@ -1,0 +1,13 @@
+[default]
+title=Suggest Edits
+
+[validators]
+validators = validate_module_publish
+
+[actions]
+action.success = traverse_to:string:sendPatch
+action.failure = traverse_to:string:module_send_patch
+action.role_error = traverse_to_action:string:roles
+action.invalid = traverse_to:string:module_invalid
+
+    

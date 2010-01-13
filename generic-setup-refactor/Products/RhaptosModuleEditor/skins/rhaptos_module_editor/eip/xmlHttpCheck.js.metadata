@@ -1,0 +1,3 @@
+[default]
+title = Check for XMLHTTPRequest
+cache = HTTPCache

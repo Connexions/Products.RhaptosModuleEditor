@@ -1,0 +1,9 @@
+[default]
+title=Edit Metadata
+
+[validators]
+validators = validate_module_metadata, validate_abstract
+
+[actions]
+action.success = traverse_to:string:update_metadata
+action.failure = traverse_to_action:string:metadata

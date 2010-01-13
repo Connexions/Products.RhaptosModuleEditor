@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;media&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;media&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">media</code> tag is used to insert media 
+  objects into a CNXML document. The media objects can be images, 
+  applets, movies, sounds, or any object with a valid <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">MIME 
+  type</a>.
+  <div class="note">
+<h3 class="note-header"><span class="cnx_label">Note: </span></h3>
+Starting with version 0.6, the CNXML language does not permit URLs that contain
+ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
+Check all media <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
+reference "&amp;amp;". More information can be found on the
+<a class="link" href="http://www.w3.org/TR/xhtml1/#C_12" target="_blank">W3C's page</a>.
+</div>
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;media id="dog_on_couch"
+       alt="A dog sitting on a couch."&gt;
+	   
+  &lt;image mime-type="image/jpeg"
+         src="image1.jpg" /&gt;
+		 
+&lt;/media&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <img src="image1.jpg" alt="A dog sitting on a couch">
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>alt</b> <i>(required)</i>: 
+      
+       "Alt" text is used by browsers 
+          and other tools to make the content of images available to all 
+          users, including visually impaired users with screen readers.  
+          It is a text representation of the meaning of an image. 
+          Remember, "alt" text replaces an image; it does not describe 
+          it.
+        </li>
+<li class="item">
+<b>display</b> <i>(optional)</i>: 
+      
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">block - The media will be set apart from the 
+          surrounding text.</li>
+            <li class="item">inline - The media will be included in the 
+                current line of text.</li>
+            <li class="item">none - The media will not be displayed.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>longdesc</b> <i>(optional)</i>: 
+      
+      The URL of a file containing a long description of the media. 
+      Not all readers will be able to see your included media in
+      their browser, either due to blindness, low-vision, or an
+      environment that doesn't support the media. Some media are
+      too complex to describe fully in a few words using the "alt"
+      attribute, however. For media like charts and graphs that are
+      important for understanding the material, use "longdesc" to point
+      to a Web file that contains a full explanation of the media. 
+        </li>
+<li class="item">
+<b>id</b> <i>(required)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="preformat">preformat</a> (media must be block display), <a class="cnxn" href="para">para</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a> (media must be block display), <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="note">note</a> (media must be block display), <a class="cnxn" href="item">item</a>, <a class="cnxn" href="code">code</a> (media must be block display), <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="subfigure">subfigure</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="content">content</a> (media must be block display), <a class="cnxn" href="section">section</a> (media must be block display)</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

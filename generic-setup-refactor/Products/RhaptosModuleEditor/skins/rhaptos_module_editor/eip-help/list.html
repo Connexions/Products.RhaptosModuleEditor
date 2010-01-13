@@ -1,0 +1,183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;list&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;list&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>  
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">list</code> tag is used to organize items 
+  into a list. Lists can be either inline or block, and the element
+  offers a variety of different attributes that control the display and
+  behavior of the list.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;list id="grocerylist"&gt;
+  &lt;title&gt;Grocery List&lt;/title&gt;
+  &lt;item&gt;Milk&lt;/item&gt;
+  &lt;item&gt;Eggs&lt;/item&gt;
+  &lt;item&gt;Sugar&lt;/item&gt;
+&lt;/list&gt; 
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div id="grocerylist" class="list">
+            <h2 class="list-header"><strong class="title">Grocery List</strong></h2>
+            <ul class="bullet">
+              <li class="item">Milk </li>
+              <li class="item">Eggs </li>
+              <li class="item">Sugar</li>
+            </ul>
+          </div>
+        
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;list id="write-numbers-list"
+      list-type="enumerated"
+      start-value="50"
+      mark-suffix=":"
+      item-sep="."&gt;
+  &lt;title&gt;How to Write Some Numbers&lt;/title&gt;
+  &lt;item&gt;Fifty&lt;/item&gt; 
+  &lt;item&gt;Fifty-one&lt;/item&gt; 
+  &lt;item&gt;Fifty-two&lt;/item&gt;
+&lt;/list&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+        <div class="list" id="write-numbers-list">
+          <h5 class="list-header"><strong class="title">How to Write Some Numbers</strong></h5>
+          <ol class="other">
+            <li class="item" value="50">
+<span class="item-decoration">50:</span> Fifty. </li>
+            <li class="item">
+<span class="item-decoration">51:</span> Fifty-one. </li>
+            <li class="item">
+<span class="item-decoration">52:</span> Fifty-two.</li>
+          </ol>
+        </div>
+        
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>list-type</b> <i>(optional)</i>: 
+      
+            Defines the type of list: Ordered, unordered, or bulleted by <a href="label" class="cnxn">label</a>s on each of the items.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">bulleted - Bullets the list of items (default).</li>
+            <li class="item">enumerated - Creates a list in which each item is numbered in order.</li>
+            <li class="item">labeled-item - Creates a list ordered by user-specified <a href="label" class="cnxn">label</a>s.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>bullet-style</b> <i>(optional)</i>: 
+      
+          Changes the bullet character in front of each list item.  Currently, the supported values are
+          "bullet" (default), "open-circle", "pilcrow", "rpilcrow", "asterisk", "dash", "section", literal text, and "none".
+        </li>
+<li class="item">
+<b>number-style</b> <i>(optional)</i>: 
+      
+          The numeric system used to display an enumerated list. Currently, the supported values are
+		  "arabic" (default), "upper-alpha", "lower-alpha", "upper-roman", and "lower-roman".
+        </li>
+<li class="item">
+<b>start-value</b> <i>(optional)</i>: 
+      
+          The value at which an enumerated list begins incrementing (default is "1"). Must be a positive integer,
+          even for alphabetic or Roman numeral lists.
+        </li>
+<li class="item">
+<b>mark-prefix</b> <i>(optional)</i>: 
+      
+          Adds text before each list item mark (e.g. a bullet in a bulleted list, or a
+          number in an enumerated list).  The default is nothing for all list
+          types.
+        </li>
+<li class="item">
+<b>mark-suffix </b> <i>(optional)</i>: 
+      
+          Adds text after each list item mark (e.g. a bullet in a bulleted list, or a
+          number in an enumerated list).  The default is "." for enumerated lists,
+          and nothing for other list types.
+        </li>
+<li class="item">
+<b>item-sep</b> <i>(optional)</i>: 
+      
+          The character used between list items.  The default is ";" for inline lists
+          and nothing for block lists.
+        </li>
+<li class="item">
+<b>display</b> <i>(optional)</i>: 
+      
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">block - The list will be set apart from the surrounding text (default). 
+              If the display attribute is set to "block" or is absent, then an id is required.</li>
+            <li class="item">inline - The list will be included in the 
+              current line of text.</li>
+            <li class="item">none - The list will not be displayed.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>type</b> <i>(optional)</i>: 
+      
+          Defines the type of list. Type can be any user-defined value that reflects the purpose of the list.
+        </li>
+<li class="item">
+<b>id</b> <i>(optional for inline display lists)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="item">item</a> (one or more, required)</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="content">content</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

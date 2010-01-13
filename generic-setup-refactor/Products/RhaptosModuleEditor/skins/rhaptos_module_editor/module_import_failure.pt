@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="rhaptos"
+      metal:use-macro="here/main_template/macros/master">
+
+  <tal:comment>
+   i18n by: kochelek@rice.edu
+  </tal:comment>
+
+  <body>
+
+    <metal:block fill-slot="base">
+        <tal:block tal:define="dummy python:request.set('disable_border', 1)" />
+    </metal:block>
+
+    <div metal:fill-slot="main" tal:define="format request/format | string:plain">
+      
+      <h2 i18n:translate="heading_modimpfail_importfailure">Import Failure</h2>
+      
+      <p i18n:translate="text_modimpfail_wordfilter">
+	<strong i18n:name="error_msg" tal:content="options/msg |request/msg| nothing">[err]</strong><br />
+	The Word filter had some trouble importing your file.  Please
+	email our <span i18n:name="tech_support"><a i18n:translate="label_modimpfail_techsup" tal:attributes="href string:mailto:${here/email_from_address}">tech support</a></span>.
+	If you are able to attach the Word file, please do so as it
+	will greatly help us in debugging.
+      </p>
+
+    </div>
+  </body>
+</html>

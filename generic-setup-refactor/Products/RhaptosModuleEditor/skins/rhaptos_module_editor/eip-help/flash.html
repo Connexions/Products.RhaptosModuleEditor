@@ -1,0 +1,225 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;flash&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;flash&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+    The <code class="codeline">flash</code> tag is used to insert Flash 
+    multimedia into a CNXML document. The multimedia can be images, 
+    SWFs, FLVs, or any object with a valid Flash <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">MIME 
+    type</a>.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;media id="flash-example" alt="Dancing Connexions"&gt;
+  &lt;flash mime-type="application/x-shockwave-flash" 
+         src="flash2.swf" 
+         width="282"
+         height="108"/&gt;
+&lt;/media&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <span class="media">
+            <object width="282" height="108" type="application/x-shockwave-flash" data="http://cnx.org/content/m12660/1.11/flash2.swf">
+              <param name="movie" value="http://cnx.org/content/m12660/1.11/flash2.swf">
+              <embed width="282" height="108" src="http://cnx.org/content/m12660/1.11/flash2.swf" type="application/x-shockwave-flash" pluginspace="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+            </object>
+          </span>
+        
+      </div>
+ <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;media id="curved-line" alt="Dancing Connexions"&gt;
+  &lt;flash mime-type="application/x-shockwave-flash" 
+         src="flash2.swf" 
+         width="282"
+         height="108"/&gt;
+  &lt;image mime-type="image/png"
+         src="dancing-cnx-still.png" 
+         print-width="4in" 
+         for="pdf"/&gt;
+&lt;/media&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+           <span class="media">
+            <object width="282" height="108" type="application/x-shockwave-flash" data="http://cnx.org/content/m12660/1.11/flash2.swf">
+              <param name="movie" value="http://cnx.org/content/m12660/1.11/flash2.swf">
+              <embed width="282" height="108" src="http://cnx.org/content/m12660/1.11/source/flash2.swf" type="application/x-shockwave-flash" pluginspace="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+            </object>
+          </span>
+	
+<p class="additionalnote">This example demonstrates using alternate media for the PDF version
+of the module. Flash elements cannot be inserted into PDF files. In this case, the Web-ready Flash file
+will be displayed when viewing the module online and the second element, a still shot from the animation, will be used for the PDF version.
+</p>
+      </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>src</b> <i>(required)</i>: 
+      
+      The location of the Flash file. It must be a URL value. If the Flash file is stored
+      alongside the module, the file name itself can be used (e.g. "file.flv").
+        <div class="note">
+<h3 class="note-header"><span class="cnx_label">Note: </span></h3>
+Starting with version 0.6, the CNXML language does not permit URLs that contain
+ampersand (&amp;) characters (i.e., http://cnx.org/example?i=1<b>&amp;</b>p=2).
+Check all object <dfn class="term">src</dfn> URLs and replace any ampersands with the entity
+reference "&amp;amp;". More information can be found on the
+<a class="link" href="http://www.w3.org/TR/xhtml1/#C_12" target="_blank">W3C's page</a>.
+</div>
+</li>
+<li class="item">
+<b>mime-type</b> <i>(required)</i>: 
+      
+      The MIME type of the Flash file, e.g., "application/x-shockwave-flash" or "video/x-flv". This requried value tells each
+      visitor's browser what sort of information is contained
+      in the Flash file.
+          A list of common Internet media MIME types can be found
+            <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">here</a>.
+        </li>
+<li class="item">
+<b>for</b> <i>(optional)</i>: 
+      
+      Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
+	  If there is no default media object present, then the <code class="codeline">&lt;media&gt;</code> element will only be displayed for the version(s) specified.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">default - This element is used for both PDF and online versions unless another, version-specific element is present (default).</li>
+            <li class="item">pdf - This element is used only for the PDF version of the content.</li>
+            <li class="item">online - This element is used only for the online version of the content.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>wmode</b> <i>(optional)</i>: 
+      
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">window - Creates a seperate rectangular window.</li>
+            <li class="item">opaque - Makes the movie hide everything on the page behind it.</li>
+            <li class="item">transparent - Makes the background of the HTML page shows through all transparent portions of the movie.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>quality</b> <i>(optional)</i>: 
+      
+      Sets the quality of the Flash file.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">low - Sets the quality of the Flash file to low.</li>
+            <li class="item">autolow - Automatically sets the quality of the Flash file to the lowest setting where playback speed does not suffer too much but preserves quality.</li>
+            <li class="item">autohigh -  Automatically sets the quality of the Flash file to the highest setting where quality does not suffer too much.</li>
+            <li class="item">medium - Sets the quality of the Flash file to medium.</li>
+            <li class="item">high - Sets the quality of the Flash file to high.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>loop</b> <i>(optional)</i>: 
+      
+      Toggles video file looping.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">true - Loops the video.</li>
+            <li class="item">false - Does not loop the video (default).</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>scale</b> <i>(optional)</i>: 
+      
+      Sets the scale for the Flash file.
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">default - Uses the default scaling of the Flash file (default).</li>
+            <li class="item">noorder - Scales the movie to fill the specified area, without distortion but possibly with some cropping.</li>
+            <li class="item">exactfit - Makes the entire movie visible in the specified area without trying to preserve the original aspect ratio.</li>
+          </ul></div>
+        </li>
+<li class="item">
+<b>bgcolor</b> <i>(optional)</i>: 
+      
+      Sets the background color of the Flash file.  Takes a 6-character hexadecimal code (a-f, A-F, 0-9).
+        </li>
+<li class="item">
+<b>flash-vars</b> <i>(optional)</i>: 
+      
+      Used to pass parameters into the Flash media's FlashVars property.
+        </li>
+<li class="item">
+<b>height</b> <i>(optional)</i>: 
+      
+      Sets the height of the Flash media in pixels.
+        </li>
+<li class="item">
+<b>width</b> <i>(optional)</i>: 
+      
+      Sets the width of the Flash media in pixels.
+        </li>
+<li class="item">
+<b>longdesc</b> <i>(optional)</i>: 
+      
+        The URL of a file containing a long description of the Flash file. 
+        Not all readers will be able to see your included media in
+        their browser, either due to blindness, low-vision, or an
+        environment that doesn't support the media. Some media are
+        too complex to describe fully in a few words using the "alt"
+        attribute, however. For media like charts and graphs that are
+        important for understanding the material, use "longdesc" to point
+        to a Web file that contains a full explanation of the media. 
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="param">param</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="media">media</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

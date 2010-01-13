@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+  
+   <style metal:fill-slot="css_slot" tal:content="structure here/language_locale.css" />
+
+  <body>
+
+    <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
+                                            type python:here.Type().lower();
+                                            license_data here/getLicenseData">
+
+      <h2 i18n:translate="heading_edit_module_metadata">Edit module metadata</h2>
+
+      <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+      <style tal:condition="readonly | nothing">
+        .formHelp { display: none }
+      </style>
+
+      <table width="100%" 
+        tal:define="optional_role_dict python:here.optional_roles or {};
+                    optional_roles python:optional_role_dict and optional_role_dict.keys();
+                    dummy python:optional_roles.sort();
+                    license_version python:here.license.rstrip('/').split('/')[-1];">
+        <tr valign="top">
+          <td width="50%">
+            <ul>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_module_id_header">Module ID:</b>
+                <span tal:content="python:here.objectId or '(not published)'"
+                  i18n:translate="">ID</span>
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_license_header">License:</b>
+                <a tal:condition="here/license" 
+                  tal:attributes="href here/license" 
+                  style="text-decoration: underline;"
+                  i18n:translate="label_creative_commons_attribution_license"
+                  >Creative Commons Attribution License</a>
+                  (<span tal:replace="license_data/label">[CC-BY 3.0]</span>)
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_version_header">Version:</b>
+                <span tal:replace="here/version">version</span>
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_created_header">Created:</b>
+                <span tal:replace="here/created/aCommon">created</span>
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_revised_header">Revised:</b>
+                <span tal:replace="here/revised/aCommon">revised</span>
+              </li>
+            </ul>
+          </td>
+          <td width="50%">
+            <h4 style="padding-top: 0;"
+              i18n:translate="heading_module_roles">Roles</h4>
+            <ul style="margin-bottom: .5em;">
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_authors_header">Authors:</b>
+                <tal:block tal:repeat="u here/authors">
+                  <tal:badauthor tal:on-error="string:(${u})">
+                  <a tal:define="member python:here.desecured.getMemberById(u)"
+                    tal:content="python:member.getProperty('fullname')"
+                    tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
+                </tal:block>
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_maintainers_header">Maintainers:</b>
+                <tal:block tal:repeat="u here/maintainers">
+                  <tal:badauthor tal:on-error="string:(${u})">
+                  <a tal:define="member python:here.desecured.getMemberById(u)"
+                    tal:content="python:member.getProperty('fullname')"
+                    tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
+                </tal:block>
+              </li>
+              <li style="margin: .25em 0;">
+                <b i18n:translate="text_licensors_header">Licensors:</b>
+                <tal:block tal:repeat="u here/licensors">
+                  <tal:badauthor tal:on-error="string:(${u})">
+                  <a tal:define="member python:here.desecured.getMemberById(u)"
+                    tal:content="python:member.getProperty('fullname')"
+                    tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
+                </tal:block>
+              </li>
+              <tal:opt_roles tal:repeat="role optional_roles">
+                <li style="margin: .25em 0;" tal:define="role_name python:role.lower() + 's';
+                  cur_role python:list(getattr(here,role_name,[]));
+                  role_display python:optional_role_dict[role]"
+                  tal:condition="cur_role">
+                  <b i18n:translate="" tal:content="python:role_display+':'">[Roll name]</b>
+                  <tal:block tal:repeat="u cur_role">
+                    <tal:badauthor tal:on-error="string:(${u})">
+                      <a tal:define="member python:here.desecured.getMemberById(u)" 
+                        tal:content="python:member.getProperty('fullname')"
+                        tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
+                  </tal:block>
+                </li>
+              </tal:opt_roles>
+            </ul>
+            <a href="content_roles" style="text-decoration: underline;"
+              i18n:translate="label_edit_module_roles">Edit Roles</a>
+          </td>
+        </tr>
+      </table>
+
+      <br />
+      <!--editable metadata-->
+      <form name="edit_form" action="." method="post" tal:attributes="action template/getId">
+
+        <div metal:define-macro="title_edit" class="field"
+             tal:define="error errors/title| nothing;
+                         title request/title | here/title;
+                         readonly readonly | nothing;"
+             tal:attributes="class python:test(error, 'field error', 'field')">
+          <label i18n:translate="label_title">Title</label>
+          <span class="fieldRequired" title="Required"
+                i18n:attributes="title"
+                i18n:translate="label_required">(Required)</span>
+
+          <div i18n:translate="help_title_creation" class="formHelp">
+            Enter the title of this
+            <span i18n:name="type">
+              <span tal:content="type" i18n:translate="">[type]</span></span>.
+          </div>
+
+          <div tal:content="error">Validation error output</div>
+        
+          <div tal:condition="readonly"
+               tal:content="title">
+            A Title
+          </div>
+          <input tal:condition="not:readonly"
+                 type="text"
+                 name="title"
+                 size="60"
+                 value="title"
+                 tabindex=""
+                 tal:attributes="value title;
+                                 tabindex tabindex/next;"
+            />
+        </div>
+
+        <div metal:define-macro="language_selection" class="field"
+             tal:define="error errors/language| nothing;
+                         language request/language | here/language;
+                         avail_languages here/portal_languages/listAvailableLanguages;
+                         boundLanguages here/portal_languages/getLanguageBindings;
+                         prefLang python:boundLanguages[0];
+                         request_lang request/language | nothing;
+                         curLang python:(request_lang or here.language or prefLang);
+                         readonly readonly | nothing;
+                         disabled python:readonly and 'disabled' or None"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id string:archetypes-fieldname-master_language">
+
+          <script type="text/javascript" charset="iso-8859-1"
+            src="/hiding_functions.js" tal:attributes="src string:$portal_url/hiding_functions.js;">
+          </script>
+
+          <label i18n:translate="label_language">Language</label>
+          <span class="fieldRequired" title="Required"
+                i18n:attributes="title"
+                i18n:translate="label_required">(Required)</span>
+
+          <metal:block metal:define-slot="language_help">
+            <div i18n:translate="help_language_creation_module" class="formHelp">
+              Select the primary language for this  
+              <span i18n:name="portal_type" tal:content="here/portal_type/lower">
+                module</span>.
+            </div>
+          </metal:block>
+
+          <div tal:content="error">Validation error output</div>
+
+          <div tal:condition="readonly">
+            <span tal:content="python:here.portal_languages.getNameForLanguageCode(curLang[:2])">English</span>
+            (<span tal:content="curLang">en</span>)
+          </div>
+          <div tal:condition="not:readonly">
+            <div tal:condition="avail_languages | nothing">
+
+              <select name="master_language" id="master_language"
+                      tal:attributes="tabindex tabindex/next"
+                      tal:condition="not:readonly">
+                <option tal:repeat="lang avail_languages"
+                        tal:content="python:here.portal_languages.getNameForLanguageCode(lang[0]) or lang[1]"
+                        tal:attributes="selected python:curLang[:2] == lang[0];
+                                        value python:lang[0]">Language</option>
+              </select>
+
+              <input type="checkbox" name="enable_regional_lang"
+                     class="showOnLoad noborder"
+                     style="display:none"
+                     id="regional_variant_toggle_box"
+                     tal:attributes="checked python:len(curLang)&gt;2;"
+                     onclick="toggleExpandId(this,'regional_variant_widget');document.getElementById('language').value=document.getElementById('master_language').value;"/>
+                <label class="showOnLoad"
+                       style="display:none"
+                      id="expand_collapse_id_label">Choose a regional variant</label>
+
+            </div>
+            <!-- cut & paste here to work from -->
+
+            <script type="text/javascript" charset="iso-8859-1"
+                    src="/modifySelectList.js" tal:attributes="src string:$portal_url/modifySelectList.js;">
+            </script>
+            <script>
+      <!--
+      registerDynamicSelect('edit_form','master_language','language','vocabulary','getLanguageWithSubtypes', 'lang', this.absolute_url);
+
+      registerHideOnSelect('edit_form','master_language','language','disable',new Array(this.getLanguagesWithoutSubtypes));
+      //-->
+            </script>
+
+            <div tal:attributes="class string:field ArchetypesCompactSelectionWidget;
+                                 id string:archetypes-fieldname-language">
+              <div class="hideOnLoad" id="regional_variant_widget">
+                <label for="language"
+                       i18n:translate="label_language_regional_variant">Regional Variant (optional)</label>
+                <div class="formHelp" id="language_help"
+                      i18n:translate="help_language_regional_variant">The language subtype, if applicable.</div>
+                <select name="language" id="language" tal:attributes="tabindex tabindex/next">
+                    <option tal:content="python:here.portal_languages.getNameForLanguageCode(language)"
+                            tal:attributes="value language">None</option>
+                </select>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+            <!--
+            show('showOnLoad');
+            hide('hideOnLoad');
+            -->
+            </script>
+            <script type="text/javascript" tal:condition="python:len(curLang)&gt;2">
+            <!--
+            var x=document.getElementById('regional_variant_toggle_box');
+            toggleExpandId(x,'regional_variant_widget');
+            -->
+            </script>
+          </div>
+        </div>
+
+      <div metal:define-macro="subject" class="field"
+             tal:define="error errors/subject| nothing;
+                         raw_subject request/subject | here/subject;
+                         subject python:test(same_type(raw_subject,''),[raw_subject],raw_subject);
+                         readonly readonly | nothing;
+                         disabled python:readonly and 'disabled' or None"
+             tal:attributes="class python:test(error, 'field error', 'field')">
+          <label i18n:translate="label_subject">Subject</label>
+          <div metal:use-macro="here/module_help/macros/subject">
+          </div>
+          <div tal:content="error">Validation error output</div>
+
+          <div tal:define="subjects python:list(context.portal_moduledb.sqlGetTags(scheme='ISKME subject'));
+            subjs_one python:subjects[:3];
+            subjs_two python:subjects[3:]">
+            <table>
+              <tr
+                tal:define="indexes python:range(len(subjs_one))"
+                tal:repeat="i indexes">
+                <td tal:define="subj python:subjs_one[i]">
+                  <input type="checkbox"
+                    name="subject:list"
+                    class="noborder"
+                    tal:attributes="checked python:(subj.tag in subject) or nothing;
+                                    tabindex tabindex/next;
+                                    value subj/tag;
+                                    disabled disabled" />
+                  <label tal:content="subj/tag">[Subject]</label>
+                </td>
+                <td tal:define="subj python:subjs_two[i]">
+                  <input type="checkbox"
+                    name="subject:list"
+                    class="noborder"
+                    tal:attributes="checked python:(subj.tag in subject) or nothing;
+                                    tabindex tabindex/next;
+                                    value subj/tag;
+                                    disabled disabled"/>
+                  <label tal:content="subj/tag">[Subject]</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div metal:define-macro="keywords" class="field"
+             tal:define="error errors/keywords| nothing;
+                         keywords request/keywords | here/keywords;
+                         readonly readonly | nothing"
+             tal:attributes="class python:test(error, 'field error', 'field')">
+          <label i18n:translate="label_keywords">Keywords (one per line)</label>
+          <div tal:content="error">Validation error output</div>
+
+          <tal:textarea condition="readonly">
+            <div tal:repeat="keyword keywords" tal:content="keyword">keyword</div>
+          </tal:textarea>
+          <textarea tal:condition="not:readonly"
+                    id="keywords"
+                    name="keywords:lines" 
+                    wrap="physical"
+                    cols="25" 
+                    rows="4"
+                    tal:attributes="tabindex tabindex/next;
+                                    style string:width: 50%;">
+<span tal:repeat="keyword keywords" tal:replace="keyword">keyword</span></textarea>
+        </div>
+
+        <div metal:define-macro="abstract" class="field"
+             tal:define="error errors/abstract | nothing;
+                         errormsg errors/abstractmsg | nothing;
+                         abstract request/abstract | here/abstract;
+                         readonly readonly | nothing"
+             tal:attributes="class python:test(error, 'field error', 'field')">
+          <label i18n:translate="label_abstract">Summary</label>
+          <div i18n:translate="help_abstract_creation" class="formHelp">
+            Enter a summary of the
+            <span i18n:name="type">
+              <span tal:content="type" i18n:translate="">[type]</span></span>.
+            May contain a limited set of CNXML.
+            <a href="/help/authoring/authorguide#summary">(help)</a>
+	  </div>
+
+          <div tal:content="error">Validation error output</div>
+          <ul tal:condition="errormsg">
+            <li tal:repeat="msg errormsg"
+                tal:content="python:msg[1]">
+              attribute not allowed
+            </li>
+          </ul>
+
+          <textarea name="abstract"
+                          wrap="virtual"
+                          cols="80" 
+                          rows="4"
+                          tal:attributes="tabindex tabindex/next;"
+                          tal:omit-tag="readonly"
+                          tal:content="abstract"></textarea>
+        </div>
+
+        <div class="field"
+             tal:define="error               errors/GoogleAnalyticsTrackingCode | nothing;
+                         codeGoogleAnalytics python:hasattr(context,'GoogleAnalyticsTrackingCode') and context.GoogleAnalyticsTrackingCode or '';
+                         codeGoogleAnalytics request/GoogleAnalyticsTrackingCode | codeGoogleAnalytics;"
+             tal:attributes="class python:test(error, 'field error', 'field')">
+            <label i18n:translate="label_google_analytics">Google Analytics Tracking Code</label>
+            <div i18n:translate="help_google_analytics_creation" class="formHelp">
+                Enter the Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) for this module to track its usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
+                <input type="text"
+                       name="GoogleAnalyticsTrackingCode"
+                       id="GoogleAnalyticsTrackingCode"
+                       value=""
+                       size="30"
+                       maxlength="255"
+                       tal:attributes="value codeGoogleAnalytics"/>
+            </div>
+        </div>
+
+        <input type="submit"
+               class="context"
+               name="save"
+               tal:condition="not:readonly|nothing"
+               tal:attributes="tabindex tabindex/next;"
+               i18n:attributes="value value_save"
+               value="Save" />
+
+        <span tal:replace="nothing">##### HIDDEN VARIABLE FOR THE FORM CONTROLLER ####</span>
+        <input type="hidden" name="form.submitted" value="1" />
+        </form>
+    </div>
+
+  </body>
+</html>

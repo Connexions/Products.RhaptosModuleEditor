@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <tal:comment>
+   i18n by: kochelek@rice.edu
+   and some by: jenn@rice.edu
+  </tal:comment>
+
+  <style metal:fill-slot="css_slot">
+      .pending {
+	background: #b6ccdd;
+      }
+      .roles_listing{
+	margin-bottom: 2em;
+      }
+      .roles_listing del{
+	color: #436976;
+      }
+      .listing td, .listing th{
+	padding-top: .15em;
+	padding-bottom: .15em;
+      }
+  </style> 
+
+  <body>
+
+    <div metal:fill-slot="main" tal:define="search request/search | nothing;
+      addWGMembers request/form.button.addWorkgroup | request/addWorkgroup | nothing; 
+      addYourSelf request/form.button.addSelf | request/addSelf | nothing;
+      addSelf python:test(member.id in here.getCollaborators(), nothing, addYourSelf);
+      newmaintainer python:[];
+      moduleRoles here/default_roles;
+      module_role_names here/default_role_names;
+      optional_role_dict python:here.optional_roles or {};
+      optional_roles python:optional_role_dict and optional_role_dict.keys();
+      dummy python:optional_roles.sort();">
+
+      <tal:block tal:define="isCollection python:here.portal_type == 'Collection';
+                             isModule     python:here.portal_type == 'Module'">
+        <tal:block tal:condition="isCollection">
+          <h2 i18n:translate="heading_edit_collection_roles">Edit collection roles</h2>
+        </tal:block>
+        <tal:block tal:condition="isModule">
+          <h2 i18n:translate="heading_edit_module_roles">Edit module roles</h2>
+        </tal:block>
+      </tal:block>
+
+      <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+      <h4 i18n:translate="heading_controles_currentroles">Current Roles:</h4>
+
+      <tal:block>
+      <ul class="roles_listing">
+	  <tal:block tal:repeat="role python:moduleRoles">
+	    <tal:block tal:define="role_collabs python:[];
+	      role_name python:role.lower() + 's';
+	      cur_role python:list(here[role_name]);
+	      role_display python:module_role_names[role]">
+	      
+	      <li tal:attributes="class python:test(cur_role, nothing, 'error')">
+		<tal:loop tal:repeat="u here/collaborators">
+		  <tal:test tal:condition="python: u in cur_role + list(here['pub_' + role_name])">
+		    <tal:add tal:define="blank python:role_collabs.append(u)" tal:replace="nothing">
+		      Make List of members
+		    </tal:add>
+		  </tal:test>
+		</tal:loop>
+		<strong i18n:translate="" tal:content="role_display">Authors:</strong>:
+		<tal:block tal:repeat="a role_collabs">
+		  <tal:block tal:define="user python:here.desecured.getMemberById(a);
+		    collabs here/getPendingCollaborations;
+		    pending collabs/keys;
+		    u_name user/fullname;">
+		    <span tal:condition="python:a in pending and role in
+		      collabs[a].roles and collabs[a].roles[role] == 'add'">
+		      <i><a tal:content="python:user.getProperty('fullname')" 
+			tal:attributes="href
+			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
+			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:maintest
+			></span
+		      ><tal:block tal:condition="python:a in pending and role in
+		      collabs[a].roles and collabs[a].roles[role] ==
+		      'del'">
+		      <del><i><a tal:content="python:user.getProperty('fullname')" 
+			    tal:attributes="href
+			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
+			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:maintest
+			></tal:block
+		      ><tal:block condition="python:a not in pending or role not
+		      in collabs[a].roles"
+		      ><a tal:content="python:user.getProperty('fullname')" 
+		      tal:attributes="href
+		      string:/member_profile/${user/id}">[fullname]</a
+			><tal:block tal:condition="python:here.state != 'created'"
+			><tal:live_main
+		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
+		      tal:condition="python:obj and a not in obj.latest.maintainers
+		      and role == 'Maintainer'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:live_main
+			  ></tal:block
+			></tal:block
+		      ><tal:comma tal:condition="not:repeat/a/end">, </tal:comma>
+		  </tal:block>
+		</tal:block>
+		
+		<span tal:condition="not:cur_role"><i i18n:translate="text_controles_currentlynoroles">
+		  There are currently no <span i18n:name="empty_role_name"
+		    tal:replace="string:${role_display}"/>!  You must add
+		  one before previewing or publishing.</i></span>
+	      </li>
+	    </tal:block>
+	  </tal:block>
+
+	  <tal:block tal:repeat="role python:optional_roles">
+	    <tal:block tal:define="role_collabs python:[];
+	      role_name python:role.lower() + 's';
+	      cur_role python:list(getattr(here,role_name,[]));
+	      role_display python:optional_role_dict[role]">
+	      
+	      <li tal:condition="cur_role">
+		<tal:loop tal:repeat="u here/collaborators">
+		  <tal:test tal:condition="python: u in cur_role + list(getattr(here,'pub_' + role_name,[]))">
+		    <tal:add tal:define="blank python:role_collabs.append(u)" tal:replace="nothing">
+		      Make List of members
+		    </tal:add>
+		  </tal:test>
+		</tal:loop>
+		<strong tal:content="role_display">Authors:</strong>:
+		<tal:block tal:repeat="a role_collabs">
+		  <tal:block tal:define="user python:here.desecured.getMemberById(a);
+		    collabs here/getPendingCollaborations;
+		    pending collabs/keys;
+		    u_name user/fullname;">
+		    <span tal:condition="python:a in pending and role in
+		      collabs[a].roles and collabs[a].roles[role] == 'add'">
+		      <i><a tal:content="python:user.getProperty('fullname')" 
+			tal:attributes="href
+			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
+			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:maintest
+			></span
+		      ><tal:block tal:condition="python:a in pending and role in
+		      collabs[a].roles and collabs[a].roles[role] ==
+		      'del'">
+		      <del><i><a tal:content="python:user.getProperty('fullname')" 
+			    tal:attributes="href
+			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
+			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:maintest
+			></tal:block
+		      ><tal:block condition="python:a not in pending or role not
+		      in collabs[a].roles"
+		      ><a tal:content="python:user.getProperty('fullname')" 
+		      tal:attributes="href
+		      string:/member_profile/${user/id}">[fullname]</a
+			><tal:block tal:condition="python:here.state != 'created'"
+			><tal:live_main
+		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
+		      tal:condition="python:obj and a not in obj.latest.maintainers
+		      and role == 'Maintainer'"><tal:dagger 
+			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
+			  ></tal:live_main
+			  ></tal:block
+			></tal:block
+		      ><tal:comma tal:condition="not:repeat/a/end">, </tal:comma>
+		  </tal:block>
+		</tal:block>
+	      </li>
+	    </tal:block>
+	  </tal:block>
+	</ul>
+	
+      </tal:block>
+
+      <form name="people" method="post"
+            tal:condition="not:readonly|nothing"
+            tal:attributes="action template/getId">
+
+      <h4 i18n:translate="heading_controles_changeroles">
+	  Change Roles:
+          <span style="white-space:nowrap" i18n:name="role_help_link"
+              tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
+              href="/help/authoring/authorguide#roles" 
+              tal:attributes="href string:${help/absolute_url}#roles"
+              i18n:translate="label_role_help_link">What do these roles mean?</a>)</span>
+      </h4>
+
+
+      <table class="listing"
+             tal:define="collabs here/getPendingCollaborations;
+                         pending collabs/keys;
+                         users python:here.getCollaborators();">
+
+          <tr>
+            <th rowspan="2" tal:condition="python:len(users) > 1" i18n:translate="listingheader_controles_order">Order&Dagger;</th>
+            <th rowspan="2" i18n:translate="listingheader_controles_name">Name</th>
+            <th rowspan="2" i18n:translate="listingheader_controles_userid">User Id</th>
+            <th colspan="3" i18n:translate="listingheader_controles_required_roles">Required Roles</th>
+            <th tal:condition="optional_roles" i18n:translate="listingheader_controles_optional_roles"
+              tal:attributes="colspan python:len(optional_roles)">
+              Optional Roles</th>
+            <th rowspan="2" i18n:translate="listingheader_controles_removeuser">Remove User</th>
+            <th rowspan="2" tal:condition="pending" i18n:translate="listingheader_controles_cancelreq">Cancel Request</th>
+          </tr>
+	<tr>
+	    <th tal:repeat="role_name moduleRoles" tal:content="python:module_role_names[role_name]" i18n:translate="">Roles</th>
+            <th tal:repeat="role_name optional_roles" tal:content="python:optional_role_dict[role_name]" i18n:translate="">Roles</th>
+	</tr>
+
+	<tal:block tal:repeat="p users">
+	  <tr tal:define="userRoles python:here.getCollabRolesForUser(p)"
+              tal:attributes="class
+              python:test(path('repeat/p/odd'),'odd','even')">
+
+	      
+	      <tal:block tal:condition="python:len(users) > 1"
+		tal:define="arrowUp portal/arrowUp.gif;
+		arrowDown portal/arrowDown.gif;
+		arrowTop portal/arrowTop.gif;
+		arrowBottom portal/arrowBottom.gif;">
+		<td style="white-space: nowrap;">
+		<a href=""
+		  title="Move item to top"
+		  i18n:attributes="title title_controles_item2top;"
+		  tal:attributes="href string:$here_url/reorder_roles?position=top&amp;id=$p"
+		  ><img tal:replace="structure arrowTop" /></a>
+		<a href=""
+		  title="Move item up"
+		  i18n:attributes="title title_controles_itemup;"
+		  tal:attributes="href string:$here_url/reorder_roles?position=up&amp;id=$p"
+		  ><img tal:replace="structure arrowUp" /></a>
+		<a href=""
+		  title="Move item down"
+		  i18n:attributes="title title_controles_itemdown;"
+		  tal:attributes="href string:$here_url/reorder_roles?position=down&amp;id=$p"
+		  ><img tal:replace="structure arrowDown" /></a>
+		<a href=""
+		  title="Move item to bottom"
+		  i18n:attributes="title title_controles_item2btm;"
+		  tal:attributes="href string:$here_url/reorder_roles?position=bottom&amp;id=$p"
+		  ><img tal:replace="structure arrowBottom" /></a>
+	      </td>
+	      </tal:block>
+              <tal:badauthor
+               tal:define="user python:here.desecured.getMemberById(p)"
+               tal:on-error="string:(${p})">
+	      <td><strong>
+		  <a tal:content="python:user.getProperty('fullname')" style="white-space:nowrap" 
+		    tal:attributes="href string:/member_profile/${user/id}">[fullname]</a></strong>
+		
+	      </td>
+
+              <td> 
+                  <a href="" tal:attributes="href string:/member_profile/${user/id}"
+                     tal:content="string:${user/id}">[userid]</a>
+              </td>
+              </tal:badauthor>
+
+	      <td class="checkbox" tal:repeat="role moduleRoles"
+		tal:attributes="class python:test(p in pending and
+		role in collabs[p].roles,'pending checkbox','checkbox');">
+		<tal:block tal:define="hasRole python:role in
+		userRoles;">
+		  <span tal:condition="python:p in pending and role in collabs[p].roles" 
+		    style="visibility: hidden;">*</span>
+		  <input tal:attributes="value p; checked
+		    python:test(hasRole, 'checked', nothing);
+		    name string:updateRoles.${role}:list:record"
+		    type="checkbox" class="noborder" name="updateRoles.roles:list:record" />
+		  <span tal:condition="python:p in pending and role in collabs[p].roles">*</span>
+		</tal:block>
+	      </td>
+	      <td class="checkbox" tal:repeat="role python:optional_roles"
+		tal:attributes="class python:test(p in pending and
+		role in collabs[p].roles,'pending checkbox','checkbox');">
+		<tal:block tal:define="hasRole python:role in
+		userRoles;">
+		  <span tal:condition="python:p in pending and role in collabs[p].roles" 
+		    style="visibility: hidden;">*</span>
+		  <input tal:attributes="value p; checked
+		    python:test(hasRole, 'checked', nothing);
+		    name string:updateRoles.${role}:list:record"
+		    type="checkbox" class="noborder" name="updateRoles.roles:list:record" />
+		  <span tal:condition="python:p in pending and role in collabs[p].roles">*</span>
+		</tal:block>
+	      </td>
+	      
+	      <td class="checkbox">
+		<input type="checkbox" class="noborder notify"
+		  name="deleteRoles:list" value="1" tal:attributes="value p" />
+	      </td>
+	      <td class="checkbox" tal:condition="pending"
+		tal:attributes="class python:test(p in pending,'pending checkbox','checkbox');">
+		<input type="checkbox" class="noborder notify"
+		  tal:condition="python:p in pending"
+		  name="cancelRoles:list" value="1" tal:attributes="value p" />
+	      </td> 
+	    </tr>
+	  </tal:block>
+	  
+	</table>
+      
+	<input type="submit" class="context" name="form.button.update"
+	value="Submit Changes" i18n:attributes="value value_controles_subchgs"/>
+	<input type="hidden" name="search" tal:condition="search" tal:attributes="value search" />
+	<input type="hidden" name="addWorkgroup"
+	tal:condition="python:addWGMembers and here.aq_parent.getPortalTypeName()=='Workgroup'"
+	value="Add Workgroup Members" tal:attributes="value addWGMembers"/>
+	<input type="hidden" name="addSelf"
+	  tal:condition="python:member.id not in here.getCollaborators() and addSelf"
+	  value="Add Yourself" tal:attributes="value addSelf"/>
+	<input type="hidden" name="b_start" tal:attributes="value python:int(request.get('b_start',0))" />
+	<input type="hidden" name="form.submitted" value="1" />
+
+      <p>
+	<tal:block tal:condition="here/getPendingCollaborations">
+	  <span class="pending">&nbsp;*&nbsp;</span>
+	  <i i18n:translate="text_controles_pendingacc">Role changes pending
+	    acceptance.</i><br/>
+	</tal:block>
+	<tal:block tal:condition="newmaintainer">
+	  &dagger;<i i18n:translate="text_controles_changeuntilpub"
+	      >Maintainer role changes are not active until the item is
+	  published.</i><br/>
+	</tal:block>
+	<tal:block tal:condition="python:len(here.getCollaborators())>1">
+	  &Dagger;<i i18n:translate="text_controles_subchgs">Before
+	  changing the role order, click "Submit Changes" to save
+	  any unsubmitted role adjustments or user removals.  Order
+	  changes are saved when you make the change;
+	  you do not have to click "Submit Changes". Authors
+	  do not have to accept an order change before the item is
+	  published.</i>
+	</tal:block>
+      </p>
+      </form>
+
+      <hr style="margin-top: 1em;" />
+
+      <form name="search"
+            tal:condition="not:readonly|nothing"
+            tal:attributes="action template/getId">
+        <h4 i18n:translate="heading_controles_newcollabs">Search for New Collaborators:</h4>
+
+	<p i18n:translate="text_controles_selectpeople">
+	  Select people to serve as authors, maintainers, and
+	  copyright holders.  Users who already have roles on this
+	  content will not appear in the search results.
+          <span style="white-space:nowrap"
+            i18n:name="roles_help_link"
+            tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
+              i18n:translate="label_controles_whatrolesmean" 
+              href="/help/authoring/authorguide#roles"
+              tal:attributes="href string:${help/absolute_url}#roles">What do these roles mean?</a>)</span>
+	</p>
+	<input type="text" name="search" tal:attributes="value search" />
+	<input type="submit" class="searchButton"
+	name="form.button.search" value="Search" i18n:attributes="value value_search"/>
+	<span tal:condition="python:(here.aq_parent.getPortalTypeName()=='Workgroup')
+	or (member.id not in here.getCollaborators())" i18n:translate="text_controles_or">OR </span>
+
+	<ul>
+	  <li tal:condition="python:member.id not in here.getCollaborators()">
+	    <a href="" tal:attributes="href string:$here_url/content_roles?form.button.addSelf=True"
+	      i18n:translate="label_controles_selself">
+	      Select yourself</a></li>
+	  <li tal:condition="python:here.aq_parent.getPortalTypeName()=='Workgroup'">
+	    <a href="" tal:attributes="href string:$here_url/content_roles?form.button.addWorkgroup=Workgroup"
+	      i18n:translate="label_controles_selworkgrp">
+	      Select from members of your current workgroup</a></li>
+	  </ul>
+      </form>
+
+
+      <form name="add" method="post" tal:attributes="action template/getId"
+	                             tal:condition="python:r_search or addSelf or addWGMembers"
+	                             tal:define="wg_results python:[];
+	                                         r_search request/search | nothing">
+
+	
+	<tal:testWGmems tal:condition="python:addWGMembers and
+	                             addWGMembers != 'False' and
+	                             addWGMembers != 'None' and here.aq_parent.getPortalTypeName()=='Workgroup'">
+	  <tal:getWGmems tal:repeat="p python:here.aq_parent.getWorkGroupMembers()">
+	    <tal:testWGmem tal:condition="python:p.getId() not in here.getCollaborators()">
+	      <tal:addWGmem tal:define="blank python:wg_results.append(p)">
+	      </tal:addWGmem>
+	    </tal:testWGmem>
+	  </tal:getWGmems>
+	</tal:testWGmems>
+	
+	<tal:block tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+	                       b_start python:int(request.get('b_start',0));			  
+	                       b_size python:10;						  
+	                       results python:test(addSelf,[member],test((wg_results != []),wg_results, here.searchPeople(search)));
+                               batch python:Batch(results, b_size, int(b_start), orphan=1);">
+	  <em tal:condition="not:results" i18n:translate="text_controles_nousers">No users found.</em>
+	  <tal:block tal:condition="results">
+	    <table class="listing" id="add_roles_table">
+	      <tr>
+		<th rowspan="2" i18n:translate="listingheader_controles_name">Name</th>
+		<th rowspan="2" i18n:translate="listingheader_controles_userid">User Id</th>
+                <th colspan="3"
+		i18n:translate="listingheader_controles_required_roles">Required Roles</th>
+                <th tal:condition="optional_roles" i18n:translate="listingheader_controles_optional_roles"
+                  tal:attributes="colspan python:len(optional_roles)">
+                  Optional Roles</th>
+		<th rowspan="2"> </th>
+	      </tr>
+	      <tr>
+		<th tal:repeat="role_name moduleRoles" 
+                  tal:content="python:module_role_names[role_name]" 
+                    i18n:translate="">Roles</th>
+                <th tal:repeat="role_name optional_roles" 
+                  tal:content="python:optional_role_dict[role_name]" 
+                  i18n:translate="">Roles</th>
+	      </tr>
+	      <tr tal:condition="python:len(results) > 1">
+		<td/>
+                <td/>
+		<td tal:repeat="role moduleRoles" style="text-align:center !important">
+		  <a title="Select all these people as authors" style="cursor: pointer;"
+		    onclick="selectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:selectAll('newRoles.${role}:list:record');
+				    title python:'Select all these people as ' + module_role_names[role]"
+		    i18n:translate="label_controles_all"
+                    i18n:attributes="title">All</a
+		    >/<a title="Deselect all these people as authors" style="cursor: pointer;"
+		    onclick="deselectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:deselectAll('newRoles.${role}:list:record');
+				    title python:'Deselect all these people as ' + module_role_names[role]"
+		    i18n:translate="label_controles_none"
+                    i18n:attributes="title">None</a>
+		</td>
+		<td tal:repeat="role optional_roles" style="text-align:center !important">
+		  <a title="Select all these people as authors" style="cursor: pointer;"
+		    onclick="selectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:selectAll('newRoles.${role}:list:record');
+		    title python:'Select all these people as ' + optional_role_dict[role]"
+		    >All</a
+		    >/<a title="Deselect all these people as authors" style="cursor: pointer;"
+		    onclick="deselectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:deselectAll('newRoles.${role}:list:record');
+		    title python:'Deselect all these people as ' + optional_role_dict[role]"
+		    >None</a>
+		</td>
+		<td/>
+	      </tr>
+	      
+	      <tr class="odd" tal:repeat="u batch"
+		tal:attributes="class python:test(path('repeat/u/odd'),'odd','even')">
+		<tal:block tal:define="u_id u/getId;" >
+		  <tal:badauthor
+                   tal:define="user python:here.desecured.getMemberById(u_id)"
+                   tal:on-error="string:(${user/id})">
+                  <td >
+		    <img src="user.gif" />
+		      <a href="" tal:attributes="href string:/member_profile/${user/id}"
+			tal:content="string:${user/fullname}">
+			[name]
+		      </a>
+		  </td>
+                  <td> 
+                      <a href="" tal:attributes="href string:/member_profile/${user/id}"
+			tal:content="string:${user/id}">
+			[userid]
+		      </a>
+                  </td>
+                  </tal:badauthor>
+		  <td class="checkbox" tal:repeat="role moduleRoles">
+		    <input tal:attributes="value u_id; 
+		      name string:newRoles.${role}:list:record"
+		      type="checkbox" class="noborder" 
+                      name="newRoles.roles:list:record" 
+                      title="required_role"/>
+		  </td>
+		  <td class="checkbox" tal:repeat="role optional_roles">
+		    <input tal:attributes="value u_id; 
+		      name string:newRoles.${role}:list:record"
+		      type="checkbox" class="noborder" name="newRoles.roles:list:record" />
+		  </td>
+		  <td>
+		    <a title="Select all these people as authors" style="cursor: pointer;"
+		    onclick="selectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:selectAllValue('${u_id}');
+				    title python:'Select '+ u_id +' for all required roles'"
+		    i18n:translate="label_controles_all"
+                    i18n:attributes="title">All Required</a
+		    >/<a title="Deselect all these people as authors" style="cursor: pointer;"
+		    onclick="deselectAll('newRoles.Author:list:record')"
+		    tal:attributes="onclick string:deselectAllValue('${u_id}');
+				    title python:'Select '+ u_id +' for no roles'"
+		    i18n:translate="label_controles_none"
+                    i18n:attributes="title">None</a>
+                  </td>
+		</tal:block>
+	      </tr>
+	    </table>
+
+
+<!-- Navigation Customized from batch_macros-->
+<div class="listingBar"
+     metal:define-macro="navigation"
+     tal:define="request request|here/request|container/request|nothing;
+                 batch batch|nothing;
+                 mq python:modules['ZTUtils'].make_query;
+                 url python:request.get('URL0');
+                 currentpage batch/pagenumber;"
+     tal:condition="python: batch.next or  batch.previous">
+<!-- testdal: I modified the condition above because for some dark reason "batch/previous|batch/next" doesn't work. DannyB-->
+<!-- XXX tesdal needs to have a look at these
+    <metal:rellinks fill-slot="rel_slot">
+        <link rel="first" href="" title="First page" tal:attributes="href string:author" />
+        <link rel="last" href="" title="Last page" tal:attributes="href string:author" />
+        <link rel="previous" href="" title="Previous page" tal:attributes="href string:author" />
+        <link rel="next" href="" title="Next page" tal:attributes="href string:author" />
+    </metal:rellinks>
+-->
+    <span class="previous"
+      tal:define="p batch/previous | nothing"
+      tal:condition="p">
+        <a href=""
+		  tal:attributes="href python: '%s?%s' % (url , mq({'search':search,'addWorkgroup':addWGMembers,batch.b_start_str:p.first} ))">
+           &laquo;
+           <span i18n:translate="batch_controles_previous_x_items" tal:omit-tag="">
+               Previous
+               <span i18n:name="number" tal:content="p/length">n</span>
+               items
+           </span>
+        </a>
+    </span>
+
+    <span class="next"
+      tal:define="n batch/next | nothing"
+      tal:condition="n">
+        <a href=""
+           tal:attributes="href python: '%s?%s' % (url , mq({'search':search,'addWorkgroup':addWGMembers,batch.b_start_str:n.first} ))">
+           <span i18n:translate="batch_controles_next_x_items" tal:omit-tag="">
+               Next
+               <span i18n:name="number" tal:content="n/length">n</span>
+               items
+           </span>
+           &raquo;
+        </a>
+    </span>
+
+    <!-- Link to first -->
+    <span tal:condition="python: 1 not in batch.navlist">
+        <a href=""
+           tal:attributes="href python: '%s?%s' % (url, batch.pageurl({'search':search,'addWorkgroup':addWGMembers},1));">1</a>
+        <span tal:condition="python: 2 not in (batch.prevlist or batch.leapback)"
+              tal:omit-tag="" i18n:translate="ellipsis">
+           ...
+        </span>
+    </span>
+
+    <!-- Pagelist with quantum leap links to previous pages for quick navigation -->
+    <span tal:repeat="linklist python:batch.navurls({'search':search,'addWorkgroup':addWGMembers}, batch.leapback)"
+          tal:condition="batch/leapback"
+          tal:omit-tag="" >
+        <a href=""
+           tal:define="page python:linklist[0];
+                       query python:linklist[1];"
+           tal:content="page"
+           tal:attributes="href python: '%s?%s' % (url,query)" >
+        </a>
+        ...
+    </span>
+
+    <!-- Pagelist with links to previous pages for quick navigation -->
+    <span tal:repeat="linklist python:batch.prevurls({'search':search,'addWorkgroup':addWGMembers})"
+          tal:condition="batch/prevlist"
+          tal:omit-tag="" >
+        <a href=""
+           tal:define="page python:linklist[0];
+                       query python:linklist[1];"
+           tal:content="page"
+           tal:attributes="href python: '%s?%s' % (url,query)" >
+        </a>
+    </span>
+
+    <!-- Current page -->
+    <span tal:condition="batch/navlist"
+          tal:omit-tag="">
+        [<span tal:content="batch/pagenumber">Current page number</span>]
+    </span>
+
+    <!-- Pagelist with links to next pages for quick navigation -->
+    <span tal:repeat="linklist python:batch.nexturls({'search':search,'addWorkgroup':addWGMembers})"
+          tal:condition="batch/nextlist"
+          tal:omit-tag="" >
+        <a href=""
+           tal:define="page python:linklist[0];
+                       query python:linklist[1];"
+           tal:content="page"
+           tal:attributes="href python: '%s?%s' % (url,query)" >
+        </a>
+    </span>
+
+    <!-- Pagelist with quantum leap links to next pages for quick navigation -->
+    <span tal:repeat="linklist python:batch.navurls({'search':search,'addWorkgroup':addWGMembers}, batch.leapforward)"
+          tal:condition="batch/leapforward"
+          tal:omit-tag="" >
+        ...
+        <a href=""
+           tal:define="page python:linklist[0];
+                       query python:linklist[1];"
+           tal:content="page"
+           tal:attributes="href python: '%s?%s' % (url,query)" >
+        </a>
+    </span>
+
+    <!-- Link to last -->
+    <span tal:condition="python:batch.numpages not in batch.navlist">
+        <span tal:condition="python: batch.numpages - 1 not in (batch.nextlist or batch.leapforward)"
+              tal:omit-tag="">
+        ...
+        </span>
+        <a href=""
+           tal:attributes="href python: '%s?%s' % (url,batch.pageurl({'search':search,'addWorkgroup':addWGMembers},batch.numpages));"
+           tal:content="batch/numpages">3457</a>
+    </span>
+
+</div>
+	      
+	    <input type="submit" 
+              class="context"
+              name="form.button.add" 
+              i18n:attributes="value value_button_addpeople" 
+              value="Add People" />
+	  </tal:block>
+	</tal:block>
+
+	<input type="hidden" name="search" tal:attributes="value search" />
+	<input type="hidden" name="addWorkgroup"
+	tal:condition="python:addWGMembers and here.aq_parent.getPortalTypeName()=='Workgroup'"
+	value="Add Workgroup Members" tal:attributes="value addWGMembers"/>
+	<input type="hidden" name="addSelf"
+	  tal:condition="python:member.id not in here.getCollaborators() and addSelf"
+	  value="Add Yourself" tal:attributes="value addSelf"/>
+	<input type="hidden" name="b_start" tal:attributes="value python:int(request.get('b_start',0))" />
+	<input type="hidden" name="form.submitted" value="1" />
+      </form>
+      
+      <p tal:condition="readonly | nothing" i18n:translate="text_roles_readonly">
+        Roles editing unavailable. See message above.
+      </p>
+
+<script type="text/javascript" src="/selectfunctions.js"> </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,431 @@
+RhaptosModuleEditor-0.64
+  - collection-structure-redesign-1 (Oct. 22, 2009)
+    - Updated links to help files
+    - Updated the "Upgrade to 0.6" message to 0.7
+    - publish block and backup machinery updated for 0.7
+    - create non-prompting automatic upgrade from 0.6 to 0.7 on view
+    - RME gets a bit more API synced with other content-ish things: added 'isPublic' and 'url'
+    - getMetadata updated for new MDML 0.5 template
+    - add 0.7 backup to publish exclude list
+    - mark RME as able to render MDML and abstracts
+    - accept, render, validate CNXML in abstracts
+    - abstract validation broken out from module metadata validation so it can be used elsewhere
+    - PDF now stored/retrieved on call to downloadPDF
+    - 'publishBlocked' takes version info from new 'rmeVersionInfo' method as efficiency refactor
+    - EIP validation uses new fragment schema
+    - support module export zip of published content
+    - fix module_files listing of Unicode objs.
+    - content_published page restyling; also renders abstract and provides downloads of
+       available data products
+    - EIP help updates for CNXML 0.7 and other fixes
+    - import/export box styling now uses globally-available rules
+
+RhaptosModuleEditor-0.63
+  - content-actions-move (17 Aug 2009)
+    - add and validate GoogleAnalyticsTrackingCode? attribute to module editor
+    - added Google Analytics Tracking Code property to the module edit metadata page
+    - embed GA tracking code on published content where set
+    - ID not required for <object> or <video>.
+  - Fixed EIP-help so that <video> and <object> aren't shown as having @id as required
+
+RhaptosModuleEditor-0.62.1
+  - #9391: Fix broken module print preview path
+
+RhaptosModuleEditor-0.62
+  - contentperf-pdf (28 Jul 2009)
+    - Modified downloadPDF.py to insert new PDF in RhaptosPrint
+
+RhaptosModuleEditor-0.61
+  - Module Edit Workflow (June, 2009) [reinstall reqd (@Upgrades/upMew.zctl)]
+    - content editor objects created without context
+      - concretization moved to updateMetadata
+      - content_title now has workgroup chooser widget, and updateMetadata can create in that context
+      - descriptive fieldsets added to content_title
+    - EIP components consolidated here (from RhaptosContent)
+    - #8722: CMFFormController customizations for folder_*.cpy in GenericSetup, formerly of
+      RhaptosSite; requires reinstall
+
+RhaptosModuleEditor-0.60
+ - Siyavula Release (May 14, 2009)
+  - Added ability to select template when creating module
+  - Added publish confirmation
+
+RhaptosModuleEditor-0.59.3
+  - cnxml-0.6-hot-fix, third rollout (06 Mar 2009)
+    - #8242: added well-formedness check to RME; check for malformed CNXML 0.5
+      and don't show upgrade button, since it will fail
+    - #8225 - Upconversion help page link added to unpublishable.pt
+    - #8226 - Upconversion news item link added to unpublishable.pt
+   - add upconvert backup files to be ignored
+
+RhaptosModuleEditor-0.59.2
+  - cnxml-0.6-hot-fix, second rollout (13 Feb 2009)
+    - CNXML 0.6 upgrade message modified to clarify user options
+    - Fixed defect that allowed user to publish content when they were not a maintainer (#8349)
+
+RhaptosModuleEditor-0.59.1
+  - cnxml-0.6-hot-fix, first rollout (04 Feb 2009)
+    - restore original upgrade messages, with additional help links
+
+RhaptosModuleEditor-0.59
+  - cnxml-0.6 (30 Jan 2009) [requires QuickInstaller reinstall]
+    - modernize install method
+    - change link ranges (retroactively) from 1-3 to 1-5 on upgrade
+
+RhaptosModuleEditor-0.58
+  - Use the 'status' field to not show 'Pending' accounts for adding roles 
+  - increase info about accounts found for role addition: show id
+
+ModuleEditor-0.57.2
+  - clarification about license terms on various pages (#5771, #5767, #5749)
+
+ModuleEditor-0.57.1
+  - added module_source_fragment.py which retrieve a subtree of the document serilaized
+  - IE only fade animation fix for EIP
+
+ModuleEditor-0.57
+  - LaTeX importer
+
+ModuleEditor-0.56.2
+  - postplone25: fix #4110, #4111, default listing sorts and dynamic sorting on module contents listing
+
+ModuleEditor-0.56.1
+  - fix #4195: nested forms in module_files confused IE7.
+
+ModuleEditor-0.56
+  - upgrade to Plone 2.5
+  - fix spelling of "publicly"
+
+ModuleEditor-0.55
+  - Allow subjects to be edited for modules.
+
+ModuleEditor-0.54
+  - refine language widget to only show variants on checkbox.
+    Backport from another branch for lenses.
+
+ModuleEditor-0.53.4
+  - i18n fix for intermittent metadata form problem
+
+ModuleEditor-0.53.3
+  - Change "abstract" to "summary" throughout site
+  - Make keywords textarea 50% wide again
+
+ModuleEditor-0.53.2
+  - Bugfix to retain subject data over republishing
+
+ModuleEditor-0.53.1
+  - Tweaks to module import/export help to go with new document importer
+
+ModuleEditor-0.53
+  - March 2007 site redesign (newlook)
+
+ModuleEditor-0.52
+  - addition of optional roles (currently Editor and Translator)
+
+ModuleEditor-0.51
+ - i18n Translation Support
+
+ModuleEditor-0.50
+ - harvest imported word files
+ - pass along the user name and the original file to conversion func, to build the harvest file name
+
+ModuleEditor-0.49.3
+ - Explicitly set the portal_type of all ModuleEditor objects to "Module"
+ - Removed now unnecessary forced white-space behavior
+
+ModuleEditor-0.49.2
+ - Added tabindex for language selectors
+ - Added Chuck, Matt, and Doug to the XHTML importer list
+
+ModuleEditor-0.49.1
+ - Changed the word 'Locale' to 'Dialect (optional)' (Max and Stefan's 
+   suggestions - bug #2315)
+
+ModuleEditor-0.49
+ - Fixed a bug in forkContent.cpy where accounts could be listed as a
+   parent author on a forked module even though they weren't an author
+   on the original module
+ - module_text, module_links, module_preview, content_roles,
+   confirm_fork, content_published, module_files, module_source,
+   module_metadata, confirm_discard, confirm_publish,
+   module_send_patch, content_title, module_publish updated to no
+   longer preserve the structure (and thus display HTML) of the title
+
+ModuleEditor-0.48
+ - Implement metadata UI support for setting language property.
+
+ModuleEditor-0.47
+ - Fixed Mac IE display of import/export box (task 2265, post-bugday, maxwell)
+ - Right-justify size column in workgroups. (task 1862, bugday, maxwell)
+   - requires changes r13823 and r13825 in CNXPloneSite and RhaptosSite
+ - Added "up to module" links to send-patch & source view pages (tasks 1477/1256, bugday, kclarks)
+ - New check for version mismatches. (task 1379, bugday, kclarks)
+   - analogous to change in RhaptosCollection
+ - Removed EIP-specific parsing step from full-source editing (task 2101, bugday, bnwest)
+ - Clarified destination of title link on the published-content page (task 1724, bugday, kclarks)
+ - add came_from logic so import form from files page goes back to files page (jccooper, pre-bugday)
+
+ModuleEditor-0.46.1 
+ - Fixed bug on newly created content: Could not edit your own roles
+   and could not cancel role requests
+
+ModuleEditor-0.46
+ - Refactored role requests
+ - Allow users to change the order of authors
+ - Update the content_roles page
+
+ModuleEditor-0.45.1
+ - add came_from logic so import form from files page goes back to files page
+
+ModuleEditor-0.45
+ - import/export refactor - including zip file import/export
+
+ModuleEditor-0.44
+ - Conversion to new Connexions logo               
+
+ModuleEditor-0.43
+ - Compatibility with new EIP code in RhaptosContent
+ - Changed author names to link to the new member profile page
+
+ModuleEditor-0.42
+ - Removed Parameters from printing process
+ - Changed wording for empty links
+
+ModuleEditor-0.41
+ - CNXMLTransforms replaces AuthenticImportExport and OOoImportTool
+
+ModuleEditor-0.40
+ - Renamed Product
+ - Fix for broken SubCollection pages
+ - Moved Collab Manager mixin to RhaptosCollaborationManager product
+ - Work with updated Edit-In-Place from RhaptosContent 0.3
+ - Don't display Word and OpenOffice import options if RhaptosOOoImportTool not installed
+ - Fix redirect on published objects
+
+ModuleEditor-0.39
+ - Fixed bug #1679: whitespace
+ - New method on LinksDiff (currently unused)
+ - Use member_catalog to speed up member searches
+
+ModuleEditor-0.38
+ - Edit-In-Place now the default editing view for modules
+ - New Microsoft Word Importer feature (requires RisaOOoImportTool)
+ - Updated content creation flow
+
+ModuleEditor-0.37
+ - Use new module rendering method
+
+ModuleEditor-0.36
+ - Don't make the paste button blue
+ - Use CNXMLDocument's templating instead of importing template
+ - Added Danish translation
+
+ModuleEditor-0.35
+  - Fix for license bug
+
+ModuleEditor-0.34
+  - Work with (and require) Plone2
+
+ModuleEditor-0.33
+  - Support Creative Commons Attribution License 2.0
+  - removed CNXML 0.4 as an option
+
+ModuleEditor-0.32
+  - sorting keywords. Moved code from a class method into onMetadataEdit in the skins
+
+ModuleEditor-0.31
+  - Implemented SearchableText() method to return body text
+  - Use new similarity tool at publication time for new content
+
+ModuleEditor-0.30.2rc1
+ - Use descured version of getMemberById in downloadPDF
+
+ModuleEditor-0.30.1
+ - Use fullname property instead of concatenating firstname+surname
+
+ModuleEditor-0.30
+ - Moved downloadPDF method into a skin
+ - If object is newly created, print the objectId as 'New' (fixes bug
+   printing newly created modules)
+ - Set the filename of the printed module to ${objectId}.pdf instead
+   of index.pdf to match printing of published modules
+
+ModuleEditor-0.29
+  - Fixed bug observed by Doug Jones: link to diff shouldn't appear on
+  discard form when discarding a course
+
+ModuleEditor-0.28
+  - Bug 1816: typo fix on first-publication confirmation ("reivsion")
+  - Bug 1757: make license error verbage less demanding
+  - Bug 1436: don't say "Manage Files" on published module page
+  - Bug 1426: link to diff on discard confirmation page
+  - Use the new pdflatex tool for printing
+  - Implement get_size() to calculate the contained file sizes
+
+ModuleEditor-0.27
+  - Log print requests
+
+ModuleEditor-0.26
+  - New confirmation page when first publishing a module
+  - Output new RisaLink objects when asked for links
+  - Use the same mechanism for module preview as module display so we
+    get the sidebar (including links) and the about links
+  - Don't display the 'Changes' link on the preview tab
+  - Alphabetize list of linktypes
+
+ModuleEditor-0.25
+  - Use new publishing API
+
+ModuleEditor-0.24
+  - Supports (and actually requires) Zope 2.7
+
+ModuleEditor-0.23.2
+  - Compatibility fix with RisaRepository-0.37
+
+ModuleEditor-0.23.1
+  - Typo fix on Validity Error page template
+  - Default authors field on forked modules to include original authors
+
+ModuleEditor-0.23
+  - Support for interaction with RisaCollection (new-style course
+  composer)
+  - Commonized discard/delete form/methods for use with RisaCollection
+
+ModuleEditor-0.22.8
+  - Rename patch to suggested edits
+
+ModuleEditor-0.22.7
+  - Printing updates
+
+ModuleEditor-0.22.6
+  - Enable patch feature
+  - Diff against checked-out version, not latest version
+
+ModuleEditor-0.22.5
+  - Fix ChangeSet titles
+
+ModuleEditor-0.22.4
+  - Re-enable diffs
+  - Fixed bug where forked modules would copy a webdav lock
+
+ModuleEditor-0.22.3
+  - Don't allow forking if the module has no license
+  - Display link to parent module on 'module published' page
+
+ModuleEditor-0.22.2
+  - Oops.  Fixed setParent() for case where parent is None
+
+ModuleEditor-0.22.1
+  - Added parent info to printing
+  - Fixed some wording
+
+ModuleEditor-0.22
+  - Added the long awaited forking (Make a copy) functionality
+  - Moved actions from module footer into sidebar
+  - Added back diff functionality (based on CMFDiff now)
+
+ModuleEditor-0.21.1
+  - Fixed action log properties which weren't getting updated properly
+
+ModuleEditor-0.21
+  - Re-implemented authors/maintainers/licensors as properties again
+  so diff will work
+  - Fixed redirect problem after publishing so checkout will work
+  - Don't let modules be copied
+  - Added select/dselect all checkbox to role editor page
+
+ModuleEditor-0.20.2.1
+  - Use objectId (not getObjId)
+
+ModuleEditor-0.20.2
+  - Strip keywords and omit blank ones
+
+ModuleEditor-0.20.1
+  - Display validity errors if trying to preview invalid module
+
+ModuleEditor-0.20
+  - Don't display tabs on not-checked-out page
+  - Use DateTime() to generate IDs for collaboration requests.  This
+    avoids needing to have a _next property
+  - Display a message if no one selected when adding people (instead
+  of throwing a Zope error) 
+
+ModuleEditor-0.19
+  - Fixed bug in publishing if there was a validation error
+  - Fixed __setstate__ to handle upgrading newly created modules that
+  don't have _files
+
+ModuleEditor-0.18
+  - Converted to CMF
+  - Moved CNXML import/export functionality into CNXMLDocument
+  - Move file system import/export into FSImport tool
+
+ModuleEditor-0.17
+  - Fix problem with print preview when collaboration requests have
+  been made
+
+ModuleEditor-0.16
+  - New CollaborationManager class for interfacing with collaboration tool
+  - New import/export functionality
+
+ModuleEditor-0.15
+  - Removed direct dependency on linkmap object
+  - Store link strength as int instead of string
+  - Add current user as default author/maintainer/licensor on creation
+  - Display module title as HTML structure so entities get displayed
+
+ModuleEditor-0.14
+  - Fix local role handling so it doesn't clobber Owner and other non-module roles
+  - Fix bug where newly created modules set bogus properties for authors/maintainers
+
+ModuleEditor-0.13
+  - Write out metadata to CNXML file when roles are changed
+
+ModuleEditor-0.12
+  - Reimplemented authors, maintainers, licensors using local roles
+  - New page for editing user roles on a module: roles
+
+ModuleEditor-0.11
+  - Cast link strength to string when coming out of the database since everything else is looking for a string
+  - Temporary hack: always set licensors equal to authors
+
+ModuleEditor-0.10
+  - Allow apostrophe character in submit messages
+  - Don't allow blank submission message
+  - Remove default submission text 'Sample text'
+  - Require RisaRepository-0.21 or greater
+  - Set self._p_changed when modifying self._links
+  - Use new factory technique from CNXTemplate module
+  - Removed support for CNXML 0.3.5
+
+ModuleEditor-0.9
+  - Show/Hide line number links in source view
+  - Link to source from permission-denied page
+
+ModuleEditor-0.8
+  - Fixed print previewing to no longer change directories
+  - Enable print preview view preview?format=pdf
+
+ModuleEditor-0.7
+  - Fixed link submission
+
+ModuleEditor-0.6
+  - Text and comment changes
+  - New externally visible method doAddLink() takes a dictionary and adds it to the list of links
+
+ModuleEditor-0.5
+  - Redid print system to be more robust and not use dumper
+
+ModuleEditor-0.4
+  - Better print error message page
+  - Added XML and DOCTYPE decl. to every page
+
+ModuleEditor-0.3
+  - Update to new module printing system
+
+ModuleEditor-0.2
+  - First big release
+  - New schema selection page
+  - index_html method that decides to show schemaSelection, metadata,
+    or status based on state
+  - Update module text when metadata or name changes

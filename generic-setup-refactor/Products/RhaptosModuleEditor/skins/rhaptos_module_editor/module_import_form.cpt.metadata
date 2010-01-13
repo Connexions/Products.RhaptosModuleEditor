@@ -1,0 +1,5 @@
+[default]
+title = Import Content
+
+[actions]
+action.success = traverse_to:string:module_import

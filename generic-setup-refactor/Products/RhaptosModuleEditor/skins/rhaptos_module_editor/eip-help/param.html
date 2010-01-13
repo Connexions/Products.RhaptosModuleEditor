@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;param&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;param&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">param</code> tag is used to pass parameters 
+  to the various types of media elements.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;media id="chromatic-snd" display="block" 
+       alt="A chromatic scale performed on
+       the clarinet by Michael Lawrence"&gt;
+  &lt;audio mime-type="audio/x-wav" 
+         src="chromatic_slurred.wav"&gt;
+    &lt;param name="title" value="Chromatic Scale" /&gt;
+  &lt;/audio&gt;
+&lt;/media&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <div class="media musical example">
+            <span class="cnx_label">Audio File:</span>
+            <i><a class="link" href="http://cnx.org/content/m12660/1.9/chromatic_slurred.wav">Chromatic Scale</a></i>
+          </div>
+        
+      </div>
+      Compare this output to the output of an <a href="audio" class="cnxn">audio</a> tag without a title <code class="codeline">param</code>.
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>name</b> <i>(required)</i>: 
+      
+    The attribute name of the parameter.
+        </li>
+<li class="item">
+<b>value</b> <i>(required)</i>: 
+      
+    The value for the parameter.
+        </li>
+<li class="item">
+<b>id</b> <i>(optional)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+    The <code class="codeline">param</code> tag is an empty tag and does 
+    not contain any children.
+        </div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

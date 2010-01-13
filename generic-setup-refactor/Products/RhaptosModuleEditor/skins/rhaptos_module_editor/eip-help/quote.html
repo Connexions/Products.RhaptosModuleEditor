@@ -1,0 +1,162 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Help on using the &lt;quote&gt; 
+	  tag
+	</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/plone/document.css">
+<link rel="stylesheet" type="text/css" href="./eip-help.css">
+<script type="text/javascript" src="../js/exercise.js"> </script>
+</head>
+<body>
+<div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<div id="cnx_module_header"><h1 id="cnx_eip_help_title">Using the 
+            &lt;quote&gt; tag
+          </h1></div>
+<div class="reference-link">
+<div><a href="help">Introduction to CNXML tags</a></div>
+<div><a href="terminology">Understanding XML terminology</a></div>
+<div><a href="tags">Complete CNXML tag list</a></div>
+</div>
+      <h2 class="para-header"><strong class="name">Description</strong></h2>
+<div class="para" id="cnx_eip_help_description">
+  The <code class="codeline">quote</code> tag is used to insert a 
+  quotation, either inline or set apart in a block.
+      </div>
+      <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+        <p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;para id="quoteexample"&gt;
+  &lt;title&gt; To be or not to be...&lt;/title&gt;
+  &lt;quote id="hamlet-quote"
+         url='http://tinyurl.com/bu393'&gt; 
+  "To be, or not to be: that is the question: 
+  Whether 'tis nobler in the mind to suffer 
+  The slings and arrows of outrageous fortune, 
+  Or to take arms against a sea of troubles, 
+  And by opposing end them?"&lt;/quote&gt;
+&lt;/para&gt;
+        </code></pre></div>
+        <p class="para">Results in this display:</p>
+          <h3 class="para-header">
+            <strong class="title"> To be or not to be...</strong>
+          </h3>
+          <div class="para" id="quoteexample">
+            <blockquote id="hamlet-quote" class="quote" cite="http://tinyurl.com/bu393">
+  "To be, or not to be: that is the question: Whether 'tis nobler in the mind
+  to suffer The slings and arrows of outrageous fortune, Or to take arms against
+  a sea of troubles, And by opposing end them?"
+              <span class="quote-source">[<a class="link" href="http://tinyurl.com/bu393">source</a>]</span>
+            </blockquote>
+          </div>
+        
+      </div>
+	  <div class="example" id="cnx_eip_help_example">
+<h2 class="example-header"><span class="cnx_label">Example</span></h2>
+		<p class="para">This CNXML:</p>
+<div class="code"><pre class="codeblock"><code>
+&lt;para id="famous-quote"&gt;
+  One of Shakespeare's most famous quotes is
+  &lt;quote display="inline"&gt;To be or not to be,
+  that is the question.&lt;/quote&gt;
+&lt;/para&gt;   
+		</code></pre></div>
+	    <p class="para">Results in this display:</p>
+		<p class="para" id="famous-quote">One of Shakespeare's most famous quotes is <span class="quote inline">"To be or not to be, that is the question."</span></p>
+		
+	  </div>
+      <div id="cnx_eip_help_attributes_list" class="list">
+<h2 class="list-header">
+<strong class="title">Attributes</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_attribute_section">what's this?</a>)</span>
+</h2>
+<ul class="bullet">
+<li class="item">
+<b>display</b> <i>(optional)</i>: 
+      
+          <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+            <li class="item">block - The quote will be set apart from the surrounding text (default).
+              If the display attribute is set to "block" or is absent, then an id is required.</li>
+            <li class="item">inline - The quote will be included in the 
+              current line of text and will be surrounded by quotation marks.</li>
+            <li class="item">none - The quote will not be displayed.</li>
+          </ul></div>
+        </li>
+<li>
+<i>Optional linking attributes (used to link to a quote's source):</i><div id="cnx_eip_help_linking_attributes_list" class="list"><ul class="bullet">
+<li class="item">
+<b>url</b> <i>(optional)</i>: 
+      A Web path being linked to.  Verify that the location is stable and will not change.  You cannot use the "url" attribute in 
+      combination with the "document", "target-id", "resource", or "version" attributes.
+    </li>
+<li class="item">
+<b>document</b> <i>(optional)</i>: 
+      The id of the module or collection being linked to (default is the present module).
+    </li>
+<li class="item">
+<b>target-id</b> <i>(optional)</i>: 
+      The id of an element in a module or collection, such as a section or an image (default is the root element of the target module 
+      or collection).  Can refer to an element in the present module or, alternately, an element on a seperate module if the 
+      "document" attribute has been specified.  You cannot use the "target-id" attribute in combination with the "resource" attribute.
+    </li>
+<li class="item">
+<b>resource</b> <i>(optional)</i>: 
+      The name of a resource, such as a supplemental PDF or text document (default is nothing).  The resource must be a part of the 
+      present module or, if the "document" attribute has been specified, must be part of the target module.
+    </li>
+<li class="item">
+<b>version</b> <i>(optional)</i>: 
+      The version of the module or collection being linked to (default is the latest version of the module or collection).  Can refer 
+      to the module you are on or, alternately, a seperate module or collection if the "document" attribute has been specified.
+    </li>
+<li class="item">
+<b>window</b> <i>(optional)</i>: 
+      <div><i>Possible values:</i></div>
+<div class="list"><ul class="bullet">
+<li class="item">replace - The code will navigate to the reference URL in the same current window (default).</li>
+<li class="item">new - The code will be navigate to the reference URL in a new window</li>
+</ul></div>
+</li>
+</ul></div>
+</li>
+<li class="item">
+<b>type</b> <i>(optional)</i>: 
+      
+        The type of quote. Can be any user-defined value. You decide the value 
+              of "type". The value should reflect the purpose of the quote. 
+        </li>
+<li class="item">
+<b>id</b> <i>(optional for inline display quotes)</i>: 
+          A unique identifier, whose value must begin with a letter and contain only letters, 
+          numbers, hyphens, underscores, colons, and/or periods (no spaces).
+        </li>
+</ul>
+</div>
+      <h2 class="para-header">
+<strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="para">para</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a> (block display only), <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="media">media</a> (block display only), <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="space">space</a>, <a class="cnxn" href="definition">definition</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="exercise">exercise</a>, Unicode text</div>
+      <h2 class="para-header">
+<span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
+</h2>
+<div class="para" id="cnx_eip_help_parents">
+<a class="cnxn" href="content">content</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="audio">audio</a>, <a class="cnxn" href="flash">flash</a>, <a class="cnxn" href="video">video</a>, <a class="cnxn" href="java-applet">java-applet</a>, <a class="cnxn" href="image">image</a>, <a class="cnxn" href="labview">labview</a>, <a class="cnxn" href="download">download</a>
+</div>
+    <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
+<!-- Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. --><script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+          try {
+            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+            benchmarkTracker._setDomainName('cnx.org');
+            benchmarkTracker._trackPageview();                
+            var overallTracker = _gat._getTracker("UA-5033010-1");
+            overallTracker._setDomainName('cnx.org');
+            overallTracker._trackPageview();
+          } catch(err) {}
+        </script>
+</body>
+</html>

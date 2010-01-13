@@ -1,0 +1,326 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone"
+      metal:use-macro="here/module_template/macros/master">
+
+<tal:comment tal:replace="nothing">
+Notes:
+  allowed content types removes "CNXML Document", which must be allowed, but should not be added
+  item_type as Type instead of portal_type to get type title instead of id.
+  single-item create button wording changed to "Add new ..." with lower-case typename
+  added customizable type names over-rides, to make UniFile different
+  display content mime type, if available, instead of content type; only provided by UniFile
+
+2.5 upgrade note:
+      based on folder_contents, not using the macros due to extensive work on the listings
+      replaced item_slot and header_slot with customized columns
+        column headers name, type, size, modified
+        this stops ordering, btw
+      added import/export macro
+      "This module contains the following items:" instead of description
+      Add filter for only File, Image, and CNXML Document
+      Insert script to put index.cnxml at the top (checking default_file with catalog would be better)
+      added indexOb definition for special behaviors on index.cnxml
+      indexOb also checked for stronging (like default)
+      no check box on indexObj; highlight tr with 'default' class if default, even/odd otherwise
+      if index.cnxml is the only file displayed, hide the Rename, Cut, Copy, and Remove buttons
+      if default, link to 'module_text'
+      disable dragging for re-ordering
+
+old Rhaptos notes:
+      paste button special class removed (no longer necessary)
+      stop default creation mode (no longer necessary)
+      ModificationDate wrapped in toLocalizedtime (no longer necessary)
+</tal:comment>
+
+  <body>
+
+    <div metal:fill-slot="main"
+         tal:define="contentFilter python:{'portal_type':['File', 'Image', 'UnifiedFile', 'CNXML Document',],
+                                           'sort_on':'sortable_title'};
+                     typeRename python:{'UnifiedFile':'image/included file'}">
+      <tal:protect tal:condition="python: not checkPermission('List folder contents', here)" tal:replace="here/raiseUnauthorized" />
+    <metal:main-macro define-macro="main">
+    <metal:contentsmacro define-macro="contents"
+         tal:define="standalone python:1;
+                     contentTypes here/getAllowedTypes;
+                     contentTypes python:[x for x in contentTypes if x.id != 'CNXML Document'];
+                     contentFilter contentFilter|request/contentFilter|nothing;
+                     b_size b_size|request/b_size|python:100;
+                     view_title view_title|request/view_title|string:;
+                     contentsMethod python:test(here.portal_type=='Topic', here.queryCatalog, here.getFolderContents);
+                     batch batch|python:contentsMethod(contentFilter,batch=False, b_size=b_size);
+                     batch python:context.module_files_reorder(batch,suppressHiddenFiles=1);
+                     full_view full_view|request/full_view|python:True;">
+
+      <div metal:use-macro="here/document_actions/macros/document_actions">
+          Document actions (print, sendto etc)
+      </div>
+      <tal:full_view condition="full_view">
+
+          <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+          <div metal:use-macro="context/module_text/macros/importexport">IMPORT/EXPORT MODULE</div>
+
+          <h2 i18n:translate="header_included_resources">Included Resources</h2>
+
+      </tal:full_view>
+
+      <form name="folderContentsForm"
+            method="post"
+            action="folder_object"
+            tal:attributes="action here_url">
+
+        <p class="discreet"
+           tal:condition="not: batch"
+           i18n:translate="description_no_visible_items_add_paste">
+           This folder has no visible items. To add content, press the
+           add button, or paste content from another location.
+        </p>
+
+        <metal:override define-slot="override_slot">
+           <tal:comment replace="nothing">
+              Slot for overiding batching mechanism including batch size and
+              other parameters
+           </tal:comment>
+        </metal:override>
+
+        <metal:listing define-macro="folder_listing"
+                       tal:define="contentFilter contentFilter|python:{'path':'/'};
+                                   use_folder_contents site_properties/typesLinkToFolderContentsInFC|nothing;
+                                   use_view_action site_properties/typesUseViewActionInListings|python:();
+                                   query_path python:path('contentFilter/path|nothing') or request.get('path',None);
+                                   orderable_iface string:OFS.IOrderSupport.IOrderedContainer;
+                                   preSorted python:query_path or ((contentFilter and contentFilter.get('sort_on', 'getObjPositionInParent')!='getObjPositionInParent') or (not contentFilter and request.get('sort_on', 'getObjPositionInParent')!='getObjPositionInParent'));
+                                   isOrderable python:ifacetool.objectImplements(here, orderable_iface);
+                                   nosortclass python:test(isOrderable, 'nosort', '');
+                                   canModifyFolderContent is_editable;">
+          <div tal:condition="standalone|nothing">
+          <metal:add_button define-macro="add_button"
+                            tal:define="num_types python:len(contentTypes);">
+            <!-- Add Item pulldown -->
+            <div tal:attributes="id python:test(path('full_view|string:Not Set'), 'traditional-add-item-pulldown',None);"
+                 metal:define-slot="addcontent">
+                <label for="select_add_item">
+                  <span class="hiddenLabel" i18n:translate="label_add_item">Select an item to add</span>
+                </label>
+
+                <select id="select_add_item"
+                        name="type_name"
+                        tabindex=""
+                        tal:condition="python: num_types > 1"
+                        tal:attributes="tabindex tabindex/next|nothing">
+
+                  <option value="Select" i18n:translate="label_select">Select...</option>
+                  <metal:types tal:repeat="ctype contentTypes">
+                    <option value="Document"
+                            tal:define="id ctype/getId;
+                                        title ctype/Title;
+                                        title python:typeRename.get(id, title)"
+                            tal:attributes="value id"
+                            tal:content="title"
+                            i18n:translate="">Document</option>
+                  </metal:types>
+                </select>
+
+                <input type="hidden"
+                       name="type_name"
+                       value="Content Type Id"
+                       tal:condition="python: num_types==1"
+                       tal:attributes="value python:contentTypes[0].getId()" />
+
+                <input class="standalone"
+                       id="add_new_file"
+                       type="submit"
+                       name="folder_factories:method"
+                       value="Add New Item"
+                       tabindex=""
+                       tal:define="t0title python:typeRename.get(contentTypes[0].getId(), contentTypes[0].Title());
+                                   ttype python: num_types==1 and here.utranslate(t0title).lower()"
+                       tal:condition="python: num_types"
+                       tal:attributes="tabindex tabindex/next|nothing;
+                                       value python:ttype and here.utranslate('label_create_type',
+                                                                              default='Add new ${type}',
+                                                                              mapping={'type': ttype},
+                                                                              domain='rhaptos') or
+                                                              here.utranslate('label_create_new_item',
+                                                                              default='Add New Item',
+                                                                              domain='rhaptos')" />
+            </div>
+          </metal:add_button>
+          </div>
+
+        <div class="visualClear" id="clear-space-before-navigation"><!-- --></div>
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+        <div i18n:translate="module_contains_following_items">This module contains the following items:</div>
+
+          <table id="sortable"
+                 class="listing"
+                 summary="Content listing"
+                 i18n:attributes="summary summary_content_listing;">
+            <thead>
+              <metal:block tal:condition="batch|not:standalone|nothing">
+                <tr>
+                  <th class="nosort">
+                      <input class="noborder"
+                             type="checkbox"
+                             src="select_all_icon.gif"
+                             name="selectButton"
+                             title="Select/unselect all items"
+                             onClick="toggleSelect(this,'paths:list');"
+                             tal:attributes="src string:$portal_url/select_all_icon.gif"
+                             alt="Select/unselect all items"
+                             i18n:attributes="title label_select_all_items; alt label_select_all_items;"
+                  />
+                  </th>
+                  <metal:header_slot metal:define-slot="listingheader">
+                  <th>&nbsp;<tal:title i18n:translate="listingheader_name" i18n:domain="rhaptos"
+                      >Name</tal:title>&nbsp;</th>
+                  <th>&nbsp;<tal:title i18n:translate="listingheader_type" i18n:domain="rhaptos"
+                      >Type</tal:title>&nbsp;</th>
+                  <th>&nbsp;<tal:size i18n:translate="listingheader_size"
+                      >Size</tal:size>&nbsp;</th>
+                  <th>&nbsp;<tal:modified i18n:translate="listingheader_modified"
+                      >Modified</tal:modified>&nbsp;</th>
+                  </metal:header_slot>
+                </tr>
+              </metal:block>
+            </thead>
+
+            <metal:block tal:condition="batch|not:standalone|nothing">
+            <tbody tal:define="arrowUp nocall:portal/arrowUp.gif;
+                               arrowUp python:arrowUp.tag(alt='Move Up');
+                               arrowDown nocall:portal/arrowDown.gif;
+                               arrowDown python:arrowDown.tag(alt='Move Down');
+                               getRelativeContentURL nocall:utool/getRelativeContentURL
+                               ">
+                <tal:items tal:repeat="item batch">
+                   <tr tal:define="oddrow               repeat/item/odd;
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id   item/pretty_title_or_id;
+                                   item_description     item/Description;
+                                   item_type            item/portal_type;
+                                   item_type_title      item/Type;
+                                   item_mime            item/mimetype | nothing;
+                                   item_size            item/getObjSize;
+                                   item_modified        item/ModificationDate;
+                                   item_type_class      python:'visualIcon contenttype-' + normalizeString(item_type);
+                                   item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                   item_state_title     python:wtool.getTitleForStateOnType(item_wf_state, item_type);
+                                   item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                                   item_use_view        python:item_type in use_view_action;
+                                   hasGetUrl            python:hasattr(item.aq_explicit, 'getURL');
+                                   item_rel_url         python:hasGetUrl and item.getURL(relative=1) or getRelativeContentURL(item);
+                                   browserDefaultResult here/browserDefault;
+                                   isBrowserDefault     python:len(browserDefaultResult[1]) == 1 and item.id == here.browserDefault()[1][0];
+                                   item_folderish       item/is_folderish|nothing;
+                                   indexObj             python:item_id == 'index.cnxml'"
+                       tal:attributes="class python:test(indexObj, 'default', oddrow, 'draggable even', 'draggable odd');
+                                       id string:folder-contents-item-${item_id};" >
+
+                       <tal:comment replace="nothing">
+                            * We have to check if the browserDefault stuff is really necessary
+                            * Create title_or_id metadata in the catalog (why not just use item.Title or item.getId? (alecm))
+                       </tal:comment>
+
+                       <td class="notDraggable">
+                           <input type="checkbox"
+                                  class="noborder"
+                                  name="paths:list" id="#"
+                                  value="#"
+                                  tal:condition="not:indexObj"
+                                  tal:attributes="value   item_path;
+                                                  id      string:cb_$item_id;
+                                                  checked python:test(request.get('ids_checked', False), 'checked', None);
+                                                  alt     string:Select $item_title_or_id;
+                                                  title   string:Select $item_title_or_id" />
+                      <input type="hidden" name="obj_paths:list" value="#"
+                             tal:attributes="value item_rel_url" />
+
+                    </td>
+                    <metal:item_slot metal:define-slot="item_display">
+                    <td tal:define="url python:test(item_use_view, item_url+'/view',
+                                    test(item_folderish, item_url+'/folder_contents', item_url+'/'));" 
+                            class="notDraggable">
+                        <span tal:attributes="class item_type_class">
+                        <a href="#" tal:attributes="href  python:test(indexObj, 'module_text', url);
+                                                  title string: $item_type_title: $item_description;
+                                                  class string:$item_wf_state_class visualIconPadding;">
+                            <strong tal:omit-tag="python:not (isBrowserDefault or indexObj)">
+                            <span tal:content="item_title_or_id">
+                              Item Title
+                            </span>
+                            </strong>
+                        </a>
+                        </span>
+
+                        <span class="state-expired"
+                              tal:condition="python:portal.isExpired(item)"
+                              i18n:translate="time_expired">expired</span>
+                    </td>
+
+                    <td class="notDraggable">
+                      <span tal:content="python:item_mime or item_type_title"> text/xml </span>
+                    </td>
+                    <td class="notDraggable">
+                      <span tal:condition="not: item_size"> &nbsp; </span>
+                      <span tal:condition="python:item_size>0"
+                            tal:content="item_size"
+                            tal:attributes="class item_wf_state_class"> size </span>
+                    </td>
+                    <td tal:content="python:toLocalizedTime(item_modified, long_format=1)"
+                        tal:attributes="class string:notDraggable $item_wf_state_class">
+                        08/19/2001 03:01 AM
+                    </td>
+                    </metal:item_slot>
+                   </tr>
+                </tal:items>
+            </tbody>
+            </metal:block>
+            </table>
+            <!-- Navigation -->
+            <div metal:use-macro="here/batch_macros/macros/navigation" />
+        </metal:listing>
+
+        <tal:block tal:define="countExtraFiles         python:len(batch)-1;
+                               haveMoreThanIndexCnxml  python:countExtraFiles > 0"
+                   tal:condition="haveMoreThanIndexCnxml">
+          <metal:buttons define-macro="folder_buttons">
+            <input type="hidden" name="orig_template"
+                   tal:attributes="value template_id"/>
+            <tal:buttons tal:repeat="button actions/folder_buttons|nothing"
+                         tal:define="contentFilter contentFilter|python:{'path':'/'};
+                                     query_path python:path('contentFilter/path|nothing') or request.get('path',None) or context.portal_type == 'Topic';">
+              <input class="context"
+                     type="submit"
+                     name=""
+                     value=""
+                     tabindex=""
+                     tal:condition="python:(batch or here.cb_dataValid and button['id'] == 'paste') and not ( query_path and button['id'] in ['cut','copy','paste'])"
+                     i18n:attributes="value"
+                     tal:attributes="value button/name;
+                                     name button/url;
+                                     tabindex tabindex/next;
+                                     class python:test((button['id'] == 'paste'), 'standalone', 'context')" />
+            </tal:buttons>
+          </metal:buttons>
+        </tal:block>
+
+      </form>
+
+    </metal:contentsmacro>
+    </metal:main-macro>
+    </div>
+
+
+  </body>
+
+</html>
