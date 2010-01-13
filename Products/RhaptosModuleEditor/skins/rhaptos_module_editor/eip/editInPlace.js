@@ -438,47 +438,72 @@ var gRequest = {
 //
 // OO Notes
 //
+
 // JavaScript can be hacked to support OO via the prototype attribute. If an atribute
 // is not found locally to a class, its prototype chain is walked, looking for a hit.
-// To get polymorphic behavior a 'this' (or object) must be used be present to trigger
+// To get OO behavior a 'this' (or object) must be used be present within class methods to trigger
 // the prototype protocol.  This is decidedly not what most C++/Java programmers would
 // expect.
 //
 // Private data members and methods are reachable directly within their class definiton,
-// i.e. no 'this' is needed.  Derived classes need get/set helpers to access private members.
+// i.e. no 'this' is needed.  Derived classes need get/set helpers to access private data members.
 //
 // Public data members and methods are made public by explicitly assigning them
 // as attributes to the 'this' and are thus reachable via the variable 'this'.
 //
-// If methods are used for UI callbacks, the 'this' in the callback is wrong.  In this
-// case, the 'this' will likely reference a UI widgit.  To get things back on track, all
-// public methods need to accessed via the global variable g_oWorkFlowStep.  We only
-// edit one thing at a time, so g_oWorkFlowStep is behaviorly a singleton.  Note that
-// private variables can be accessed directly within a callback since they are within scope.
+// If methods are used for UI event handlers, the 'this' in the callback is wrong.
+// The 'this' in event handlers will likely reference a UI widgit.  To get the right 'this' we use
+// prototype.js framework's Event.observe() and bindAsEventListener() calls. For example
 //
-// 'this' Management
+//        Event.observe(this.getSaveButton(), 'click',
+//                      this.onSave.bindAsEventListener(this));
 //
-// A private method called from a public mehtod does NOT inherit the 'this'.  This *feature*
-// limits the utility of private mehtods.
-//
-// Callbacks are triggered when clicking on a UI button and during the async communication with
-// the server like adding, editting and deleting.  Callbacks are initialized with the form:
-//
-//     nodeHtml.onclick = onSave;
-//
-// Note that the function handle is resolved at assignment time, not at callback time which makes
-// the following forms problematic:
-//
-//     nodeHtml.onclick = this.onSave;
-//     nodeHtml.onclick = g_oWorkFlowStep.onSave;
-//
-// None of the above forms will have its 'this' remmebered when the callbackis fired.  The biggest
-// drawback for not having a 'this' around is that polymorphism becomes impossible.  The workaround
-// is to add a thunk layer to the logic which re-establishes the 'this' via g_oWorkFlowStep. Thus,
-// the onSave() function contains a single call to g_oWorkFlowStep.handleSave(), which contains
-// all of the 'titting the save button' logic and has access to the correct 'this'.
-//
+// Here the Save Button HTML node's on-click handler is set to a class method.  The bindAsEventListener()
+// call attaches 'this' to class method.  During event handling the class method will be called
+// for the 'this' object.
 
+// Orginally EIP had one edit form for all of the editable CNXML nodes.  For a better user experience,
+// we needed different edit forms for the different editable nodes.  We created a base editing class,
+// WorkFlowStep, which mimiced the original edit form  We created a derived class, for each CNXML editable
+// node, that we wanted to give a specialized edit form.  A simple example of a derived WorkFlowStep class
+// would be :
+//
+// function Para_WorkFlowStep() {
+//     this.init = init;
+//     this.gotTitle = gotTitle;
+// 
+//     init();
+// 
+//     return this;
+// 
+//     function init() {
+//         Para_WorkFlowStep.prototype.init();
+//     };
+// 
+//     function gotTitle() {
+//         return true;
+//     };
+// };
+// Para_WorkFlowStep.prototype = new WorkFlowStep();
+//
+// We create a new instance of class Para_WorkFlowStep in the factory function createWorkFlowStep():
+//
+//        oWorkFlowStep = new Para_WorkFlowStep();
+//
+// The logic within Para_WorkFlowStep is executed on instantiation via the 'new'.  In Para_WorkFlowStep
+// instantiation,
+//   1. we convert private data members into public data members
+//   2. we call the init() method, which mainly intialization the private and public data members
+//   3. we return
+//   4. the logic following the return is not executed and contains the method definitions
+
+// JS libraries
+
+// Getting fade animationto work
+
+// Getting the Cancel button to work
+
+// HTML generation technique
 
 //
 // WorkFlowStep factory.
@@ -520,6 +545,8 @@ function createWorkFlowStep(strXmlTag, bEditingExistingNode) {
         oWorkFlowStep.setEditingExistingNode(bEditingExistingNode);
     }
     else if ( strXmlTag == 'media' ) {
+        // DEAD CODE: CNXML <media> nodes can not be edited or added.
+        // Media_WorkFlowStep has a likely bit-rotted media file uploader implementation.
         oWorkFlowStep = new Media_WorkFlowStep();
         oWorkFlowStep.setEditedXmlTag(strXmlTag);
         oWorkFlowStep.setEditingExistingNode(bEditingExistingNode);
@@ -557,6 +584,7 @@ function createWorkFlowStep(strXmlTag, bEditingExistingNode) {
     else {
         // this is our default behavior (and why we have to explicitly set
         // the EditedXmlTag versus having the init() methods do it).
+        // CNXML <definition> is the only tag currently using the default edit form.
         oWorkFlowStep = new WorkFlowStep();
         oWorkFlowStep.setEditedXmlTag(strXmlTag);
         oWorkFlowStep.setEditingExistingNode(bEditingExistingNode);
@@ -568,7 +596,6 @@ function createWorkFlowStep(strXmlTag, bEditingExistingNode) {
 
 function WorkFlowStep() {
     // private
-    // need to access state data members from work flow object
     var m_bEditingExistingNode; // versus adding
 
     // edit state
@@ -9016,8 +9043,6 @@ function extractLinks() {
     for (i = 0; i < links.length; i++) {
         rel = links.item(i).getAttribute("rel");
         if (rel == "source" || rel == "module" || rel == "content" || rel =="update" || rel=="source_fragment") {
-            // XXX could we use a more robust mozilla
-            //   method of transforming relative to absolute URL?
             gURLs[rel] = links.item(i).getAttribute("href");
         }
     }

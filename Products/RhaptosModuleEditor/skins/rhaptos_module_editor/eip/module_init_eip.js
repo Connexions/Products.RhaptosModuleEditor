@@ -31,24 +31,29 @@ function initEip()
 
     gButtonMode = 'save';
 
+    // minimal check to see if the current browser has *robust* JavaScript DOM support
     if (document.getElementById && document.createElement) {
 
         if ( bFullSourceEditing ) {
             // what the server sent us does not need to be changed
+
+            // debug only:
             bValidationError = ( $('eipEditInPlaceEditingMode') == null );
         }
         else {
             try {
+                // populate global variable gURLs with values found in the <html><head>'s <link> nodes
+                // these links will be used by EIP to commuicate withthe server.
                 extractLinks();
 
                 //pull the source out of the text area
                 var nodeTextArea = document.getElementById('textarea');
                 var reg = new RegExp(/\s*<\?/);
                 var strCnxmlSource = nodeTextArea.value.replace(reg, '<?');
-                // Install a handler for the textarea
+                // Install a minimal handler for the textarea
                 nodeTextArea.onchange = onTextEdit;
 
-                // side effect: sets gSource.doc
+                // side effect: sets global variable gSource.doc (CNXML DOM)
                 parseSource(strCnxmlSource);
 
                 //Download the rendered content
@@ -56,6 +61,8 @@ function initEip()
                 var nodeEditForm = document.getElementById('edit_form');
                 var nodeContentParentHtml = nodeEditForm.parentNode;
 
+                // currently we only support MS/InternetExplorer and Mozilla/FireFox
+                // Opera and Safari/Chrome (Webkit) need AJAX support for consideration
                 if (web_browser == 'ie'){
                     var eip = document.createElement('div');
                     nodeContentParentHtml.insertBefore(eip, nodeEditForm);
@@ -63,7 +70,6 @@ function initEip()
                     $('cnx_main').style.display='none';
                     $('cnx_main').style.zoom='1';
                 }
-
                 else if (web_browser == 'mozilla'){
                     var docContentHtml = parseXmlTextToDOMDocument(strContentHtml);
                     var nodeNewContentHtml = document.importNode(docContentHtml.documentElement, true);
@@ -71,6 +77,8 @@ function initEip()
                     nodeContentParentHtml.insertBefore(nodeNewContentHtml, nodeEditForm);
                 }
 
+                // create div[@id='eipMasterEditContainerDiv'],
+                // make it a sibling of div[@id='cnx_main'], and hide it.
                 createEditNodes();
 
                 // gather i18n strings
@@ -82,6 +90,9 @@ function initEip()
                                 "<a href='module_text?edit_source=1' id='eipFullSourceEditingMode'>" + strFullSourceEdit + "</a>";
                 $('eipTopEditingMode').innerHTML = strNewTopHtml;
 
+                // tragically named.  modify the content's rendered HTML.
+                // add "Insert..." nodes into the HTML, add the edit links
+                // for each section node, and add the hover text for each editable node.
                 setupForms();
             }
 

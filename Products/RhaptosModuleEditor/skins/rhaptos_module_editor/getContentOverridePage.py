@@ -18,7 +18,9 @@ def add_query(url):
     q = context.REQUEST.QUERY_STRING 
     return q and '?'.join([url, q]) or url
 
-if context.state == 'published':
+url = context.REQUEST.get('URL')
+from_select_lens = url.endswith("module_publish_selectlens")
+if context.state == 'published' and not from_select_lens:
     return add_query('content_published')
 
 # Guarantee that user enters a title by going to initial metadata entry page if they haven't.

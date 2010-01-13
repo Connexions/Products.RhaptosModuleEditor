@@ -5,13 +5,17 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal" 
       xmlns:tal="http://xml.zope.org/namespaces/tal" 
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="container/module_template/macros/master"
+      metal:use-macro="container/main_template/macros/master"
       i18n:domain="rhaptos">
 
   <body>
+    <metal:block fill-slot="top_slot">
+       <tal:noborder define="disable_border python:request.set('disable_border', 0)" />
+    </metal:block>
+            
     <div metal:fill-slot="main">
 
-      <metal:use use-macro="context/lens_add_open_select/macros/main">
+      <metal:use use-macro="context/lens_add_select/macros/main">
         <metal:fill fill-slot="help_end">
           If this module should not form part of a Siyavula lens, you may 
           <a tal:attributes="href string:${here/absolute_url}">skip</a>

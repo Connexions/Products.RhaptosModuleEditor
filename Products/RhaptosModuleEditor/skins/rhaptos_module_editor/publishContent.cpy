@@ -60,10 +60,11 @@ context.manage_delObjects(context.objectIds())
 psm = context.translate("message_item_published", domain="rhaptos", default="Item Published.")
 if uploadmsg: psm += '\n' + uploadmsg
 
-# Show page to associate with open lens if there are any open lenses
-tool = getToolByName(context, 'lens_tool')
-if tool.getOpenLenses() and context.getPublishedObject().portal_type == 'Module':
+if context.restrictedTraverse('@@siyavula')() and context.portal_type in ['Collection', 'Module']:
     # Switch the context        
-    return state.set(context=context.getPublishedObject(), status='select_lens', portal_status_message=psm)
+    if context.portal_type == 'Module':
+        return state.set(status='select_lens', portal_status_message=psm)
+    elif context.portal_type == 'Collection':
+        return state.set(status='select_col_lens', portal_status_message=psm)
 
 return state.set(status='success', portal_status_message=psm)

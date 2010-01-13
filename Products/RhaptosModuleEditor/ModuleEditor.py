@@ -787,7 +787,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         try: CollaborationManager.manage_afterAdd(self, item, container)  # in case it grows one
         except AttributeError: pass
 
-
     def manage_afterClone(self, item):
         PloneFolder.manage_afterClone(self, item)
         try: Referenceable.manage_afterClone(self, item)

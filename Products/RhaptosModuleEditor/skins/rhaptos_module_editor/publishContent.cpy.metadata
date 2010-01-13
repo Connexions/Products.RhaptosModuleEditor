@@ -1,3 +1,4 @@
 [actions]
 action.success = redirect_to_action:string:view
-action.select_lens = redirect_to:string:latest/module_publish_selectlens
+action.select_col_lens = redirect_to:string:collection_publish_selectlens
+action.select_lens = redirect_to:string:module_publish_selectlens
