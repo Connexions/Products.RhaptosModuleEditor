@@ -60,11 +60,15 @@ context.manage_delObjects(context.objectIds())
 psm = context.translate("message_item_published", domain="rhaptos", default="Item Published.")
 if uploadmsg: psm += '\n' + uploadmsg
 
-if context.restrictedTraverse('@@siyavula')() and context.portal_type in ['Collection', 'Module']:
-    # Switch the context        
-    if context.portal_type == 'Module':
-        return state.set(status='select_lens', portal_status_message=psm)
-    elif context.portal_type == 'Collection':
-        return state.set(status='select_col_lens', portal_status_message=psm)
+try:
+    if context.restrictedTraverse('@@siyavula')() and context.portal_type in ['Collection', 'Module']:
+        # Switch the context        
+        if context.portal_type == 'Module':
+            return state.set(status='select_lens', portal_status_message=psm)
+        elif context.portal_type == 'Collection':
+            return state.set(status='select_col_lens', portal_status_message=psm)
+except AttributeError:
+    # If the Siyavula product isn't installed, silently fail
+    pass
 
 return state.set(status='success', portal_status_message=psm)
