@@ -772,6 +772,12 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     ## HOOKS for Referenceable
     def manage_afterAdd(self, item, container):
+        PloneFolder.manage_afterAdd(self, item, container)
+        try: Referenceable.manage_afterAdd(self, item, container)   # considered optional
+        except AttributeError: pass
+        try: CollaborationManager.manage_afterAdd(self, item, container)  # in case it grows one
+        except AttributeError: pass
+
         #Get browser set language. May want to have a userpref default lang.
         lang_tool = getToolByName(self,'portal_languages')
         langs=lang_tool.getLanguageBindings()
@@ -780,12 +786,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
         if not self.getDefaultFile():
             self.createTemplate()
-
-        PloneFolder.manage_afterAdd(self, item, container)
-        try: Referenceable.manage_afterAdd(self, item, container)   # considered optional
-        except AttributeError: pass
-        try: CollaborationManager.manage_afterAdd(self, item, container)  # in case it grows one
-        except AttributeError: pass
 
     def manage_afterClone(self, item):
         PloneFolder.manage_afterClone(self, item)

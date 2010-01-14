@@ -14,7 +14,7 @@ if not oid:
 if location:   # created without destination in mind
     # see also addObjectsToWorkspace
     wgprefix = 'GroupWorkspaces/'  # FIXME: get from groups tool
-    type_name = getattr(context.aq_explicit, 'portal_type', getattr(context.aq_explicit, 'archetype_name', context.getTypeInfo().getId()))
+    type_name = getattr(context.aq_explicit, 'archetype_name', getattr(context.aq_explicit, 'portal_type', context.getTypeInfo().getId()))
     if location == '__home__':
         target = context.portal_membership.getHomeFolder()
     elif location.startswith(wgprefix):
