@@ -9043,6 +9043,8 @@ function extractLinks() {
     for (i = 0; i < links.length; i++) {
         rel = links.item(i).getAttribute("rel");
         if (rel == "source" || rel == "module" || rel == "content" || rel =="update" || rel=="source_fragment") {
+            // XXX could we use a more robust mozilla
+            //   method of transforming relative to absolute URL?
             gURLs[rel] = links.item(i).getAttribute("href");
         }
     }
