@@ -223,13 +223,17 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     security.declarePublic('SearchableText')
     def SearchableText(self):
         """Return the text of the module for searching"""
-        content = self.getDefaultFile().getSource()
-        try:
-            # strip XML tags with XSLT if possible
-            bare = XMLService.transform(content,baretext)
-        except XMLService.XMLParserError:
-            # strip non-parsable XML-ish text to the best of our ability
-            bare = re.sub('(?s)<.*?>', ' ', content)
+        cnxml_file = self.getDefaultFile()
+        if cnxml_file:
+            content = cnxml_file.getSource()
+            try:
+                # strip XML tags with XSLT if possible
+                bare = XMLService.transform(content,baretext)
+            except XMLService.XMLParserError:
+                # strip non-parsable XML-ish text to the best of our ability
+                bare = re.sub('(?s)<.*?>', ' ', content)
+        else:
+            bare = ''
         return bare
 
 ##     FIXME: This fixes various pasting problems but breaks forking :(
