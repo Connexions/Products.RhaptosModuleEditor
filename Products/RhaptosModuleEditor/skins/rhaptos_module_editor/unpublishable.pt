@@ -33,7 +33,7 @@
             <tal:external define="global readonly python:True" />
             <div tal:attributes="style stylestring">
 
-<b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new version 0.7 of CNXML.
+<b tal:content="string:${notetype}:">WARNING:</b> We are moving to the new version 0.7 of CNXML.
 <b>You need to upgrade this module</b> to version 0.7 before publishing it or editing metadata,
 roles, or links. The conversion process will generate a temporary backup.
 <span tal:define="help nocall:portal/help/delta/cnxml-0.7-upgrade | nothing"
@@ -54,7 +54,7 @@ roles, or links. The conversion process will generate a temporary backup.
 
 <h1>CNXML Upgrade Needed</h1>
 
-  <p>Connexions is moving to the new version 0.7 of CNXML.
+  <p>We are moving to the new version 0.7 of CNXML.
     <b>You need to upgrade this module</b> to version 0.7 before you can publish it or make metadata changes.  You have three options:
     <ul>
       <li><b>Import</b>: If you are using one of the importers to create your content, import as usual; the result will 
@@ -106,7 +106,7 @@ export feature</a> to save a copy to your local machine.</p>
             <div tal:attributes="style stylestring">
 
 <p>
-  <b tal:content="string:${notetype}:">WARNING:</b> Connexions is moving to the new
+  <b tal:content="string:${notetype}:">WARNING:</b> We are moving to the new
   version 0.7 of CNXML.
   <b>You need to upgrade this module</b> to version 0.7 before publishing it or editing metadata,
   roles, or links.
