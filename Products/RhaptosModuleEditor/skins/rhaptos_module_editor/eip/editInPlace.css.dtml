@@ -21,6 +21,10 @@ a, .term, .feedback, code, #eipTopEditingMode a{
   color: #369;
 }
 
+#cnx_main a{
+  color: #369 !important;
+}
+
 .para{
   line-height: 1.5em;
 }
@@ -227,8 +231,11 @@ pre.space{
   color: #cde;
 }
 
-.eipXMLEditor, .eipParameterTextArea, .eipFigureCaption textarea{
+.eipEditContainer textarea{
   width: 100%;
+}
+
+.eipXMLEditor, .eipParameterTextArea, .eipFigureCaption textarea{
   /* cnx style */
   background: white;
   border: 2px inset #69c;
