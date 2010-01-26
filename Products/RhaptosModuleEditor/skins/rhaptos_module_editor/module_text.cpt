@@ -102,7 +102,7 @@
           <td>
           <p style="font-weight: bold; margin-bottom: 0px"
              i18n:translate="text_impexpbox_import">IMPORT</p>
-          <span i18n:translate="text_impexpbox_convertexisting">Convert an existing non-Connexions document into a module.</span>
+          <span i18n:translate="text_impexpbox_convertexisting">Convert an existing non-CNXML document into a module.</span>
           <ul>
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_wordfiles">Word files</span>
