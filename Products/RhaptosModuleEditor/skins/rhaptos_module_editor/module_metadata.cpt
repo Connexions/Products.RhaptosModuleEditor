@@ -355,6 +355,7 @@
             <label i18n:translate="label_google_analytics">Google Analytics Tracking Code</label>
             <div i18n:translate="help_google_analytics_creation" class="formHelp">
                 Enter the Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) for this module to track its usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
+            </div>
                 <input type="text"
                        name="GoogleAnalyticsTrackingCode"
                        id="GoogleAnalyticsTrackingCode"
@@ -362,7 +363,6 @@
                        size="30"
                        maxlength="255"
                        tal:attributes="value codeGoogleAnalytics"/>
-            </div>
         </div>
 
         <input type="submit"
