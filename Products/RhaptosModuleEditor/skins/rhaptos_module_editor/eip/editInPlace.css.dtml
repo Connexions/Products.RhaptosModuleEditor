@@ -57,6 +57,10 @@ code{
   cursor: pointer;
 }
 
+#cnx_main h2{
+  border-width: 0;
+}
+
 .para-header{
   margin: 0 0 .5em;
 }
