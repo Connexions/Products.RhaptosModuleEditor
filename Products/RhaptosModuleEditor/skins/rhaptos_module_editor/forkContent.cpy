@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=license
-##title= Fork a new version of the module
+##title= Fork a new version of the module/course
 
 # Make a copy of ourselves
 ws = context.aq_parent
@@ -48,7 +48,7 @@ for p in user_role_delta.keys():
 new_context.updateRoleMetadata()
     
 # Set state to newly created
-new_context.logAction('create', 'Module copied')
+new_context.logAction('create', 'Content copied')
 new_context.manage_changeProperties(created=now)
 
 # Since we're doing a fork, remove the existing CVS folder
@@ -64,4 +64,5 @@ if hasattr(new_context, 'GoogleAnalyticsTrackingCode'):
     new_context.setGoogleAnalyticsTrackingCode(None)
 
 psm = context.translate("message_item_created", domain="rhaptos", default="Item created.")
-return state.set(context = new_context, portal_status_message=psm)
+return state.set(context=new_context, portal_status_message=psm)
+
