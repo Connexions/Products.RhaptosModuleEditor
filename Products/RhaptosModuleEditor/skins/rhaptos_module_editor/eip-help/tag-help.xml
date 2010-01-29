@@ -6173,7 +6173,7 @@ class="problem" id="se-problem">
       </attribute>
       <attribute name="src" required="optional">
       The location of the object file. It must be a URL value. If the object is stored
-      on Connexions in the module folder, the file name itself can be used (e.g. "img.jpg").
+      in the module folder, the file name itself can be used (e.g. "img.jpg").
       </attribute>
    </attributes>
    <children>
