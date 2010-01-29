@@ -60,12 +60,12 @@
               Even without CNXML-specific styling, you can make sure that your section organization
               is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
               in your original document.</span></li>
-          <li tal:define="help nocall:portal/help/authoring/ooimporter | nothing" tal:condition="nocall:help">
+          <li tal:define="help nocall:portal/help/authoring/wordimporter | nothing" tal:condition="nocall:help">
             <a i18n:translate="link_modimpfrm_fullinstructions"
-              href="/help/authoring/ooimporter" style="font-weight: bold"
+              href="/help/authoring/wordimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
-              <span i18n:name="Word">Word</span> with Connexions</span></li>
+              <span i18n:name="Word">Word</li>
           <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.dot"
                  style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a></li>
         </ul>
@@ -118,10 +118,9 @@
               href="/help/authoring/ooimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
-              <span i18n:name="MSWord">MS Word</span> with Connexions (also mostly applicable to OpenOffice)</span></li>
-          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.dot"
-                 style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a>
-                 <span i18n:translate="text_modimpfrm_usewithOO">to use with OpenOffice</span></li>
+              OpenOffice</span></li>
+          <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.ott"
+                 style="font-weight: bold">Download OpenOffice template</a></li>
         </ul>
       </tal:block>
       <tal:block tal:condition="python:format=='latex'">
