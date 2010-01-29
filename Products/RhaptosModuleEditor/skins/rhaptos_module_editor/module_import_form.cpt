@@ -65,7 +65,8 @@
               href="/help/authoring/wordimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
-              <span i18n:name="Word">Word</li>
+                  <span i18n:name="Word">Word</span> with <span tal:content="portal/title"></span>
+              </span></li>
           <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.dot"
                  style="font-weight: bold">Download <span i18n:name="Word">Word</span> template</a></li>
         </ul>
@@ -118,7 +119,8 @@
               href="/help/authoring/ooimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
-              OpenOffice</span></li>
+              OpenOffice with <span tal:content="portal/title"></span>
+              </span></li>
           <li><a i18n:translate="label_modimpfrm_wordtemplate" href="/help/authoring/templates/Connexions-Document.ott"
                  style="font-weight: bold">Download OpenOffice template</a></li>
         </ul>
