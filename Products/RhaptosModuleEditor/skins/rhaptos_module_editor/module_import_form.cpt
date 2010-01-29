@@ -60,9 +60,9 @@
               Even without CNXML-specific styling, you can make sure that your section organization
               is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
               in your original document.</span></li>
-          <li tal:define="help nocall:portal/help/authoring/wordimporter | nothing" tal:condition="nocall:help">
+          <li tal:define="help nocall:portal/help/authoring/ooimporter | nothing" tal:condition="nocall:help">
             <a i18n:translate="link_modimpfrm_fullinstructions"
-              href="/help/authoring/wordimporter" style="font-weight: bold"
+              href="/help/authoring/ooimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
               <span i18n:name="Word">Word</span> with Connexions</span></li>
@@ -113,9 +113,9 @@
               Even without CNXML-specific styling, you can make sure that your section organization
               is preserved during import by using the standard header styles (Heading 1, Heading 2, etc.)
               in your original document.</span></li>
-          <li tal:define="help nocall:portal/help/authoring/wordimporter | nothing" tal:condition="nocall:help">
+          <li tal:define="help nocall:portal/help/authoring/ooimporter | nothing" tal:condition="nocall:help">
             <a i18n:translate="link_modimpfrm_fullinstructions"
-              href="/help/authoring/wordimporter" style="font-weight: bold"
+              href="/help/authoring/ooimporter" style="font-weight: bold"
               tal:attributes="href help/absolute_url">Full instructions</a>
               <span i18n:translate="label_modimpfrm_usingwordwithcnx">on using
               <span i18n:name="MSWord">MS Word</span> with Connexions (also mostly applicable to OpenOffice)</span></li>

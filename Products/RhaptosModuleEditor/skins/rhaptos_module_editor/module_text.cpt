@@ -107,7 +107,7 @@
             <li style="padding: 0px; margin: 0px">
               <span i18n:translate="text_impexpbox_wordfiles">Word files</span>
               (<a i18n:translate="label_impexpbox_help"
-                  href="/help/authoring/wordimporter">help</a>,
+                  href="/help/authoring/ooimporter">help</a>,
                <a i18n:translate="label_impexpbox_templateforword"
                   href="/help/authoring/templates/Connexions-Document.dot">template for Word</a>)
             </li>
