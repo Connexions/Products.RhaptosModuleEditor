@@ -23,6 +23,8 @@
 
 <form tal:condition="here/license" action="." method="post" tal:attributes="action template/getId">
 <!-- i18n FIXME: Add the possible values of this tal:replace as msgids -->
+    <metal:macro define-macro="form_contents">
+
         <tal:block tal:define="isCollection python:here.portal_type == 'Collection';
                                isModule     python:here.portal_type == 'Module'">
           <tal:block tal:condition="isCollection">
@@ -84,7 +86,8 @@
 	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
 	          URL to the work.  </li>
       </ol>
-          
+    </metal:macro>
+
 	<input type="submit" 
 	       class="standalone"
 	       name="form.button.fork" 
