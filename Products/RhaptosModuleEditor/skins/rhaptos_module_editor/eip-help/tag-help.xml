@@ -3337,7 +3337,7 @@ is a classic novel.
     <tag name="link">
       <description>
   The <nameoftag>link</nameoftag> tag is used to insert links to 
-  external resources.
+  internal or external locations or resources.
       </description>
       <exampleexample>
         <input>
