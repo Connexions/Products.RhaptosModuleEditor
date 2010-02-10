@@ -67,7 +67,7 @@ if __name__ == "__main__":
     print "Found %d matches" % len(tags)
     for r in tags:
         tagname = r.content
-        f = open(tagname+'.html', 'w')
+        f = open(tagname+'.pt', 'w')
         help = transform(doc, tagname=r.content)
         f.write(help)
         f.close()

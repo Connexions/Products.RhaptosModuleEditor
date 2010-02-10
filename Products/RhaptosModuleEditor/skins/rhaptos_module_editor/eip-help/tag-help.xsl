@@ -1,4 +1,7 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  >
 
   <xsl:param name="tagname" value="0" />
 
@@ -9,7 +12,7 @@
   </xsl:template>
 
   <xsl:template match="/">
-    <html>
+    <html tal:define="isCNX context/isCNX|nothing;">
       <head>
 	<title>Help on using the &lt;<xsl:value-of 
 	  select="source/body/tag[@name=$tagname]/@name" />&gt; 
@@ -38,21 +41,23 @@
 	<div class="close-this-window">
 	  <a href="javascript:window.close()">Close this window</a>
 	</div>
-        <xsl:comment> Google Analytics tracking. Only for CNX. This will need to edited out for Rhaptos installs. </xsl:comment>
-        <script type="text/javascript">
-          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <script type="text/javascript">
-          try {
-            var benchmarkTracker = _gat._getTracker("UA-7903479-1");
-            benchmarkTracker._setDomainName('cnx.org');
-            benchmarkTracker._trackPageview();                
-            var overallTracker = _gat._getTracker("UA-5033010-1");
-            overallTracker._setDomainName('cnx.org');
-            overallTracker._trackPageview();
-          } catch(err) {}
-        </script>
+
+        <tal:google-analytics tal:condition="isCNX">
+          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var benchmarkTracker = _gat._getTracker("UA-7903479-1");
+              benchmarkTracker._setDomainName('cnx.org');
+              benchmarkTracker._trackPageview();                
+              var overallTracker = _gat._getTracker("UA-5033010-1");
+              overallTracker._setDomainName('cnx.org');
+              overallTracker._trackPageview();
+            } catch(err) {}
+          </script>
+        </tal:google-analytics>
       </body>
     </html>
   </xsl:template>
