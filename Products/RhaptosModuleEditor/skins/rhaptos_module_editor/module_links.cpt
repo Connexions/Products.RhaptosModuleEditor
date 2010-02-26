@@ -185,7 +185,7 @@
             </tr>
           </table>
 
-	<div style="margin-top: 3ex; font-weight: bold" i18n:translate="text_new_link_URL_header">Enter either a Connexions ID or a URL:</div>
+	<div style="margin-top: 3ex; font-weight: bold" i18n:translate="text_new_link_URL_header">Enter either the ID of a module or collection or a URL:</div>
 	<table style="padding-top: 1ex">
 	  <tr valign="bottom">
 	    <th style="padding-right: 10px" i18n:translate="text_new_link_id_header">ID</th>

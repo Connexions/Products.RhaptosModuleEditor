@@ -4,9 +4,8 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=license
-##title= Fork a new version of the module/course
-
+##parameters=license 
+##title= Fork a new version of the module/course 
 # Make a copy of ourselves
 ws = context.aq_parent
 now = DateTime()

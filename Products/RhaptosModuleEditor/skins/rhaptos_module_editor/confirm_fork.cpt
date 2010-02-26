@@ -84,7 +84,7 @@
 	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
 	          URL to the work.  </li>
       </ol>
-          
+
 	<input type="submit" 
 	       class="standalone"
 	       name="form.button.fork" 
