@@ -339,7 +339,6 @@
           </ul>
 
           <textarea name="abstract"
-                          wrap="soft"
                           cols="80" 
                           rows="4"
                           tal:attributes="tabindex tabindex/next;"
