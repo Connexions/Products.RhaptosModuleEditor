@@ -307,7 +307,7 @@
           <textarea tal:condition="not:readonly"
                     id="keywords"
                     name="keywords:lines" 
-                    wrap="physical"
+                    wrap="off"
                     cols="25" 
                     rows="4"
                     tal:attributes="tabindex tabindex/next;
@@ -339,7 +339,7 @@
           </ul>
 
           <textarea name="abstract"
-                          wrap="virtual"
+                          wrap="soft"
                           cols="80" 
                           rows="4"
                           tal:attributes="tabindex tabindex/next;"
