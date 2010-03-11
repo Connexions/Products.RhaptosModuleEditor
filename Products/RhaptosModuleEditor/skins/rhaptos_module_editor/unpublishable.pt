@@ -176,7 +176,7 @@ you enter a title on the <a href="module_metadata">metadata page</a>.
             <div tal:attributes="style stylestring">
 
 <p><b tal:content="string:${notetype}:">WARNING:</b> You do not have <b>maintainer permissions</b> on the published version 
-of this object, so you will not be able to publish the current revision. You may </span>
+of this object, so you will not be able to publish the current revision. You may 
           <span i18n:translate="text_publish_fork">
             <span i18n:name="fork_link">
               <a href="confirm_fork" i18n:translate="label_create_new_module">create a new module</a>
