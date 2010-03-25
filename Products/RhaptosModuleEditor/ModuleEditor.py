@@ -79,6 +79,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     default_linktypes = ['example', 'prerequisite', 'supplemental']
     #default_roles = ['Author', 'Maintainer', 'Licensor']
     optional_roles = {'Translator': 'Translators', 'Editor': 'Editors'}
+    import_authors = []
 
     no_rename = 1
 
@@ -87,23 +88,23 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'version','type':'string', 'mode': 'w'},
                  {'id':'created', 'type':'date', 'mode': 'w'},
                  {'id':'revised','type':'date', 'mode': 'w'},
-                 {'id':'authors','type':'lines', 'mode': 'w'},   
-                 {'id':'maintainers','type':'lines', 'mode': 'w'},       
+                 {'id':'authors','type':'lines', 'mode': 'w'},
+                 {'id':'maintainers','type':'lines', 'mode': 'w'},
                  {'id':'licensors','type':'lines', 'mode': 'w'},
-                 {'id':'parentAuthors','type':'lines', 'mode': 'w'},     
+                 {'id':'parentAuthors','type':'lines', 'mode': 'w'},
                  {'id':'keywords','type':'lines', 'mode': 'w'},
                  {'id':'abstract','type':'string', 'mode': 'w'},
                  {'id':'license','type':'string', 'mode': 'w'},
                  {'id':'language','type':'string', 'mode': 'w'},
-                 {'id':'pub_authors','type':'lines', 'mode': 'w'},       
-                 {'id':'pub_maintainers','type':'lines', 'mode': 'w'},   
-                 {'id':'pub_licensors','type':'lines', 'mode': 'w'},     
-                 {'id':'collaborators','type':'lines', 'mode': 'w'},     
+                 {'id':'pub_authors','type':'lines', 'mode': 'w'},
+                 {'id':'pub_maintainers','type':'lines', 'mode': 'w'},
+                 {'id':'pub_licensors','type':'lines', 'mode': 'w'},
+                 {'id':'collaborators','type':'lines', 'mode': 'w'},
                  {'id':'subject','type':'lines', 'mode': 'w'},
                  )
 
     # Compatibility attributes
-    
+
     # Add a computed "roles" attribute so that optional roles on ModuleEditors
     # can be accessed in the same way as optional role on ModuleViews
     roles = ComputedAttribute(lambda self: self.getRolesDict(),1)
@@ -125,7 +126,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'version': "**new**",
                           'authors' : [user],
                           'maintainers' : [user],
-                          'licensors' : [user],                          
+                          'licensors' : [user],
                           'parentAuthors' : [],
                           'keywords': [],
                           'abstract': '',
@@ -215,7 +216,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                 setattr(self, 'objectId', self.id)
 
     def isPublic(self):
-        """Boolean answer true iff collection is in versioned repository.
+        """Boolean answer true iff module is in versioned repository.
         Based currently on value of 'state' attribute.
         """
         return self.state == 'public'
@@ -378,6 +379,22 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         metadata['parent'] = parent
         
         return metadata
+
+    def getImportAuthors(self):
+        """ get the authors from the imported document. """
+        if self.state == 'created':
+            import_authors = getattr(self,'import_authors',[])
+            return import_authors
+        else:
+            return []
+
+    def setImportAuthors(self, authors=[]):
+        """ set the authors for the imported document. """
+        if self.state == 'created':
+            self.import_authors = authors
+        else:
+            self.import_authors = []
+        self._p_changed = 1
 
     def getLinks(self):
         """Get overlay links"""
