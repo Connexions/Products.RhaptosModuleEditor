@@ -11,8 +11,14 @@ context.plone_log('current license is:\n%s' % current_license)
 default_license = context.getDefaultLicense()
 context.plone_log('default license is:\n%s' % default_license)
 
-needLicenseAgreement = ( current_license != default_license)
+needLicenseAgreement = ( current_license != default_license )
 if needLicenseAgreement:
-    return state.set(status='license')
+    needNewLicenseAgreement = ( current_license != '' )
+    if needNewLicenseAgreement:
+        # the default license has changed between the start of editing and publish ...
+        return state.set(status='license', portal_status_message="The publication license agreement has changed since you last agreed to it.  You will need to accept the new license prior to publish.")
+    else:
+        # the license has never been agreed to ...
+        return state.set(status='license')
 else:
     return state.set(status='success')
