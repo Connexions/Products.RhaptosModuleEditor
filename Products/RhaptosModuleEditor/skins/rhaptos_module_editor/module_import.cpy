@@ -115,9 +115,7 @@ elif format in ('sword'):
             context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='zip-')
         makeContent(context, subobjs)
         # Parse the returned mdml and set attributes up on the ModuleEditor object
-        context.manage_changeProperties({'title': meta.get('title'), 'abstract': meta.get('abstract'), 'keywords': meta.get('keywords')})
-        #context.abstract = meta.get('abstract')
-        #context.keywords = meta.get('keywords')
+        context.updateMdmlStr(meta.get('mdml'))
 
     except OOoImportError, e:
         transaction.abort()
