@@ -10,6 +10,7 @@
 from Products.CNXMLTransforms.helpers import OOoImportError, doTransform, makeContent
 import transaction
 from AccessControl import getSecurityManager
+from Products.CNXMLDocument import XMLService
 
 psm = context.translate("message_import_completed", domain="rhaptos", default="Import completed.")
 
@@ -113,6 +114,10 @@ elif format in ('sword'):
             context.manage_delObjects([context.default_file,])
             context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='zip-')
         makeContent(context, subobjs)
+        # Parse the returned mdml and set attributes up on the ModuleEditor object
+        context.manage_changeProperties({'title': meta.get('title'), 'abstract': meta.get('abstract'), 'keywords': meta.get('keywords')})
+        #context.abstract = meta.get('abstract')
+        #context.keywords = meta.get('keywords')
 
     except OOoImportError, e:
         transaction.abort()
@@ -134,3 +139,4 @@ if came_from in ('module_files', 'module_text'):
     state.set(status=came_from)
 
 return state.set(portal_status_message=psm)
+
