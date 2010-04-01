@@ -103,6 +103,23 @@ elif format in ('zip'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
+## Sword import (Zip of word doc + mets.xml)
+elif format in ('sword'):
+    #context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
+    try:
+        kwargs = {'original_file_name':importFile.filename, 'user_name':getSecurityManager().getUser().getUserName()}
+        text, subobjs, meta = doTransform(context, "sword_to_folder", text, meta=1, **kwargs)
+        if text:
+            context.manage_delObjects([context.default_file,])
+            context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='zip-')
+        makeContent(context, subobjs)
+
+    except OOoImportError, e:
+        transaction.abort()
+        message = context.translate("message_could_not_import", {"errormsg":e}, domain="rhaptos",
+                                    default="Could not import file. %s" % e)
+        return state.set(status='failure', portal_status_message=message)
+
 ## unknown
 else:
     message = context.translate("message_import_type_not_supported", domain="rhaptos",
