@@ -41,7 +41,7 @@
           <legend i18n:translate="label_location">Location</legend>
           <p i18n:translate="text_select_wg">Select an area in which to work on your content:</p>
 
-          <select name="location" tal:define="optionsmacros context/search_macros/macros">
+          <select name="location" tal:define="optionsmacros context/search_macros/macros" onchange="disableInIE(this);">
             <metal:reuse use-macro="optionsmacros/personalwsoption" />
             <metal:reuse use-macro="optionsmacros/workgroupoptions" />
           </select>
