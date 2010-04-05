@@ -379,6 +379,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         metadata['parent'] = parent
         
         return metadata
+
     def updateMdmlStr(self, mdml):
         doc = XMLService.parseString(mdml)
         nsMapping = { "md": "http://cnx.rice.edu/mdml/0.4" }
@@ -390,6 +391,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         for n in XMLService.xpathEval(ctxt, '//*[local-name()="keyword"]/text()'):
             keywords.append(XMLService.nodeValue(n))
         self.manage_changeProperties({'title': title, 'abstract': abstract, 'keywords': keywords})
+        self.reindexObject()
 
 
     def getImportAuthors(self):
