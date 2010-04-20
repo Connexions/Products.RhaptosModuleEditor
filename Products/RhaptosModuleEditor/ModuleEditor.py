@@ -738,7 +738,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             actions.append({'id':'publish', 'url':url+'/module_publish', 'name':'Publish'})
 
             if self.state != 'created':
-                # actions.append({'id':'patch', 'url':url+'/module_send_patch', 'name':'Suggest Edits'})
+                actions.append({'id':'patch', 'url':url+'/module_send_patch', 'name':'Suggest Edits'})
                 actions.append({'id':'fork', 'url':url+'/confirm_fork', 'name':'Derive Copy'})
 
             actions.append({'id':'discard', 'url':url+'/confirm_discard', 'name':'Discard'})
