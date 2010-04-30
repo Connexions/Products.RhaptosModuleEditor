@@ -53,10 +53,12 @@
 
     <div tal:define="errors errors|options/state/getErrors|nothing;
                      error errors/agree|nothing"
-         tal:attributes="class python:error and 'error popuperror' or ''">
-	<p i18n:translate="text_conffork_readlicense">
+         tal:attributes="class python:error and 'field error popuperror' or 'field'">
+        <p tal:condition="error"
+           i18n:translate="text_check_if_agree_license">
           Check this box if you agree to the license terms.
-          <br />
+        </p>
+	<p i18n:translate="text_conffork_readlicense">
           <span i18n:name="checkbox"><input class="noborder" type="checkbox" name="agree" /></span> I have read the
           <span i18n:name="creative_commons_attrib_license">
             <a tal:attributes="href license_url;
@@ -71,7 +73,7 @@
 	    <b i18n:translate="text_i_agree">I agree</b>
 	  </span> to license this new
           <span i18n:name="item" tal:replace="item">[item]</span> under its terms. I understand that in doing so I
-      </p>
+        </p>
       </div>
 
       <ol>
