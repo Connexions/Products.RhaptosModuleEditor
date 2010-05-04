@@ -16,8 +16,8 @@ ws.manage_clone(context, id)
 new_context = ws[id]
 
 # Change title
-derived_string = context.translate("derived_copy_of", domain="rhaptos", default="Derived copy of")
-new_context.setTitle(derived_string + ' ' + context.Title())
+new_title = "Derived copy of %s" % context.Title()
+new_context.setTitle(new_title)
 
 # Remove old collaboration requests
 new_context.manage_delObjects(new_context.objectIds('Collaboration Request'))
