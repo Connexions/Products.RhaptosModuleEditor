@@ -394,6 +394,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         self.reindexObject()
 
 
+    security.declarePublic('getImportAuthors')
     def getImportAuthors(self):
         """ get the authors from the imported document. """
         if self.state == 'created':
@@ -402,6 +403,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         else:
             return []
 
+    security.declarePublic('setImportAuthors')
     def setImportAuthors(self, authors=[]):
         """ set the authors for the imported document. """
         if self.state == 'created':
