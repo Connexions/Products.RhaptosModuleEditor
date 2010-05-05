@@ -76,7 +76,8 @@ upgrade.
   </form>
 
   <p>We recommend that you use the automated upgrade immediately. If you continue editing in an older version of CNXML, you will not have 
-access to Edit-in-Place, or to online or print preview.  You will also not be able to edit roles, metadata or links.</p>
+access to Edit-in-Place, or to online or print preview.  You will also not be able to edit roles, metadata or links, or 
+use the Suggest Edits function.</p>
 
   <p>The automated upgrade will keep a backup copy of your CNXML code in a file within the module called 
 "index.cnxml.pre-v07". This file will be deleted upon publication of the 0.7 version of the module. If you want to keep a 
@@ -176,7 +177,11 @@ you enter a title on the <a href="module_metadata">metadata page</a>.
             <div tal:attributes="style stylestring">
 
 <p><b tal:content="string:${notetype}:">WARNING:</b> You do not have <b>maintainer permissions</b> on the published version 
-of this object, so you will not be able to publish the current revision. You may 
+of this object, so you will not be able to publish the current revision. Other options are to
+          <span i18n:translate="text_publish_suggest_edits">
+            <span i18n:name="suggest_edits_link">
+              <a href="module_send_patch" i18n:translate="label_suggest_your_edits">suggest your edits</a>
+            </span> to the module's maintainers, or</span>
           <span i18n:translate="text_publish_fork">
             <span i18n:name="fork_link">
               <a href="confirm_fork" i18n:translate="label_create_new_module">create a new module</a>
