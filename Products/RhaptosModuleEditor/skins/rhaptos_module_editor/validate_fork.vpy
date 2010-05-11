@@ -9,6 +9,7 @@
 
 if not agree:
     psm = context.translate("message_agree_to_license_to_proceed", domain="rhaptos", default="To proceed, you must agree to the license.")
+    state.setError('agree', psm, 'agree_required')
     return state.set(status='failure', portal_status_message=psm)
 else:
     return state

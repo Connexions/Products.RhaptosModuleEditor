@@ -23,6 +23,8 @@
 
 <form tal:condition="here/license" action="." method="post" tal:attributes="action template/getId">
 <!-- i18n FIXME: Add the possible values of this tal:replace as msgids -->
+    <metal:macro define-macro="form_contents">
+
         <tal:block tal:define="isCollection python:here.portal_type == 'Collection';
                                isModule     python:here.portal_type == 'Module'">
           <tal:block tal:condition="isCollection">
@@ -49,10 +51,18 @@
 	  sure you wish to continue?
 	</p>
 
+    <div tal:define="errors errors|options/state/getErrors|nothing;
+                     error errors/agree|nothing"
+         tal:attributes="class python:error and 'field error popuperror' or 'field'">
+        <p tal:condition="error"
+           i18n:translate="text_check_if_agree_license">
+          Check this box if you agree to the license terms.
+        </p>
 	<p i18n:translate="text_conffork_readlicense">
           <span i18n:name="checkbox"><input class="noborder" type="checkbox" name="agree" /></span> I have read the
           <span i18n:name="creative_commons_attrib_license">
-            <a tal:attributes="href license_url"
+            <a tal:attributes="href license_url;
+                               target link_target|nothing"
                tal:content="string:Creative Commons ${license_data/name} License ${license_data/version}"
                i18n:translate="">Creative Commons Attribution License</a>
           </span>
@@ -63,7 +73,8 @@
 	    <b i18n:translate="text_i_agree">I agree</b>
 	  </span> to license this new
           <span i18n:name="item" tal:replace="item">[item]</span> under its terms. I understand that in doing so I
-      </p>
+        </p>
+      </div>
 
       <ol>
 		<li i18n:translate="text_license_retain_copyright"> 
@@ -75,7 +86,8 @@
 		<li i18n:translate="text_license_work_distributed"> 
 	        wish this work to be distributed under the terms of the
 	         <a i18n:name="license_link" 
-                    tal:attributes="href license_url"
+                    tal:attributes="href license_url;
+                                    target link_target|nothing"
                     tal:content="license_data/label">[CC-BY 3.0]</a>
 		 license (<b>including allowing modification of this work
                  and requiring attribution</b>) and </li>
@@ -84,6 +96,7 @@
 	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
 	          URL to the work.  </li>
       </ol>
+    </metal:macro>
 
 	<input type="submit" 
 	       class="standalone"

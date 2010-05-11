@@ -39,6 +39,7 @@
 	  <div tal:content="error" i18n:translate="">Validation error output</div>
 	    
 	  <textarea name="message" 
+		          wrap="on" 
                           cols="50" 
 	                  style="width: 50%"
                           rows="5"
