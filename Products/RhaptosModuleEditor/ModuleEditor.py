@@ -588,7 +588,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def excludedIds(self):
         """Return excluded items when performing diffs"""
-        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07']
+        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07','index_auto_generated.cnxml']
         exclude.extend(self.objectIds('Collaboration Request'))
         return exclude
         

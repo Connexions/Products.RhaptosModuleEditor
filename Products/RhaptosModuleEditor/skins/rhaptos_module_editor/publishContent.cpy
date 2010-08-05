@@ -23,10 +23,10 @@ else:
 context.deleteCollaborationRequests()
 
 # Remove CNXML upgrade working files
-bakname = 'index.cnxml.pre-v06', 'index.cnxml.pre-v07', 'index.cnxml.old'
-bakexists = [n for n in bakname if getattr(context, n, None)]
-if bakexists:
-    context.manage_delObjects(bakexists)
+excluded = context.excludedIds()
+excludedexists = [n for n in excluded if getattr(context, n, None)]
+if excludedexists:
+    context.manage_delObjects(excludedexists)
 
 # remove Google Analytics Tracking Code from object
 GoogleAnalyticsTrackingCode = None
