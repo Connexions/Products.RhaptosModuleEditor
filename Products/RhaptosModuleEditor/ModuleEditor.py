@@ -79,7 +79,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     default_linktypes = ['example', 'prerequisite', 'supplemental']
     #default_roles = ['Author', 'Maintainer', 'Licensor']
     optional_roles = {'Translator': 'Translators', 'Editor': 'Editors'}
-    import_authors = []
 
     no_rename = 1
 
@@ -101,6 +100,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'pub_licensors','type':'lines', 'mode': 'w'},
                  {'id':'collaborators','type':'lines', 'mode': 'w'},
                  {'id':'subject','type':'lines', 'mode': 'w'},
+                 {'id':'import_authors','type':'lines', 'mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -137,6 +137,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'pub_licensors' : [user],
                           'collaborators' : [user],
                           'subject': (),
+                          'import_authors': [],
                           }
 
         # Store object properties
@@ -845,3 +846,4 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             return None
 
 InitializeClass(ModuleEditor)
+
