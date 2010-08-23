@@ -101,6 +101,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'collaborators','type':'lines', 'mode': 'w'},
                  {'id':'subject','type':'lines', 'mode': 'w'},
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
+                 {'id':'is_imported','type':'boolean', 'mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -138,6 +139,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'collaborators' : [user],
                           'subject': (),
                           'import_authors': [],
+                          'is_imported': False,
                           }
 
         # Store object properties
@@ -403,6 +405,11 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         else:
             self.import_authors = []
         self._p_changed = 1
+
+    security.declarePublic('isImported')
+    def isImported(self):
+        """ A flag if the module is imported. """
+        return getattr(self,'is_imported',False)
 
     def getLinks(self):
         """Get overlay links"""

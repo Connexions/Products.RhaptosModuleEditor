@@ -59,7 +59,7 @@
         and thus the validation, etc, needs to be after that.</tal:comment>
 
       <div id="import-recs" 
-           tal:condition="context/getImportAuthors|nothing"
+           tal:condition="context/isImported|nothing"
            style="border: 1px solid rgb(140, 172, 187); padding: 0.5em; margin-bottom: 1em; background-color: rgb(238, 238, 238); font-size: 0.9em;">
         <p>
           <strong>You have imported this module from another site.  We recommend you review the following:</strong>
@@ -72,7 +72,7 @@ can edit or delete this if desired).</li>
         </ul>
       </div>
 
-      <p tal:condition="not:context/getImportAuthors|nothing"
+      <p tal:condition="not:context/isImported|nothing"
          tal:define="t template/getId" i18n:translate="text_module_editing_options">
 	There are three ways to edit modules: 
 	<span i18n:name="edit_in_place">
@@ -110,7 +110,7 @@ can edit or delete this if desired).</li>
         <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
       </tal:editblocked>
 
-      <div tal:condition="not:context/getImportAuthors|nothing"
+      <div tal:condition="not:context/isImported|nothing"
            class="importexport"
            metal:define-macro="importexport">
         <table style="margin: 0; padding: 0">
@@ -279,3 +279,4 @@ can edit or delete this if desired).</li>
   </div>
   </body>
 </html>
+
