@@ -362,7 +362,7 @@
 
       <hr style="margin-top: 1em;" />
 
-      <form name="search"
+      <form name="collaborators_search"
             tal:condition="not:readonly|nothing"
             tal:attributes="action template/getId">
         <h4 id="collaborator_search" i18n:translate="heading_controles_newcollabs">Search for New Collaborators:</h4>
