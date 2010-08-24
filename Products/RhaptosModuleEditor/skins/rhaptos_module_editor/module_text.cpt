@@ -95,7 +95,7 @@ can edit or delete this if desired).</li>
               tal:condition="nocall:help">
           <tal:comment tal:replace="nothing">
             the above condition prevents shrinkwRaptos from showing the help link.
-            the <a> below works for both JS and nonJS environments.</tal:comment>
+            the "a" below works for both JS and nonJS environments.</tal:comment>
           <a href="/help/authoring/editmodule"
              onclick="javascript:"
              tal:define="help_url help/absolute_url;"
@@ -110,8 +110,8 @@ can edit or delete this if desired).</li>
         <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
       </tal:editblocked>
 
-      <div tal:condition="not:context/isImported|nothing"
-           class="importexport"
+      <tal:notimported tal:condition="not:context/isImported|nothing">
+      <div class="importexport"
            metal:define-macro="importexport">
         <table style="margin: 0; padding: 0">
 	<tr style="font-size: 90%; vertical-align: top">
@@ -211,6 +211,7 @@ can edit or delete this if desired).</li>
         </tr>
       </table>
       </div>
+      </tal:notimported>
 
       <tal:editnotblocked tal:condition="not:editBlockedForUpgrade">
         <div id="eipTopEditHelpLink"
@@ -218,7 +219,7 @@ can edit or delete this if desired).</li>
              tal:condition="nocall:help">
           <tal:comment tal:replace="nothing">
             the above condition prevents shrinkwRaptos from showing the help link.
-            the <a> below works for both JS and nonJS environments.</tal:comment>
+            the "a" below works for both JS and nonJS environments.</tal:comment>
           <a href="/help/authoring/editmodule"
              onclick="javascript:"
              tal:define="help_url help/absolute_url;"
