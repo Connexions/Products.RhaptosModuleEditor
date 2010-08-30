@@ -104,7 +104,7 @@ elif format in ('zip'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
-## Sword import (Zip of word doc + mets.xml)
+## Sword import (Zip of word doc + mets.xml) (Deprecated, unfortunately)
 elif format in ('sword'):
     #context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
     try:
