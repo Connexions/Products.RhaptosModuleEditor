@@ -625,7 +625,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def excludedIds(self):
         """Return excluded items when performing diffs"""
-        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07']
+        exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07','index_auto_generated.cnxml']
         exclude.extend(self.objectIds('Collaboration Request'))
         return exclude
         
@@ -775,7 +775,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             actions.append({'id':'publish', 'url':url+'/module_publish', 'name':'Publish'})
 
             if self.state != 'created':
-                # actions.append({'id':'patch', 'url':url+'/module_send_patch', 'name':'Suggest Edits'})
+                actions.append({'id':'patch', 'url':url+'/module_send_patch', 'name':'Suggest Edits'})
                 actions.append({'id':'fork', 'url':url+'/confirm_fork', 'name':'Derive Copy'})
 
             actions.append({'id':'discard', 'url':url+'/confirm_discard', 'name':'Discard'})

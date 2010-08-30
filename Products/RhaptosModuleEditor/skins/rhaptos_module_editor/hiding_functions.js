@@ -60,3 +60,17 @@ function toggleExpandId(clickedElement, id){
         hideId(id);
     }
 }
+
+// variable and function below for preventing users in IE from choosing a disabled option
+// in the work area dropdown (e.g. the line reading "Shared Workgroups:").
+
+var lastEnabledIndex = 0;
+
+function disableInIE(select) {
+    if(select.options[select.options.selectedIndex].disabled) {
+        select.selectedIndex = lastEnabledIndex;
+    } else {
+        lastEnabledIndex = select.selectedIndex;
+    }
+}
+

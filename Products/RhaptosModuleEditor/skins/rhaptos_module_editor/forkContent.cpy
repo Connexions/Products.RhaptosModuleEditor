@@ -4,14 +4,20 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=license 
-##title= Fork a new version of the module/course 
+##parameters=license, return_context=False, id=None
+##title= Fork a new version of the module
+
 # Make a copy of ourselves
 ws = context.aq_parent
 now = DateTime()
-id = context.portal_type.replace(' ', '_')+'.'+now.strftime('%Y-%m-%d')+'.'+now.strftime('%M%S')
+if id is None:
+    id = context.portal_type.replace(' ', '_')+'.'+now.strftime('%Y-%m-%d')+'.'+now.strftime('%M%S')
 ws.manage_clone(context, id)
 new_context = ws[id]
+
+# Change title
+new_title = "Derived copy of %s" % context.Title()
+new_context.setTitle(new_title)
 
 # Remove old collaboration requests
 new_context.manage_delObjects(new_context.objectIds('Collaboration Request'))
@@ -57,6 +63,11 @@ if 'CVS' in new_context.objectIds():
 # Clear any write locks
 for o in new_context.objectValues():
     o.wl_clearLocks()
+
+# This script may be used outside of a FormController context in which 
+# case it must return here.
+if return_context:
+    return new_context
 
 # clear the Google Analytics Tracking Code in the new forked object
 if hasattr(new_context, 'GoogleAnalyticsTrackingCode'):

@@ -159,12 +159,13 @@
           <th i18n:translate="listingheader_contpubd_abstract">Summary:</th>
           <td><span tal:replace="structure obj/abstract_render">abstract</span></td>
         </tr>
-	<tr tal:define="parent obj/getParent" tal:condition="parent">
+	<tr tal:define="parentAuthors obj/parentAuthors | nothing" tal:condition="parentAuthors">
+    <tal:span tal:define=" parent obj/getParent">
 	  <th i18n:translate="listingheader_contpubd_basedon">Based On:</th>
 	  <td i18n:translate="text_contpubd_parent_by"><a class="link"
               i18n:name="parent_link" tal:attributes="href parent/url" tal:content="parent/title">[title]</a> by 
             <span i18n:name="author_list">
-              <tal:authors tal:repeat="p here/parentAuthors">
+              <tal:authors tal:repeat="p parentAuthors">
                 <tal:badauthor tal:on-error="string:(${p})">
                   <tal:author tal:define="u
                     python:here.desecured.getMemberById(p)">
@@ -173,6 +174,7 @@
               </tal:authors>
             </span>
 	  </td>
+    </tal:span>
 	</tr>
       </table>
 

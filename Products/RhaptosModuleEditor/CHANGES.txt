@@ -1,5 +1,7 @@
+RhaptosModuleEditor-0.67
+  - Google Analytics additions for downloads, make page-views async
+ 
 RhaptosModuleEditor-0.66.1
-  - generic setup refactor. Rhaptos 2.0 release
   - Changed textarea/@wrap to "soft" instead of "on" for WebKit support.
 
 RhaptosModuleEditor-0.66
