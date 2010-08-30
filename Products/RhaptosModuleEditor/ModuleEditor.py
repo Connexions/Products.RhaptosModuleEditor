@@ -218,6 +218,11 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             else:
                 setattr(self, 'objectId', self.id)
 
+        # Add import_authors properties
+        if not hasattr(self, 'import_authors'):
+            setattr(self, 'import_authors', [])
+            setattr(self, 'is_imported', False)
+
     def isPublic(self):
         """Boolean answer true iff module is in versioned repository.
         Based currently on value of 'state' attribute.
