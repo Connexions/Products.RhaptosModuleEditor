@@ -16,7 +16,8 @@ if needLicenseAgreement:
     needNewLicenseAgreement = ( current_license != '' )
     if needNewLicenseAgreement:
         # the default license has changed between the start of editing and publish ...
-        return state.set(status='license', portal_status_message="The publication license agreement has changed since you last agreed to it.  You will need to accept the new license prior to publish.")
+        license_data = context.getLicenseData(current_license)
+        return state.set(status='license', portal_status_message="The publication license agreement has changed since you last agreed to it.  The previous license on this content was the Creative Commons %(name)s License, Version %(version)s. You will need to accept the new license prior to publish." % license_data)
     else:
         # the license has never been agreed to ...
         return state.set(status='license')
