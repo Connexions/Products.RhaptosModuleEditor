@@ -9,7 +9,7 @@
                              publishblocked publishBlocked | python:context.publishBlocked(versioninfo);
                              publisherror publishblocked/failtype | nothing;
                              publisherrorfaildata publishblocked/faildata | nothing;
-                             publishtemplate python:template.id=='module_publish'">
+                             publishtemplate python:template.id=='module_publish_description'">
         <div tal:condition="upgrade"
              style="border: 1px solid #e70; background-color: #fdf3e8; padding: .5em; margin: 1em 0; font-size: .9em;">
           This module has been automatically upgraded to CNXML 0.7, which is the latest version of the language.
