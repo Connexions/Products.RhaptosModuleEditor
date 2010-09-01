@@ -39,6 +39,17 @@ if cnxmlvers == None:
     err['failtype'] = 'notcnxml'
     return err
 
+# Latest license present
+current_license = context.getProperty('license') or ''
+
+if current_license == '':
+    err['failtype'] = 'nolicense'
+    return err
+elif current_license != context.getDefaultLicense():
+    err['failtype'] = 'oldlicense'
+    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense()}
+    return err
+
 # Load in list of messages this user has already seen and dismissed for this object
 from AccessControl import getSecurityManager
 cur_user = getSecurityManager().getUser().getUserName()
