@@ -394,8 +394,11 @@
 	      i18n:translate="label_controles_selworkgrp">
 	      Select from members of your current workgroup</a></li>
           <li tal:condition="context/getImportAuthors|nothing">
-            Search for all creators found in the imported document
+            <a tal:define="authors context/getImportAuthors"
+               tal:attributes="href python:&quot;javascript:searchUsers(['%s'])&quot; % '&quot;, &quot;'.join(authors);">Search for all creators found in the imported document</a>
+
             <div style="margin-top: 0.3em;">
+              Search for creators individually: 
               <tal:block tal:repeat="name context/getImportAuthors">
                 <a tal:attributes="href python:&quot;javascript:searchUser('%s')&quot; % name;"
                    tal:content="name">Aura Reggiani</a><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span> 
