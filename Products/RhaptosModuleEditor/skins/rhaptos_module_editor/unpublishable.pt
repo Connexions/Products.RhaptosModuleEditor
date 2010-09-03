@@ -199,8 +199,8 @@ of this object, so you will not be able to publish the current revision. Other o
             </span> to the module's maintainers, or</span>
           <span i18n:translate="text_publish_fork">
             <span i18n:name="fork_link">
-              <a href="confirm_fork" i18n:translate="label_create_new_module">derive a copy</a>
-            </span> of your own based on this one.</span>
+              <a href="confirm_fork" i18n:translate="label_create_new_module">derive your own copy</a>
+            </span> based on this module.</span>
 </p>
 </div>
           </tal:block>
