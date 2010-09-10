@@ -52,15 +52,14 @@
       <h4 i18n:translate="heading_controles_currentroles">Current Roles:</h4>
 
 	  <div tal:condition="context/getImportAuthors|nothing"
-	    id="import-recs" 
-	    style="border: 1px solid rgb(140, 172, 187); padding: 0.75em 1em ! important; margin-bottom: 1em; background-color: rgb(238, 238, 238); font-size: 1em; margin-top: 0.5em;">
-        <p style="font-size: 0.9em;">
+	    class="import-recs">
+        <p>
             <strong>Note:</strong> 
           We found the following creators in the imported document.  
           Use the <a href="content_roles#collaborator_search">Search for new collaborators</a> section below to add them as authors, maintainers, or copyright holders.  
           <a href="/help/authoring/sword-roles/">(help)</a>
         </p>
-        <p style="margin: 0.5em 0pt 0pt; font-size: 1em;">
+        <p>
           <tal:block tal:repeat="name context/getImportAuthors">
             <i tal:content="name">Aura Reggiani</i><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span>
           </tal:block>
@@ -405,7 +404,7 @@
               </tal:block>
             </div>
 
-            <div id="import-recs" style="border: 1px solid rgb(140, 172, 187); padding: 0.5em; margin-bottom: 1em; background-color: rgb(238, 238, 238); font-size: 0.9em; margin-top: 1em;">
+            <div id="import-recs">
               <p>
                 <strong>Note:</strong> 
                 Creators found in the imported document will not appear in search results unless they have a Connexions account.

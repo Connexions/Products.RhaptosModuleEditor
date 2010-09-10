@@ -58,7 +58,7 @@
       <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
         and thus the validation, etc, needs to be after that.</tal:comment>
 
-      <div id="import-recs" 
+      <div class="import-recs" 
            tal:condition="context/isImported|nothing">
         <p>
           <strong>You have imported this module from another site.  We recommend you review the following:</strong>
