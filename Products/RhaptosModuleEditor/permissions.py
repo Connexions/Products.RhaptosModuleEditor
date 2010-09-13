@@ -16,6 +16,6 @@ AddModuleEditor = 'Add ModuleEditor'
 ChangeModuleEditor = 'Change ModuleEditor Content'
 
 # Set up default roles for permissions
-setDefaultRoles(AddModuleEditor, ('Manager', 'Owner', 'Member'))
+setDefaultRoles(AddModuleEditor, ('Manager', 'Owner'))
 setDefaultRoles(ChangeModuleEditor, ('Manager', 'Owner','Maintainer'))
 
