@@ -259,13 +259,6 @@ pre.space{
   border: 1px solid black;
 }
 
-#import-recs { /* Message displayed when module created using Sword import */
-  background-color: #fdd;
-  margin: 1em 0;
-  padding: .5em;
-  border: 1px solid black;
-}
-
 /* Show solutions instead of telling user to click on them */
 .solution-toggles{display: none !important;}
 .solution {display: block;}
