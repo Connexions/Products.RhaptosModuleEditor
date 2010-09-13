@@ -404,10 +404,10 @@
               </tal:block>
             </div>
 
-            <div id="import-recs">
+            <div class="import-recs">
               <p>
                 <strong>Note:</strong> 
-                Creators found in the imported document will not appear in search results unless they have a Connexions account.
+                Creators found in the imported document will not appear in search results unless they have an account on this site.
                 <a href="/help/authoring/sword-roles/">(help)</a>
              </p>
            </div>
