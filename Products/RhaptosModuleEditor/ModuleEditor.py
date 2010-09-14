@@ -416,7 +416,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """ A flag if the module is imported. """
         return getattr(self,'is_imported',False)
     
-    security.declarePublic('isetImported')
+    security.declarePublic('setImported')
     def setImported(self, isImported):
         """ set whether or not the document has been imported """
         self.is_imported = isImported
