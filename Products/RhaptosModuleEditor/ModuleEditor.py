@@ -415,6 +415,12 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def isImported(self):
         """ A flag if the module is imported. """
         return getattr(self,'is_imported',False)
+    
+    security.declarePublic('isetImported')
+    def setImported(self, isImported):
+        """ set whether or not the document has been imported """
+        self.is_imported = isImported
+        self._p_changed = 1
 
     def getLinks(self):
         """Get overlay links"""

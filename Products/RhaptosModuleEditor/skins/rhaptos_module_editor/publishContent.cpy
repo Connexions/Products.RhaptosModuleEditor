@@ -55,6 +55,13 @@ context.updateMetadata()
 # we want the logAction above, since delete doesn't trigger a logAction in 'published' state
 context.manage_delObjects(context.objectIds())
 
+# If the module was imported using SWORD, remove the additional attributes
+if hasattr(context,'import_authors'):
+  context.setImportAuthors([])
+
+if hasattr(context,'is_imported'):
+  context.setImported(False)
+
 # Update similarity  - temp remove this until we can reduce the load impact
 # context.portal_similarity.storeSimilarity(context)
 
