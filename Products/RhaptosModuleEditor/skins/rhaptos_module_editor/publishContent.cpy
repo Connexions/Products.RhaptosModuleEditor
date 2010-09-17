@@ -62,6 +62,9 @@ if hasattr(context,'import_authors'):
 if hasattr(context,'is_imported'):
   context.setImported(False)
 
+if hasattr(context,'has_attribution_note'):
+  context.set_has_attribution_note(False)
+
 # Update similarity  - temp remove this until we can reduce the load impact
 # context.portal_similarity.storeSimilarity(context)
 
