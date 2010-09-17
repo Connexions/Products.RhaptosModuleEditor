@@ -102,6 +102,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'subject','type':'lines', 'mode': 'w'},
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
                  {'id':'is_imported','type':'boolean', 'mode': 'w'},
+                 {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -140,6 +141,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'subject': (),
                           'import_authors': [],
                           'is_imported': False,
+                          'has_attribution_note': False,
                           }
 
         # Store object properties
@@ -222,6 +224,9 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         if not hasattr(self, 'import_authors'):
             setattr(self, 'import_authors', [])
             setattr(self, 'is_imported', False)
+        
+        if not hasattr(self, 'has_attribution_note'):
+            setattr(self, 'has_attribution_note', False)
 
     def isPublic(self):
         """Boolean answer true iff module is in versioned repository.
@@ -421,6 +426,18 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """ set whether or not the document has been imported """
         self.is_imported = isImported
         self._p_changed = 1
+        
+    security.declarePublic('has_attribution_note')
+    def has_attribution_note(self):
+        """ A flag if the module is imported. """
+        return getattr(self,'is_imported',False)
+    
+    security.declarePublic('set_has_attribution_note')
+    def set_has_attribution_note(self, flag):
+        """ set whether or not the document has an auto-generated attribution note as a result of import """
+        self.has_attribution_note = flag
+        self._p_changed = 1
+    
 
     def getLinks(self):
         """Get overlay links"""

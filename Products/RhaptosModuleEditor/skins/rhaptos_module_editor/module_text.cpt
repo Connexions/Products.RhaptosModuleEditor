@@ -64,7 +64,7 @@
           <strong>You have imported this module from another site.  We recommend you review the following:</strong>
         </p>
         <ul>
-          <li><strong>Citation:</strong> Review the citation to the original location that we've inserted at the bottom of the module (you 
+          <li tal:condition="context/has_attribution_note"><strong>Citation:</strong> Review the citation to the original location that we've inserted at the bottom of the module (you 
 can edit or delete this if desired).</li>
           <li><strong>Roles:</strong> <a href="content_roles">Review the "Roles" page</a> to ensure that all authors are credited.</li> 
           <li><strong>Preview:</strong> <a href="module_preview">Preview the content</a> to ensure the document was imported correctly.</li>
