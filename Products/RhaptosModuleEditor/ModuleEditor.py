@@ -87,23 +87,26 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'version','type':'string', 'mode': 'w'},
                  {'id':'created', 'type':'date', 'mode': 'w'},
                  {'id':'revised','type':'date', 'mode': 'w'},
-                 {'id':'authors','type':'lines', 'mode': 'w'},   
-                 {'id':'maintainers','type':'lines', 'mode': 'w'},       
+                 {'id':'authors','type':'lines', 'mode': 'w'},
+                 {'id':'maintainers','type':'lines', 'mode': 'w'},
                  {'id':'licensors','type':'lines', 'mode': 'w'},
-                 {'id':'parentAuthors','type':'lines', 'mode': 'w'},     
+                 {'id':'parentAuthors','type':'lines', 'mode': 'w'},
                  {'id':'keywords','type':'lines', 'mode': 'w'},
                  {'id':'abstract','type':'string', 'mode': 'w'},
                  {'id':'license','type':'string', 'mode': 'w'},
                  {'id':'language','type':'string', 'mode': 'w'},
-                 {'id':'pub_authors','type':'lines', 'mode': 'w'},       
-                 {'id':'pub_maintainers','type':'lines', 'mode': 'w'},   
-                 {'id':'pub_licensors','type':'lines', 'mode': 'w'},     
-                 {'id':'collaborators','type':'lines', 'mode': 'w'},     
+                 {'id':'pub_authors','type':'lines', 'mode': 'w'},
+                 {'id':'pub_maintainers','type':'lines', 'mode': 'w'},
+                 {'id':'pub_licensors','type':'lines', 'mode': 'w'},
+                 {'id':'collaborators','type':'lines', 'mode': 'w'},
                  {'id':'subject','type':'lines', 'mode': 'w'},
+                 {'id':'import_authors','type':'lines', 'mode': 'w'},
+                 {'id':'is_imported','type':'boolean', 'mode': 'w'},
+                 {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
                  )
 
     # Compatibility attributes
-    
+
     # Add a computed "roles" attribute so that optional roles on ModuleEditors
     # can be accessed in the same way as optional role on ModuleViews
     roles = ComputedAttribute(lambda self: self.getRolesDict(),1)
@@ -125,7 +128,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'version': "**new**",
                           'authors' : [user],
                           'maintainers' : [user],
-                          'licensors' : [user],                          
+                          'licensors' : [user],
                           'parentAuthors' : [],
                           'keywords': [],
                           'abstract': '',
@@ -136,6 +139,9 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'pub_licensors' : [user],
                           'collaborators' : [user],
                           'subject': (),
+                          'import_authors': [],
+                          'is_imported': False,
+                          'has_attribution_note': False,
                           }
 
         # Store object properties
@@ -214,8 +220,16 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             else:
                 setattr(self, 'objectId', self.id)
 
+        # Add import_authors properties
+        if not hasattr(self, 'import_authors'):
+            setattr(self, 'import_authors', [])
+            setattr(self, 'is_imported', False)
+        
+        if not hasattr(self, 'has_attribution_note'):
+            setattr(self, 'has_attribution_note', False)
+
     def isPublic(self):
-        """Boolean answer true iff collection is in versioned repository.
+        """Boolean answer true iff module is in versioned repository.
         Based currently on value of 'state' attribute.
         """
         return self.state == 'public'
@@ -378,6 +392,52 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         metadata['parent'] = parent
         
         return metadata
+
+    def updateProperties(self, dict):
+        self.manage_changeProperties(dict)
+        self.reindexObject()
+
+
+    security.declarePublic('getImportAuthors')
+    def getImportAuthors(self):
+        """ get the authors from the imported document. """
+        if self.state == 'created':
+            import_authors = getattr(self,'import_authors',[])
+            return import_authors
+        else:
+            return []
+
+    security.declarePublic('setImportAuthors')
+    def setImportAuthors(self, authors=[]):
+        """ set the authors for the imported document. """
+        if self.state == 'created':
+            self.import_authors = authors
+        else:
+            self.import_authors = []
+        self._p_changed = 1
+
+    security.declarePublic('isImported')
+    def isImported(self):
+        """ A flag if the module is imported. """
+        return getattr(self,'is_imported',False)
+    
+    security.declarePublic('setImported')
+    def setImported(self, isImported):
+        """ set whether or not the document has been imported """
+        self.is_imported = isImported
+        self._p_changed = 1
+        
+    security.declarePublic('has_attribution_note')
+    def has_attribution_note(self):
+        """ A flag if the module is imported. """
+        return getattr(self,'is_imported',False)
+    
+    security.declarePublic('set_has_attribution_note')
+    def set_has_attribution_note(self, flag):
+        """ set whether or not the document has an auto-generated attribution note as a result of import """
+        self.has_attribution_note = flag
+        self._p_changed = 1
+    
 
     def getLinks(self):
         """Get overlay links"""
@@ -821,3 +881,4 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             return None
 
 InitializeClass(ModuleEditor)
+

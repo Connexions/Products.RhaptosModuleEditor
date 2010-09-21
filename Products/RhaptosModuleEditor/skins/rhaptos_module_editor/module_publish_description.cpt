@@ -1,3 +1,5 @@
+<tal:block tal:define="default_tab string:publish">
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -66,7 +68,7 @@
 	    <div tal:content="error" i18n:translate="">Validation error output</div>
 	    
 	    <textarea name="message" 
-		          wrap="on" 
+                          wrap="on" 
                           cols="50" 
 	                  style="width: 50%"
                           rows="5"
@@ -120,3 +122,5 @@
     </div>
   </body>
 </html>
+
+</tal:block>

@@ -51,6 +51,21 @@
 
       <h4 i18n:translate="heading_controles_currentroles">Current Roles:</h4>
 
+	  <div tal:condition="context/getImportAuthors|nothing"
+	    class="import-recs">
+        <p>
+            <strong>Note:</strong> 
+          We found the following creators in the imported document.  
+          Use the <a href="content_roles#collaborator_search">Search for new collaborators</a> section below to add them as authors, maintainers, or copyright holders.  
+          <a href="/help/authoring/sword-roles/">(help)</a>
+        </p>
+        <p>
+          <tal:block tal:repeat="name context/getImportAuthors">
+            <i tal:content="name">Aura Reggiani</i><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span>
+          </tal:block>
+        </p>
+      </div>
+
       <tal:block>
       <ul class="roles_listing">
 	  <tal:block tal:repeat="role python:moduleRoles">
@@ -346,10 +361,10 @@
 
       <hr style="margin-top: 1em;" />
 
-      <form name="search"
+      <form name="collaborators_search"
             tal:condition="not:readonly|nothing"
             tal:attributes="action template/getId">
-        <h4 i18n:translate="heading_controles_newcollabs">Search for New Collaborators:</h4>
+        <h4 id="collaborator_search" i18n:translate="heading_controles_newcollabs">Search for New Collaborators:</h4>
 
 	<p i18n:translate="text_controles_selectpeople">
 	  Select people to serve as authors, maintainers, and
@@ -377,6 +392,26 @@
 	    <a href="" tal:attributes="href string:$here_url/content_roles?form.button.addWorkgroup=Workgroup"
 	      i18n:translate="label_controles_selworkgrp">
 	      Select from members of your current workgroup</a></li>
+          <li tal:condition="context/getImportAuthors|nothing">
+            <a tal:define="authors context/getImportAuthors"
+               tal:attributes="href python:&quot;javascript:searchUsers(['%s'])&quot; % '&quot;, &quot;'.join(authors);">Search for all creators found in the imported document</a>
+
+            <div style="margin-top: 0.3em;">
+              Search for creators individually: 
+              <tal:block tal:repeat="name context/getImportAuthors">
+                <a tal:attributes="href python:&quot;javascript:searchUser('%s')&quot; % name;"
+                   tal:content="name">Aura Reggiani</a><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span> 
+              </tal:block>
+            </div>
+
+            <div class="import-recs">
+              <p>
+                <strong>Note:</strong> 
+                Creators found in the imported document will not appear in search results unless they have an account on this site.
+                <a href="/help/authoring/sword-roles/">(help)</a>
+             </p>
+           </div>
+          </li>
 	  </ul>
       </form>
 

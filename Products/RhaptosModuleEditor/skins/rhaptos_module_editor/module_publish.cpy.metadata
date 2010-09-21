@@ -1,0 +1,6 @@
+[default]
+title=Publish Description
+
+[actions]
+action.license = traverse_to:string:cc_license_prepub
+action.success = traverse_to:string:module_publish_description

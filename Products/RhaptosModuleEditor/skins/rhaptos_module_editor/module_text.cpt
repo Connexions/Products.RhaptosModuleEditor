@@ -58,7 +58,21 @@
       <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
         and thus the validation, etc, needs to be after that.</tal:comment>
 
-      <p tal:define="t template/getId" i18n:translate="text_module_editing_options">
+      <div class="import-recs" 
+           tal:condition="context/isImported|nothing">
+        <p>
+          <strong>You have imported this module from another site.  We recommend you review the following:</strong>
+        </p>
+        <ul>
+          <li tal:condition="context/has_attribution_note"><strong>Citation:</strong> Review the citation to the original location that we've inserted at the bottom of the module (you 
+can edit or delete this if desired).</li>
+          <li><strong>Roles:</strong> <a href="content_roles">Review the "Roles" page</a> to ensure that all authors are credited.</li> 
+          <li><strong>Preview:</strong> <a href="module_preview">Preview the content</a> to ensure the document was imported correctly.</li>
+        </ul>
+      </div>
+
+      <p tal:condition="not:context/isImported|nothing"
+         tal:define="t template/getId" i18n:translate="text_module_editing_options">
 	There are three ways to edit modules: 
 	<span i18n:name="edit_in_place">
 	  <strong>
@@ -80,7 +94,7 @@
               tal:condition="nocall:help">
           <tal:comment tal:replace="nothing">
             the above condition prevents shrinkwRaptos from showing the help link.
-            the <a> below works for both JS and nonJS environments.</tal:comment>
+            the "a" below works for both JS and nonJS environments.</tal:comment>
           <a href="/help/authoring/editmodule"
              onclick="javascript:"
              tal:define="help_url help/absolute_url;"
@@ -95,6 +109,7 @@
         <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
       </tal:editblocked>
 
+      <tal:notimported tal:condition="not:context/isImported|nothing">
       <div class="importexport"
            metal:define-macro="importexport">
         <table style="margin: 0; padding: 0">
@@ -195,6 +210,7 @@
         </tr>
       </table>
       </div>
+      </tal:notimported>
 
       <tal:editnotblocked tal:condition="not:editBlockedForUpgrade">
         <div id="eipTopEditHelpLink"
@@ -202,7 +218,7 @@
              tal:condition="nocall:help">
           <tal:comment tal:replace="nothing">
             the above condition prevents shrinkwRaptos from showing the help link.
-            the <a> below works for both JS and nonJS environments.</tal:comment>
+            the "a" below works for both JS and nonJS environments.</tal:comment>
           <a href="/help/authoring/editmodule"
              onclick="javascript:"
              tal:define="help_url help/absolute_url;"
@@ -263,3 +279,4 @@
   </div>
   </body>
 </html>
+

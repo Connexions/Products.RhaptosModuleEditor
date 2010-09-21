@@ -52,7 +52,7 @@ def initialize(context):
     utils.initializeBasesPhase2( z_bases, context )
     utils.ContentInit(ModuleEditor.ModuleEditor.meta_type,
                       content_types = contentClasses,
-                      permission = CMFCorePermissions.AddPortalContent,
+                      permission = permissions.AddModuleEditor,
                       extra_constructors = contentConstructors).initialize(context)
     
 

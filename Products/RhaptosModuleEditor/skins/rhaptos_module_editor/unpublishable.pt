@@ -9,7 +9,7 @@
                              publishblocked publishBlocked | python:context.publishBlocked(versioninfo);
                              publisherror publishblocked/failtype | nothing;
                              publisherrorfaildata publishblocked/faildata | nothing;
-                             publishtemplate python:template.id=='module_publish'">
+                             publishtemplate python:template.id=='module_publish_description'">
         <div tal:condition="upgrade"
              style="border: 1px solid #e70; background-color: #fdf3e8; padding: .5em; margin: 1em 0; font-size: .9em;">
           This module has been automatically upgraded to CNXML 0.7, which is the latest version of the language.
@@ -26,7 +26,7 @@
         
         <div tal:condition="publishblocked"
              tal:define="notetype python:test(publishtemplate, 'PUBLISH BLOCKED', 'WARNING');
-                         baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml'];
+                         baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml','nolicense','oldlicense'];
                          color python:test(publisherror in baderrors, 'yellow', '#fe7');
                          stylestring python:'border: 2px solid #e70;; background-color: %s;; padding: 0.5em;; margin: 0.5em 0;;' % color">
           <tal:block tal:condition="python:publisherror=='cnxmlfivedismissed'">
@@ -173,7 +173,22 @@ the module.
 you enter a title on the <a href="module_metadata">metadata page</a>.
 </div>
           </tal:block>
-          <tal:block tal:condition="python:publisherror=='notmaint'and publishtemplate">
+          <tal:block tal:condition="python:publisherror=='nolicense' and publishtemplate">
+            <div tal:attributes="style stylestring">
+
+<b tal:content="string:${notetype}:">WARNING:</b> You have not yet agreed to a license for this content. Please <a href="module_publish">do so</a> now.
+</div>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='oldlicense' and publishtemplate">
+            <div tal:attributes="style stylestring">
+
+                <b tal:content="string:${notetype}:">WARNING:</b> 
+                The publication license agreement has changed since you last
+                agreed to it. You will need to <a href="module_publish"
+                >accept the new license</a> prior to publishing.
+</div>
+          </tal:block>
+          <tal:block tal:condition="python:publisherror=='notmaint' and publishtemplate">
             <div tal:attributes="style stylestring">
 
 <p><b tal:content="string:${notetype}:">WARNING:</b> You do not have <b>maintainer permissions</b> on the published version 
@@ -184,8 +199,8 @@ of this object, so you will not be able to publish the current revision. Other o
             </span> to the module's maintainers, or</span>
           <span i18n:translate="text_publish_fork">
             <span i18n:name="fork_link">
-              <a href="confirm_fork" i18n:translate="label_create_new_module">create a new module</a>
-            </span> of your own based on this one.</span>
+              <a href="confirm_fork" i18n:translate="label_create_new_module">derive your own copy</a>
+            </span> based on this module.</span>
 </p>
 </div>
           </tal:block>

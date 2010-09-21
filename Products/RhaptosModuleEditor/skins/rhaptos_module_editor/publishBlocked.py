@@ -90,5 +90,16 @@ if not haspermission:
     err['failtype'] = 'notmaint'
     return err
 
+# Latest license present
+current_license = context.getProperty('license') or ''
+
+if current_license == '':
+    err['failtype'] = 'nolicense'
+    return err
+elif current_license != context.getDefaultLicense():
+    err['failtype'] = 'oldlicense'
+    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense()}
+    return err
+
 # Default return in normal case
 return False

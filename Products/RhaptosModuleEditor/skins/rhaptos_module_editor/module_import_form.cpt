@@ -34,14 +34,6 @@
             that you can mark it up in CNXML without having to retype the content. Some cautions:</p>
         <ul>
           <li>
-            <strong i18n:translate="text_modimpfrm_boldformattinggone">Bold and Italics will be   
-              Ignored:</strong>
-            <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, 
-              italics, and colors are ignored, unless you use the provided
-              <a href="/help/authoring/templates/Connexions-Document.dot"
-                 i18n:name="label_modimpfrm_doctemplate">document template</a>
-              and tag those items as emphasis, citations, glossary terms, etc.</span></li>
-          <li>
             <strong i18n:translate="text_modimpfrm_boldimageswillbreak">Images:</strong>
             <span i18n:translate="text_modimpfrm_imageswillbreak">Many images will be imported
               without trouble. Images contained in figures or tables, created directly in
@@ -90,12 +82,6 @@
             text from your document so that you can mark it up in CNXML without having to
             retype the content. Some cautions:</p>
         <ul>
-          <li>
-            <strong i18n:translate="text_modimpfrm_boldformattinggone">Bold and Italics will be Ignored:</strong>
-            <span i18n:translate="text_modimpfrm_formattinggone">Most visual styles like bold, italics, and
-              colors are ignored, unless you use the provided
-              <a href="/help/authoring/templates/Connexions-Document.dot" i18n:name="label_modimpfrm_doctemplate">document template</a>
-              and tag those items as emphasis, citations, glossary terms, etc.</span></li>
           <li>
             <strong i18n:translate="text_modimpfrm_boldimageswillbreak">Images:</strong>
             <span i18n:translate="text_modimpfrm_imageswillbreak">Many images will be

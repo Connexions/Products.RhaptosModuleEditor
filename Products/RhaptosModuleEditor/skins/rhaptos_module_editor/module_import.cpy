@@ -10,6 +10,7 @@
 from Products.CNXMLTransforms.helpers import OOoImportError, doTransform, makeContent
 import transaction
 from AccessControl import getSecurityManager
+from Products.CNXMLDocument import XMLService
 
 psm = context.translate("message_import_completed", domain="rhaptos", default="Import completed.")
 
@@ -103,6 +104,25 @@ elif format in ('zip'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
+## Sword import (Zip of word doc + mets.xml) (Deprecated, unfortunately)
+elif format in ('sword'):
+    #context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
+    try:
+        kwargs = {'original_file_name':importFile.filename, 'user_name':getSecurityManager().getUser().getUserName()}
+        text, subobjs, meta = doTransform(context, "sword_to_folder", text, meta=1, **kwargs)
+        if text:
+            context.manage_delObjects([context.default_file,])
+            context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='zip-')
+        makeContent(context, subobjs)
+        # Parse the returned mdml and set attributes up on the ModuleEditor object
+        context.updateMdmlStr(meta.get('mdml'))
+
+    except OOoImportError, e:
+        transaction.abort()
+        message = context.translate("message_could_not_import", {"errormsg":e}, domain="rhaptos",
+                                    default="Could not import file. %s" % e)
+        return state.set(status='failure', portal_status_message=message)
+
 ## unknown
 else:
     message = context.translate("message_import_type_not_supported", domain="rhaptos",
@@ -117,3 +137,4 @@ if came_from in ('module_files', 'module_text'):
     state.set(status=came_from)
 
 return state.set(portal_status_message=psm)
+
