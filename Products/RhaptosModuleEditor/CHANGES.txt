@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.68
+  - sword import support
+
 RhaptosModuleEditor-0.67
   - Google Analytics additions for downloads, make page-views async
  
