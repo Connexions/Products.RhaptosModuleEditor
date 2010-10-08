@@ -49,7 +49,7 @@ else:
   messagesDismissed = []
 
 # Needs-upconversion check
-if cnxmlvers == '0.5':
+if cnxmlvers == '0.5' or cnxmlvers == '0.6':
     formednesserrors = context.wellformed()
     if not formednesserrors:  # only on Modules, but we should only be on Modules at this point
         # CNXML 0.5, upgradable
