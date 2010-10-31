@@ -8,6 +8,8 @@ This software is subject to the provisions of the GNU General
 Public License Version 2 (GPL).  See LICENSE.txt for details.
 """
 
+from zope.interface import implements
+
 from Globals import InitializeClass
 from Products.CMFDiffTool.FieldDiff import FieldDiff
 from Products.CMFDiffTool.interfaces.portal_diff import IDifference
@@ -16,7 +18,7 @@ from Products.CMFDiffTool.interfaces.portal_diff import IDifference
 class LinksDiff(FieldDiff):
     """Differences between lists of link dictionaries"""
 
-    __implements__ = (IDifference)
+    implements(IDifference)
 
     meta_type = "Links Diff"
 

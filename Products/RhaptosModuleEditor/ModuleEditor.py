@@ -13,7 +13,6 @@ import zLOG
 import transaction
 from xml.dom.minidom import parseString
 from xml.parsers.expat import ExpatError as XMLParseError
-from zope.interface import implements
 from DateTime import DateTime
 from Persistence import Persistent
 from ComputedAttribute import ComputedAttribute
@@ -60,12 +59,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     This defines an editor for modules in the Rhaptos system
     """
-    try:
-        __implements__ = (PloneFolder.__implements__, CollaborationManager.__implements__, IReferenceable)
-    except:
-        pass  # in case CollabMan grows an interface
 
-    __implements__ = (PloneFolder.__implements__, IReferenceable)
     # we didn't have anything here previous to adding Referenceable, so if no Archetypes, nothing changes
 
     meta_type = "Module Editor"
