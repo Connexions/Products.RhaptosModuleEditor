@@ -8,7 +8,7 @@ This software is subject to the provisions of the GNU General
 Public License Version 2 (GPL).  See LICENSE.txt for details.
 """
 
-from Products.CMFCore.CMFCorePermissions import setDefaultRoles
+from Products.CMFCore.permissions import setDefaultRoles
 # We put these here; refactoring.
 
 # Permissions

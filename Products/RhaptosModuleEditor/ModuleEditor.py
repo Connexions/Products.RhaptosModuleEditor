@@ -24,7 +24,7 @@ from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFPlone.PloneFolder import PloneFolder
 from Products.CMFCore.WorkflowCore import WorkflowAction
 from Products.CMFDiffTool.ChangeSet import ChangeSet
-from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from Products.RhaptosCollaborationTool.CollaborationManager import CollaborationManager
 from Products.RhaptosCollection.types.CollectionBase import CollectionBase
@@ -44,7 +44,6 @@ except ImportError:
 
 
 # Import permission names
-from Products.CMFCore import CMFCorePermissions
 import permissions 
 
 

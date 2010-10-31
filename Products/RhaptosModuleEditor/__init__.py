@@ -15,7 +15,7 @@ from Globals import package_home
 from AccessControl import ModuleSecurityInfo
 
 from Products.CMFDefault import Portal
-from Products.CMFCore import utils, CMFCorePermissions
+from Products.CMFCore import utils, permissions
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFDiffTool import CMFDiffTool
 
