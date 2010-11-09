@@ -21,14 +21,12 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from AccessControl import getSecurityManager, ClassSecurityInfo, Unauthorized
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFPlone.PloneFolder import PloneFolder
-from Products.CMFCore.WorkflowCore import WorkflowAction
-from Products.CMFDiffTool.ChangeSet import ChangeSet
+from Products.CMFDiffTool.ChangeSet import BaseChangeSet as ChangeSet
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from Products.RhaptosCollaborationTool.CollaborationManager import CollaborationManager
 from Products.RhaptosCollection.types.CollectionBase import CollectionBase
 from Products.LinkMapTool.LinkMapTool import ExtendedLink
-from Products.PloneLanguageTool import availablelanguages
 from Products.Archetypes.public import DisplayList
 from Products.CNXMLDocument import XMLService
 from Products.CNXMLDocument import CNXML_SEARCHABLE_XSL as baretext
@@ -290,7 +288,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def edit(self):
         """Change the instance's properties """
         pass
-    edit = WorkflowAction(edit)
 
 
     def getPublishedObject(self):
@@ -732,27 +729,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         except KeyError:
             return None
 
-    def getLanguageWithSubtypes(self,lang,*args,**kwargs):
-        """get language codes w/ subtypes"""
-        
-        c = availablelanguages.countries
-        locales = [(l[0],c[l[0][3:].upper()]) for l in availablelanguages.combined.items() if l[0].startswith(lang)]
-        locales.sort(lambda x, y: cmp(x[1], y[1]))
-        
-        if len(locales):
-            locales.insert(0,(lang,'None'))
-        else:
-            locales = [(lang,'(none available)')]
-        return DisplayList(locales)
-        
-    def getLanguagesWithoutSubtypes(self):
-        """get language codes that have no subtypes"""
-        
-        sl={}.fromkeys([l[:2] for l in availablelanguages.combined.keys()]).keys()
-        langs = [l for l in availablelanguages.languages.keys() if l not in sl]
-        langs.sort()
-        return langs
-    
     # internal functions #######################################################
     def _writeMetadata(self):
         """Write out metadata to CNXML file"""
