@@ -20,7 +20,7 @@
 
   <subscriber
       for="Products.UniFile.interfaces.IUnifiedFile
-           zope.app.container.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".eventHandlers.moduleContentsModified"
       />
 
@@ -41,12 +41,12 @@
 -->
 
   <!-- Interface marking -->
-  <content class=".ModuleEditor.ModuleEditor">
+  <class class=".ModuleEditor.ModuleEditor">
     <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLContainer" />
-  </content>
+  </class>
 
-  <content class=".ModuleEditor.ModuleEditor">
+  <class class=".ModuleEditor.ModuleEditor">
     <implements interface="Products.CNXMLDocument.newinterfaces.ICNXMLAbstract" />
-  </content>
+  </class>
 
 </configure>
