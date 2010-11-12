@@ -839,7 +839,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         #Get browser set language. May want to have a userpref default lang.
         lang_tool = getToolByName(self,'portal_languages')
         langs=lang_tool.getLanguageBindings()
-        self.language = langs[0]
+        if self.language == '':
+            self.language = langs[0]
         self._defaults['language'] = langs[0]
 
         if not self.getDefaultFile():
