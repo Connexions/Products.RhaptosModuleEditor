@@ -41,6 +41,12 @@
         <input type="submit" name="checkout" value="Checkout"
                 i18n:attributes="value text_button_checkout" class="standalone" />
       </form>
+      
+      <div class="import-recs" >
+        <p>
+          <strong>PDFs, EPUBs and other downloadable files are not created immediately.  Please wait 24 hours before checking if your content's downloadable files are available and correct.</strong>
+        </p>
+      </div>
 
       <table class="leftheadings linkdata">
         <tr>
