@@ -354,7 +354,7 @@
              tal:attributes="class python:test(error, 'field error', 'field')">
             <label i18n:translate="label_google_analytics">Google Analytics Tracking Code</label>
             <div i18n:translate="help_google_analytics_creation" class="formHelp">
-                Enter the Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) to track its usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
+                Enter the Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) to track usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
             </div>
                 <input type="text"
                        name="GoogleAnalyticsTrackingCode"
