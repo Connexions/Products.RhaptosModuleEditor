@@ -7738,7 +7738,7 @@ function Table_WorkFlowStep() {
         }
         else if ( iRequestedRows < iActualRows ) {
             if ( !bUserInformedOnClipping ) {
-                bDoResize = window.confirm('This resize will make the table smaller..\n\n' +
+                bDoResize = window.confirm('This resize will make the table smaller.\n\n' +
                                            'Some elements of the table will be deleted.  As soon as you hit Save' + ',\n' +
                                            'they will be permanently lost.\n\n' +
                                            'Until then, you may still hit Cancel to restore the previous state of the table.\n\n' +
