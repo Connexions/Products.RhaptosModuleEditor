@@ -11783,9 +11783,9 @@ function MathEditor() {
  * @param {Element} parent The container for the created launcher link
  */
 MathEditor.addLaunchButton = function(parent) {
-	if (!Ext.isGecko) 
-		return; //Fail on anything other that Firefox
-	// Adding launcher for the MathML Editor
+    if (!(Ext.isGecko || Ext.isChrome || Ext.isSafari)) 
+        return; //Fail on anything other that Firefox
+    // Adding launcher for the MathML Editor
     var launchMathEditor = document.createElement('div');
     launchMathEditor.className = 'eipMathEditor';
     var launchMathEditorLink = document.createElement('a');
