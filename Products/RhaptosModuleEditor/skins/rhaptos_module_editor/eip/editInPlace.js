@@ -1806,7 +1806,6 @@ function WorkFlowStep() {
             sendSource(strServerRequestUrl, strChangedXmlTag, strChangedXml, strXPathToChangedXmlNode,
                        funcServerReturnCalback);
         }
-        MathJax.Hub.Typeset(); //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     function handleCancel(e) {
@@ -1981,6 +1980,7 @@ function WorkFlowStep() {
                width: 600
             });
        }
+       MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     function handleServerAddRequestReturn() {
@@ -2043,6 +2043,7 @@ function WorkFlowStep() {
                width: 600
             });
         }
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     function handleServerDeleteRequest() {
