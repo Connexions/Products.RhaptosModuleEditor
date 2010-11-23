@@ -28,7 +28,7 @@
     <script type="text/javascript" src="/extjs/ext.js"
             tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
     <script type="text/javascript" src="/MathJax/MathJax.js"
-            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
+            tal:attributes="src string:$portal_url/++resource++mathjax/unpacked/MathJax.js;">
         MathJax.Hub.Config({
             config: ["MMLorHTML.js"],
             extensions: ["mml2jax.js"],
