@@ -6,7 +6,6 @@
       i18n:domain="rhaptos">
 
   <metal:block fill-slot="css_slot">
-    <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'application/xhtml+xml;; charset=utf-8')" />
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('pragma','no-cache')" />
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0')" />
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Expires', 'Mon, 26, Jul 1997 05:00:00 GMT')"/>
