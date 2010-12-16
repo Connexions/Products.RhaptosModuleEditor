@@ -44,12 +44,6 @@ new_context.manage_changeProperties(authors=(user,), maintainers=(user,), licens
 # Reset all the optional roles to empty
 new_context.resetOptionalRoles()
 
-user_role_delta = new_context.generateCollaborationRequests(newUser=True, newRoles={'Author':context.pub_authors})
-for p in user_role_delta.keys():
-    collabs = list(new_context.getCollaborators())
-    if p not in collabs:
-        new_context.addCollaborator(p)
-        new_context.requestCollaboration(p, user_role_delta[p])
 new_context.updateRoleMetadata()
     
 # Set state to newly created
