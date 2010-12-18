@@ -30,8 +30,17 @@
     <script type="text/javascript" src="/MathJax/MathJax.js"
             tal:attributes="src string:$portal_url/++resource++mathjax/unpacked/MathJax.js;">
         MathJax.Hub.Config({
+            skipStartupTypeset: Ext.isGecko,
             config: ["MMLorHTML.js"],
+            MMLorHTML: {prefer: {
+              MSIE:    "HTML",
+              Firefox: "MML",
+              Opera:   "HTML",
+              other:   "HTML"
+            }},
             extensions: ["mml2jax.js"],
+            menuSettings: {zoom:"Click"},
+            "HTML-CSS": {scale:110},
             delayStartupUntil: "onload",
             jax: ["input/MathML","output/HTML-CSS"]
         });
