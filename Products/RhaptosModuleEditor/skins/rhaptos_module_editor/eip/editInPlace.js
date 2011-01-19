@@ -11786,7 +11786,7 @@ function MathEditor() {
  */
 MathEditor.addLaunchButton = function(parent) {
     if (!(Ext.isGecko || Ext.isChrome || Ext.isSafari)) 
-        return; //Fail on anything other that Firefox
+        return; //Fail on anything other that Firefox, Chrome, or Safari
     // Adding launcher for the MathML Editor
     var launchMathEditor = document.createElement('div');
     launchMathEditor.className = 'eipMathEditor';
