@@ -33,7 +33,6 @@ new_context.setBaseObject(None)
 # Set parent authors
 pa = list(context.parentAuthors)
 pa.extend([a for a in original.authors if a not in pa])
-pa.extend([a for a in original.parentAuthors if a not in pa])
 new_context.manage_changeProperties(parentAuthors=pa)
 
 # Set up default roles for new content
