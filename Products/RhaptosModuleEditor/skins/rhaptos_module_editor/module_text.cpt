@@ -31,7 +31,7 @@
             tal:attributes="src string:$portal_url/++resource++mathjax/unpacked/MathJax.js;">
         MathJax.Hub.Config({
             extensions: ["mml2jax.js"],
-            menuSettings: {zoom:"Click"},
+            menuSettings: {zoom:"none", context: "Browser"},
             "HTML-CSS": {scale:110},
             delayStartupUntil: "onload",
             jax: ["input/MathML","output/HTML-CSS"]
