@@ -28,9 +28,9 @@
     <script type="text/javascript" src="/extjs/ext.js"
             tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
     <script type="text/javascript" src="/MathJax/MathJax.js"
-            tal:attributes="src string:$portal_url/++resource++mathjax/unpacked/MathJax.js;">
+            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
         MathJax.Hub.Config({
-            extensions: ["mml2jax.js"],
+            extensions: ["mml2jax-bugfix.js"],
             menuSettings: {zoom:"none", context: "Browser"},
             "HTML-CSS": {scale:110},
             delayStartupUntil: "onload",
