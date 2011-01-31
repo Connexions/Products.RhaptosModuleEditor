@@ -299,6 +299,9 @@
                          readonly readonly | nothing"
              tal:attributes="class python:test(error, 'field error', 'field')">
           <label i18n:translate="label_keywords">Keywords (one per line)</label>
+          <div i18n:translate="help_keyword_creation" class="formHelp">
+            Enter each keyword on its own line. Keywords are not displayed on the content, but are used behind the scenes to help people find it in searches.
+	  </div>
           <div tal:content="error">Validation error output</div>
 
           <tal:textarea condition="readonly">
@@ -354,7 +357,7 @@
              tal:attributes="class python:test(error, 'field error', 'field')">
             <label i18n:translate="label_google_analytics">Google Analytics Tracking Code</label>
             <div i18n:translate="help_google_analytics_creation" class="formHelp">
-                Enter the Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) for this module to track its usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
+                Enter a Google Analytics Tracking Code (e.g. UA-xxxxxxx-x) for this content to track usage. <a href="/help/reference/GoogleAnalyticsTrackingCode">(help)</a>
             </div>
                 <input type="text"
                        name="GoogleAnalyticsTrackingCode"

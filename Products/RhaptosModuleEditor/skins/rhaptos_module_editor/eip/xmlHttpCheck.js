@@ -13,11 +13,7 @@ if        ( Sarissa._SARISSA_IS_IE ) {
     web_browser = null;
 }
 
-if ( Sarissa._SARISSA_IS_SAFARI ) {
-    // XMLHttpRequest does not quite work for Safari.
-    gXMLHttpRequest =  null;
-}
-else if ( window.XMLHttpRequest ) {
+if ( window.XMLHttpRequest ) {
     gXMLHttpRequest = new window.XMLHttpRequest();
 }
 else {

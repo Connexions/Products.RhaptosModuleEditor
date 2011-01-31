@@ -5,7 +5,6 @@
       metal:use-macro="here/module_template/macros/master"
       i18n:domain="rhaptos">
 
-
   <metal:block fill-slot="css_slot">
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('pragma','no-cache')" />
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0')" />
@@ -28,6 +27,17 @@
             tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js;"> </script>
     <script type="text/javascript" src="/extjs/ext.js"
             tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
+    <script type="text/javascript" src="/MathJax/MathJax.js"
+            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
+        MathJax.Hub.Config({
+            extensions: ["mml2jax-bugfix.js"],
+            menuSettings: {zoom:"none", context: "Browser"},
+            "HTML-CSS": {scale:110},
+            delayStartupUntil: "onload",
+            jax: ["input/MathML","output/HTML-CSS"]
+        });
+    </script>
+
 
     <script type="text/javascript" src="/eip/xmlHttpCheck.js"
             tal:attributes="src string:$portal_url/eip/xmlHttpCheck.js;"> </script>

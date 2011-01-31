@@ -17,7 +17,7 @@
   margin: 1em 0;
 }
 
-a, .term, .feedback, code, #eipTopEditingMode a{
+a, .feedback, code, #eipTopEditingMode a{
   color: #369;
 }
 
