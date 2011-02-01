@@ -1,3 +1,7 @@
+RhaptosModuleEditor-0.71
+  - MathJax
+  - Bugfix 2010: wrapping, empty language, wording fix
+
 RhaptosModuleEditor-0.70
   - fix handling of checked out malformed 0.6 CNXML
   - hide logactions portlet for not-yet-new content
