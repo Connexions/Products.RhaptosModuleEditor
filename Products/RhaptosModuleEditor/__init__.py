@@ -46,6 +46,10 @@ from AccessControl import allow_module
 import transaction
 allow_module('transaction')
 
+# allow access to URL fetcher, for module_import_fetch
+from Products.RhaptosModuleEditor.util import fetchRemoteFile
+allow_module('Products.RhaptosModuleEditor.util.fetchRemoteFile')
+
 CMFDiffTool.registerDiffType(LinksDiff.LinksDiff)
 
 def initialize(context):

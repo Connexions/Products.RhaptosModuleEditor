@@ -175,9 +175,17 @@
           <span i18n:name="index_html"><code>index.xhtml</code></span>
           file and any subdirectories, including those for styles.</p>
       </tal:block>
+      <tal:block tal:condition="python:format=='googledocs'">
+        <h2 i18n:translate="heading_modimpfrm_googledocs">Import module content from Google Docs</h2>
+        <p i18n:translate="text_modimpfrm_googledocs">
+          Click the link below to select content from your Google Docs account.
+        </p>
+        <a href="xxx">Get document from Google Docs&hellip;</a>
+      </tal:block>
 
-      <form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
-            tal:attributes="action template/getId">
+<form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
+            tal:attributes="action template/getId"
+            tal:condition="python:format!='googledocs'">
         <input type="file" name="importFile" size="25" />
         <input type="hidden" name="format" tal:attributes="value format" />
         <input type="hidden" name="came_from" value="module_text"

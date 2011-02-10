@@ -153,6 +153,11 @@ can edit or delete this if desired).</li>
               (<a i18n:translate="label_impexpbox_help"
                   href="/help/authoring/import-export#zip">help</a>)
             </li>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_googledocs">Google Docs</span>
+              (<a i18n:translate="label_impexpbox_help"
+                  href="/help/authoring/import-export#googledocs">help</a>) <!-- TODO: docs!  -->
+            </li>
           </ul>
           </td>
           <td style="padding-left: 1em">
@@ -193,6 +198,8 @@ can edit or delete this if desired).</li>
 		i18n:translate="text_plain_xml">Plain CNXML</option>
 	      <option value="zip" 
 		i18n:translate="text_zip_file">Zip File</option>
+              <option value="googledocs"
+                i18n:translate="text_google_docs">Google Docs</option>
 	    </select>
 	    <input type="hidden" name="came_from" value="module_text" tal:attributes="value template/id" />
 	    <input class="context" type="submit" name="import"
