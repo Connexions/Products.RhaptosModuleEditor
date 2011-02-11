@@ -11076,7 +11076,7 @@ function onAddDropDownChanged(e)
 
 function openHelp(name)
 {
-    var doOpen = window.open("/eip-help/" + name, "eip_help", 'scrollbars=yes,resizable=yes,height=400,width=500');
+    var doOpen = window.open("/eip-help/" + name, "eip_help", 'scrollbars=yes,resizable=yes,height=400,width=600');
     doOpen.focus();
     return false;
 }
