@@ -4711,7 +4711,7 @@ reference "&amp;amp;". More information can be found on the
         </attribute>		
         <attribute name="wmode" required="optional">
           <values>
-            <value name="window">Creates a seperate rectangular window.</value>
+            <value name="window">Creates a separate rectangular window.</value>
             <value name="opaque">Makes the movie hide everything on the page behind it.</value>
             <value name="transparent">Makes the background of the HTML page shows through all transparent portions of the movie.</value>
           </values>
