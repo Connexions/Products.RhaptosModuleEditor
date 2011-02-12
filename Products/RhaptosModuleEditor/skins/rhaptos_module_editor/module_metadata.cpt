@@ -142,9 +142,7 @@
                  name="title"
                  size="60"
                  value="title"
-                 tabindex=""
-                 tal:attributes="value title;
-                                 tabindex tabindex/next;"
+                 tal:attributes="value title"
             />
         </div>
 
@@ -188,7 +186,6 @@
             <div tal:condition="avail_languages | nothing">
 
               <select name="master_language" id="master_language"
-                      tal:attributes="tabindex tabindex/next"
                       tal:condition="not:readonly">
                 <option tal:repeat="lang avail_languages"
                         tal:content="python:here.portal_languages.getNameForLanguageCode(lang[0]) or lang[1]"
@@ -227,7 +224,7 @@
                        i18n:translate="label_language_regional_variant">Regional Variant (optional)</label>
                 <div class="formHelp" id="language_help"
                       i18n:translate="help_language_regional_variant">The language subtype, if applicable.</div>
-                <select name="language" id="language" tal:attributes="tabindex tabindex/next">
+                <select name="language" id="language">
                     <option tal:content="python:here.portal_languages.getNameForLanguageCode(language)"
                             tal:attributes="value language">None</option>
                 </select>
@@ -273,7 +270,6 @@
                     name="subject:list"
                     class="noborder"
                     tal:attributes="checked python:(subj.tag in subject) or nothing;
-                                    tabindex tabindex/next;
                                     value subj/tag;
                                     disabled disabled" />
                   <label tal:content="subj/tag">[Subject]</label>
@@ -283,7 +279,6 @@
                     name="subject:list"
                     class="noborder"
                     tal:attributes="checked python:(subj.tag in subject) or nothing;
-                                    tabindex tabindex/next;
                                     value subj/tag;
                                     disabled disabled"/>
                   <label tal:content="subj/tag">[Subject]</label>
@@ -310,8 +305,7 @@
                     wrap="physical"
                     cols="25" 
                     rows="4"
-                    tal:attributes="tabindex tabindex/next;
-                                    style string:width: 50%;">
+                    tal:attributes="style string:width: 50%;">
 <span tal:repeat="keyword keywords" tal:replace="keyword">keyword</span></textarea>
         </div>
 
@@ -342,7 +336,6 @@
                           wrap="virtual"
                           cols="80" 
                           rows="4"
-                          tal:attributes="tabindex tabindex/next;"
                           tal:omit-tag="readonly"
                           tal:content="abstract"></textarea>
         </div>
@@ -369,7 +362,6 @@
                class="context"
                name="save"
                tal:condition="not:readonly|nothing"
-               tal:attributes="tabindex tabindex/next;"
                i18n:attributes="value value_save"
                value="Save" />
 

@@ -122,7 +122,6 @@
       <span tal:replace="structure string:--&gt;&lt;/script&gt;"/>
      
       <select name="templatefolder_uid"
-              tal:attributes="tabindex tabindex/next"
               onChange="content_title_change_templatefolder(this);">
         <option value="dummy">-- Select --</option>
         <tal:folders repeat="folder python:context.portal_catalog(portal_type='XMLTemplateFolder')">
@@ -139,8 +138,7 @@
               tal:define="folderUID folder/UID;
                           selectedfolder python:folderUID == templatefolder_uid;
                           displaystyle python:selectedfolder and 'inline' or 'none'"
-              tal:attributes="tabindex tabindex/next;
-                              id string:folder-select-$folderUID;
+              tal:attributes="id string:folder-select-$folderUID;
                               style string:display:$displaystyle;
                               name python:selectedfolder and 'template_uid' or None">
         <option value="">-- Select --</option>
@@ -168,7 +166,6 @@
         <input type="submit"
                 class="context"
                 name="form.button.next"
-                tal:attributes="tabindex tabindex/next;"
                 value="Next >>" i18n:attributes="value value_next_with_arrows"/>
 
         <input type="hidden" name="form.submitted" value="1" />

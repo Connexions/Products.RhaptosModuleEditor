@@ -43,7 +43,6 @@
                           cols="50" 
 	                  style="width: 50%"
                           rows="5"
-                          tal:attributes="tabindex tabindex/next;"
 	                  tal:content="message"></textarea>
 	</div>
 	  
@@ -51,7 +50,6 @@
 	  class="context" 
 	  name="patch" 
 	  value="Send Edits" 
-	  tal:attributes="tabindex tabindex/next;" 
 	  i18n:attributes="value value_module_send_patch"/>
 	<input type="hidden" name="form.submitted" value="1" />
       </form>
