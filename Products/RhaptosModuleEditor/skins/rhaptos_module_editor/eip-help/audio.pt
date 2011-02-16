@@ -155,7 +155,7 @@ reference "&amp;amp;". More information can be found on the
               var _gaq = _gaq || [];
               _gaq.push(['_setAccount', 'UA-7903479-1']);
               _gaq.push(['_setDomainName', '.cnx.org']);
-              _gaq.push(['_trackPageview']);                
+              _gaq.push(['_trackPageview']);
               _gaq.push(['hewlett._setAccount', 'UA-5033010-1']);
               _gaq.push(['hewlett._setDomainName', 'cnx.org']);
               _gaq.push(['hewlett._trackPageview']);
