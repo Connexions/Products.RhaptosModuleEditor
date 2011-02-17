@@ -11102,7 +11102,7 @@ function checkWellFormed(strNewXml, nodeOldXml) // content is string.
 
         // Mozilla browswers don't actually throw an error upon error.
         // Why doesn't sarissa abstract this?
-        var bHasParseError = ( docNewXml.documentElement.tagName == 'parsererror' );
+        var bHasParseError = ( docNewXml.getElementsByTagName("parsererror").length);
         if ( bHasParseError ) {
             throw new Error(docNewXml.documentElement.textContent);
         }
