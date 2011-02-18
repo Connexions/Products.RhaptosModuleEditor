@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.72
+  - Sprint-2011 bugfix
+
 RhaptosModuleEditor-0.71
   - MathJax
   - Bugfix 2010: wrapping, empty language, wording fix
