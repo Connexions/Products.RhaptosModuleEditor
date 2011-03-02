@@ -8,8 +8,6 @@
 ##parameters=title='', keywords=[], GoogleAnalyticsTrackingCode
 ##title=Validates module metadata
 
-from Products.CNXMLDocument.CNXMLFile import autoIds
-
 # title presence
 if not title:
     errormsg = context.translate("message_this_field_required", domain="rhaptos", default="This field is required.")
