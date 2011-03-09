@@ -19,7 +19,7 @@ if location:   # created without destination in mind
         target = context.portal_membership.getHomeFolder()
     elif location.startswith(wgprefix):
         location = location[len(wgprefix):]
-        target = context.portal_groups.getGroupareaFolder(location)
+        target = context.portal_url.workgroups.get(location)
 
     context = target.restrictedTraverse('portal_factory/' + type_name + '/' + oid)
 

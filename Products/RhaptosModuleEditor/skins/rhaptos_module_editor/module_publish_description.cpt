@@ -18,7 +18,8 @@
                                             license_data here/getLicenseData;
                                             license_version license_data/version;
                                             license_label license_data/label;
-                                            license_url context/license">
+                                            license_url context/license;
+                                            portal context/@@plone_portal_state/portal">
 
       <h2 i18n:translate="heading_publish_module">Publish module</h2>
 
