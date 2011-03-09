@@ -159,10 +159,6 @@
              tal:attributes="class python:test(error, 'field error', 'field');
                              id string:archetypes-fieldname-master_language">
 
-          <script type="text/javascript" charset="iso-8859-1"
-            src="/hiding_functions.js" tal:attributes="src string:$portal_url/hiding_functions.js;">
-          </script>
-
           <label i18n:translate="label_language">Language</label>
           <span class="fieldRequired" title="Required"
                 i18n:attributes="title"
@@ -170,7 +166,7 @@
 
           <metal:block metal:define-slot="language_help">
             <div i18n:translate="help_language_creation_module" class="formHelp">
-              Select the primary language for this  
+              Select the language for this  
               <span i18n:name="portal_type" tal:content="here/portal_type/lower">
                 module</span>.
             </div>
@@ -185,7 +181,7 @@
           <div tal:condition="not:readonly">
             <div tal:condition="avail_languages | nothing">
 
-              <select name="master_language" id="master_language"
+              <select name="language" id="language"
                       tal:condition="not:readonly">
                 <option tal:repeat="lang avail_languages"
                         tal:content="python:here.portal_languages.getNameForLanguageCode(lang[0]) or lang[1]"
@@ -193,57 +189,9 @@
                                         value python:lang[0]">Language</option>
               </select>
 
-              <input type="checkbox" name="enable_regional_lang"
-                     class="showOnLoad noborder"
-                     style="display:none"
-                     id="regional_variant_toggle_box"
-                     tal:attributes="checked python:len(curLang)&gt;2;"
-                     onclick="toggleExpandId(this,'regional_variant_widget');document.getElementById('language').value=document.getElementById('master_language').value;"/>
-                <label class="showOnLoad"
-                       style="display:none"
-                      id="expand_collapse_id_label">Choose a regional variant</label>
-
-            </div>
-            <!-- cut & paste here to work from -->
-
-            <script type="text/javascript" charset="iso-8859-1"
-                    src="/modifySelectList.js" tal:attributes="src string:$portal_url/modifySelectList.js;">
-            </script>
-            <script>
-      <!--
-      registerDynamicSelect('edit_form','master_language','language','vocabulary','getLanguageWithSubtypes', 'lang', this.absolute_url);
-
-      registerHideOnSelect('edit_form','master_language','language','disable',new Array(this.getLanguagesWithoutSubtypes));
-      //-->
-            </script>
-
-            <div tal:attributes="class string:field ArchetypesCompactSelectionWidget;
-                                 id string:archetypes-fieldname-language">
-              <div class="hideOnLoad" id="regional_variant_widget">
-                <label for="language"
-                       i18n:translate="label_language_regional_variant">Regional Variant (optional)</label>
-                <div class="formHelp" id="language_help"
-                      i18n:translate="help_language_regional_variant">The language subtype, if applicable.</div>
-                <select name="language" id="language">
-                    <option tal:content="python:here.portal_languages.getNameForLanguageCode(language)"
-                            tal:attributes="value language">None</option>
-                </select>
-              </div>
             </div>
 
-            <script type="text/javascript">
-            <!--
-            show('showOnLoad');
-            hide('hideOnLoad');
-            -->
-            </script>
-            <script type="text/javascript" tal:condition="python:len(curLang)&gt;2">
-            <!--
-            var x=document.getElementById('regional_variant_toggle_box');
-            toggleExpandId(x,'regional_variant_widget');
-            -->
-            </script>
-          </div>
+         </div>
         </div>
 
       <div metal:define-macro="subject" class="field"
