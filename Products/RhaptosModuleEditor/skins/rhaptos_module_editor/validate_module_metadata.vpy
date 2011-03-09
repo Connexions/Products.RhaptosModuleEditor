@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind state=state
 ##bind subpath=traverse_subpath
-##parameters=title='', keywords=[], GoogleAnalyticsTrackingCode
+##parameters=title='', keywords=[], GoogleAnalyticsTrackingCode=None
 ##title=Validates module metadata
 
 # title presence
