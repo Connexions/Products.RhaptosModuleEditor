@@ -405,11 +405,12 @@ var gEditNodeInfo = {
  * URLs obtained from links or hardcoded.
  */
 var gURLs = {
-  source: undefined,  // url to obtain the document source
+  source_fragment: undefined,  // url to obtain the document source
   module: undefined,  // url to go to upon cancellation
   preview: undefined, // validator for previewing
   content: undefined, // url to obtain content 'cnx_main'
-  update: undefined   // url to perform updates
+  update: undefined,   // url to perform updates
+  math_editor: undefined   // url to for pop-up matheditor
 };
 
 
@@ -9042,7 +9043,7 @@ function extractLinks() {
     // looking for submit, source, authorized
     for (i = 0; i < links.length; i++) {
         rel = links.item(i).getAttribute("rel");
-        if (rel == "source" || rel == "module" || rel == "content" || rel =="update" || rel=="source_fragment") {
+        if (rel == "source" || rel == "module" || rel == "content" || rel =="update" || rel=="source_fragment" || rel=="math_editor") {
             // XXX could we use a more robust mozilla
             //   method of transforming relative to absolute URL?
             gURLs[rel] = links.item(i).getAttribute("href");
@@ -11811,7 +11812,7 @@ MathEditor.popupMathEditor = function() {
 			
     if(!value || 'focus' == value) {
         cookie.clear('math-editor-popup-open');
-        MathEditor.POPUP_WINDOW = window.open("/math-editor/popup",
+        MathEditor.POPUP_WINDOW = window.open(gURLs["math_editor"],
         		"math-window","status=no,scrollbars=no,width=600,height=520");
     } else {
         //Try and focus manually, but hope 

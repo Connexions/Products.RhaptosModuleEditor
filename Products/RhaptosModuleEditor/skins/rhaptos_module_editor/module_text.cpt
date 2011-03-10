@@ -14,33 +14,35 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/plone/content.css" 
           tal:attributes="href string:$portal_url/stylesheets/plone/content.css;"/>
     <link rel="stylesheet" type="text/css" href="/extjs/resources/css/ext-all.css" 
-          tal:attributes="href string:$portal_url/extjs/resources/css/ext-all.css;" />
+          tal:attributes="href string:$portal_url/extjs/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="/eip/editInPlace.css" 
-          tal:attributes="href string:$portal_url/eip/editInPlace.css;" />
+          tal:attributes="href string:$portal_url/eip/editInPlace.css" />
   </metal:block>
 
   <tal:js metal:fill-slot="javascript_head_slot" tal:condition="python:here.state != 'published'">
     <script type="text/javascript" src="/eip/prototype.js"
-            tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/prototype.js"> </script>
     <script type="text/javascript" src="/eip/sarissa.js"
-            tal:attributes="src string:$portal_url/eip/sarissa.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/sarissa.js"> </script>
     <script type="text/javascript" src="/eip/sarissa_ieemu_xpath.js"
-            tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js"> </script>
     <script type="text/javascript" src="/extjs/ext.js"
-            tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
+            tal:attributes="src string:$portal_url/extjs/ext.js"> </script>
 
     <script type="text/javascript" src="/eip/xmlHttpCheck.js"
-            tal:attributes="src string:$portal_url/eip/xmlHttpCheck.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/xmlHttpCheck.js"> </script>
     <script type="text/javascript" src="/eip/editInPlace.js"
-            tal:attributes="src string:$portal_url/eip/editInPlace.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/editInPlace.js"> </script>
     <script type="text/javascript" src="/eip/module_init_eip.js"
-            tal:attributes="src string:$portal_url/eip/module_init_eip.js;"> </script>
+            tal:attributes="src string:$portal_url/eip/module_init_eip.js"> </script>
     <link rel="content" title="EIP" type="text/xml"
-          tal:attributes="href string:${here/absolute_url}/module_eip_content;" />
+          tal:attributes="href string:${here/absolute_url}/module_eip_content" />
     <link rel="update" title="Update" type="text/xml"
-          tal:attributes="href string:${here/absolute_url}/handleEipRequest;"/>
-    <link rel="source_fragment" title="Source Fragment" type="text/xml"
-          tal:attributes="href string:${here/absolute_url}/module_source_fragment;"/>
+          tal:attributes="href string:${here/absolute_url}/handleEipRequest"/>
+    <link rel="source_fragment" title="Source Fragment" type="text/xml" 
+          tal:attributes="href string:${here/absolute_url}/module_source_fragment"/>
+    <link rel="math_editor" title="Popup Math Editor" type="text/xhtml"
+          tal:attributes="href string:${here/portal_url}/math-editor/popup"/>
   </tal:js>
 
   <body>
