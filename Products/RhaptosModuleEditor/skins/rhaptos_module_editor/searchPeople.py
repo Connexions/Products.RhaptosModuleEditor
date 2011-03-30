@@ -14,5 +14,6 @@ exclude_names.extend(context.getPendingCollaborations().keys())
 # We assume these are all catalog brains so getUserName is an
 # attribute not a method
 members = context.portal_membership.searchForMembers(name=search)
-return [m for m in members if m.status != "Pending" and m.getUserName not in exclude_names]
+#return [m for m in members if m.status != "Pending" and m.getUserName not in exclude_names]
+return [m for m in members if m.getUserName() not in exclude_names]
 

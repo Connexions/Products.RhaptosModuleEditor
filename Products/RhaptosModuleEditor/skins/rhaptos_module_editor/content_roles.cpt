@@ -27,6 +27,10 @@
   <body>
 
     <div metal:fill-slot="main" tal:define="search request/search | nothing;
+      member context/@@plone_portal_state/member;
+      portal context/@@plone_portal_state/portal;
+      here_url context/@@plone_context_state/object_url;
+
       addWGMembers request/form.button.addWorkgroup | request/addWorkgroup | nothing; 
       addYourSelf request/form.button.addSelf | request/addSelf | nothing;
       addSelf python:test(member.id in here.getCollaborators(), nothing, addYourSelf);
