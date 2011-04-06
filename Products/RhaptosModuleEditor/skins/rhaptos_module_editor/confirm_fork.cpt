@@ -110,6 +110,7 @@
 
 	<input type="hidden" name="license" tal:attributes="value here/getDefaultLicense" />
 	<input type="hidden" name="form.submitted" value="1" />
+	<input tal:replace="structure context/@@authenticator/authenticator" />
       </form>
       <p tal:condition="not:here/license" i18n:translate="text_conffork_noderiv">
 	Sorry, this content does not allow derivative works to be created.

@@ -117,6 +117,7 @@
                  i18n:attributes="value value_update_links"/>
 	</p>
 	<input type="hidden" name="form.submitted" value="1" />
+	<input tal:replace="structure context/@@authenticator/authenticator" />
       </form>
 
       <hr />
@@ -212,6 +213,7 @@
 	<input type="submit" class="context" name="form.button.add"
 	value="  Add  " i18n:attributes="value value_add_with_double_spaces"/>	  
 	<input type="hidden" name="form.submitted" value="1" />
+	<input tal:replace="structure context/@@authenticator/authenticator" />
 
       </form>
 

@@ -269,6 +269,7 @@ can edit or delete this if desired).</li>
             value="Save" 
             i18n:attributes="value value_module_text"/>
           <input type="hidden" name="form.submitted" value="1" />
+          <input tal:replace="structure context/@@authenticator/authenticator" />
         </form>
 
           <tal:valid tal:condition="not:validation_errors">
