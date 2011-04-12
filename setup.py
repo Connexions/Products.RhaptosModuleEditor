@@ -10,7 +10,7 @@ setup(
     name='Products.RhaptosModuleEditor',
     version=version,
     description="",
-    long_description='\n'.join([read("README.txt"), read("CHANGES")])
+    long_description='\n'.join([read("README.txt"), read("CHANGES")]),
     classifiers=[
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
