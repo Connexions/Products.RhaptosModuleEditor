@@ -30,5 +30,6 @@ setup(
         'Products.RhaptosCollection',
         'Products.CNXMLDocument',
         'Products.LinkMapTool',
+        'Products.UniFile',
         ],
     )
