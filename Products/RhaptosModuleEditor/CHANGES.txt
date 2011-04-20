@@ -1,5 +1,19 @@
-RhaptosModuleEditor-0.68
+RhaptosModuleEditor-0.72
+  - Sprint-2011 bugfix
+
+RhaptosModuleEditor-0.71
+  - MathJax
+  - Bugfix 2010: wrapping, empty language, wording fix
+
+RhaptosModuleEditor-0.70
+  - fix handling of checked out malformed 0.6 CNXML
+  - hide logactions portlet for not-yet-new content
+
+RhaptosModuleEditor-0.69
   - sword import support
+
+RhaptosModuleEditor-0.68
+  - various bugfixes
 
 RhaptosModuleEditor-0.67
   - Google Analytics additions for downloads, make page-views async

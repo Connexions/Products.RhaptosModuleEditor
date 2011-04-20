@@ -1981,6 +1981,7 @@ function WorkFlowStep() {
                width: 600
             });
        }
+       MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     function handleServerAddRequestReturn() {
@@ -2043,6 +2044,7 @@ function WorkFlowStep() {
                width: 600
             });
         }
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     };
 
     function handleServerDeleteRequest() {
@@ -7739,7 +7741,7 @@ function Table_WorkFlowStep() {
         }
         else if ( iRequestedRows < iActualRows ) {
             if ( !bUserInformedOnClipping ) {
-                bDoResize = window.confirm('This resize will make the table smaller..\n\n' +
+                bDoResize = window.confirm('This resize will make the table smaller.\n\n' +
                                            'Some elements of the table will be deleted.  As soon as you hit Save' + ',\n' +
                                            'they will be permanently lost.\n\n' +
                                            'Until then, you may still hit Cancel to restore the previous state of the table.\n\n' +
@@ -11075,7 +11077,7 @@ function onAddDropDownChanged(e)
 
 function openHelp(name)
 {
-    var doOpen = window.open("/eip-help/" + name, "eip_help", 'scrollbars=yes,resizable=yes,height=400,width=500');
+    var doOpen = window.open("/eip-help/" + name, "eip_help", 'scrollbars=yes,resizable=yes,height=400,width=600');
     doOpen.focus();
     return false;
 }
@@ -11101,7 +11103,7 @@ function checkWellFormed(strNewXml, nodeOldXml) // content is string.
 
         // Mozilla browswers don't actually throw an error upon error.
         // Why doesn't sarissa abstract this?
-        var bHasParseError = ( docNewXml.documentElement.tagName == 'parsererror' );
+        var bHasParseError = ( docNewXml.getElementsByTagName("parsererror").length);
         if ( bHasParseError ) {
             throw new Error(docNewXml.documentElement.textContent);
         }
@@ -11784,9 +11786,9 @@ function MathEditor() {
  * @param {Element} parent The container for the created launcher link
  */
 MathEditor.addLaunchButton = function(parent) {
-	if (!Ext.isGecko) 
-		return; //Fail on anything other that Firefox
-	// Adding launcher for the MathML Editor
+    if (!(Ext.isGecko || Ext.isChrome || Ext.isSafari)) 
+        return; //Fail on anything other that Firefox, Chrome, or Safari
+    // Adding launcher for the MathML Editor
     var launchMathEditor = document.createElement('div');
     launchMathEditor.className = 'eipMathEditor';
     var launchMathEditorLink = document.createElement('a');

@@ -497,7 +497,7 @@
         </attribute>
         <attribute name="mark-suffix " required="optional">
           Adds text after each list item mark (e.g. a bullet in a bulleted list, or a
-          number in an enumerated list).  The default is "." for enumerated lists,
+          number in an enumerated list).  The default is "." for enumerated lists, ":" for labeled-item lists, 
           and nothing for other list types.
         </attribute>
         <attribute name="item-sep" required="optional">
@@ -4711,7 +4711,7 @@ reference "&amp;amp;". More information can be found on the
         </attribute>		
         <attribute name="wmode" required="optional">
           <values>
-            <value name="window">Creates a seperate rectangular window.</value>
+            <value name="window">Creates a separate rectangular window.</value>
             <value name="opaque">Makes the movie hide everything on the page behind it.</value>
             <value name="transparent">Makes the background of the HTML page shows through all transparent portions of the movie.</value>
           </values>

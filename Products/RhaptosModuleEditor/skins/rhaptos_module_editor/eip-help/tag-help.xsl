@@ -185,7 +185,7 @@
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       The id of an element in a module or collection, such as a section or an image (default is the root element of the target module 
-      or collection).  Can refer to an element in the present module or, alternately, an element on a seperate module if the 
+      or collection).  Can refer to an element in the present module or, alternately, an element on a separate module if the 
       "document" attribute has been specified.  You cannot use the "target-id" attribute in combination with the "resource" attribute.
     </li>
     <li class="item">
@@ -200,7 +200,7 @@
       <xsl:text> </xsl:text>
       <i>(<xsl:value-of select="$required" />)</i>: 
       The version of the module or collection being linked to (default is the latest version of the module or collection).  Can refer 
-      to the module you are on or, alternately, a seperate module or collection if the "document" attribute has been specified.
+      to the module you are on or, alternately, a separate module or collection if the "document" attribute has been specified.
     </li>
     <li class="item">
       <b>window</b>

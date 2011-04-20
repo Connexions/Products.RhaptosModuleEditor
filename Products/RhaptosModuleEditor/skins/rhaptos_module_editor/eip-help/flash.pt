@@ -118,7 +118,7 @@ reference "&amp;amp;". More information can be found on the
       
           <div><i>Possible values:</i></div>
 <div class="list"><ul class="bullet">
-            <li class="item">window - Creates a seperate rectangular window.</li>
+            <li class="item">window - Creates a separate rectangular window.</li>
             <li class="item">opaque - Makes the movie hide everything on the page behind it.</li>
             <li class="item">transparent - Makes the background of the HTML page shows through all transparent portions of the movie.</li>
           </ul></div>

@@ -41,6 +41,12 @@
         <input type="submit" name="checkout" value="Checkout"
                 i18n:attributes="value text_button_checkout" class="standalone" />
       </form>
+      
+      <div class="import-recs" >
+        <p>
+          <strong>PDFs, EPUBs and other downloadable files are not created immediately. Depending on the volume of publishing, it could take 1 to 24 hours for the files to be available.</strong>
+        </p>
+      </div>
 
       <table class="leftheadings linkdata">
         <tr>

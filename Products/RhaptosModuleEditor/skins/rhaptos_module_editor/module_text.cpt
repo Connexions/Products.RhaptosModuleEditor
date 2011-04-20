@@ -5,7 +5,6 @@
       metal:use-macro="here/module_template/macros/master"
       i18n:domain="rhaptos">
 
-
   <metal:block fill-slot="css_slot">
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('pragma','no-cache')" />
     <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0')" />
@@ -20,6 +19,7 @@
   </metal:block>
 
   <tal:js metal:fill-slot="javascript_head_slot" tal:condition="python:here.state != 'published'">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <script type="text/javascript" src="/eip/prototype.js"
             tal:attributes="src string:$portal_url/eip/prototype.js"> </script>
     <script type="text/javascript" src="/eip/sarissa.js"
@@ -28,6 +28,17 @@
             tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js"> </script>
     <script type="text/javascript" src="/extjs/ext.js"
             tal:attributes="src string:$portal_url/extjs/ext.js"> </script>
+    <script type="text/javascript" src="/MathJax/MathJax.js"
+            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
+        MathJax.Hub.Config({
+            extensions: ["mml2jax-bugfix.js"],
+            menuSettings: {zoom:"none", context: "Browser"},
+            "HTML-CSS": {scale:110},
+            delayStartupUntil: "onload",
+            jax: ["input/MathML","output/HTML-CSS"]
+        });
+    </script>
+
 
     <script type="text/javascript" src="/eip/xmlHttpCheck.js"
             tal:attributes="src string:$portal_url/eip/xmlHttpCheck.js"> </script>
@@ -259,7 +270,7 @@ can edit or delete this if desired).</li>
           <form id="edit_form" method="post" enctype="multipart/form-data"
                 autocomplete="off"
                 tal:attributes="action template/getId">
-            <textarea id='textarea' name="contents:text" wrap="on" style="width:auto" cols="80" rows="25" 
+            <textarea id='textarea' name="contents:text" wrap="soft" style="width:auto" cols="80" rows="25" 
                       tal:define="file here/getDefaultFile; sourcenotblank python:file.getSource() != ''"
                       tal:content="python:validation_errors and (sourcenotblank and file.getSource() or ' ') or file.normalize()">[content]</textarea>
           <input style="display:block" 
