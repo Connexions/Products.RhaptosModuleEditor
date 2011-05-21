@@ -33,6 +33,7 @@ from Products.PloneLanguageTool import availablelanguages
 from Products.Archetypes.public import DisplayList
 from Products.CNXMLDocument import XMLService
 from Products.CNXMLDocument import CNXML_SEARCHABLE_XSL as baretext
+from Products.RhaptosModuleEditor.interfaces import IModule
 
 try:
     from Products.Archetypes.Referenceable import Referenceable
@@ -61,6 +62,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     This defines an editor for modules in the Rhaptos system
     """
+    implements(IModule)
+
     try:
         __implements__ = (PloneFolder.__implements__, CollaborationManager.__implements__, IReferenceable)
     except:

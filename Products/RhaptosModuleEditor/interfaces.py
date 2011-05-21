@@ -9,3 +9,8 @@ Public License Version 2.1 (LGPL).  See LICENSE.txt for details.
 """
 
 from zope.interface import Interface
+
+class IModule(Interface):
+    """Marker interface for objects that are Modules."""
+    pass
+
