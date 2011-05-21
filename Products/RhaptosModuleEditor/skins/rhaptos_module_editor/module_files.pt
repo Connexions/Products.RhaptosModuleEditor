@@ -7,6 +7,9 @@
       metal:use-macro="here/module_template/macros/master">
 
 <tal:comment tal:replace="nothing">
+Arturo's Note:
+I have found several things that may be better managed in a Zope 3 BrowserView,even if it's just to comply with the MVC model. In my opinion, it would simplify this document.
+
 Notes:
   allowed content types removes "CNXML Document", which must be allowed, but should not be added
   item_type as Type instead of portal_type to get type title instead of id.
@@ -37,11 +40,19 @@ old Rhaptos notes:
 </tal:comment>
 
   <body>
-
     <div metal:fill-slot="main"
-         tal:define="contentFilter python:{'portal_type':['File', 'Image', 'UnifiedFile', 'CNXML Document',],
-                                           'sort_on':'sortable_title'};
-                     typeRename python:{'UnifiedFile':'image/included file'}">
+         tal:define="contentFilter python:{'portal_type':['File', 'Image', 'UnifiedFile', 'CNXML Document',],'sort_on':'sortable_title'};
+                     template_id template/getId;
+                     normalizeString nocall:context/@@plone/normalizeString;
+                     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                     portal_properties context/portal_properties;
+                     site_properties context/portal_properties/site_properties;
+                     here_url context/@@plone_context_state/object_url;
+                     typeRename python:{'UnifiedFile':'image/included file'};
+                     is_editable context/@@plone_context_state/is_editable;
+                     utool nocall:here/portal_url;
+                     wtool nocall:here/portal_workflow;
+                     iface_tool context/portal_interface">
       <tal:protect tal:condition="python: not checkPermission('List folder contents', here)" tal:replace="here/raiseUnauthorized" />
     <metal:main-macro define-macro="main">
     <metal:contentsmacro define-macro="contents"
@@ -56,9 +67,12 @@ old Rhaptos notes:
                      batch python:context.module_files_reorder(batch,suppressHiddenFiles=1);
                      full_view full_view|request/full_view|python:True;">
 
-      <div metal:use-macro="here/document_actions/macros/document_actions">
+<!-- corriger>
+This thing is now managed on the ZMI or with a GenericSetup profile.
+-->
+<!--      <div metal:use-macro="here/document_actions/macros/document_actions">
           Document actions (print, sendto etc)
-      </div>
+      </div>-->
       <tal:full_view condition="full_view">
 
           <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
@@ -69,10 +83,12 @@ old Rhaptos notes:
 
       </tal:full_view>
 
+<!--corriger-->
       <form name="folderContentsForm"
             method="post"
             action="folder_object"
             tal:attributes="action here_url">
+
 
         <p class="discreet"
            tal:condition="not: batch"
@@ -93,9 +109,9 @@ old Rhaptos notes:
                                    use_folder_contents site_properties/typesLinkToFolderContentsInFC|nothing;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    query_path python:path('contentFilter/path|nothing') or request.get('path',None);
-                                   orderable_iface string:OFS.IOrderSupport.IOrderedContainer;
+                                   orderable_iface string:Products.CMFPlone.interfaces.OrderedContainer.IOrderedContainer;
                                    preSorted python:query_path or ((contentFilter and contentFilter.get('sort_on', 'getObjPositionInParent')!='getObjPositionInParent') or (not contentFilter and request.get('sort_on', 'getObjPositionInParent')!='getObjPositionInParent'));
-                                   isOrderable python:ifacetool.objectImplements(here, orderable_iface);
+                                   isOrderable python: iface_tool.objectImplements(here,orderable_iface);
                                    nosortclass python:test(isOrderable, 'nosort', '');
                                    canModifyFolderContent is_editable;">
           <div tal:condition="standalone|nothing">
@@ -189,11 +205,17 @@ old Rhaptos notes:
               </metal:block>
             </thead>
 
+<!--corriger >
+Changed arrowUp nocall:portal/arrowUp.gif
+        arrowUp python:arrowUp.tag(alt='Move Up');i
+        arrowUp nocall:portal/arrowUp.gif
+        arrowDown python:arrowUp.tag(alt='Move Down');i
+
+Maybe tags (and resources in general) should be managed in a different, Zope 3 oriented, way; I don't know, seems better to register resources within a configure.zcml file or something to keep up with current Plone policies.
+<-->
             <metal:block tal:condition="batch|not:standalone|nothing">
-            <tbody tal:define="arrowUp nocall:portal/arrowUp.gif;
-                               arrowUp python:arrowUp.tag(alt='Move Up');
-                               arrowDown nocall:portal/arrowDown.gif;
-                               arrowDown python:arrowDown.tag(alt='Move Down');
+            <tbody tal:define="arrowUp string:${portal_url}/arrowUp.gif;
+                               arrowDown string:${portal_url}/arrowDown.gif;
                                getRelativeContentURL nocall:utool/getRelativeContentURL
                                ">
                 <tal:items tal:repeat="item batch">
@@ -258,9 +280,12 @@ old Rhaptos notes:
                         </a>
                         </span>
 
-                        <span class="state-expired"
+<!--corriger>
+Couldn't find a proper replacement for this...
+-->
+<!--                        <span class="state-expired"
                               tal:condition="python:portal.isExpired(item)"
-                              i18n:translate="time_expired">expired</span>
+                              i18n:translate="time_expired">expired</span>-->
                     </td>
 
                     <td class="notDraggable">

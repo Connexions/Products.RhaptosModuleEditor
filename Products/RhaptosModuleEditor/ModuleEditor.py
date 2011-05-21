@@ -264,7 +264,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def listFolderContents(self, spec=None, contentFilter=None, suppressHiddenFiles=0 ):
         """Override PloneFolder method to hide CVS folder and put default file first"""
 
-        items = self.contentValues(spec=spec, filter=contentFilter)
+        items = self.contentValues(filter=contentFilter)
         l = []
         for obj in items:
             id = obj.getId()
