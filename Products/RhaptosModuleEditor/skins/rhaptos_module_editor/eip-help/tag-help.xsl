@@ -275,6 +275,9 @@
       <xsl:if test="text"> <!-- Unicode text -->
 	<xsl:text>, Unicode text</xsl:text>
       </xsl:if>
+      <xsl:if test="mathml"> <!-- MathML -->
+	<xsl:text>, MathML</xsl:text>
+      </xsl:if>
       <xsl:apply-templates select="note" />
     </div>
   </xsl:template>

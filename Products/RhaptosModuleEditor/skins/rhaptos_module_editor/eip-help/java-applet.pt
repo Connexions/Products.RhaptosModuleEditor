@@ -62,7 +62,7 @@
         The MIME type of the Java object, e.g., "application/x-java-applet". This requried value tells each
         visitor's browser what sort of information is contained
         in the object. A list of common Internet media MIME types can be found
-            <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">here</a>.
+            <a href="http://www.w3schools.com/media/media_mimeref.asp" target="_blank" class="link">here</a>.
         </li>
 <li class="item">
 <b>for</b> <i>(optional)</i>: 

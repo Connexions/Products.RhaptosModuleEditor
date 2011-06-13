@@ -134,9 +134,8 @@
       <h2 class="para-header">
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
-<div class="para" id="cnx_eip_help_children">First, <code class="codeline">equation</code> may contain an optional <a href="label" class="cnxn">label</a> tag.
-        Next, it may contain an optional <a href="title" class="cnxn">title</a> tag. Finally, <code class="codeline">equation</code>
-        must contain either <a href="media" class="cnxn">media</a>, MathML, or Unicode Text.</div>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="media">media</a>, Unicode text, MathML</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

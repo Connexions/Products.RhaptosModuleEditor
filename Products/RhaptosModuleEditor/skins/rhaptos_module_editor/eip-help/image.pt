@@ -22,7 +22,7 @@
 <div class="para" id="cnx_eip_help_description">
       The <code class="codeline">image</code> tag is used to place
       image files, such as JPG, GIF, and PNG, into modules. Any image file with a valid
-        <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">MIME type</a>
+        <a href="http://www.w3schools.com/media/media_mimeref.asp" target="_blank" class="link">MIME type</a>
       can be included on the page.
       </div>
       <div class="example" id="cnx_eip_help_example">
@@ -87,7 +87,7 @@ reference "&amp;amp;". More information can be found on the
           The most commonly used image files and their corresponding MIME
         types are: "image/jpeg" (for .jpg images), "image/gif" (for .gif images), and
         "image/png" (for .png images).  A list of common Internet media MIME types can be found
-            <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">here</a>.
+            <a href="http://www.w3schools.com/media/media_mimeref.asp" target="_blank" class="link">here</a>.
         </li>
 <li class="item">
 <b>for</b> <i>(optional)</i>: 

@@ -106,10 +106,8 @@
       <h2 class="para-header">
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
-<div class="para" id="cnx_eip_help_children">First, <code class="codeline">rule</code> may contain an optional <a href="label" class="cnxn">label</a> tag.
-        Next, it may contain an optional <a href="title" class="cnxn">title</a> tag. Next, it must contain one or
-        more <a href="statement" class="cnxn">statement</a> tags. Finally, <code class="codeline">rule</code> may contain zero
-        or more <a href="proof" class="cnxn">proof</a> tags and zero or more <a href="example" class="cnxn">example</a> tags in any order.</div>
+<div class="para" id="cnx_eip_help_children">
+<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="title">title</a> (one, optional), <a class="cnxn" href="statement">statement</a> (one, required), <a class="cnxn" href="proof">proof</a> (zero or more), <a class="cnxn" href="example">example</a> (zero or more)</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

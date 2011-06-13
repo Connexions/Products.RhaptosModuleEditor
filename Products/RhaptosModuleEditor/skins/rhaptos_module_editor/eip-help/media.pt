@@ -22,7 +22,7 @@
 <div class="para" id="cnx_eip_help_description">
   The <code class="codeline">media</code> tag is used to insert media 
   objects into a CNXML document. The media objects can be images, 
-  applets, movies, sounds, or any object with a valid <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">MIME 
+  applets, movies, sounds, or any object with a valid <a href="http://www.w3schools.com/media/media_mimeref.asp" target="_blank" class="link">MIME 
   type</a>.
   <div class="note">
 <h3 class="note-header"><span class="cnx_label">Note: </span></h3>

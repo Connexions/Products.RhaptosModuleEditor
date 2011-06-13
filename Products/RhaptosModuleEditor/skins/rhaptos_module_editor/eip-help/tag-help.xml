@@ -208,7 +208,7 @@
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref note="block display only">media</tagref>
+        <tagref>media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -734,9 +734,9 @@
         <tagref note="one, optional">title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
-		<tagref>example</tagref>
+	<tagref>example</tagref>
         <tagref>figure</tagref>
-		<tagref>code</tagref>
+	<tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
@@ -827,9 +827,9 @@
         <tagref note="one, optional">title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
-		<tagref>example</tagref>
+	<tagref>example</tagref>
         <tagref>figure</tagref>
-		<tagref>code</tagref>
+	<tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
@@ -874,14 +874,14 @@
       <children>
         <tagref>section</tagref>
         <tagref>example</tagref>
-        <tagref note="block display only">code</tagref>
+        <tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>para</tagref>
         <tagref>definition</tagref>
         <tagref>figure</tagref>  
         <tagref>note</tagref>  
-        <tagref note="block display only">media</tagref>  
+        <tagref>media</tagref>  
         <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
@@ -1279,10 +1279,11 @@
         </attribute>
       </attributes>
       <children>
-        <note>First, <nameoftag>rule</nameoftag> may contain an optional <link>label</link> tag.
-        Next, it may contain an optional <link>title</link> tag. Next, it must contain one or
-        more <link>statement</link> tags. Finally, <nameoftag>rule</nameoftag> may contain zero
-        or more <link>proof</link> tags and zero or more <link>example</link> tags in any order.</note>
+        <tagref note="one, optional">label</tagref>
+        <tagref note="one, optional">title</tagref>
+        <tagref note="one, required">statement</tagref>
+        <tagref note="zero or more">proof</tagref>
+        <tagref note="zero or more">example</tagref>
       </children>
       <parents>
         <tagref>content</tagref>
@@ -1373,7 +1374,7 @@
         <tagref note="one, optional">label</tagref>
         <tagref note="one, optional">title</tagref>
         <tagref>para</tagref>
-        <tagref note="block display only">code</tagref>
+        <tagref>code</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>  
@@ -1381,7 +1382,7 @@
         <tagref>preformat</tagref>  
         <tagref>quote</tagref>  
         <tagref>note</tagref>  
-        <tagref note="block display only">media</tagref>
+        <tagref>media</tagref>
         <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
@@ -1648,13 +1649,11 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <note>
-        First, <nameoftag>definition</nameoftag> may contain an optional <link>label</link>
-        tag. Next, it must contain a single <link>term</link> tag.  Then, it must contain
-        one or more <link>meaning</link> tags, followed in turn by any optional 
-        <link>example</link> tags associated with that meaning.  Finally,
-        <nameoftag>definition</nameoftag> may contain an optional <link>seealso</link> tag.
-        </note>
+        <tagref note="one, optional">label</tagref>
+        <tagref note="one, required">term</tagref>
+        <tagref note="one or more, required">meaning</tagref>
+        <tagref note="zero or more">example</tagref>
+        <tagref note="one, optional">seealso</tagref>
       </children>
       <parents>
         <tagref>content</tagref>
@@ -1777,9 +1776,11 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <note>First, <nameoftag>equation</nameoftag> may contain an optional <link>label</link> tag.
-        Next, it may contain an optional <link>title</link> tag. Finally, <nameoftag>equation</nameoftag>
-        must contain either <link>media</link>, MathML, or Unicode Text.</note>
+        <tagref note="one, optional">label</tagref>
+        <tagref note="one, optional">title</tagref>
+        <tagref>media</tagref>
+        <mathml />
+        <text />
       </children>
       <parents>
         <tagref>content</tagref>
@@ -3975,7 +3976,7 @@ reference "&amp;amp;". More information can be found on the
       <description>
       The <nameoftag>image</nameoftag> tag is used to place
       image files, such as JPG, GIF, and PNG, into modules. Any image file with a valid
-        <link src="http://www.duke.edu/websrv/file-extensions.html">MIME type</link>
+        <link src="http://www.w3schools.com/media/media_mimeref.asp">MIME type</link>
       can be included on the page.
       </description>
       <exampleexample>
@@ -4028,7 +4029,7 @@ reference "&amp;amp;". More information can be found on the
           <note>The most commonly used image files and their corresponding MIME
         types are: "image/jpeg" (for .jpg images), "image/gif" (for .gif images), and
         "image/png" (for .png images).  A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4093,7 +4094,7 @@ reference "&amp;amp;". More information can be found on the
       <description>
       The <nameoftag>audio</nameoftag> tag is used to place
       audio files, such as MP3, WAV, and AIFF, into modules. Any audio file with a valid
-        <link src="http://www.duke.edu/websrv/file-extensions.html">MIME type</link>
+        <link src="http://www.w3schools.com/media/media_mimeref.asp">MIME type</link>
       can be included on the page.
       </description>
       <exampleexample>
@@ -4130,7 +4131,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the audio file.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4208,7 +4209,7 @@ reference "&amp;amp;". More information can be found on the
       <description>
       The <nameoftag>video</nameoftag> tag is used to place
       video files, such as MPEG, AVI, and MOV, into modules. Any video file with a valid
-        <link src="http://www.duke.edu/websrv/file-extensions.html">MIME type</link>
+        <link src="http://www.w3schools.com/media/media_mimeref.asp">MIME type</link>
       can be included on the page.    
       </description>
       <exampleexample>
@@ -4249,7 +4250,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the video file.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4367,7 +4368,7 @@ reference "&amp;amp;". More information can be found on the
         The MIME type of the Java object, e.g., "application/x-java-applet". This requried value tells each
         visitor's browser what sort of information is contained
         in the object. <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4484,7 +4485,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the file.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4535,7 +4536,7 @@ reference "&amp;amp;". More information can be found on the
   The <nameoftag>media</nameoftag> tag is used to insert media 
   objects into a CNXML document. The media objects can be images, 
   applets, movies, sounds, or any object with a valid <link 
-  src="http://www.duke.edu/websrv/file-extensions.html">MIME 
+  src="http://www.w3schools.com/media/media_mimeref.asp">MIME 
   type</link>.
   <div class="note"><h3 class="note-header"><span 
 class="cnx_label">Note: </span></h3>
@@ -4633,7 +4634,7 @@ reference "&amp;amp;". More information can be found on the
     The <nameoftag>flash</nameoftag> tag is used to insert Flash 
     multimedia into a CNXML document. The multimedia can be images, 
     SWFs, FLVs, or any object with a valid Flash <link 
-    src="http://www.duke.edu/websrv/file-extensions.html">MIME 
+    src="http://www.w3schools.com/media/media_mimeref.asp">MIME 
     type</link>.
       </description>
       <exampleexample>
@@ -4697,7 +4698,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the Flash file.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4803,7 +4804,7 @@ reference "&amp;amp;". More information can be found on the
         <output>
           <div class="media labview example"><span class="cnx_label">LabVIEW Example:
             </span>
-       (<a class="cnxn" href="http://cnx.org/content/m11601/1.24/common_distributions.viinfo">run</a>) (<a class="cnxn" href="http://cnx.org/content/m11601/1.24/Common_Distributions.vi">source</a>)
+       (<a class="cnxn" href="http://cnx.org/content/m11601/1.24/Common_Distributions.vi">run</a>) (<a class="cnxn" href="http://cnx.org/content/m11601/1.24/common_distributions.viinfo">source</a>)
           </div>
         </output>
       </exampleexample>
@@ -4835,7 +4836,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the LabVIEW file.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -4946,7 +4947,7 @@ reference "&amp;amp;". More information can be found on the
       visitor's browser what sort of information is contained
       in the text.
           <note>A list of common Internet media MIME types can be found
-            <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+            <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
         </attribute>
         <attribute name="for" required="optional">
       Specifies whether this object should be displayed in the online or PDF version of the content, or be used as the default media object.  
@@ -5262,11 +5263,11 @@ Roses are red
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref note="inline display only">code</tagref>
-        <tagref note="inline display only">preformat</tagref>
-        <tagref note="inline display only">quote</tagref>
-        <tagref note="inline display only">note</tagref>
-        <tagref note="inline display only">list</tagref>
+        <tagref>code</tagref>
+        <tagref>preformat</tagref>
+        <tagref>quote</tagref>
+        <tagref>note</tagref>
+        <tagref>list</tagref>
         <tagref>term</tagref>
         <tagref>cite</tagref>
         <tagref>cite-title</tagref>
@@ -6135,7 +6136,7 @@ class="problem" id="se-problem">
     <description>
     The <nameoftag>object</nameoftag> tag is used to embed
     interactive media into modules. It allows any application
-    or object with a <link src="http://www.duke.edu/websrv/file-extensions.html">MIME type</link>
+    or object with a <link src="http://www.w3schools.com/media/media_mimeref.asp">MIME type</link>
     to be included on the page (similar to the HTML &lt;object&gt; tag). It
     is useful for including content that is not addressed by the other
     <link>media</link> tags. See <link>image</link>, <link>audio</link>,
@@ -6159,7 +6160,7 @@ class="problem" id="se-problem">
       visitor's browser what sort of information is contained
       in the object.
       <note>A list of common Internet media MIME types can be found
-        <link src="http://www.duke.edu/websrv/file-extensions.html">here</link>.</note>
+        <link src="http://www.w3schools.com/media/media_mimeref.asp">here</link>.</note>
       </attribute>
       <attribute name="height" required="optional">
       The height of the object in pixels.
