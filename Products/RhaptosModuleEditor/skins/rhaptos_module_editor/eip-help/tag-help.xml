@@ -217,9 +217,7 @@
         <text/>
       </children>
       <parents>
-        <tagref note="one, optional">title</tagref>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="code must be block display">preformat</tagref>
+        <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>cite-title</tagref>
         <tagref>cite</tagref>
@@ -228,10 +226,10 @@
         <tagref>term</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref note="code must be block display">quote</tagref>
+        <tagref>quote</tagref>
         <tagref>foreign</tagref>
         <tagref>footnote</tagref>
-        <tagref note="code must be block display">note</tagref>
+        <tagref>note</tagref>
         <tagref>item</tagref>
         <tagref>code</tagref>
         <tagref>figure</tagref>
@@ -242,11 +240,11 @@
         <tagref>entry</tagref>
         <tagref note="code must be block display">content</tagref>
         <tagref note="code must be block display">section</tagref>
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
+        <tagref note="code must be block display">example</tagref>
+        <tagref note="code must be block display">problem</tagref>
+        <tagref note="code must be block display">solution</tagref>
+        <tagref note="code must be block display">statement</tagref>
+        <tagref note="code must be block display">proof</tagref>
         <tagsetref name="mediaobjects"/>
       </parents>
     </tag>      
@@ -621,12 +619,12 @@
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref note="block display only">code</tagref>
+        <tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref note="block display only">media</tagref>
+        <tagref>media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -641,8 +639,8 @@
         <text />
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagref note="note must be block display">content</tagref>
+        <tagref note="note must be block display">section</tagref>
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -650,13 +648,13 @@
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
+        <tagref note="note must be block display">example</tagref>
+        <tagref note="note must be block display">problem</tagref>
+        <tagref note="note must be block display">solution</tagref>
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
+        <tagref note="note must be block display">statement</tagref>
+        <tagref note="note must be block display">proof</tagref>
         <tagref>entry</tagref>
         <tagref>title</tagref>
         <tagref>label</tagref>
@@ -3029,12 +3027,12 @@ is a classic novel.
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref note="block display only">code</tagref>
+        <tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref note="block display only">media</tagref>
+        <tagref>media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -3049,8 +3047,8 @@ is a classic novel.
         <text />
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagref note="quote must be block display">content</tagref>
+        <tagref note="quote must be block display">section</tagref>
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -3058,13 +3056,13 @@ is a classic novel.
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
+        <tagref note="quote must be block display">example</tagref>
+        <tagref note="quote must be block display">problem</tagref>
+        <tagref note="quote must be block display">solution</tagref>
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
+        <tagref note="quote must be block display">statement</tagref>
+        <tagref note="quote must be block display">proof</tagref>
         <tagref>entry</tagref>
         <tagref>title</tagref>
         <tagref>label</tagref>
@@ -4562,7 +4560,7 @@ reference "&amp;amp;". More information can be found on the
           <img src="image1.jpg" alt="A dog sitting on a couch"/>
         </output>
       </exampleexample>
-      <attributes id="required">
+      <attributes id="optional for inline display media">
         <attribute name="alt" required="required">
        "Alt" text is used by browsers 
           and other tools to make the content of images available to all 
@@ -4574,9 +4572,9 @@ reference "&amp;amp;". More information can be found on the
         <attribute name="display" required="optional">
           <values>
             <value name="block">The media will be set apart from the 
-          surrounding text.</value>
+          surrounding text. If the display attribute is set to "block" or is absent, then an id is required.</value>
             <value name="inline">The media will be included in the 
-                current line of text.</value>
+                current line of text (default).</value>
             <value name="none">The media will not be displayed.</value>
           </values>
         </attribute>
@@ -4595,7 +4593,7 @@ reference "&amp;amp;". More information can be found on the
         <tagsetref name="mediaobjects" />
       </children>
       <parents>
-        <tagref note="media must be block display">preformat</tagref>
+        <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>title</tagref>
         <tagref>label</tagref>
@@ -4606,13 +4604,13 @@ reference "&amp;amp;". More information can be found on the
         <tagref>term</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref note="media must be block display">quote</tagref>
+        <tagref>quote</tagref>
         <tagref>foreign</tagref>
         <tagref>footnote</tagref>
         <tagref>equation</tagref>
-        <tagref note="media must be block display">note</tagref>
+        <tagref>note</tagref>
         <tagref>item</tagref>
-        <tagref note="media must be block display">code</tagref>
+        <tagref>code</tagref>
         <tagref>figure</tagref>
         <tagref>subfigure</tagref>
         <tagref>caption</tagref>
@@ -4620,10 +4618,11 @@ reference "&amp;amp;". More information can be found on the
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
         <tagref>entry</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
+        <tagref note="media must be block display">example</tagref>
+        <tagref note="media must be block display">statement</tagref>
+        <tagref note="media must be block display">proof</tagref>
+        <tagref note="media must be block display">problem</tagref>
+        <tagref note="media must be block display">solution</tagref>
         <tagref note="media must be block display">content</tagref>
         <tagref note="media must be block display">section</tagref>
       </parents>
@@ -5150,12 +5149,12 @@ Roses are red
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref note="block display only">code</tagref>
+        <tagref>code</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref note="block display only">media</tagref>
+        <tagref>media</tagref>
         <tagref>footnote</tagref>
         <tagref>link</tagref>
         <tagref>newline</tagref>
@@ -5170,8 +5169,8 @@ Roses are red
         <text />
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagref note="preformat must be block display">content</tagref>
+        <tagref note="preformat must be block display">section</tagref>
         <tagref>para</tagref>
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
@@ -5179,13 +5178,13 @@ Roses are red
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
+        <tagref note="preformat must be block display">example</tagref>
+        <tagref note="preformat must be block display">problem</tagref>
+        <tagref note="preformat must be block display">solution</tagref>
         <tagref>commentary</tagref>
         <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
+        <tagref note="preformat must be block display">statement</tagref>
+        <tagref note="preformat must be block display">proof</tagref>
         <tagref>entry</tagref>
         <tagref>title</tagref>
         <tagref>label</tagref>

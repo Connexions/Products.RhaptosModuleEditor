@@ -69,9 +69,10 @@ reference "&amp;amp;". More information can be found on the
       
           <div><i>Possible values:</i></div>
 <div class="list"><ul class="bullet">
+            <li class="item">block - The media will be set apart from the 
+          surrounding text. If the display attribute is set to "block" or is absent, then an id is required.</li>
             <li class="item">inline - The media will be included in the 
                 current line of text (default).</li>
-            <li class="item">block - The media will be set apart from the surrounding text. If the display attribute is set to "block", then an id is required.</li>
             <li class="item">none - The media will not be displayed.</li>
           </ul></div>
         </li>
@@ -88,7 +89,7 @@ reference "&amp;amp;". More information can be found on the
       to a Web file that contains a full explanation of the media. 
         </li>
 <li class="item">
-<b>id</b> <i>(required)</i>: 
+<b>id</b> <i>(optional for inline display media)</i>: 
           A unique identifier, whose value must begin with a letter and contain only letters, 
           numbers, hyphens, underscores, colons, and/or periods (no spaces).
         </li>
