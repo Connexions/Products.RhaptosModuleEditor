@@ -23,7 +23,8 @@
       The <code class="codeline">label</code> tag is used to override the default label for CNXML elements that use
       labels, such as <a href="figure" class="cnxn">figure</a> and <a href="example" class="cnxn">example</a>.  This can be particularly helpful
       when translating content to other languages. The <code class="codeline">label</code> tag does not affect
-      numbering; numbering is controlled by the parent tag's "type" attribute.
+      numbering; numbering is controlled by the parent tag's "type" attribute. If an element contains a
+      <code class="codeline">label</code>, the <code class="codeline">label</code> must be the first child of the element.
       </div>
       <div class="example" id="cnx_eip_help_example">
 <h2 class="example-header"><span class="cnx_label">Example</span></h2>
@@ -88,7 +89,7 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="space">space</a>, Unicode text</div>
+<a class="cnxn" href="code">code</a> (code must be inline), <a class="cnxn" href="preformat">preformat</a> (preformat must be inline), <a class="cnxn" href="quote">quote</a> (quote must be inline), <a class="cnxn" href="note">note</a> (note must be inline), <a class="cnxn" href="list">list</a> (list must be inline), <a class="cnxn" href="media">media</a> (media must be inline), <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="space">space</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="cite">cite</a>, Unicode text</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

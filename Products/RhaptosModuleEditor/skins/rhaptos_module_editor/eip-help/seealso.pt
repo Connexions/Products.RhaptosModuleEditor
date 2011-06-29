@@ -74,7 +74,9 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="label">label</a> (one, optional), <a class="cnxn" href="term">term</a> (one or more)</div>
+<a class="cnxn" href="label">label</a>, <a class="cnxn" href="term">term</a><div class="explanation">First, <code class="codeline">seealso</code> may contain an optional <a href="label" class="cnxn">label</a> tag.
+         Next, it must contain one or more <a href="term" class="cnxn">term</a> tags.</div>
+</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

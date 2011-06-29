@@ -278,7 +278,11 @@
       <xsl:if test="mathml"> <!-- MathML -->
 	<xsl:text>, MathML</xsl:text>
       </xsl:if>
-      <xsl:apply-templates select="note" />
+      <xsl:for-each select="note">
+        <div class="explanation">
+          <xsl:apply-templates />
+        </div>
+      </xsl:for-each>
     </div>
   </xsl:template>
 

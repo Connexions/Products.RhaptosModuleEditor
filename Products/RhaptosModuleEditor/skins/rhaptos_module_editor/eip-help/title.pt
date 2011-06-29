@@ -20,10 +20,10 @@
 </div>
       <h2 class="para-header"><strong class="name">Description</strong></h2>
 <div class="para" id="cnx_eip_help_description">
-  The <code class="codeline">title</code> tag is used to insert an optional label or 
+  The <code class="codeline">title</code> tag is used to insert an optional 
   title for a CNXML object such as a <a href="section" class="cnxn">section</a>, 
         <a href="list" class="cnxn">list</a>, 
-        <a href="exercise" class="cnxn">exercise</a>, <a href="para" class="cnxn">para</a>, or other elements where titles may be appropriate.
+        <a href="exercise" class="cnxn">exercise</a>, <a href="para" class="cnxn">para</a>, or other elements where titles may be appropriate. If an element contains a <code class="codeline">title</code>, the <code class="codeline">title</code> must follow the <a href="label" class="cnxn">label</a> tag (if there is one) but precede all other children of the parent element.
       <p id="additionalnote" class="para">
       Note: The <code class="codeline">title</code> element replaces the now-deprecated <code class="codeline">name</code> element beginning with CNXML 0.6.
       </p>
@@ -94,12 +94,12 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="space">space</a>, Unicode text</div>
+<a class="cnxn" href="code">code</a> (code must be inline), <a class="cnxn" href="preformat">preformat</a> (preformat must be inline), <a class="cnxn" href="quote">quote</a> (quote must be inline), <a class="cnxn" href="note">note</a> (note must be inline), <a class="cnxn" href="list">list</a> (list must be inline), <a class="cnxn" href="media">media</a> (media must be inline), <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="space">space</a>, <a class="cnxn" href="newline">newline</a>, <a class="cnxn" href="cite">cite</a>, Unicode text</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_parents">
-<a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="subfigure">subfigure</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="exercise">exercise</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="table">table</a>
+<a class="cnxn" href="section">section</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="list">list</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="subfigure">subfigure</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="exercise">exercise</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="rule">rule</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>
 </div>
     <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
 <tal:google-analytics tal:condition="isCNX"><script type="text/javascript">

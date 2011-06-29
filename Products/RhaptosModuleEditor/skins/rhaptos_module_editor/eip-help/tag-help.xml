@@ -2,23 +2,36 @@
   <tagsets>
     <tagset name="inline">
       <tag>emphasis</tag>
-      <tag>code</tag>
       <tag>term</tag>
-      <tag>cite</tag>
       <tag>footnote</tag>
       <tag>link</tag>
       <tag>foreign</tag>
-      <tag>quote</tag>
       <tag>sub</tag>
       <tag>sup</tag>
       <tag>space</tag>
       <tag>newline</tag>
-      <tag>preformat</tag>
+      <tag>cite</tag>
+    </tagset>
+    <tagset name="mostinline">
+      <tag>emphasis</tag>
+      <tag>term</tag>
+      <tag>footnote</tag>
+      <tag>link</tag>
+      <tag>foreign</tag>
+      <tag>sub</tag>
+      <tag>sup</tag>
+      <tag>cite</tag>
     </tagset>
     <tagset name="cantakeinline">
       <tag>para</tag>
-      <tag>meaning</tag>
+      <tag>label</tag>
+      <tag>title</tag>
+      <tag>code</tag>
+      <tag>preformat</tag>
+      <tag>quote</tag>
       <tag>note</tag>
+      <tag>commentary</tag>
+      <tag>meaning</tag>
       <tag>item</tag>
       <tag>caption</tag>
       <tag>entry</tag>
@@ -27,22 +40,21 @@
       <tag>content</tag> 
       <tag>section</tag>
       <tag>example</tag>
-      <tag>meaning</tag>
-      <tag>proof</tag>
       <tag>statement</tag>
+      <tag>proof</tag>
       <tag>problem</tag>
       <tag>solution</tag>
       <tag>commentary</tag>
+      <tag>meaning</tag>
     </tagset>
     <tagset name="moststructural">
       <tag>content</tag>
       <tag>section</tag>
       <tag>example</tag>
-      <tag>proof</tag>
       <tag>statement</tag>
+      <tag>proof</tag>
       <tag>problem</tag>
       <tag>solution</tag>
-      <tag>commentary</tag>
     </tagset>
     <tagset name="somespecial">
       <tag>definition</tag>
@@ -64,6 +76,20 @@
       <tag>image</tag>
       <tag>labview</tag>
       <tag>download</tag>
+    </tagset>
+    <tagset name="switch">
+      <tag>code</tag>
+      <tag>preformat</tag>
+      <tag>quote</tag>
+      <tag>note</tag>
+      <tag>list</tag>
+      <tag>media</tag>
+    </tagset>
+    <tagset name="mostswitch">
+      <tag>code</tag>
+      <tag>preformat</tag>
+      <tag>quote</tag>
+      <tag>note</tag>
     </tagset>
   </tagsets>
   <body>
@@ -104,23 +130,9 @@
       </exampleexample>
       <attributes id="optional"/>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="switch" />
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text/>
       </children>
       <parents>
@@ -194,61 +206,37 @@
         </attribute>
       </attributes>
       <children>
-          <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
         <tagref>caption</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text/>
+        <note>First, <nameoftag>code</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>cite</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>figure</tagref>
-        <tagref>subfigure</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagref note="code must be block display">content</tagref>
         <tagref note="code must be block display">section</tagref>
         <tagref note="code must be block display">example</tagref>
-        <tagref note="code must be block display">problem</tagref>
-        <tagref note="code must be block display">solution</tagref>
         <tagref note="code must be block display">statement</tagref>
         <tagref note="code must be block display">proof</tagref>
+        <tagref note="code must be block display">problem</tagref>
+        <tagref note="code must be block display">solution</tagref>
+        <tagref>figure</tagref>
+        <tagref>subfigure</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
+        <tagref>cite-title</tagref>
         <tagsetref name="mediaobjects"/>
       </parents>
     </tag>      
-
     <tag name="example">
       <description>
       The <nameoftag>example</nameoftag> tag is used to contain an 
@@ -286,26 +274,27 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>media</tagref>
-        <tagref>list</tagref>
+        <tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>
+        <tagref note="list must be block">list</tagref>
+        <tagref note="media must be block">media</tagref>
         <tagref>table</tagref>
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <tagref>para</tagref>
+        <note>First, <nameoftag>example</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -313,15 +302,8 @@
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
         <tagref>definition</tagref>
-        <tagref>meaning</tagref>
         <tagref>rule</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -397,13 +379,18 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref> 
-        <tagref note="one, required">problem</tagref>
-        <tagref note="zero or more">solution</tagref>
-        <tagref note="one, optional">commentary</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref> 
+        <tagref>problem</tagref>
+        <tagref>solution</tagref>
+        <tagref>commentary</tagref>
+        <note>First, <nameoftag>exercise</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Next, it must contain one <link>problem</link> tag,
+         followed by zero or more <link>solution</link> tags. Finally, <nameoftag>exercise</nameoftag> may contain one
+         <link>commentary</link> tag.</note>
       </children>
       <parents>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -412,7 +399,6 @@
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
         <tagref>entry</tagref>
-        <tagsetref name="structural" />  
       </parents>
     </tag>
 
@@ -507,7 +493,7 @@
             <value name="block">The list will be set apart from the surrounding text (default). 
               If the display attribute is set to "block" or is absent, then an id is required.</value>
             <value name="inline">The list will be included in the 
-              current line of text.</value>
+              current line of text. If list is inline, any <link>item</link> of the list may only include inline children.</value>
             <value name="none">The list will not be displayed.</value>
           </values>
         </attribute>
@@ -516,40 +502,24 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
-        <tagref note="one or more, required">item</tagref>
-      </children>
-      <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>quote</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
-        <tagref>entry</tagref>
         <tagref>label</tagref>
         <tagref>title</tagref>
+        <tagref>item</tagref>
+        <note>
+          <h2 class="note-header">
+            <span class="cnx_label">Note:</span>
+          </h2> 
+          If <nameoftag>list</nameoftag> is inline, any <link>item</link> of the list may only include inline children.</note>
+        <note>First, <nameoftag>list</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Finally, <nameoftag>list</nameoftag> must contain one
+         or more <link>item</link> tags.</note>
+      </children>
+      <parents>
+        <tagsetref name="moststructural" />
+        <tagsetref name="cantakeinline" />
+        <!--<tagref>text</tagref>-->
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>cite</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>foreign</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -596,7 +566,7 @@
             <value name="block">The note will be set apart from the surrounding text (default).
               If the display attribute is set to "block" or is absent, then an id is required.
             </value>
-            <value name="inline">The note will be included in the current line of text.
+            <value name="inline">The note will be included in the current line of text. If note is inline, only inline children are allowed.
             </value>
             <value name="none">The note will not be displayed.</value>
           </values>
@@ -609,26 +579,10 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagsetref name="switch" />
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -636,38 +590,29 @@
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>
+          <h2 class="note-header">
+            <span class="cnx_label">Note:</span>
+          </h2> 
+          If <nameoftag>note</nameoftag> is inline, only inline children are allowed.</note>
+        <note>First, <nameoftag>note</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref note="note must be block display">content</tagref>
         <tagref note="note must be block display">section</tagref>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>quote</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <!--<tagref>text</tagref>-->
         <tagref note="note must be block display">example</tagref>
+        <tagref note="note must be block display">proof</tagref>
+        <tagref note="note must be block display">statement</tagref>
         <tagref note="note must be block display">problem</tagref>
         <tagref note="note must be block display">solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref note="note must be block display">statement</tagref>
-        <tagref note="note must be block display">proof</tagref>
-        <tagref>entry</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <!--<tagref>text</tagref>-->
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>foreign</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -730,23 +675,25 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
 	<tagref>example</tagref>
         <tagref>figure</tagref>
-	<tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>media</tagref>
-        <tagref>list</tagref>
+	<tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>
+        <tagref note="list must be block">list</tagref>
+        <tagref note="media must be block">media</tagref>
         <tagref>table</tagref>
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <tagref>para</tagref>
+        <note>First, <nameoftag>problem</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>exercise</tagref>
@@ -823,23 +770,25 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
 	<tagref>example</tagref>
         <tagref>figure</tagref>
-	<tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>media</tagref>
-        <tagref>list</tagref>
+	<tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>
+        <tagref note="list must be block">list</tagref>
+        <tagref note="media must be block">media</tagref>
         <tagref>table</tagref>
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <tagref>para</tagref>
+        <note>First, <nameoftag>solution</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>exercise</tagref>
@@ -873,16 +822,16 @@
       <attributes id="optional" />
       <children>
         <tagref>section</tagref>
+        <tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>  
+        <tagref note="list must be block">list</tagref>  
+        <tagref note="media must be block">media</tagref>  
         <tagref>example</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
         <tagref>para</tagref>
         <tagref>definition</tagref>
         <tagref>figure</tagref>  
-        <tagref>note</tagref>  
-        <tagref>media</tagref>  
-        <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
         <tagref>equation</tagref>
@@ -938,47 +887,20 @@
         </attribute>
       </attributes>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag> 
@@ -1023,7 +945,8 @@
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref note="one or more">definition</tagref>
+        <tagref>definition</tagref>
+        <note>A <nameoftag>glossary</nameoftag> must contain one or more <link>definition</link> tags.</note>
       </children>
       <parents>
         <tagref>document</tagref>
@@ -1075,24 +998,9 @@
       </exampleexample>
       <attributes id="required" />
       <children>
-        <tagref note="one, optional">title</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -1100,8 +1008,11 @@
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
-        <tagref>term</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>First, <nameoftag>meaning</nameoftag> may contain an optional <link>title</link> tag.
+         The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>definition</tagref>
@@ -1197,23 +1108,25 @@
       </attribute>
 	  </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>media</tagref>
-        <tagref>list</tagref>
+        <tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>
+        <tagref note="list must be block">list</tagref>
+        <tagref note="media must be block">media</tagref>
         <tagref>table</tagref>
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <tagref>para</tagref>
+        <note>First, <nameoftag>proof</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Any other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>rule</tagref>
@@ -1279,15 +1192,18 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
-        <tagref note="one, required">statement</tagref>
-        <tagref note="zero or more">proof</tagref>
-        <tagref note="zero or more">example</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagref>statement</tagref>
+        <tagref>proof</tagref>
+        <tagref>example</tagref>
+        <note>First, <nameoftag>rule</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Next, it must contain one or
+         more <link>statement</link> tags. Finally, <nameoftag>rule</nameoftag> may contain zero
+         or more <link>proof</link> tags and zero or more <link>example</link> tags in any order.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -1295,13 +1211,6 @@
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -1371,23 +1280,25 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>code</tagref>
+        <tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>  
+        <tagref note="quote must be block">quote</tagref>  
+        <tagref note="note must be block">note</tagref>  
+        <tagref note="list must be block">list</tagref>  
+        <tagref note="media must be block">media</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>  
         <tagref>figure</tagref>  
-        <tagref>preformat</tagref>  
-        <tagref>quote</tagref>  
-        <tagref>note</tagref>  
-        <tagref>media</tagref>
-        <tagref>list</tagref>  
         <tagref>table</tagref>  
         <tagref>rule</tagref>  
         <tagref>equation</tagref>  
-        <tagref>exercise</tagref> 
+        <tagref>exercise</tagref>
+        <note>First, <nameoftag>section</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>content</tagref>
@@ -1432,8 +1343,10 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one or more">term</tagref>
+        <tagref>label</tagref>
+        <tagref>term</tagref>
+        <note>First, <nameoftag>seealso</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it must contain one or more <link>term</link> tags.</note>
       </children>
       <parents>
         <tagref note="only one seealso tag may appear inside a 
@@ -1477,23 +1390,25 @@
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>section</tagref>
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>media</tagref>
-        <tagref>list</tagref>
+        <tagref note="code must be block">code</tagref>
+        <tagref note="preformat must be block">preformat</tagref>
+        <tagref note="quote must be block">quote</tagref>
+        <tagref note="note must be block">note</tagref>
+        <tagref note="list must be block">list</tagref>
+        <tagref note="media must be block">media</tagref>
         <tagref>table</tagref>
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <tagref>para</tagref>
+        <note>First, <nameoftag>statement</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>rule</tagref>
@@ -1554,47 +1469,20 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects"/>
       </parents>
     </tag>
@@ -1649,16 +1537,20 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, required">term</tagref>
-        <tagref note="one or more, required">meaning</tagref>
-        <tagref note="zero or more">example</tagref>
-        <tagref note="one, optional">seealso</tagref>
+        <tagref>label</tagref>
+        <tagref>term</tagref>
+        <tagref>meaning</tagref>
+        <tagref>example</tagref>
+        <tagref>seealso</tagref>
+        <note>First, <nameoftag>definition</nameoftag> may contain an optional <link>label</link>
+         tag. Next, it must contain a single <link>term</link> tag.  Then, it must contain
+         one or more <link>meaning</link> tags, followed in turn by any optional <link>example</link>
+         tags associated with that meaning.  Finally, <nameoftag>definition</nameoftag> may contain
+         an optional <link>seealso</link> tag.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
+        <tagsetref name="structural" />
         <tagref>glossary</tagref>
-        <tagref>section</tagref>
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -1666,13 +1558,6 @@ is a classic novel.
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -1776,15 +1661,17 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>media</tagref>
         <mathml />
         <text />
+        <note>First, <nameoftag>equation</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Finally, <nameoftag>equation</nameoftag>
+         must contain either <link>media</link>, MathML, or Unicode Text.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -1792,13 +1679,6 @@ is a classic novel.
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -1947,11 +1827,15 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="zero or more">colspec</tagref>
-        <tagref note="zero or more">spanspec</tagref>
-        <tagref note="zero or one">thead</tagref>
-        <tagref note="zero or one">tfoot</tagref>
-        <tagref note="one, required">tbody</tagref>
+        <tagref>colspec</tagref>
+        <tagref>spanspec</tagref>
+        <tagref>thead</tagref>
+        <tagref>tfoot</tagref>
+        <tagref>tbody</tagref>
+        <note>First, <nameoftag>tgroup</nameoftag> may contain zero or more <link>colspec</link> tags, 
+         followed by zero or more <link>spanspec</link> tags. Next, it may contain an optional
+         <link>thead</link> tag, followed by an optional <link>tfoot</link> tag. Finally, 
+         <nameoftag>tgroup</nameoftag> must contain one <link>tbody</link> tag.</note>
       </children>
       <parents>
         <tagref>table</tagref>
@@ -2331,8 +2215,10 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="one or more">entry</tagref>
-        <tagref note="one or more">entrytbl</tagref>
+        <tagref>entry</tagref>
+        <tagref>entrytbl</tagref>
+        <note>The <nameoftag>row</nameoftag> tag must contain at least one <link>entry</link> tag
+         or at least one <link>entrytbl</link> tag.</note>
       </children>
       <parents>
         <tagref>thead</tagref>
@@ -2582,10 +2468,13 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="zero or more">colspec</tagref>
-        <tagref note="zero or more">spanspec</tagref>
-        <tagref note="zero or one">thead</tagref>
-        <tagref note="one">tbody</tagref>
+        <tagref>colspec</tagref>
+        <tagref>spanspec</tagref>
+        <tagref>thead</tagref>
+        <tagref>tbody</tagref>
+        <note>First, <nameoftag>entrytbl</nameoftag> may contain zero or more <link>colspec</link> tags, 
+         followed by zero or more <link>spanspec</link> tags. Next, it may contain an optional
+         <link>thead</link> tag. Finally, <nameoftag>entrytble</nameoftag> must contain one <link>tbody</link> tag.</note>
       </children>
       <parents>
         <tagref>row</tagref>
@@ -2777,23 +2666,7 @@ is a classic novel.
       </attributes>
       <children>
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>cite</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -2801,6 +2674,8 @@ is a classic novel.
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
       </children>
       <parents>
@@ -2843,24 +2718,8 @@ is a classic novel.
       <attributes id="required">
       </attributes>
       <children>
-        <tagref note="one, optional">title</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagref>title</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -2868,24 +2727,20 @@ is a classic novel.
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>First, <nameoftag>para</nameoftag> may contain an optional <link>title</link> tag.
+         The other tags may follow in any allowed order.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>quote</tagref>
         <tagref>footnote</tagref>
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -2922,25 +2777,9 @@ is a classic novel.
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref note="one, optional">label</tagref>
+        <tagref>label</tagref>
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -2948,7 +2787,11 @@ is a classic novel.
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>First, <nameoftag>item</nameoftag> may contain an optional <link>label</link> tag.
+         The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>list</tagref>
@@ -3005,7 +2848,7 @@ is a classic novel.
             <value name="block">The quote will be set apart from the surrounding text (default).
               If the display attribute is set to "block" or is absent, then an id is required.</value>
             <value name="inline">The quote will be included in the 
-              current line of text and will be surrounded by quotation marks.</value>
+              current line of text and will be surrounded by quotation marks. If quote is inline, only inline children are allowed.</value>
             <value name="none">The quote will not be displayed.</value>
           </values>
         </attribute>
@@ -3018,26 +2861,10 @@ is a classic novel.
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -3045,39 +2872,29 @@ is a classic novel.
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>
+          <h2 class="note-header">
+            <span class="cnx_label">Note:</span>
+          </h2> 
+          If <nameoftag>quote</nameoftag> is inline, only inline children are allowed.</note>
+        <note>First, <nameoftag>quote</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref note="quote must be block display">content</tagref>
         <tagref note="quote must be block display">section</tagref>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>quote</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <!--<tagref>text</tagref>-->
         <tagref note="quote must be block display">example</tagref>
+        <tagref note="quote must be block display">proof</tagref>
+        <tagref note="quote must be block display">statement</tagref>
         <tagref note="quote must be block display">problem</tagref>
         <tagref note="quote must be block display">solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref note="quote must be block display">statement</tagref>
-        <tagref note="quote must be block display">proof</tagref>
-        <tagref>entry</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <!--<tagref>text</tagref>-->
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -3108,47 +2925,20 @@ is a classic novel.
         </linkingattributes>
       </attributes>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -3198,48 +2988,21 @@ is a classic novel.
         </linkingattributes>
       </attributes>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>foonote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>foonote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <tagsetref name="mediaobjects"/>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
       </parents>
     </tag>
 
@@ -3286,49 +3049,22 @@ is a classic novel.
         </linkingattributes>
       </attributes>
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
         <tagref>definition</tagref>
-        <tagref>meaning</tagref>
         <tagref>seealso</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -3377,52 +3113,23 @@ reference "&amp;amp;". More information can be found on the
             <value name="3">Sets link strength to 3 (the strongest)</value>
           </values>
         </attribute>
-
       </attributes>
       <children>
-
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
       </parents>
     </tag>
 
@@ -3580,14 +3287,16 @@ reference "&amp;amp;". More information can be found on the
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
-        <tagref note="one or more, required">tgroup</tagref>
-        <tagref note="one, optional">caption</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagref>tgroup</tagref>
+        <tagref>caption</tagref>
+        <note>First, <nameoftag>table</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. Next, it must contain one or more 
+         <link>tgroup</link> tags. Finally, <nameoftag>table</nameoftag> may contain one <link>caption</link> tag.</note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -3597,13 +3306,6 @@ reference "&amp;amp;". More information can be found on the
         <tagref>figure</tagref>
         <tagref>subfigure</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -3653,6 +3355,12 @@ reference "&amp;amp;". More information can be found on the
         </attribute>
       </attributes>
       <children>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagref>media</tagref>
+        <tagref>table</tagref>
+        <tagref>code</tagref>
+        <tagref>caption</tagref>
         <note>
           First, <nameoftag>subfigure</nameoftag> may contain an optional 
           <link>label</link> tag, followed by an optional <link>title</link> tag.
@@ -3715,7 +3423,14 @@ reference "&amp;amp;". More information can be found on the
         </attribute>
       </attributes>
       <children>
-        <note>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
+        <tagref>subfigure</tagref>
+        <tagref>media</tagref>
+        <tagref>table</tagref>
+        <tagref>code</tagref>
+        <tagref>caption</tagref>
+        <note class="para">
           First, <nameoftag>figure</nameoftag> may contain an optional 
           <link>label</link> tag, followed by an optional <link>title</link> tag.
           Next, it must contain:
@@ -3731,8 +3446,7 @@ reference "&amp;amp;". More information can be found on the
         </note>
       </children>
       <parents>
-        <tagref>content</tagref>
-        <tagref>section</tagref>
+        <tagsetref name="structural" />
         <tagref>preformat</tagref>
         <tagref>para</tagref>
         <tagref>quote</tagref>
@@ -3740,13 +3454,6 @@ reference "&amp;amp;". More information can be found on the
         <tagref>note</tagref>
         <tagref>item</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>example</tagref>
-        <tagref>problem</tagref>
-        <tagref>solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>statement</tagref>
-        <tagref>proof</tagref>
         <tagref>entry</tagref>
       </parents>
     </tag>
@@ -3773,47 +3480,20 @@ reference "&amp;amp;". More information can be found on the
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sup</tagref>
-        <tagref>sub</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -3840,47 +3520,20 @@ reference "&amp;amp;". More information can be found on the
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sup</tagref>
-        <tagref>sub</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <tagsetref name="mediaobjects" />
       </parents>
     </tag>
@@ -3894,7 +3547,7 @@ reference "&amp;amp;". More information can be found on the
         <input>
 &lt;para id=&quot;example-paragraph&quot;&gt;
   Many people may not know that cheesecake
-  is tart, not a cake. 
+  is a tart, not a cake. 
   &lt;footnote id=&quot;example-footnote&quot;&gt; 
     Alan Davidson, Oxford Companion to Food,
     s.v. cheesecake: &quot;Cheesecake, not a
@@ -3904,7 +3557,7 @@ reference "&amp;amp;". More information can be found on the
 &lt;/para&gt;
         </input>
         <output>
-          <p class="para" id="example-paragraph">Many people may not know that cheesecake is tart, not a cake. 
+          <p class="para" id="example-paragraph">Many people may not know that cheesecake is a tart, not a cake. 
             <a class="footnote-reference" href="#footnote1">1</a>
           </p>
           <div class="footnotes">
@@ -3918,25 +3571,9 @@ reference "&amp;amp;". More information can be found on the
       <attributes id="required">
       </attributes>
       <children>
-        <tagref note="one, optional">title</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -3944,30 +3581,16 @@ reference "&amp;amp;". More information can be found on the
         <tagref>rule</tagref>
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
+        <tagsetref name="inline" />
+        <tagref>cite-title</tagref>
         <text />
+        <note>First, <nameoftag>footnote</nameoftag> may contain an optional <link>title</link> tag.
+         The other tags may follow in any allowed order.</note>
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
         <!--<tagref>text</tagref>-->
       </parents>
     </tag>
@@ -4076,10 +3699,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4191,10 +3811,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4315,10 +3932,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4429,10 +4043,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4517,10 +4128,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4572,10 +4180,10 @@ reference "&amp;amp;". More information can be found on the
         </attribute>
         <attribute name="display" required="optional">
           <values>
-            <value name="block">The media will be set apart from the 
-          surrounding text. If the display attribute is set to "block" or is absent, then an id is required.</value>
             <value name="inline">The media will be included in the 
                 current line of text (default).</value>
+            <value name="block">The media will be set apart from the 
+          surrounding text. If the display attribute is set to "block", then an id is required.</value>
             <value name="none">The media will not be displayed.</value>
           </values>
         </attribute>
@@ -4594,38 +4202,20 @@ reference "&amp;amp;". More information can be found on the
         <tagsetref name="mediaobjects" />
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
-        <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>equation</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>figure</tagref>
-        <tagref>subfigure</tagref>
-        <tagref>caption</tagref>
-        <!--<tagref>text</tagref>-->
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
-        <tagref note="media must be block display">example</tagref>
-        <tagref note="media must be block display">statement</tagref>
-        <tagref note="media must be block display">proof</tagref>
-        <tagref note="media must be block display">problem</tagref>
-        <tagref note="media must be block display">solution</tagref>
         <tagref note="media must be block display">content</tagref>
         <tagref note="media must be block display">section</tagref>
+        <tagref note="media must be block display">example</tagref>
+        <tagref note="media must be block display">proof</tagref>
+        <tagref note="media must be block display">statement</tagref>
+        <tagref note="media must be block display">problem</tagref>
+        <tagref note="media must be block display">solution</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagref>equation</tagref>
+        <tagref>figure</tagref>
+        <tagref>subfigure</tagref>
+        <tagsetref name="mostinline" />
+        <tagref>cite-title</tagref>
+        <!--<tagref>text</tagref>-->
       </parents>
     </tag>
 
@@ -4773,10 +4363,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4873,10 +4460,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
         <tagsetref name="mediaobjects" />
         <text />
@@ -4971,10 +4555,7 @@ reference "&amp;amp;". More information can be found on the
         <tagref>emphasis</tagref>
         <tagref>sub</tagref>
         <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>list</tagref>
 		<tagref>link</tagref>
         <tagsetref name="mediaobjects" />
@@ -5064,26 +4645,12 @@ reference "&amp;amp;". More information can be found on the
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">label</tagref>
-        <tagref note="one, optional">title</tagref>
+        <tagref>label</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>term</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>cite</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>newline</tagref>
-        <tagref>link</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -5092,6 +4659,8 @@ reference "&amp;amp;". More information can be found on the
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <text />
+        <note>First, <nameoftag>commentary</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref>exercise</tagref>
@@ -5135,31 +4704,17 @@ Roses are red
             <value name="block">The pre-formatted text will be set apart from the surrounding text (default). 
                 If the display attribute is set to "block" or is absent, then an id is required.</value>
             <value name="inline">The pre-formatted text will be included in the 
-                current line of text.</value>
+                current line of text. If preformat is inline, only inline children are allowed.</value>
             <value name="none">The pre-formatted text will not be displayed.</value>
           </values>
         </attribute>
       </attributes>
       <children>
-        <tagref note="one, optional">title</tagref>
+        <tagref>title</tagref>
         <tagref>para</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
+        <tagsetref name="switch" />
         <tagref>definition</tagref>
         <tagref>example</tagref>
         <tagref>figure</tagref>
@@ -5168,47 +4723,36 @@ Roses are red
         <tagref>equation</tagref>
         <tagref>exercise</tagref>
         <text />
+        <note>
+          <h2 class="note-header">
+            <span class="cnx_label">Note:</span>
+          </h2> 
+          If <nameoftag>preformat</nameoftag> is inline, only inline children are allowed.</note>
+        <note>First, <nameoftag>preformat</nameoftag> may contain an optional <link>label</link> tag.
+         Next, it may contain an optional <link>title</link> tag. The other tags may follow in any allowed order.</note>
       </children>
       <parents>
         <tagref note="preformat must be block display">content</tagref>
         <tagref note="preformat must be block display">section</tagref>
-        <tagref>para</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <!--<tagref>text</tagref>-->
         <tagref note="preformat must be block display">example</tagref>
+        <tagref note="preformat must be block display">proof</tagref>
+        <tagref note="preformat must be block display">statement</tagref>
         <tagref note="preformat must be block display">problem</tagref>
         <tagref note="preformat must be block display">solution</tagref>
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref note="preformat must be block display">statement</tagref>
-        <tagref note="preformat must be block display">proof</tagref>
-        <tagref>entry</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <!--<tagref>text</tagref>-->
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>foreign</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <tagsetref name="mediabojects"/>
       </parents>
     </tag>
 
     <tag name="title">
       <description>
-  The <nameoftag>title</nameoftag> tag is used to insert an optional label or 
+  The <nameoftag>title</nameoftag> tag is used to insert an optional 
   title for a CNXML object such as a <link>section</link>, 
         <link>list</link>, 
-        <link>exercise</link>, <link>para</link>, or other elements where titles may be appropriate.
+        <link>exercise</link>, <link>para</link>, or other elements where titles may be appropriate. If an element contains a <nameoftag>title</nameoftag>, the <nameoftag>title</nameoftag> must follow the <link>label</link> tag (if there is one) but precede all other children of the parent element.
       <p id="additionalnote" class="para">
       Note: The <nameoftag>title</nameoftag> element replaces the now-deprecated <nameoftag>name</nameoftag> element beginning with CNXML 0.6.
       </p>
@@ -5263,35 +4807,23 @@ Roses are red
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
         <tagref>section</tagref>
-        <tagref>preformat</tagref>
         <tagref>para</tagref>
-        <tagref>quote</tagref>
+        <tagsetref name="mostswitch" />
         <tagref>footnote</tagref>
         <tagref>equation</tagref>
-        <tagref>note</tagref>
         <tagref>list</tagref>
-        <tagref>code</tagref>
         <tagref>figure</tagref>
         <tagref>subfigure</tagref>
         <tagref>example</tagref>
@@ -5312,7 +4844,8 @@ Roses are red
       The <nameoftag>label</nameoftag> tag is used to override the default label for CNXML elements that use
       labels, such as <link>figure</link> and <link>example</link>.  This can be particularly helpful
       when translating content to other languages. The <nameoftag>label</nameoftag> tag does not affect
-      numbering; numbering is controlled by the parent tag's "type" attribute.
+      numbering; numbering is controlled by the parent tag's "type" attribute. If an element contains a
+      <nameoftag>label</nameoftag>, the <nameoftag>label</nameoftag> must be the first child of the element.
       </description>
       <exampleexample>
         <input>
@@ -5355,23 +4888,14 @@ class="problem" id="se-problem">
       </exampleexample>
       <attributes id="optional" />
       <children>
-        <tagref>term</tagref>
-        <tagref>cite</tagref>
+        <tagref note="code must be inline">code</tagref>
+        <tagref note="preformat must be inline">preformat</tagref>
+        <tagref note="quote must be inline">quote</tagref>
+        <tagref note="note must be inline">note</tagref>
+        <tagref note="list must be inline">list</tagref>
+        <tagref note="media must be inline">media</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>foreign</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>code</tagref>
-        <tagref>preformat</tagref>
-        <tagref>quote</tagref>
-        <tagref>note</tagref>
-        <tagref>list</tagref>
-        <tagref>media</tagref>
-        <tagref>footnote</tagref>
-        <tagref>link</tagref>
-        <tagref>newline</tagref>
-        <tagref>space</tagref>
         <text />
       </children>
       <parents>
@@ -5499,28 +5023,10 @@ class="problem" id="se-problem">
         </note>
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="inline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
+        <tagsetref name="mostswitch" />
         <!--<tagref>text</tagref>-->
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
       </parents>
     </tag>
 
@@ -5591,28 +5097,10 @@ class="problem" id="se-problem">
         </note>
       </children>
       <parents>
-        <tagref>preformat</tagref>
-        <tagref>para</tagref>
-        <tagref>title</tagref>
-        <tagref>label</tagref>
-        <tagref>cite</tagref>
+        <tagsetref name="cantakeinline" />
+        <tagsetref name="mostinline" />
         <tagref>cite-title</tagref>
-        <tagref>link</tagref>
-        <tagref>emphasis</tagref>
-        <tagref>term</tagref>
-        <tagref>sub</tagref>
-        <tagref>sup</tagref>
-        <tagref>quote</tagref>
-        <tagref>foreign</tagref>
-        <tagref>footnote</tagref>
-        <tagref>note</tagref>
-        <tagref>item</tagref>
-        <tagref>code</tagref>
-        <tagref>caption</tagref>
         <!--<tagref>text</tagref>-->
-        <tagref>commentary</tagref>
-        <tagref>meaning</tagref>
-        <tagref>entry</tagref>
       </parents>
     </tag>
 
@@ -5705,8 +5193,10 @@ class="problem" id="se-problem">
         </attribute>
       </attributes>
       <children>
-        <tagref note="zero or more">colspec</tagref>
-        <tagref note="one or more">row</tagref>
+        <tagref>colspec</tagref>
+        <tagref>row</tagref>
+        <note>First, <nameoftag>thead</nameoftag> may contain zero or more <link>colspec</link> tags, 
+         followed by at least one <link>row</link> tag.</note>
       </children>
       <parents>
         <tagref>tgroup</tagref>
@@ -5801,8 +5291,10 @@ class="problem" id="se-problem">
         </attribute>
       </attributes>
       <children>
-        <tagref note="zero or more">colspec</tagref>
-        <tagref note="one or more">row</tagref>
+        <tagref>colspec</tagref>
+        <tagref>row</tagref>
+        <note>First, <nameoftag>tfoot</nameoftag> may contain zero or more <link>colspec</link> tags, 
+         followed by at least one <link>row</link> tag.</note>
       </children>
       <parents>
         <tagref>tgroup</tagref>
@@ -5881,7 +5373,8 @@ class="problem" id="se-problem">
         </attribute>
       </attributes>
       <children>
-        <tagref note="one or more">row</tagref>
+        <tagref>row</tagref>
+        <note>The <nameoftag>tbody</nameoftag> tag must contain one or more <link>row</link> tags.</note>
       </children>
       <parents>
         <tagref>tgroup</tagref>
@@ -5929,13 +5422,24 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
+    <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
         <tagsetref name="structural" />
      </parents>
   </tag>
@@ -5977,14 +5481,25 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
-        <tagsetref name="structural" />
+    <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
+      <tagsetref name="structural" />
      </parents>
   </tag>
 
@@ -6025,14 +5540,25 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
-        <tagsetref name="structural" />
+    <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
+      <tagsetref name="structural" />
      </parents>
   </tag>
 
@@ -6073,14 +5599,25 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
-        <tagsetref name="structural" />
+    <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
+      <tagsetref name="structural" />
      </parents>
   </tag>
 
@@ -6121,14 +5658,25 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
-        <tagsetref name="structural" />
+      <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
+      <tagsetref name="structural" />
      </parents>
   </tag>
 
@@ -6177,14 +5725,25 @@ class="problem" id="se-problem">
       </attribute>
    </attributes>
    <children>
-    <tagsetref name="inline" />
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
     <text />
    </children>
    <parents>
     <tagref>figure</tagref>
     <tagref>subfigure</tagref>
-    <tagsetref name="cantakeinline" />
+    <tagref>para</tagref>
+    <tagref>meaning</tagref>
+    <tagref>note</tagref>
+    <tagref>item</tagref>
+    <tagref>caption</tagref>
+    <tagref>entry</tagref>
     <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
     <tagsetref name="structural" />
    </parents>
   </tag>
@@ -6231,14 +5790,25 @@ class="problem" id="se-problem">
      </attributes>
      <children>
       <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       <text />
      </children>
      <parents>
       <tagref>figure</tagref>
       <tagref>subfigure</tagref>
-      <tagsetref name="cantakeinline" />
-        <tagsetref name="inline" />
-        <tagsetref name="structural" />
+      <tagref>para</tagref>
+      <tagref>meaning</tagref>
+      <tagref>note</tagref>
+      <tagref>item</tagref>
+      <tagref>caption</tagref>
+      <tagref>entry</tagref>
+      <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
+      <tagsetref name="structural" />
      </parents>
   </tag>
 
@@ -6311,8 +5881,16 @@ class="problem" id="se-problem">
     </note>
       </children>
       <parents>
-  <tagsetref name="cantakeinline" />
+  <tagref>para</tagref>
+  <tagref>meaning</tagref>
+  <tagref>note</tagref>
+  <tagref>item</tagref>
+  <tagref>caption</tagref>
+  <tagref>entry</tagref>
   <tagsetref name="inline" />
+      <tagref>code</tagref>
+      <tagref>quote</tagref>
+      <tagref>preformat</tagref>
       </parents>
     </tag>
 
