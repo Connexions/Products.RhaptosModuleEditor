@@ -23,7 +23,7 @@
 	  <dt><a href="module_view" i18n:translate="label_online_preview">Online Preview</a></dt>
 	  <dd i18n:translate="description_online_preview">View your
 	  module as it will display on the web, with the changes you've made.</dd>
-	  <dt><a href="module_view?format=pdf" i18n:translate="label_print_preview">Print Preview</a></dt>
+	  <dt><a href="module_view?format=pdf" i18n:translate="label_print_preview">Print Preview</a> (<a href="module_view?format=pdf&amp;style=modern-textbook" i18n:translate="label_print_preview_alt">Alternate Rendering</a>)</dt>
 	  <dd i18n:translate="dscription_print_preview">This may take
 	  some time (30 seconds or so).    If a PDF cannot be
 	  generated or if the PDF is invalid, there may be a bug in
