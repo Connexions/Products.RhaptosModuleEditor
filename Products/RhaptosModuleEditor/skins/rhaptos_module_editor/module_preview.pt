@@ -20,7 +20,7 @@
 	Preview how this module will look when published:
       </p>
       <dl>
-	  <dt><a href="module_view" i18n:translate="label_online_preview">Online Preview</a></dt>
+	  <dt><a href="module_view" i18n:translate="label_online_preview">Online Preview</a> (<a href="module_view?style=modern-textbook" i18n:translate="label_print_preview_alt">Alternate Rendering</a>)</dt>
 	  <dd i18n:translate="description_online_preview">View your
 	  module as it will display on the web, with the changes you've made.</dd>
 	  <dt><a href="module_view?format=pdf" i18n:translate="label_print_preview">Print Preview</a> (<a href="module_view?format=pdf&amp;style=modern-textbook" i18n:translate="label_print_preview_alt">Alternate Rendering</a>)</dt>
