@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.73
+  - extended sword import support
+
 RhaptosModuleEditor-0.72
   - Sprint-2011 bugfix
 
