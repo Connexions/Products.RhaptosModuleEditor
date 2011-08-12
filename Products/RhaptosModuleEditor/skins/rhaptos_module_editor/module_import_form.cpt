@@ -176,6 +176,23 @@
           file and any subdirectories, including those for styles.</p>
       </tal:block>
 
+      <tal:block tal:condition="python:format=='trustedzip'">
+        <h2 i18n:translate="heading_modimpfrm_zipfile">Import Trusted Zip File (CNXML + files) </h2>
+        <p i18n:translate="text_modimpfrm_zip2mod">This will place the contents of a zip file,
+          possibly including an index.cnxml, into a module. Files and images in the module
+          but not in the zip file will be left alone. Any subdirectories in the zip file
+          will be ignored.</p>
+        <p>This alpha importer will also attempt to parse the MDML from the index.cnxml file and 
+          set metadata properties as appropriate. This includes moduleId, title, abstract, etc.
+          as well as roles.</p>
+        <p i18n:translate="text_modimpfrm_zipwarn">
+          Use this importer to upload a zip file; its contents will be placed in the module.
+          If you have exported a module as a zip file, you may re-import it here. The contents of the
+          zip file will replace any contents of that name already in the module.</p>
+        <p i18n:translate="text_modimpfrm_greatway">This is a great way to upload multiple images
+          or to edit a CNXML file offline.</p>
+      </tal:block>
+
       <form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
             tal:attributes="action template/getId">
         <input type="file" name="importFile" size="25" />

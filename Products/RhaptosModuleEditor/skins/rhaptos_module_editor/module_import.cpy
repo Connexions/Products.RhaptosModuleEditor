@@ -104,6 +104,72 @@ elif format in ('zip'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
+## Trusted Zipped CNXML
+elif format in ('trustedzip'):
+    try:
+        text, subobjs, meta = doTransform(context, "zip_to_folder", text, meta=1)
+        if text:
+            context.manage_delObjects([context.default_file,])
+            context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='zip-')
+        makeContent(context, subobjs)
+
+        ignored_subdirs = ['"%s"'% x for x in meta.get('subdirs',[])]
+        ignored_files =   ['"%s"'% x for x in meta.get('ignored',[])]
+        if ignored_subdirs:
+            list_seperator = context.translate("list_seperator", domain="rhaptos", default=", ")
+            psm = context.translate("message_zip_subfolders_not_imported",
+                                    {"psm":psm, "ignored_subdirs":list_seperator.join(ignored_subdirs)},
+                                    domain="rhaptos", default=",".join(ignored_subdirs))
+        if ignored_files:
+            list_seperator = context.translate("list_seperator", domain="rhaptos", default=", ")
+            psm = context.translate("message_zip_files_not_imported",
+                                    {"psm":psm, "ignored_subdirs":list_seperator.join(ignored_files)},
+                                    domain="rhaptos",
+             default=",".join(ignored_files))
+
+        # The trusted part: set the metadata
+        mdata=meta['metadata']
+
+        GoogleAnalyticsTrackingCode = mdata.get('GoogleAnalyticsTrackingCode',None)
+        license=mdata.get('license',None)
+        objectId = mdata['objectId']
+
+        context.manage_changeProperties(language=mdata['language'])
+        context.manage_changeProperties({'title' : mdata['title'],
+                                 'abstract' : mdata['abstract'],
+                                 'revised' : mdata['revised'],
+                                 'created' : mdata['created'],
+                                 'subject' : mdata['subject'],
+                                 'keywords' : mdata.get('keywords',()),
+                                 'collaborators' : mdata['collaborators'],
+                                 'authors' : mdata['authors'],
+                                 'maintainers' : mdata['maintainers'],
+                                 'licensors' : mdata['licensors'],
+                                 'pub_authors' : mdata['authors'],
+                                 'pub_maintainers' : mdata['maintainers'],
+                                 'pub_licensors' : mdata['licensors'],
+                                 'editors' : mdata.get('editors',()),
+                                 'translators' : mdata.get('translators',())
+                                 })
+        if objectId and objectId != 'new':
+            context.setBaseObject(objectId)
+
+        if license:
+            try:
+                context.setLicense(license)
+            except AttributeError:
+                context.manage_changeProperties(license=license)
+
+        if GoogleAnalyticsTrackingCode:
+            context.setGoogleAnalyticsTrackingCode(GoogleAnalyticsTrackingCode)
+
+    except OOoImportError, e:
+        transaction.abort()
+        message = context.translate("message_could_not_import", {"errormsg":e}, domain="rhaptos",
+                                    default="Could not import file. %s" % e)
+        return state.set(status='failure', portal_status_message=message)
+
+
 ## Sword import (Zip of word doc + mets.xml) (Deprecated, unfortunately)
 elif format in ('sword'):
     #context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
