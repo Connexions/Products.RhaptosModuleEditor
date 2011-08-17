@@ -196,6 +196,37 @@
         <p i18n:translate="text_modimpfrm_greatway">This is a great way to upload multiple images
           or to edit a CNXML file offline.</p>
       </tal:block>
+      
+      <tal:block tal:condition="python:format=='gdocs_url'">
+        <h2>Import Google Docs</h2>
+        <p>Now Import Google Docs! URL</p>
+        <p></p>
+        <p><input type="text" id="text_field" name="text_field" /></p>
+      </tal:block>
+      
+      <tal:block tal:condition="python:format=='gdocs_file'">
+        <h2>Import Google Docs</h2>
+        <p>Now Import Google Docs! FILE</p>
+        <p></p>
+        <p><input type="text" id="text_field" name="text_field" /></p>
+      </tal:block>
+      
+      <tal:block tal:condition="python:format=='html_url'">
+        <h2>Import a Website</h2>
+        <p>Now Import Website! URL</p>
+        <p></p>
+        <p><input type="text" id="text_field" name="text_field" /></p>
+      </tal:block>
+      
+      <tal:block tal:condition="python:format=='html_file'">
+        <h2>Import a Website</h2>
+        <p>Now Import Website! FILE</p>
+        <p></p>
+        <p><input type="text" id="text_field" name="text_field" /></p>
+      </tal:block>
+      
+      
+      
 
       <form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
             tal:attributes="action template/getId">

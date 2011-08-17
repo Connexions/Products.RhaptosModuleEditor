@@ -190,6 +190,20 @@ elif format in ('sword'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
+elif format in ('gdocs_url', 'html_url'):
+    text = doTransform(context, "gdocs_to_cnxml", text)[0]
+    context.getDefaultFile().setSource(text, idprefix='gd-')
+    #
+    #message = context.translate("message_import_type_not_supported", domain="rhaptos",
+    #                            default="Sorry, but we don't support this type of import.")
+    #
+    #message="Sorry, but my Google Docs import does not work right now."
+    #return state.set(status='failure', portal_status_message=message)	
+    
+elif format in ('gdocs_file', 'html_file'):
+    text = doTransform(context, "gdocs_to_cnxml", text)[0]
+    context.getDefaultFile().setSource(text, idprefix='gd-')    
+
 ## unknown
 else:
     message = context.translate("message_import_type_not_supported", domain="rhaptos",

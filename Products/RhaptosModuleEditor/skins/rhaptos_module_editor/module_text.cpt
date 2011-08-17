@@ -196,6 +196,14 @@ can edit or delete this if desired).</li>
 		i18n:translate="text_zip_file">Zip File</option>
 	      <option tal:condition="python:user.has_role('Manager')" value="trustedzip" 
 		i18n:translate="text_zip_file">Trusted Zip File</option>
+        <option value="gdocs_url"
+            i18n:translate="text_gdocs_url">Google Docs</option>
+        <option value="gdocs_file"
+            i18n:translate="text_gdocs_file">Google Docs file (HTML)</option>
+        <option value="html_url"
+            i18n:translate="text_html_url">Website</option>
+        <option value="html_file"
+            i18n:translate="text_html_file">Website file (HTML)</option>
 	    </select>
 	    <input type="hidden" name="came_from" value="module_text" tal:attributes="value template/id" />
 	    <input class="context" type="submit" name="import"
