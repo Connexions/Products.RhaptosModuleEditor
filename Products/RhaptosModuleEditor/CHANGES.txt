@@ -1,3 +1,7 @@
+RhaptosModuleEditor-0.74
+  - implement new author first publish review
+  - handle authors without member accounts
+
 RhaptosModuleEditor-0.73
   - extended sword import support
 

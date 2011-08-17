@@ -204,6 +204,24 @@ of this object, so you will not be able to publish the current revision. Other o
 </p>
 </div>
           </tal:block>
+          <tal:block tal:condition="python:publisherror=='notpub' and publishtemplate">
+            <div tal:attributes="style stylestring">
+
+<p><b>NOTE:</b> 
+Due to an increase of spam on our site: 
+
+</p>
+<ul>
+  <li>The first publish of a new author is held to ensure it does not violate the <a tal:attributes="href string:$portal_url/sitelicense">Site
+User Agreement</a>. </li>
+
+  <li>Once your content is accepted and published, subsequent publishes
+   will not have to be held.</li>
+  <li>We appreciate your patience with this policy.</li>
+</ul>
+</div>
+          </tal:block>
+
 
         </div>
 

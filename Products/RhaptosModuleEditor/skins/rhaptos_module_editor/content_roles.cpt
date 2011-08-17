@@ -90,7 +90,7 @@
 		    u_name user/fullname;">
 		    <span tal:condition="python:a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
-		      <i><a tal:content="python:user.getProperty('fullname')" 
+		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
 			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
 			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
@@ -100,7 +100,7 @@
 		      ><tal:block tal:condition="python:a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] ==
 		      'del'">
-		      <del><i><a tal:content="python:user.getProperty('fullname')" 
+		      <del><i><a tal:content="user/fullname" 
 			    tal:attributes="href
 			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
 			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
@@ -109,7 +109,7 @@
 			></tal:block
 		      ><tal:block condition="python:a not in pending or role not
 		      in collabs[a].roles"
-		      ><a tal:content="python:user.getProperty('fullname')" 
+		      ><a tal:content="user/fullname" 
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
 			><tal:block tal:condition="python:here.state != 'created'"
@@ -155,7 +155,7 @@
 		    u_name user/fullname;">
 		    <span tal:condition="python:a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
-		      <i><a tal:content="python:user.getProperty('fullname')" 
+		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
 			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
 			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
@@ -165,7 +165,7 @@
 		      ><tal:block tal:condition="python:a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] ==
 		      'del'">
-		      <del><i><a tal:content="python:user.getProperty('fullname')" 
+		      <del><i><a tal:content="user/fullname" 
 			    tal:attributes="href
 			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
 			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
@@ -174,7 +174,7 @@
 			></tal:block
 		      ><tal:block condition="python:a not in pending or role not
 		      in collabs[a].roles"
-		      ><a tal:content="python:user.getProperty('fullname')" 
+		      ><a tal:content="user/fullname" 
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
 			><tal:block tal:condition="python:here.state != 'created'"
@@ -269,7 +269,7 @@
                tal:define="user python:here.desecured.getMemberById(p)"
                tal:on-error="string:(${p})">
 	      <td><strong>
-		  <a tal:content="python:user.getProperty('fullname')" style="white-space:nowrap" 
+		  <a tal:content="user/fullname" style="white-space:nowrap" 
 		    tal:attributes="href string:/member_profile/${user/id}">[fullname]</a></strong>
 		
 	      </td>

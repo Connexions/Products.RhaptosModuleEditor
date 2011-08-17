@@ -705,15 +705,18 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                      'save':'modified',
                      'upgrade':'modified',
                      'checkout':'checkedout',
-                     'submit':'published',
+                     'submit':'pending',
+                     'publish':'published',
+                     'withdraw':'created',
                      'discard':'published'}
 
         # Do state changes unless the current state is 'created'
-        if self.state == 'created' and action != 'submit':
+        if self.state == 'created' and action not in ['submit','publish']:
             state = self.state
         else:
             state = nextState[action]
 
+        prev_state = self.state
         self.state = state
         self.timestamp = DateTime()
         self.action = action
@@ -722,6 +725,15 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
         # Reindex the object in the catalog so that the folder listings will update
         self.reindexObject()
+
+        # Deal with the pending catalog for new authors
+        if action  == 'submit':
+            pending = getToolByName(self,'pending_catalog')
+            pending.catalog_object(self)
+
+        if prev_state == 'pending' and action in ['withdraw','publish']:
+            pending = getToolByName(self,'pending_catalog')
+            pending.uncatalog_object('/'.join(self.getPhysicalPath()))
 
 
     def upgrade(self):

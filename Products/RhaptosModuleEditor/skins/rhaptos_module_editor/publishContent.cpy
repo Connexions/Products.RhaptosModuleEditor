@@ -10,8 +10,8 @@
 from Products.CMFCore.utils import getToolByName
 
 # log a submit early so that logAction minimization stuff knows we're publishing
-newpublish = context.state == 'created'
-context.logAction('submit', message)
+newpublish = not(context.content.hasRhaptosObject(context.objectId))
+context.logAction('publish', message)
 
 # move referenced work group/space file into the module ... on the down low
 if context.portal_type == 'Module':

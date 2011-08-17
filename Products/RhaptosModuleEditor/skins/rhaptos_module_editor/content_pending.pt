@@ -25,41 +25,31 @@
     <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border', 1)" />
 
     <div metal:fill-slot="main"
-         tal:define="license_data here/getLicenseData;
-                     robj context/getPublishedObject;
-                     obj python:robj.latest;
-                     vobj python:robj[obj.version]">
+         tal:define="license_data context/getLicenseData;
+                     obj nocall:context">
 
-      <p i18n:translate="text_contpubd_alreadypubd">
-	This item has been published.  If you wish to create a new
-	revision, you must check out a copy to the workspace for editing
+      <p i18n:translate="text_contpubd_submitted">
+	This item has been submitted for publication. If you wish to continue to edit it, you must withdraw it 
 	<tal:help tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">
 	  (<a href="/help/authoring/authorguide#status" tal:attributes="href string:${help/absolute_url}#status">What does "Checked out" mean</a>?)
 	</tal:help>
       </p>
-      <form method="post" action="content_checkout">
-        <input type="submit" name="checkout" value="Checkout"
-                i18n:attributes="value text_button_checkout" class="standalone" />
+      <form method="post" action="content_withdraw">
+        <input type="submit" name="withdraw" value="Withdraw Submission"
+                i18n:attributes="value text_button_withdraw" class="standalone" />
       </form>
       
-      <div class="import-recs" >
-        <p>
-          <strong>PDFs, EPUBs and other downloadable files are not created immediately. Depending on the volume of publishing, it could take 1 to 24 hours for the files to be available.</strong>
-        </p>
-      </div>
-
       <table class="leftheadings linkdata">
         <tr>
           <th i18n:translate="listingheader_contpubd_name">Name:</th>
           <td>
             <span i18n:translate="" tal:content="python:obj.Title()">title</span>
-            (<a i18n:translate="label_contpubd_viewonline"
-                tal:attributes="href obj/url">view published version online</a>)
           </td>
         </tr>
         <tr>
           <th i18n:translate="listingheader_contpubd_ID">ID:</th>
-          <td tal:content="obj/objectId">ID</td>
+          <td tal:content="obj/objectId" tal:condition="obj/objectId">ID</td>
+          <td tal:condition="not:obj/objectId">**new**</td>
         </tr>
         <tr tal:condition="obj/getCollectionType | nothing">
           <th i18n:translate="listingheader_contpubd_collectionType">Collection Type:</th>
