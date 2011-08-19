@@ -86,9 +86,8 @@
 		<tal:block tal:repeat="a role_collabs">
 		  <tal:block tal:define="user python:here.desecured.getMemberById(a);
 		    collabs here/getPendingCollaborations;
-		    pending collabs/keys;
-		    u_name user/fullname;">
-		    <span tal:condition="python:a in pending and role in
+		    pending collabs/keys;">
+		    <span tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
 		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
@@ -97,7 +96,7 @@
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></span
-		      ><tal:block tal:condition="python:a in pending and role in
+		      ><tal:block tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] ==
 		      'del'">
 		      <del><i><a tal:content="user/fullname" 
@@ -107,8 +106,8 @@
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></tal:block
-		      ><tal:block condition="python:a not in pending or role not
-		      in collabs[a].roles"
+		      ><tal:block condition="python:user and (a not in pending or role not
+		      in collabs[a].roles)"
 		      ><a tal:content="user/fullname" 
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
@@ -151,9 +150,8 @@
 		<tal:block tal:repeat="a role_collabs">
 		  <tal:block tal:define="user python:here.desecured.getMemberById(a);
 		    collabs here/getPendingCollaborations;
-		    pending collabs/keys;
-		    u_name user/fullname;">
-		    <span tal:condition="python:a in pending and role in
+		    pending collabs/keys;">
+		    <span tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
 		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
