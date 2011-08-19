@@ -1,5 +1,6 @@
 RhaptosModuleEditor-0.74.1
   - automatically grant 'Publisher' to pending user, when manager publishes
+  - missing author cleanups
 
 RhaptosModuleEditor-0.74
   - implement new author first publish review
