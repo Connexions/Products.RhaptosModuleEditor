@@ -240,12 +240,17 @@ elif format in ('gdocs_url'):
 ## HTML Soup import from URL. This import format does not use a imported file.
 elif format in ('htmlsoup_url'):
     importURL = context.REQUEST['importURL']
-    message="URL: " + importURL
-    return state.set(status='failure', portal_status_message=message)   
-
-#    text = doTransform(context, "htmlsoup_url_to_cnxml", text)[0]
-#    context.getDefaultFile().setSource(text, idprefix='htmlsoup-')
-
+    context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
+    try:
+        text, subobjs = doTransform(context, 'htmlsoup_url_to_cnxml', importURL)
+        context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='gd-')
+        makeContent(context, subobjs)
+    except GDocsImportError, e:
+        transaction.abort()
+        #TODO:MESSAGE
+        message = context.translate("message_could_not_import", {"errormsg":e}, domain="rhaptos",
+                                    default="Could not import file. %s" % e)
+        return state.set(status='failure', portal_status_message=message) 
 
 ## unknown
 else:

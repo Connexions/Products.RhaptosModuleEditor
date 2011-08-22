@@ -239,10 +239,6 @@
           <span><strong>including images
             and other files</strong></span> with a <span>Google Docs</span> document converted
             into CNXML, and its associated images and files.</p>
-        <p i18n:translate="text_modimpfrm_wordofcaution">
-          <span>Google Docs</span> documents can be extremely varied. We have attempted to
-            handle many common cases, with the goal of extracting the text from your document so
-            that you can mark it up in CNXML without having to retype the content. Some cautions:</p>
         <ul>
           <li>
             <strong>Styling Tips:</strong>
@@ -251,8 +247,14 @@
             <span>Please be careful with red text inside Google Docs. You might break the transformation.</span></li>          
         </ul>
         <br/>
-        <p>Pick your Google Docs document you want to import:</p>
+        <p>Import from your Google Docs:</p>
+        <!--
         <a href="javascript:newPicker()" style="font-weight: bold">Import from your Google Docs</a>
+        -->
+        <a href="javascript:newPicker()" style="font-weight: bold"><img src="https://docs.google.com/images/doclist/logo_docs.gif"/></a>
+        <!--
+        <input class="context uploadButton" value="Import Google Docs document from your account" onclick="javascript:newPicker()" size="50"/>
+        -->
         <p i18n:translate="text_modimpfrm_warningoverwrite">
           <strong i18n:name="warning">
             <em style="color: darkred; font-weight: bold"
@@ -296,7 +298,7 @@
                tal:define="came_from request/came_from | options/came_from | nothing"
                tal:condition="came_from"
                tal:attributes="value came_from" />
-        <input class="context uploadButton" type="submit" name="submit" id="submit_button" value="Import"
+        <input class="context uploadButton" type="submit" name="submit" id="submit_button" value="Import from URL"
                i18n:attributes="value value_modimpfrm_import" />
 
         <input type="hidden" name="form.submitted" value="1" />
