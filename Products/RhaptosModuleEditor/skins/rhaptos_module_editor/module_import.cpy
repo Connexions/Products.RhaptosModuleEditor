@@ -4,22 +4,27 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=format, importFile, came_from=None
+##parameters=format, came_from=None
 ##title=Import module contents
 
-from Products.CNXMLTransforms.helpers import OOoImportError, doTransform, makeContent
+from Products.CNXMLTransforms.helpers import OOoImportError, GDocsImportError, HTMLSoupImportError, doTransform, makeContent
 import transaction
 from AccessControl import getSecurityManager
 from Products.CNXMLDocument import XMLService
 
 psm = context.translate("message_import_completed", domain="rhaptos", default="Import completed.")
 
-text = importFile.read()
-if not text:
-    message = context.translate("message_must_select_file_to_upload", domain="rhaptos",
-                                default="You must select a file to upload.")
-    return state.set(status='failure', portal_status_message=message)
+# Use a file for all format except GDocs or HTMLsoup from URL
+if format not in ('gdocs_url', 'htmlsoup_url'):
+    importFile = context.REQUEST['importFile']
+    text = importFile.read()
+    # check if the file has contents
+    if not text:
+        message = context.translate("message_must_select_file_to_upload", domain="rhaptos",
+                                   default="You must select a file to upload.")
+        return state.set(status='failure', portal_status_message=message)
 
+        
 ## CNXML
 if format == 'plain':
     context.getDefaultFile().setSource(text, idprefix='imp-')
@@ -190,19 +195,57 @@ elif format in ('sword'):
                                     default="Could not import file. %s" % e)
         return state.set(status='failure', portal_status_message=message)
 
-elif format in ('gdocs_url', 'html_url'):
-    text = doTransform(context, "gdocs_to_cnxml", text)[0]
+## Google Docs import from a file
+elif format in ('gdocs_file'):
+    #context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
+    text = doTransform(context, "gdocs_file_to_cnxml", text)[0]
     context.getDefaultFile().setSource(text, idprefix='gd-')
-    #
-    #message = context.translate("message_import_type_not_supported", domain="rhaptos",
-    #                            default="Sorry, but we don't support this type of import.")
-    #
-    #message="Sorry, but my Google Docs import does not work right now."
-    #return state.set(status='failure', portal_status_message=message)	
     
-elif format in ('gdocs_file', 'html_file'):
-    text = doTransform(context, "gdocs_to_cnxml", text)[0]
-    context.getDefaultFile().setSource(text, idprefix='gd-')    
+## HTML Soup import from a file
+elif format in ('htmlsoup_file'):
+    text = doTransform(context, "htmlsoup_file_to_cnxml", text)[0]
+    context.getDefaultFile().setSource(text, idprefix='htmlsoup-')    
+
+## Google Docs import from URL. This import format does not use a imported file.
+elif format in ('gdocs_url'):
+    importURL = context.REQUEST['importURL']
+    gdocs_resource_id = context.REQUEST['gdocs_resource_id']
+    gdocs_access_token = context.REQUEST['gdocs_access_token']
+    
+    # check if we have an access_token from the Picker API or an URL
+    if gdocs_access_token:
+        transformation = 'gdocs_id_to_cnxml'
+        importData = gdocs_resource_id
+        kwargs = {'gdocs_authsub_access_token':gdocs_access_token}
+    else:
+        transformation = 'gdocs_url_to_cnxml'
+        importData = importURL
+        kwargs = {}
+    
+    #message="URL: " + importURL + " ; ID: " + gdocs_resource_id + " ; Token: " + gdocs_access_token
+    #return state.set(status='failure', portal_status_message=message)   
+    
+    context.manage_delObjects([i.getId() for i in context.listFolderContents(suppressHiddenFiles=1)])
+    try:
+        text, subobjs = doTransform(context, transformation, importData, meta=0, **kwargs)
+        context.invokeFactory('CNXML Document', context.default_file, file=text, idprefix='gd-')
+        makeContent(context, subobjs)
+    except GDocsImportError, e:
+        transaction.abort()
+        #TODO:MESSAGE
+        message = context.translate("message_could_not_import", {"errormsg":e}, domain="rhaptos",
+                                    default="Could not import file. %s" % e)
+        return state.set(status='failure', portal_status_message=message)         
+
+## HTML Soup import from URL. This import format does not use a imported file.
+elif format in ('htmlsoup_url'):
+    importURL = context.REQUEST['importURL']
+    message="URL: " + importURL
+    return state.set(status='failure', portal_status_message=message)   
+
+#    text = doTransform(context, "htmlsoup_url_to_cnxml", text)[0]
+#    context.getDefaultFile().setSource(text, idprefix='htmlsoup-')
+
 
 ## unknown
 else:

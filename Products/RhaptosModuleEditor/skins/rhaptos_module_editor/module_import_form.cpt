@@ -2,8 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
-      xmlns:metal="http://xml.zope.org/namespaces/metal" 
-      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="rhaptos"
       metal:use-macro="here/module_template/macros/master">
@@ -13,6 +13,37 @@
     subsequent insanity by kef and jenn
   </tal:comment>
 
+  <tal:js metal:fill-slot="javascript_head_slot">
+    <script src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">   
+    
+        // Google Picker API for the Google Docs import
+        function newPicker() {
+            google.load('picker', '1', {"callback" : createPicker});
+        }       
+
+        // Create and render a Picker object for selecting documents
+        function createPicker() {
+            var picker = new google.picker.PickerBuilder().
+                addView(google.picker.ViewId.DOCUMENTS).
+                setCallback(pickerCallback).
+                build();
+            picker.setVisible(true);
+        }
+
+        // A simple callback implementation.
+        function pickerCallback(data) {
+            if(data.action == google.picker.Action.PICKED){
+                document.getElementById('gdocs_resource_id').value = google.picker.ResourceId.generate(data.docs[0]);
+                document.getElementById('gdocs_access_token').value = data.docs[0].accessToken;                  
+                //document.import.submit(); 
+                document.all.submit_button.click();
+            }
+        }    
+     </script>
+  </tal:js>
+
+  
   <body>
 
     <div metal:fill-slot="main">
@@ -27,8 +58,8 @@
         <p i18n:translate="text_modimpfrm_replaceall">
           <strong i18n:name="warning"><em style="color: darkred; font-weight: bold"
             i18n:translate="text_modimpfrm_warning_with_exclamation">Warning!</em></strong>
-          <span i18n:name="replace"><strong i18n:translate="text_modimpfrm_replace_all_contents">This will replace all 
-            contents</strong></span> of a module 
+          <span i18n:name="replace"><strong i18n:translate="text_modimpfrm_replace_all_contents">This will replace all
+            contents</strong></span> of a module
           <span i18n:name="including_images"><strong i18n:translate="text_modimpfrm_including_images">including images
             and other files</strong></span> with a <span i18n:name="Word">Word</span> document converted
             into CNXML, and its associated images and files.</p>
@@ -45,7 +76,7 @@
               may not work correctly.</span></li>
           <li>
             <strong i18n:translate="text_modimpfrm_boldwearebetterthanword">Styling Tips:</strong>
-            <span i18n:translate="text_modimpfrm_wearebetterthanword">If you use CNXML-specific 
+            <span i18n:translate="text_modimpfrm_wearebetterthanword">If you use CNXML-specific
               styles from the <span i18n:name="Word">Word</span> template to create your
               <span i18n:name="Word">Word</span> document, you will get much more faithful
               conversion for elements like terms, citations, code, and others. See the styling
@@ -175,7 +206,7 @@
           or Authentic editors, please use the XMLSpy-specific importer.</p>-->
         <p tal:condition="nothing" i18n:translate="text_modimpfrm_xhtmlnote">
           <strong>XHTML note!</strong> If you downloaded the "viewable" zip export, all
-          the viewable parts will be ignored on import, including the 
+          the viewable parts will be ignored on import, including the
           <span i18n:name="index_html"><code>index.xhtml</code></span>
           file and any subdirectories, including those for styles.</p>
       </tal:block>
@@ -186,7 +217,7 @@
           possibly including an index.cnxml, into a module. Files and images in the module
           but not in the zip file will be left alone. Any subdirectories in the zip file
           will be ignored.</p>
-        <p>This alpha importer will also attempt to parse the MDML from the index.cnxml file and 
+        <p>This alpha importer will also attempt to parse the MDML from the index.cnxml file and
           set metadata properties as appropriate. This includes moduleId, title, abstract, etc.
           as well as roles.</p>
         <p i18n:translate="text_modimpfrm_zipwarn">
@@ -196,47 +227,76 @@
         <p i18n:translate="text_modimpfrm_greatway">This is a great way to upload multiple images
           or to edit a CNXML file offline.</p>
       </tal:block>
-      
+
       <tal:block tal:condition="python:format=='gdocs_url'">
-        <h2>Import Google Docs</h2>
-        <p>Now Import Google Docs! URL</p>
-        <p></p>
-        <p><input type="text" id="text_field" name="text_field" /></p>
+      <h2>Import module content from
+          <span>Google Docs</span></h2>
+        <p>
+          <strong><em style="color: darkred; font-weight: bold"
+            i18n:translate="text_modimpfrm_warning_with_exclamation">Warning!</em></strong>
+          <span><strong i18n:translate="text_modimpfrm_replace_all_contents">This will replace all
+            contents</strong></span> of a module
+          <span><strong>including images
+            and other files</strong></span> with a <span>Google Docs</span> document converted
+            into CNXML, and its associated images and files.</p>
+        <p i18n:translate="text_modimpfrm_wordofcaution">
+          <span>Google Docs</span> documents can be extremely varied. We have attempted to
+            handle many common cases, with the goal of extracting the text from your document so
+            that you can mark it up in CNXML without having to retype the content. Some cautions:</p>
+        <ul>
+          <li>
+            <strong>Styling Tips:</strong>
+            <span>You can embed CNXML directly into your document by marking the text for elements like e.g. terms, citations, code, and others as <em style="color: darkred">&lt;RED TEXT&gt;</em>.</span></li>
+          <li>
+            <span>Please be careful with red text inside Google Docs. You might break the transformation.</span></li>          
+        </ul>
+        <br/>
+        <p>Pick your Google Docs document you want to import:</p>
+        <a href="javascript:newPicker()" style="font-weight: bold">Import from your Google Docs</a>
+        <p i18n:translate="text_modimpfrm_warningoverwrite">
+          <strong i18n:name="warning">
+            <em style="color: darkred; font-weight: bold"
+              i18n:translate="text_warning_with_exclamation">Warning!</em></strong>
+            This will overwrite existing module contents.
+        </p>
+        <br/>
       </tal:block>
-      
+
       <tal:block tal:condition="python:format=='gdocs_file'">
         <h2>Import Google Docs</h2>
         <p>Now Import Google Docs! FILE</p>
-        <p></p>
-        <p><input type="text" id="text_field" name="text_field" /></p>
       </tal:block>
-      
-      <tal:block tal:condition="python:format=='html_url'">
+
+      <tal:block tal:condition="python:format=='htmlsoup_url'">
         <h2>Import a Website</h2>
         <p>Now Import Website! URL</p>
-        <p></p>
-        <p><input type="text" id="text_field" name="text_field" /></p>
       </tal:block>
-      
-      <tal:block tal:condition="python:format=='html_file'">
+
+      <tal:block tal:condition="python:format=='htmlsoup_file'">
         <h2>Import a Website</h2>
         <p>Now Import Website! FILE</p>
-        <p></p>
-        <p><input type="text" id="text_field" name="text_field" /></p>
       </tal:block>
-      
-      
-      
+
 
       <form name="import" method="post" enctype="multipart/form-data" style="margin-top: 2em"
             tal:attributes="action template/getId">
-        <input type="file" name="importFile" size="25" />
+        <tal:block tal:condition="python:format in ('gdocs_url', 'htmlsoup_url')">
+            <p>Alternative: Import a Google Docs document from a public URL:</p>
+            <input type="text" name="importURL" size="80"/>
+        </tal:block>
+        <tal:block tal:condition="python:format=='gdocs_url'">
+            <input type="hidden" id="gdocs_resource_id" name="gdocs_resource_id"/>
+            <input type="hidden" id="gdocs_access_token" name="gdocs_access_token"/>
+        </tal:block>
+        <tal:block tal:condition="python:format not in ('gdocs_url', 'htmlsoup_url')">
+            <input type="file" name="importFile" size="25" />
+        </tal:block>        
         <input type="hidden" name="format" tal:attributes="value format" />
         <input type="hidden" name="came_from" value="module_text"
                tal:define="came_from request/came_from | options/came_from | nothing"
                tal:condition="came_from"
                tal:attributes="value came_from" />
-        <input class="context uploadButton" type="submit" name="submit" value="Import"
+        <input class="context uploadButton" type="submit" name="submit" id="submit_button" value="Import"
                i18n:attributes="value value_modimpfrm_import" />
 
         <input type="hidden" name="form.submitted" value="1" />
