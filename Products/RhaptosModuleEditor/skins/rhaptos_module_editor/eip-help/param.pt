@@ -69,10 +69,10 @@
       <h2 class="para-header">
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
-<div class="para" id="cnx_eip_help_children"><div class="explanation">
+<div class="para" id="cnx_eip_help_children">
     The <code class="codeline">param</code> tag is an empty tag and does 
     not contain any children.
-        </div></div>
+        </div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

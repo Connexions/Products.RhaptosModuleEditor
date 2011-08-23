@@ -23,6 +23,9 @@ from_select_lens = url.endswith("module_publish_selectlens")
 if context.state == 'published' and not from_select_lens:
     return add_query('content_published')
 
+if context.state == 'pending' and not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
+    return add_query('content_pending')
+
 # Guarantee that user enters a title by going to initial metadata entry page if they haven't.
 # FIXME: modules now do this with an on-screen message and a publication block.
 # Would be nice to do the same for collections.

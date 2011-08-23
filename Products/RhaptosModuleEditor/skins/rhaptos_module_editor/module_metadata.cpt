@@ -68,7 +68,7 @@
                 <tal:block tal:repeat="u here/authors">
                   <tal:badauthor tal:on-error="string:(${u})">
                   <a tal:define="member python:here.desecured.getMemberById(u)"
-                    tal:content="python:member.getProperty('fullname')"
+                    tal:content="member/fullname"
                     tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
                 </tal:block>
               </li>
@@ -77,7 +77,7 @@
                 <tal:block tal:repeat="u here/maintainers">
                   <tal:badauthor tal:on-error="string:(${u})">
                   <a tal:define="member python:here.desecured.getMemberById(u)"
-                    tal:content="python:member.getProperty('fullname')"
+                    tal:content="member/fullname"
                     tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
                 </tal:block>
               </li>
@@ -86,7 +86,7 @@
                 <tal:block tal:repeat="u here/licensors">
                   <tal:badauthor tal:on-error="string:(${u})">
                   <a tal:define="member python:here.desecured.getMemberById(u)"
-                    tal:content="python:member.getProperty('fullname')"
+                    tal:content="member/fullname"
                     tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
                 </tal:block>
               </li>
@@ -99,7 +99,7 @@
                   <tal:block tal:repeat="u cur_role">
                     <tal:badauthor tal:on-error="string:(${u})">
                       <a tal:define="member python:here.desecured.getMemberById(u)" 
-                        tal:content="python:member.getProperty('fullname')"
+                        tal:content="member/fullname"
                         tal:attributes="href string:/member_profile/${u}">[name]</a></tal:badauthor><tal:block tal:condition="not:repeat/u/end">, </tal:block>
                   </tal:block>
                 </li>

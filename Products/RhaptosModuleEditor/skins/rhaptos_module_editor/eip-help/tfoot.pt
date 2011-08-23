@@ -123,9 +123,7 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="colspec">colspec</a>, <a class="cnxn" href="row">row</a><div class="explanation">First, <code class="codeline">tfoot</code> may contain zero or more <a href="colspec" class="cnxn">colspec</a> tags, 
-         followed by at least one <a href="row" class="cnxn">row</a> tag.</div>
-</div>
+<a class="cnxn" href="colspec">colspec</a> (zero or more), <a class="cnxn" href="row">row</a> (one or more)</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

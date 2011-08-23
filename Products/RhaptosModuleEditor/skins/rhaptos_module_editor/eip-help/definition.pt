@@ -102,17 +102,17 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="label">label</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="seealso">seealso</a><div class="explanation">First, <code class="codeline">definition</code> may contain an optional <a href="label" class="cnxn">label</a>
-         tag. Next, it must contain a single <a href="term" class="cnxn">term</a> tag.  Then, it must contain
-         one or more <a href="meaning" class="cnxn">meaning</a> tags, followed in turn by any optional <a href="example" class="cnxn">example</a>
-         tags associated with that meaning.  Finally, <code class="codeline">definition</code> may contain
-         an optional <a href="seealso" class="cnxn">seealso</a> tag.</div>
-</div>
+        First, <code class="codeline">definition</code> may contain an optional <a href="label" class="cnxn">label</a>
+        tag. Next, it must contain a single <a href="term" class="cnxn">term</a> tag.  Then, it must contain
+        one or more <a href="meaning" class="cnxn">meaning</a> tags, followed in turn by any optional 
+        <a href="example" class="cnxn">example</a> tags associated with that meaning.  Finally,
+        <code class="codeline">definition</code> may contain an optional <a href="seealso" class="cnxn">seealso</a> tag.
+        </div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_parents">
-<a class="cnxn" href="glossary">glossary</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="content">content</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>
+<a class="cnxn" href="content">content</a>, <a class="cnxn" href="glossary">glossary</a>, <a class="cnxn" href="section">section</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="example">example</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="entry">entry</a>
 </div>
     <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
 <tal:google-analytics tal:condition="isCNX"><script type="text/javascript">

@@ -78,8 +78,14 @@ if (not title) or title == '(Untitled)':
     err['failtype'] = 'notitle'
     return err
 
+# Publishing check
+
+if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
+    err['failtype'] = 'notpub'
+    return err
+
 # Maintainership check
-# catentry is defined above, in "superseded check", and tells us whether there's a published version or not
+# pubobj is defined above, in "superseded check", and tells us whether there's a published version or not
 if pubobj:
     haspermission = context.portal_membership.checkPermission('Edit Rhaptos Object', pubobj)
 else:

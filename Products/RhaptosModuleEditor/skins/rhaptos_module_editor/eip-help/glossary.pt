@@ -81,8 +81,7 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="definition">definition</a><div class="explanation">A <code class="codeline">glossary</code> must contain one or more <a href="definition" class="cnxn">definition</a> tags.</div>
-</div>
+<a class="cnxn" href="definition">definition</a> (one or more)</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

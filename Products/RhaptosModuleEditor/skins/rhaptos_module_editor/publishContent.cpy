@@ -9,9 +9,13 @@
 
 from Products.CMFCore.utils import getToolByName
 
+newpublish = not(context.content.hasRhaptosObject(context.objectId))
+
+if context.state == 'pending' and context.portal_membership.getAuthenticatedMember().has_role('Manager'):
+  context.set_publisher(users=[context.actor])  
+
 # log a submit early so that logAction minimization stuff knows we're publishing
-newpublish = context.state == 'created'
-context.logAction('submit', message)
+context.logAction('publish', message)
 
 # move referenced work group/space file into the module ... on the down low
 if context.portal_type == 'Module':

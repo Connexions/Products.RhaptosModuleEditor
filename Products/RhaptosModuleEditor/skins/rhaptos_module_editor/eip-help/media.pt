@@ -22,7 +22,7 @@
 <div class="para" id="cnx_eip_help_description">
   The <code class="codeline">media</code> tag is used to insert media 
   objects into a CNXML document. The media objects can be images, 
-  applets, movies, sounds, or any object with a valid <a href="http://www.w3schools.com/media/media_mimeref.asp" target="_blank" class="link">MIME 
+  applets, movies, sounds, or any object with a valid <a href="http://www.duke.edu/websrv/file-extensions.html" target="_blank" class="link">MIME 
   type</a>.
   <div class="note">
 <h3 class="note-header"><span class="cnx_label">Note: </span></h3>
@@ -69,10 +69,10 @@ reference "&amp;amp;". More information can be found on the
       
           <div><i>Possible values:</i></div>
 <div class="list"><ul class="bullet">
-            <li class="item">inline - The media will be included in the 
-                current line of text (default).</li>
             <li class="item">block - The media will be set apart from the 
-          surrounding text. If the display attribute is set to "block", then an id is required.</li>
+          surrounding text.</li>
+            <li class="item">inline - The media will be included in the 
+                current line of text.</li>
             <li class="item">none - The media will not be displayed.</li>
           </ul></div>
         </li>
@@ -89,7 +89,7 @@ reference "&amp;amp;". More information can be found on the
       to a Web file that contains a full explanation of the media. 
         </li>
 <li class="item">
-<b>id</b> <i>(optional for inline display media)</i>: 
+<b>id</b> <i>(required)</i>: 
           A unique identifier, whose value must begin with a letter and contain only letters, 
           numbers, hyphens, underscores, colons, and/or periods (no spaces).
         </li>
@@ -105,8 +105,7 @@ reference "&amp;amp;". More information can be found on the
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_parents">
-<a class="cnxn" href="content">content</a> (media must be block display), <a class="cnxn" href="section">section</a> (media must be block display), <a class="cnxn" href="example">example</a> (media must be block display), <a class="cnxn" href="proof">proof</a> (media must be block display), <a class="cnxn" href="statement">statement</a> (media must be block display), <a class="cnxn" href="problem">problem</a> (media must be block display), <a class="cnxn" href="solution">solution</a> (media must be block display), <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="subfigure">subfigure</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="para">para</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="preformat">preformat</a>, <a class="cnxn" href="quote">quote</a>, <a class="cnxn" href="note">note</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="item">item</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="cite">cite</a>
-</div>
+<a class="cnxn" href="preformat">preformat</a> (media must be block display), <a class="cnxn" href="para">para</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="label">label</a>, <a class="cnxn" href="cite">cite</a>, <a class="cnxn" href="cite-title">cite-title</a>, <a class="cnxn" href="link">link</a>, <a class="cnxn" href="emphasis">emphasis</a>, <a class="cnxn" href="term">term</a>, <a class="cnxn" href="sub">sub</a>, <a class="cnxn" href="sup">sup</a>, <a class="cnxn" href="quote">quote</a> (media must be block display), <a class="cnxn" href="foreign">foreign</a>, <a class="cnxn" href="footnote">footnote</a>, <a class="cnxn" href="equation">equation</a>, <a class="cnxn" href="note">note</a> (media must be block display), <a class="cnxn" href="item">item</a>, <a class="cnxn" href="code">code</a> (media must be block display), <a class="cnxn" href="figure">figure</a>, <a class="cnxn" href="subfigure">subfigure</a>, <a class="cnxn" href="caption">caption</a>, <a class="cnxn" href="commentary">commentary</a>, <a class="cnxn" href="meaning">meaning</a>, <a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="statement">statement</a>, <a class="cnxn" href="proof">proof</a>, <a class="cnxn" href="problem">problem</a>, <a class="cnxn" href="solution">solution</a>, <a class="cnxn" href="content">content</a> (media must be block display), <a class="cnxn" href="section">section</a> (media must be block display)</div>
     <div class="close-this-window"><a href="javascript:window.close()">Close this window</a></div>
 <tal:google-analytics tal:condition="isCNX"><script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

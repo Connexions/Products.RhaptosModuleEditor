@@ -188,12 +188,14 @@ can edit or delete this if desired).</li>
                       i18n:translate="text_latex">LaTeX</option>
 	      <option value="authentic" tal:condition="nothing"
 		i18n:translate="text_xmlspy_suthentic">XMLSpy/Authentic</option> <!-- see #7855, #7856 -->
-	      <option tal:condition="python:user.getUserName() in ['kochelek', 'cbearden', 'mhutch', 'padley', 'reedstrm', 'drummond']" value="xhtml"
+	      <option tal:condition="python:user.has_role('Manager')" value="xhtml"
 		i18n:translate="text_xhtml">XHTML</option>
 	      <option value="plain" 
 		i18n:translate="text_plain_xml">Plain CNXML</option>
 	      <option value="zip" 
 		i18n:translate="text_zip_file">Zip File</option>
+	      <option tal:condition="python:user.has_role('Manager')" value="trustedzip" 
+		i18n:translate="text_zip_file">Trusted Zip File</option>
 	    </select>
 	    <input type="hidden" name="came_from" value="module_text" tal:attributes="value template/id" />
 	    <input class="context" type="submit" name="import"

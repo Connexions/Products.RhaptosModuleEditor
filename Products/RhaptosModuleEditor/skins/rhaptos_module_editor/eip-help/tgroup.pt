@@ -192,11 +192,7 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="colspec">colspec</a>, <a class="cnxn" href="spanspec">spanspec</a>, <a class="cnxn" href="thead">thead</a>, <a class="cnxn" href="tfoot">tfoot</a>, <a class="cnxn" href="tbody">tbody</a><div class="explanation">First, <code class="codeline">tgroup</code> may contain zero or more <a href="colspec" class="cnxn">colspec</a> tags, 
-         followed by zero or more <a href="spanspec" class="cnxn">spanspec</a> tags. Next, it may contain an optional
-         <a href="thead" class="cnxn">thead</a> tag, followed by an optional <a href="tfoot" class="cnxn">tfoot</a> tag. Finally, 
-         <code class="codeline">tgroup</code> must contain one <a href="tbody" class="cnxn">tbody</a> tag.</div>
-</div>
+<a class="cnxn" href="colspec">colspec</a> (zero or more), <a class="cnxn" href="spanspec">spanspec</a> (zero or more), <a class="cnxn" href="thead">thead</a> (zero or one), <a class="cnxn" href="tfoot">tfoot</a> (zero or one), <a class="cnxn" href="tbody">tbody</a> (one, required)</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

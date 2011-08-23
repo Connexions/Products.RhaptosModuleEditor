@@ -93,7 +93,6 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="label">label</a>, <a class="cnxn" href="title">title</a>, <a class="cnxn" href="media">media</a>, <a class="cnxn" href="table">table</a>, <a class="cnxn" href="code">code</a>, <a class="cnxn" href="caption">caption</a><div class="explanation">
           First, <code class="codeline">subfigure</code> may contain an optional 
           <a href="label" class="cnxn">label</a> tag, followed by an optional <a href="title" class="cnxn">title</a> tag.
         Next, it must contain:
@@ -105,7 +104,6 @@
         Finally, <code class="codeline">figure</code> may contain an 
         optional <a href="caption" class="cnxn">caption</a> tag.
         </div>
-</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>

@@ -135,9 +135,7 @@
 <strong class="title">Children</strong><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
 <div class="para" id="cnx_eip_help_children">
-<a class="cnxn" href="entry">entry</a>, <a class="cnxn" href="entrytbl">entrytbl</a><div class="explanation">The <code class="codeline">row</code> tag must contain at least one <a href="entry" class="cnxn">entry</a> tag
-         or at least one <a href="entrytbl" class="cnxn">entrytbl</a> tag.</div>
-</div>
+<a class="cnxn" href="entry">entry</a> (one or more), <a class="cnxn" href="entrytbl">entrytbl</a> (one or more)</div>
       <h2 class="para-header">
 <span class="title">Parents</span><span class="whats-this">(<a href="terminology#cnx_eip_help_define_child_parent_section">what's this?</a>)</span>
 </h2>
