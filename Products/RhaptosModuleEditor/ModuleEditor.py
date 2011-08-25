@@ -106,6 +106,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
                  {'id':'is_imported','type':'boolean', 'mode': 'w'},
                  {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
+                 {'id':'description_of_changes','type':'string', 'mode': 'w'},
+                 {'id':'treatment','type':'string', 'mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -145,6 +147,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'import_authors': [],
                           'is_imported': False,
                           'has_attribution_note': False,
+                          'description_of_changes': '',
+                          'treatment': '',
                           }
 
         # Store object properties
