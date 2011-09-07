@@ -310,6 +310,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def getPublishedObject(self):
         """Return the currently published version of this object or
            None if it is newly created"""
+        if self.objectId is None:
+            return None
         try:
             return self.portal_url.getPortalObject().content.getRhaptosObject(self.objectId)
         except KeyError:
