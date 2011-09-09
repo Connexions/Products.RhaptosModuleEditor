@@ -1,0 +1,64 @@
+<tal:block tal:define="default_tab string:publish">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="container/module_template/macros/master"
+      i18n:domain="rhaptos">
+  
+  <body>
+
+    <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
+                                            versioninfo context/rmeVersionInfo;
+                                            publishBlocked python:context.publishBlocked(versioninfo);
+                                            license_data here/getLicenseData;
+                                            license_version license_data/version;
+                                            license_label license_data/label;
+                                            license_url context/license">
+
+      <h2 i18n:translate="heading_publish_module">Update description of changes.</h2>
+
+      <form action="module_description_of_changes"
+          method="post" tal:attributes="action string:${context/absolute_url}/${template/getId}">
+
+	  <div class="field"
+	       tal:define="error errors/message| nothing; message request/message | here/message"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+	    <label i18n:translate="label_description_of_changes">Description of Changes</label>
+	    <span class="fieldRequired" title="Required"
+	         i18n:attributes="title"
+	         i18n:translate="label_required">(Required)</span>
+	    <div i18n:translate="help_message_creation" class="formHelp">
+	      Please enter a description of the changes you've made to the module
+	    </div>
+	    
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+	    
+	    <textarea name="description_of_changes" 
+                          wrap="soft" 
+                          cols="50" 
+	                  style="width: 50%"
+                          rows="5"
+                          tal:attributes="tabindex tabindex/next;"
+	                  tal:content="context/description_of_changes"></textarea>
+	  </div>
+      
+      <input 
+          type="submit" 
+	      class="context" 
+  	      name="form.button.submit" 
+  	      value="Submit" 
+	      tal:attributes="tabindex tabindex/next;" 
+	      i18n:attributes="value value_module_update_description_of_changes"/>
+
+	  <input type="hidden" name="form.submitted" value="1" />
+      </form>
+    </div>
+  </body>
+</html>
+
+</tal:block>
