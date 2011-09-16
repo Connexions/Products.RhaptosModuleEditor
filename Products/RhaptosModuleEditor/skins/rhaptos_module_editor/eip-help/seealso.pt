@@ -91,7 +91,7 @@
               _gaq.push(['_setDomainName', '.cnx.org']);
               _gaq.push(['_trackPageview']);
               _gaq.push(['hewlett._setAccount', 'UA-5033010-1']);
-              _gaq.push(['hewlett._setDomainName', 'cnx.org']);
+              _gaq.push(['hewlett._setDomainName', '.cnx.org']);
               _gaq.push(['hewlett._trackPageview']);
             } catch(err) {}
           </script></tal:google-analytics>
