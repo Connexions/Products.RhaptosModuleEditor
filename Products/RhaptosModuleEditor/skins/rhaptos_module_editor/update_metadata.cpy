@@ -5,7 +5,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=title='(Untitled)', keywords=[], abstract='',language='en', subject=[], template_uid='', license=None, GoogleAnalyticsTrackingCode=''
+##parameters=title='(Untitled)', keywords=[], abstract='',language='en', subject=[], template_uid='', license=None, GoogleAnalyticsTrackingCode='', message=None
 
 from Products.CMFCore.utils import getToolByName
 
@@ -35,6 +35,9 @@ if license:
 
 if GoogleAnalyticsTrackingCode:
     context.setGoogleAnalyticsTrackingCode(GoogleAnalyticsTrackingCode)
+
+if message:
+    context.setMessage(message)
 
 context.editMetadata()
 
