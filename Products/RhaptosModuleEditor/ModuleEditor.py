@@ -902,12 +902,5 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         else:
             return None
 
-    #security.declareProtected('Edit Rhaptos Object', 'setMessage')
-    def setMessage(self, message):
-        self.message = message
-
-    def getMessage(self):
-        return self.message
-
 InitializeClass(ModuleEditor)
 
