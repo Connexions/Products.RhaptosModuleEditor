@@ -36,9 +36,6 @@ if license:
 if GoogleAnalyticsTrackingCode:
     context.setGoogleAnalyticsTrackingCode(GoogleAnalyticsTrackingCode)
 
-if message:
-    context.setMessage(message)
-
 context.editMetadata()
 
 if template_uid:
