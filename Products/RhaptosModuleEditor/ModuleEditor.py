@@ -106,7 +106,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
                  {'id':'is_imported','type':'boolean', 'mode': 'w'},
                  {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
-                 {'id':'description_of_changes','type':'string', 'mode': 'w'},
                  {'id':'treatment','type':'string', 'mode': 'w'},
                  )
 
@@ -147,7 +146,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'import_authors': [],
                           'is_imported': False,
                           'has_attribution_note': False,
-                          'description_of_changes': '',
                           'treatment': '',
                           }
 
@@ -701,12 +699,13 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
         self.reindexObject()
 
-    def logAction(self, action, message=''):
+    def logAction(self, action, message=None):
         """Log last user action."""
         user = getSecurityManager().getUser()
 
         # State transition table
         nextState = {'create':'created',
+                     'derive':'created',
                      'add':'published',
                      'save':'modified',
                      'upgrade':'modified',
@@ -727,7 +726,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         self.timestamp = DateTime()
         self.action = action
         self.actor = user.getUserName()
-        self.message = message
+        if message is not None:
+            self.message = message
 
         # Reindex the object in the catalog so that the folder listings will update
         self.reindexObject()
@@ -901,6 +901,13 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             return self.GoogleAnalyticsTrackingCode
         else:
             return None
+
+    #security.declareProtected('Edit Rhaptos Object', 'setMessage')
+    def setMessage(self, message):
+        self.message = message
+
+    def getMessage(self):
+        return self.message
 
 InitializeClass(ModuleEditor)
 
