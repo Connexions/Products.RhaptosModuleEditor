@@ -46,7 +46,7 @@ if template_uid:
     template = rc.lookupObject(template_uid)
     context.getDefaultFile().manage_upload(template.getBody())
 
-context.logAction('save')
+context.logAction('save', message)
 
 psm = context.translate("message_metadata_updated", domain="rhaptos", default="Metadata updated.")
 return state.set(portal_status_message=psm)
