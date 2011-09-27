@@ -204,4 +204,16 @@
     </div>
   </xsl:template>
 
+  <!-- Render any processing instructions (messages from import) as HTML.
+       Webkit browsers do not support adding processing instructions to
+       a HTML DOM.
+  -->
+<!--
+  <xsl:template match="processing-instruction('cnx.warning')">
+    <span class="warning" alt="{.}"/>
+  </xsl:template>
+-->
+  <xsl:template match="processing-instruction()">
+    <span class="error" title="{.}"><xsl:value-of select="name()"/></span>
+  </xsl:template>
 </xsl:stylesheet>
