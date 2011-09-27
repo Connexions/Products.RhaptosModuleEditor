@@ -144,7 +144,7 @@
           <ul>                                                                                                                                                                                
             <xsl:for-each select=".//processing-instruction()">                                                                                                                               
               <li>                                                                                                                                                                            
-                <a href="#{generate-id()}"><xsl:value-of select="name()"/></a>: <xsl:value-of select="."/>                                                                                   
+                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a href="#{generate-id()}"><xsl:value-of select="."/></a>                                                                                   
               </li>                                                                                                                                                                           
             </xsl:for-each>                                                                                                                                                                   
           </ul>                                                                                                                                                                               
