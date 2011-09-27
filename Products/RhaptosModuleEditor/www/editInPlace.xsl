@@ -139,6 +139,17 @@
   <!-- add ID as CSS selector to distinguish content definitions from glossary definitions -->
   <xsl:template match="cnx:content">
     <div id="cnx_content">
+        <xsl:variable name="pi" select=".//processing-instruction()"/>                                                                                                                        
+        <xsl:if test="count($pi) &gt; 0">                                                                                                                                                     
+          <ul>                                                                                                                                                                                
+            <xsl:for-each select=".//processing-instruction()">                                                                                                                               
+              <li>                                                                                                                                                                            
+                <a href="#{generate-id()}"><xsl:value-of select="name()"/></a>: <xsl:value-of select="."/>                                                                                   
+              </li>                                                                                                                                                                           
+            </xsl:for-each>                                                                                                                                                                   
+          </ul>                                                                                                                                                                               
+        </xsl:if>                                                                                                                                                                             
+
       <xsl:apply-templates />
     </div>
   </xsl:template>
@@ -214,6 +225,6 @@
   </xsl:template>
 -->
   <xsl:template match="processing-instruction()">
-    <span class="error" title="{.}"><xsl:value-of select="name()"/></span>
+    <span id="{generate-id()}" class="error" title="{.}"><xsl:value-of select="name()"/></span>
   </xsl:template>
 </xsl:stylesheet>
