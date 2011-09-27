@@ -368,7 +368,7 @@
                               style="width: 50%"
                                   rows="5"
                                   tal:attributes="tabindex tabindex/next;"
-                              tal:content="context/description_of_changes | message"></textarea>
+                              tal:content="context/message"></textarea>
             </a>
 	    </div>
 
