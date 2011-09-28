@@ -24,7 +24,7 @@
   <xsl:output omit-xml-declaration="yes" encoding="utf-8" />
 
   <xsl:template match="/">
-    <xsl:apply-templates />
+    <xsl:apply-templates select="node()" />
   </xsl:template>
   
   <xsl:template match="module">
@@ -150,7 +150,7 @@
           </ul>                                                                                                                                                                               
         </xsl:if>                                                                                                                                                                             
 
-      <xsl:apply-templates />
+      <xsl:apply-templates select="node()"/>
     </div>
   </xsl:template>
 
@@ -185,7 +185,7 @@
         <xsl:text>&#160;</xsl:text>
       </xsl:element>
       <div class="section-contents">
-        <xsl:apply-templates select="*[not(self::cnx:title|self::cnx:label)]"/>
+        <xsl:apply-templates select="node()[not(self::cnx:title|self::cnx:label)]"/>
       </div>
       <div class="section-end">End of section</div>
     </div>
@@ -208,7 +208,7 @@
           <xsl:apply-templates select="cnx:title" />
         </xsl:element>
       </xsl:if>
-      <xsl:apply-templates select="*[not(self::cnx:title)]|text()" />
+      <xsl:apply-templates select="node()[not(self::cnx:title)]" />
       <xsl:if test="not(node())">
         <xsl:comment>empty para tag</xsl:comment>
       </xsl:if>
@@ -225,6 +225,6 @@
   </xsl:template>
 -->
   <xsl:template match="processing-instruction()">
-    <span id="{generate-id()}" class="error" title="{.}"><xsl:value-of select="name()"/></span>
+    <span id="{generate-id()}" class="icon-{substring-after(name(), 'cnx.')}" title="{.}"> </span>
   </xsl:template>
 </xsl:stylesheet>
