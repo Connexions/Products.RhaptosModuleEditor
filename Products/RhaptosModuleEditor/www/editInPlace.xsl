@@ -140,14 +140,15 @@
   <xsl:template match="cnx:content">
     <div id="cnx_content">
         <xsl:variable name="pi" select=".//processing-instruction()"/>                                                                                                                        
-        <xsl:if test="count($pi) &gt; 0">                                                                                                                                                     
-          <ul>                                                                                                                                                                                
-            <xsl:for-each select=".//processing-instruction()">                                                                                                                               
-              <li>                                                                                                                                                                            
-                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a href="#{generate-id()}"><xsl:value-of select="."/></a>                                                                                   
-              </li>                                                                                                                                                                           
-            </xsl:for-each>                                                                                                                                                                   
-          </ul>                                                                                                                                                                               
+        <xsl:if test="count($pi) &gt; 0">
+          <p><span>Import generated the following errors and warnings </span> <a onclick="clearAllMessages();" href="#">(clear all import messages)</a></p>
+          <ul>
+            <xsl:for-each select=".//processing-instruction()">
+              <li>
+                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a href="#{generate-id()}"><xsl:value-of select="."/></a>
+              </li>
+            </xsl:for-each>
+          </ul>
         </xsl:if>                                                                                                                                                                             
 
       <xsl:apply-templates select="node()"/>

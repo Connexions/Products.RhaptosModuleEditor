@@ -11830,3 +11830,7 @@ MathEditor.popupMathEditor = function() {
         }
     }
 }
+
+function clearAllMessages() {
+  alert("TODO: Need to actually clear the messages.... using the power of XSLT!");
+}
