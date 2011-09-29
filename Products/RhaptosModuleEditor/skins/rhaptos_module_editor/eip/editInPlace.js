@@ -8073,6 +8073,11 @@ function generalOnClickHandler(e) {
         }
     }
 
+    // If the user clicked on a local link, let it bubble up
+    if ( nodeClicked.getAttribute("href") && nodeClicked.getAttribute("href").startsWith("#") ) {
+      return true;
+    }
+
     // Return false so that the click event does not bubble up.  We
     // don't want links to be followed if they're clicked in EIP.
     return false;
