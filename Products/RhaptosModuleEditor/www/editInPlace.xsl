@@ -139,13 +139,15 @@
   <!-- add ID as CSS selector to distinguish content definitions from glossary definitions -->
   <xsl:template match="cnx:content">
     <div id="cnx_content">
-        <xsl:variable name="pi" select=".//processing-instruction()"/>                                                                                                                        
+        <xsl:variable name="pi" select=".//processing-instruction()[starts-with(name(),'cnx.')]"/>                                                                                                                        
         <xsl:if test="count($pi) &gt; 0">
-          <p><span>Import generated the following errors and warnings </span> <a onclick="clearAllMessages();" href="#">(clear all import messages)</a></p>
+          <!-- The base href for this page is "/" instead of "/module_text" hence href="module_text#" dumbdumbdumb -->
+          <!-- clearAllMessages is defined in RhaptosModuleEditor/skins/rhaptos_module_editor/eip/editInPlace.js -->
+          <p><span>Import generated the following errors and warnings </span> <a onmousedown="clearAllMessages();" href="module_text#">(clear all import messages)</a></p>
           <ul>
-            <xsl:for-each select=".//processing-instruction()">
+            <xsl:for-each select="$pi">
               <li>
-                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a href="#{generate-id()}"><xsl:value-of select="."/></a>
+                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a onmousedown="window.location.href=window.location.href+'#{generate-id()}" href="module_text#{generate-id()}"><xsl:value-of select="."/></a>
               </li>
             </xsl:for-each>
           </ul>
