@@ -106,6 +106,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
                  {'id':'is_imported','type':'boolean', 'mode': 'w'},
                  {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
+                 {'id':'treatment','type':'string', 'mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -145,6 +146,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'import_authors': [],
                           'is_imported': False,
                           'has_attribution_note': False,
+                          'treatment': '',
                           }
 
         # Store object properties
@@ -306,6 +308,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def getPublishedObject(self):
         """Return the currently published version of this object or
            None if it is newly created"""
+        if self.objectId is None:
+            return None
         try:
             return self.portal_url.getPortalObject().content.getRhaptosObject(self.objectId)
         except KeyError:
@@ -695,12 +699,13 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
         self.reindexObject()
 
-    def logAction(self, action, message=''):
+    def logAction(self, action, message=None):
         """Log last user action."""
         user = getSecurityManager().getUser()
 
         # State transition table
         nextState = {'create':'created',
+                     'derive':'created',
                      'add':'published',
                      'save':'modified',
                      'upgrade':'modified',
@@ -721,7 +726,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         self.timestamp = DateTime()
         self.action = action
         self.actor = user.getUserName()
-        self.message = message
+        if message is not None:
+            self.message = message
 
         # Reindex the object in the catalog so that the folder listings will update
         self.reindexObject()

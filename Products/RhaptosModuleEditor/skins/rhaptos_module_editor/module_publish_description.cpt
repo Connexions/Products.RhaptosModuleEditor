@@ -55,7 +55,8 @@
 	<form action="publish" method="post" tal:attributes="action template/getId">
 
 	  <div class="field"
-	       tal:define="error errors/message| nothing; message request/message | here/message"
+          tal:define="error errors/message| nothing;
+                      message request/message | here/message;"
 	       tal:attributes="class python:test(error, 'field error', 'field')">
 	    <label i18n:translate="label_description_of_changes">Description of Changes</label>
 	    <span class="fieldRequired" title="Required"
@@ -73,7 +74,7 @@
 	                  style="width: 50%"
                           rows="5"
                           tal:attributes="tabindex tabindex/next;"
-	                  tal:content="message"></textarea>
+	                  tal:content="context/description_of_changes | message"></textarea>
 	  </div>
       
      <input 
@@ -150,7 +151,8 @@
 	<form action="publish" method="post" tal:attributes="action template/getId">
 
 	  <div class="field"
-	       tal:define="error errors/message| nothing; message request/message | here/message"
+          tal:define="error errors/message| nothing;
+              message request/message | here/message;"
 	       tal:attributes="class python:test(error, 'field error', 'field')">
 	    <label i18n:translate="label_description_of_changes">Description of Changes</label>
 	    <span class="fieldRequired" title="Required"
@@ -168,7 +170,7 @@
 	                  style="width: 50%"
                           rows="5"
                           tal:attributes="tabindex tabindex/next;"
-	                  tal:content="message"></textarea>
+	                  tal:content="context/description_of_changes | message"></textarea>
 	  </div>
       
      <input 
