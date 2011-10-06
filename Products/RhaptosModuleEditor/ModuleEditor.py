@@ -625,8 +625,9 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         # Get the latest version of metadata 
         self.updateMetadata()
 
-        # Note the checkout in the properties
-        self.logAction('checkout')
+        # Note the checkout in the properties and clear the description
+        # of changes for the new version
+        self.logAction('checkout', '')
 
         # Clear the metadata out of the default file
         #self.getDefaultFile().clearMetadata()

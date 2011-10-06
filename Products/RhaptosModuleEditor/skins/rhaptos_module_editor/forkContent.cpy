@@ -46,8 +46,9 @@ new_context.resetOptionalRoles()
 
 new_context.updateRoleMetadata()
     
-# Set state to newly created
-new_context.logAction('create', 'Content copied')
+# Set state to newly created and clear the description of changes for
+# the copy
+new_context.logAction('create', '')
 new_context.manage_changeProperties(created=now)
 
 # Since we're doing a fork, remove the existing CVS folder
