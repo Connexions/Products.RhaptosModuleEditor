@@ -350,6 +350,8 @@
                           tal:content="abstract"></textarea>
         </div>
 
+        <a name="description_of_changes"/>
+
         <div class="field"
             tal:define="error errors/message| nothing;
                       message request/message | here/message;"
@@ -361,7 +363,6 @@
             
             <div tal:content="error" i18n:translate="">Validation error output</div>
             
-            <a name="description_of_changes">
                 <textarea name="message" 
                                   wrap="soft" 
                                   cols="50" 
@@ -369,7 +370,6 @@
                                   rows="5"
                                   tal:attributes="tabindex tabindex/next;"
                               tal:content="context/message"></textarea>
-            </a>
 	    </div>
 
 
