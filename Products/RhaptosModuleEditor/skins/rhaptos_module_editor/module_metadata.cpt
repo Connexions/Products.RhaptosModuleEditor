@@ -350,7 +350,7 @@
                           tal:content="abstract"></textarea>
         </div>
 
-        <a name="description_of_changes"/>
+        <a name="description_of_changes"></a>
 
         <div class="field"
             tal:define="error errors/message| nothing;
