@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.75
+  - sword-service release
+
 RhaptosModuleEditor-0.74.2
   - update google analytics domain code
 
