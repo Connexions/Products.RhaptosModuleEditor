@@ -146,6 +146,7 @@
           <p><span>Import generated the following errors and warnings </span> <a onmousedown="clearAllMessages();" href="module_text#">(clear all import messages)</a></p>
           <ul>
             <xsl:for-each select="$pi">
+              <xsl:sort select="name()"/>
               <li>
                 <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a onmousedown="window.location.href=window.location.href+'#{generate-id()}" href="module_text#{generate-id()}"><xsl:value-of select="."/></a>
               </li>
