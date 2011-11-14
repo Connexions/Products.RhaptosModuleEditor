@@ -350,6 +350,29 @@
                           tal:content="abstract"></textarea>
         </div>
 
+        <a name="description_of_changes"></a>
+
+        <div class="field"
+            tal:define="error errors/message| nothing;
+                      message request/message | here/message;"
+	        tal:attributes="class python:test(error, 'field error', 'field')">
+            <label i18n:translate="label_description_of_changes">Description of Changes</label>
+            <div i18n:translate="help_message_creation" class="formHelp">
+                Please enter a description of the changes you've made to the module
+            </div>
+            
+            <div tal:content="error" i18n:translate="">Validation error output</div>
+            
+                <textarea name="message" 
+                                  wrap="soft" 
+                                  cols="50" 
+                              style="width: 50%"
+                                  rows="5"
+                                  tal:attributes="tabindex tabindex/next;"
+                              tal:content="context/message"></textarea>
+	    </div>
+
+
         <div class="field"
              tal:define="error               errors/GoogleAnalyticsTrackingCode | nothing;
                          codeGoogleAnalytics python:hasattr(context,'GoogleAnalyticsTrackingCode') and context.GoogleAnalyticsTrackingCode or '';
