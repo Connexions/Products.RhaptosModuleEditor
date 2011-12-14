@@ -9,7 +9,9 @@
 
 from Products.CMFCore.utils import getToolByName
 
-newpublish = not(context.content.hasRhaptosObject(context.objectId))
+portal = context.portal_url.getPortalObject()
+repo = portal.content
+newpublish = not(repo.hasRhaptosObject(context.objectId))
 
 if context.state == 'pending' and context.portal_membership.getAuthenticatedMember().has_role('Manager'):
   context.set_publisher(users=[context.actor])  
@@ -41,15 +43,15 @@ if hasattr(context, 'GoogleAnalyticsTrackingCode'):
 
 # publish/republish module
 if newpublish:
-    context.setBaseObject(context.content.publishObject(context, message))
+    context.setBaseObject(repo.publishObject(context, message))
     context.aq_parent.manage_renameObjects([context.id], [context.objectId])
 else:
-    object = context.content.getRhaptosObject(context.objectId)
-    context.content.publishRevision(context, message)
+    object = repo.getRhaptosObject(context.objectId)
+    repo.publishRevision(context, message)
 
 # place Google Analytics Tracking Code into object's published folder
 if GoogleAnalyticsTrackingCode is not None:
-    versionFolder = context.content.getRhaptosObject(context.objectId)
+    versionFolder = repo.getRhaptosObject(context.objectId)
     versionFolder.setGoogleAnalyticsTrackingCode(GoogleAnalyticsTrackingCode)
 
 # Now that we've committed, update the local metadata (version at least) from the repository 
