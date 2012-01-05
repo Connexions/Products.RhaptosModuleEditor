@@ -1,0 +1,8 @@
+[default]
+title=Module description of changes
+
+[validators]
+validators..submit = validate_description_of_changes_submit
+
+[actions]
+action.success..submit = traverse_to:string:updateDescriptionOfChanges
