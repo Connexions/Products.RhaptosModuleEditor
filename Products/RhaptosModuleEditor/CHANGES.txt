@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.77
+  - modern textbook appearance
+
 RhaptosModuleEditor-0.76
   - publishContent now uses correct context
 
