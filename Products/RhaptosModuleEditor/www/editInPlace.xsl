@@ -24,7 +24,7 @@
   <xsl:output omit-xml-declaration="yes" encoding="utf-8" />
 
   <xsl:template match="/">
-    <xsl:apply-templates select="node()" />
+    <xsl:apply-templates />
   </xsl:template>
   
   <xsl:template match="module">
@@ -139,22 +139,7 @@
   <!-- add ID as CSS selector to distinguish content definitions from glossary definitions -->
   <xsl:template match="cnx:content">
     <div id="cnx_content">
-        <xsl:variable name="pi" select=".//processing-instruction()[starts-with(name(),'cnx.')]"/>                                                                                                                        
-        <xsl:if test="count($pi) &gt; 0">
-          <!-- The base href for this page is "/" instead of "/module_text" hence href="module_text#" dumbdumbdumb -->
-          <!-- clearAllMessages is defined in RhaptosModuleEditor/skins/rhaptos_module_editor/eip/editInPlace.js -->
-          <p><span>Import generated the following errors and warnings </span> <a onmousedown="clearAllMessages();" href="module_text#">(clear all import messages)</a></p>
-          <ul>
-            <xsl:for-each select="$pi">
-              <xsl:sort select="name()"/>
-              <li>
-                <span class="icon-{substring-after(name(), 'cnx.')}"> </span>: <a onmousedown="window.location.href=window.location.href+'#{generate-id()}" href="module_text#{generate-id()}"><xsl:value-of select="."/></a>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </xsl:if>                                                                                                                                                                             
-
-      <xsl:apply-templates select="node()"/>
+      <xsl:apply-templates />
     </div>
   </xsl:template>
 
@@ -189,7 +174,7 @@
         <xsl:text>&#160;</xsl:text>
       </xsl:element>
       <div class="section-contents">
-        <xsl:apply-templates select="node()[not(self::cnx:title|self::cnx:label)]"/>
+        <xsl:apply-templates select="*[not(self::cnx:title|self::cnx:label)]"/>
       </div>
       <div class="section-end">End of section</div>
     </div>
@@ -212,23 +197,11 @@
           <xsl:apply-templates select="cnx:title" />
         </xsl:element>
       </xsl:if>
-      <xsl:apply-templates select="node()[not(self::cnx:title)]" />
+      <xsl:apply-templates select="*[not(self::cnx:title)]|text()" />
       <xsl:if test="not(node())">
         <xsl:comment>empty para tag</xsl:comment>
       </xsl:if>
     </div>
   </xsl:template>
 
-  <!-- Render any processing instructions (messages from import) as HTML.
-       Webkit browsers do not support adding processing instructions to
-       a HTML DOM.
-  -->
-<!--
-  <xsl:template match="processing-instruction('cnx.warning')">
-    <span class="warning" alt="{.}"/>
-  </xsl:template>
--->
-  <xsl:template match="processing-instruction()">
-    <span id="{generate-id()}" class="icon-{substring-after(name(), 'cnx.')}" title="{.}"> </span>
-  </xsl:template>
 </xsl:stylesheet>
