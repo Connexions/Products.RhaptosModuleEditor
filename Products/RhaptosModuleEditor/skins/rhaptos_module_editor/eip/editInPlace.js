@@ -8665,7 +8665,7 @@ function editNode(nodeHtml, bPreviewMode, bEditingExistingNode, strInsertionPosi
 function removeNamespaceAttributesFromText(strXml) {
     var strNewXml;
     strNewXml = strXml;
-    //strNewXml = strNewXml.replace(gRegExps.cnxml,    "$1$2"); // currently a no-op.  no idea why?
+    strNewXml = strNewXml.replace(gRegExps.cnxml,    "$1$2"); // currently a no-op.  no idea why?
     strNewXml = strNewXml.replace(gRegExps.mathml,   "$1$2");
     strNewXml = strNewXml.replace(gRegExps.qml,      "$1$2");
     strNewXml = strNewXml.replace(gRegExps.mdml,     "$1$2");
@@ -8701,6 +8701,8 @@ function addNamespaces(strXml) {
     var strContents;
     var strCloseTag;
     var strNewXml;
+
+    strXml = removeNamespaceAttributesFromText(strXml); // avoid duplicating ns attributes
 
     strXml.replace(/^(<[\w\W]*?>)([\w\W]*)(<\/[\w\W]*?>)/,
                     function(wholeMatch, openTag, contents, closeTag) {
