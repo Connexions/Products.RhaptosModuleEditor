@@ -532,3 +532,18 @@ input.eipRowInput, input.eipColumnInput{
 .lensinfo{
   display: none;
 }
+
+.icon-warning {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(/extjs/resources/images/default/shared/warning.gif);
+}
+
+.icon-error {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(/extjs/resources/images/default/form/exclamation.gif);
+}
+

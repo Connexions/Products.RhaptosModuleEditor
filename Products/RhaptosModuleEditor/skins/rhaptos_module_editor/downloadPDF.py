@@ -23,11 +23,13 @@ if context.isPublic():
     else:
         pdf = printTool.getFile(objectId, version, 'pdf')
         if pdf == None:
-            pdf = pdf_tool.convertObjectToPDF(context, **params)
+            style = context.REQUEST.get('style', '')
+            pdf = pdf_tool.convertObjectToPDF(context, style, **params)
             printTool.setFile(objectId, version,'pdf',pdf)
             printTool.setStatus(objectId, version,'pdf','success')
 else:
-    pdf = pdf_tool.convertObjectToPDF(context, **params)
+    style = context.REQUEST.get('style', '')
+    pdf = pdf_tool.convertObjectToPDF(context, style, **params)
 
 context.REQUEST.RESPONSE.setHeader('Content-Type', 'application/pdf')
 #response.setHeader('Content-Length', len(text))

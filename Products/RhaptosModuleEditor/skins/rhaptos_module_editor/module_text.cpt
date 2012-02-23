@@ -19,7 +19,7 @@
   </metal:block>
 
   <tal:js metal:fill-slot="javascript_head_slot" tal:condition="python:here.state != 'published'">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=IE7"/>
     <script type="text/javascript" src="/eip/prototype.js"
             tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
     <script type="text/javascript" src="/eip/sarissa.js"
