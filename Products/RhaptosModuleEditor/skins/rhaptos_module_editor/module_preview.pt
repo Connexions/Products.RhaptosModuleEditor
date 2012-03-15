@@ -38,6 +38,7 @@
               <form method="GET" action="module_view">
                 <input type="hidden" name="format" value="pdf" style="display: inline;"/>
                 <select name="style">
+                  <option value="">Default</option>
                   <option tal:repeat="alt ptool/getAlternateStyles" tal:attributes="value alt/id">
                    <tal:title tal:replace="alt/title"/>
                  </option>
