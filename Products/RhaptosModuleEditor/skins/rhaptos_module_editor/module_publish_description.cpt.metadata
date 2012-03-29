@@ -9,6 +9,7 @@ validators..submit = validate_module_submit
 action.confirm..publish = traverse_to:string:confirm_publish
 action.failure = traverse_to_action:string:publish
 action.success..publish = traverse_to:string:publishContent
+action.success..withdraw = traverse_to:string:content_withdraw
 action.success..submit = traverse_to:string:submitContent
 action.role_error = traverse_to_action:string:roles
 action.invalid = traverse_to:string:module_invalid

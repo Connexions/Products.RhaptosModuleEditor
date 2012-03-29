@@ -84,6 +84,13 @@
   	      value="Publish" 
 	      tal:attributes="tabindex tabindex/next;" 
 	      i18n:attributes="value value_module_publish"/>
+     <input tal:condition="python:here.state=='pending'"
+          type="submit" 
+	      class="context" 
+  	      name="form.button.withdraw" 
+  	      value="Withdraw" 
+	      tal:attributes="tabindex tabindex/next;" 
+	      i18n:attributes="value value_module_withdraw"/>
 
 	  <input type="hidden" name="form.submitted" value="1" />
 	</form>
