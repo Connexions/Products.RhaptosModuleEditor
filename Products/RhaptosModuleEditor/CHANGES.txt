@@ -1,3 +1,7 @@
+RhaptosModuleEditor-0.78
+  - enable withdraw button for manager view of pending content
+  - bug fix for modern textbook preview
+
 RhaptosModuleEditor-0.77
   - modern textbook appearance
 
