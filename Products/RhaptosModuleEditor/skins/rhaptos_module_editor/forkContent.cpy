@@ -59,6 +59,13 @@ if 'CVS' in new_context.objectIds():
 for o in new_context.objectValues():
     o.wl_clearLocks()
 
+# delete custom printstyle if it's a ccap style
+p = new_context.get('parameters',None)
+if p:
+    ps = p.getProperty('printstyle')
+    if ps and ps.startswith('ccap-'):
+        p.manage_delProperties(['printstyle'])
+
 # This script may be used outside of a FormController context in which 
 # case it must return here.
 if return_context:
