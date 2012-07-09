@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.79
+  - clear out ccap printstyle on collection fork
+
 RhaptosModuleEditor-0.78
   - enable withdraw button for manager view of pending content
   - bug fix for modern textbook preview
