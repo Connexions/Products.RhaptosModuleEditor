@@ -92,7 +92,7 @@ function initEip()
                                 " | " +
                                 "<a href='module_text?edit_source=1' id='eipFullSourceEditingMode'>" + strFullSourceEdit + "</a>" +
                                 " | " +
-                                "<a href='module_text' id='htmlEditingMode'>" + strHtmlEdit + "</a>";
+                                "<a href='module_html' id='htmlEditingMode'>" + strHtmlEdit + "</a>";
                 $('eipTopEditingMode').innerHTML = strNewTopHtml;
 
                 // tragically named.  modify the content's rendered HTML.

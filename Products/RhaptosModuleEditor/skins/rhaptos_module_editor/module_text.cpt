@@ -251,13 +251,11 @@ can edit or delete this if desired).</li>
           <span id="eipFullSourceEditingMode"
                 i18n:translate="text_full_source_editing">
             Full-Source Editing</span> |
-          <span>
-            <tal:html-editor-enabled-block condition="html_editor_info/enabled">
+          <span condition="html_editor_info/enabled">
               <a href="module_html"
                  id="htmlEditingMode"
                  i18n:translate="text_html_editing_mode">
                 HTML Editor</a>
-            </tal:html-editor-enabled-block>
           </span>
         </div>
           <p id='javascript_warning'
