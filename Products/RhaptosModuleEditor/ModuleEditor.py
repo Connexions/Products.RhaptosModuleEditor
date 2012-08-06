@@ -34,6 +34,7 @@ from Products.Archetypes.public import DisplayList
 from Products.CNXMLDocument import XMLService
 from Products.CNXMLDocument import CNXML_SEARCHABLE_XSL as baretext
 from Products.RhaptosModuleEditor.interfaces import IModule
+from Products.RhaptosModuleEditor.upgrades import NEWEST, upgrade as upgrade_object
 
 try:
     from Products.Archetypes.Referenceable import Referenceable
@@ -746,7 +747,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def upgrade(self):
         """Upgrade to the next version of the module product"""
-        pass
+        if getattr(self, 'editor_version', 0) < NEWEST:
+            upgrade_object(self)
 
     def hasHtmlContent(self):
         """Retuns a boolean value that shows if the object contains

@@ -65,7 +65,9 @@
                      editBlockedForUpgrade python:publishBlockFailType == 'cnxmlfive' or False;
                      validation_errors here/validate;
                      show_validation_errors python:validation_errors and publishBlockFailType != 'brokencnxmlfive';
-                     edit_source options/edit_source | request/edit_source | nothing;">
+                     edit_source options/edit_source | request/edit_source | nothing;
+                     html_editor_info context/htmlEditorInfo;
+                     ">
       <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
         and thus the validation, etc, needs to be after that.</tal:comment>
 
@@ -250,10 +252,12 @@ can edit or delete this if desired).</li>
                 i18n:translate="text_full_source_editing">
             Full-Source Editing</span> |
           <span>
-            <a href="module_text"
-               id="htmlEditingMode"
-               i18n:translate="text_html_editing_mode">
-              HTML Editor</a>
+            <tal:html-editor-enabled-block condition="html_editor_info/enabled">
+              <a href="module_html"
+                 id="htmlEditingMode"
+                 i18n:translate="text_html_editing_mode">
+                HTML Editor</a>
+            </tal:html-editor-enabled-block>
           </span>
         </div>
           <p id='javascript_warning'

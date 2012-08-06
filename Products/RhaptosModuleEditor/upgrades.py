@@ -29,7 +29,7 @@ class UpgradeError(Exception):
     """Occures when the upgrade was unsuccessful. This exception captures
     information about why the upgrade was not sucessful.
     """
-    def __init__(self, message, reason=None):
+    def __init__(self, message='', reason=None):
         Exception(self, message)
         self.reason = reason
 
@@ -63,16 +63,19 @@ def upgrade_1_to_2(module_editor):
     With this change, it can use the dual format (cnxml and html)
     formatting and storage.
     """
-    source = module_editor.getDefaultFile().getSource()
-    source = StringIO(source)
-    xml = etree.parse(source)
+    try:
+        source = module_editor.getDefaultFile().getSource()
+        source = StringIO(source)
+        xml = etree.parse(source)
+        # Run the CNXML to HTML transform
+        xslt = makeXsl('cnxml2xhtml.xsl')
+        content = xslt(xml)
+        content = MODULE_BODY_XPATH(content)
 
-    # Run the CNXML to HTML transform
-    xslt = makeXsl('cnxml2xhtml.xsl')
-    content = xslt(xml)
-    content = MODULE_BODY_XPATH(content)
-
-    # TODO Roll over all index.<lang>.cnxml files
+        # TODO Roll over all index.<lang>.cnxml files
+    except Exception, err:
+        # For now, re-raise the exception. Later, raise UpgradeError.
+        raise err
 
     # Store the transformed content to the index.html file
     file = module_editor.getDefaultFile(format='html')
