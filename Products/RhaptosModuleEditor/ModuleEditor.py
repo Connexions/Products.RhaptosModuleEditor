@@ -79,6 +79,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     security.declareObjectPublic()
 
     default_file = 'index.cnxml'
+    html_file = 'index.html'
     default_linktypes = ['example', 'prerequisite', 'supplemental']
     #default_roles = ['Author', 'Maintainer', 'Licensor']
     optional_roles = {'Translator': 'Translators', 'Editor': 'Editors'}
@@ -746,12 +747,14 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         pass
 
 
-    def getDefaultFile(self):
+    def getDefaultFile(self, format='cnxml'):
         """Return the file object used in the default 'view' of this module"""
+        if format not in ('cnxml', 'html'):
+            raise ValueError("Unknown format: %s" % format)
         pl = getToolByName(self, 'portal_languages')
         langs = pl.getLanguageBindings()
         files = self.objectIds()
-        for f in ['index.%s.cnxml' % l for l in langs[0:2]]:
+        for f in ['index.%s.%s' % (l, format) for l in langs[0:2]]:
             if f in files:
                 return self[f]
         try:
