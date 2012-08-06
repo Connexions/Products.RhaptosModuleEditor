@@ -24,8 +24,7 @@
                      publishBlockFailType publishBlocked/failtype | nothing;
                      editBlockedForUpgrade python:publishBlockFailType == 'cnxmlfive' or False;
                      validation_errors here/validate;
-                     show_validation_errors python:validation_errors and publishBlockFailType != 'brokencnxmlfive';
-                     edit_source options/edit_source | request/edit_source | nothing;">
+                     show_validation_errors python:validation_errors and publishBlockFailType != 'brokencnxmlfive';">
       <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
         and thus the validation, etc, needs to be after that.</tal:comment>
 
@@ -251,13 +250,13 @@ can edit or delete this if desired).</li>
           <b i18n:translate="text_eip_cannot_use_errors">Note: Edit-In-Place cannot be used while errors persist</b>
         </div>
 
-        <div tal:condition="here/getDefaultFile">
+        <div tal:condition="python:context.getDefaultFile(format='html')">
           <form id="edit_form" method="post" enctype="multipart/form-data"
                 autocomplete="off"
                 tal:attributes="action template/getId">
             <textarea id='textarea' name="contents:text" wrap="soft" style="width:auto" cols="80" rows="25" 
-                      tal:define="file here/getDefaultFile; sourcenotblank python:file.getSource() != ''"
-                      tal:content="python:validation_errors and (sourcenotblank and file.getSource() or ' ') or file.normalize()">[content]</textarea>
+                      tal:define="file python:context.getDefaultFile(format='html'); sourcenotblank python:file.data != ''"
+                      tal:content="python:validation_errors and (sourcenotblank and file.data or ' ') or file">[content]</textarea>
             <input style="display:block"
                    class="context"
                    type="submit"
@@ -275,4 +274,3 @@ can edit or delete this if desired).</li>
   </div>
   </body>
 </html>
-
