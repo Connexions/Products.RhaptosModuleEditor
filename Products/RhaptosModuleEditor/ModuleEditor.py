@@ -751,6 +751,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """Return the file object used in the default 'view' of this module"""
         if format not in ('cnxml', 'html'):
             raise ValueError("Unknown format: %s" % format)
+
         pl = getToolByName(self, 'portal_languages')
         langs = pl.getLanguageBindings()
         files = self.objectIds()
@@ -758,7 +759,10 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             if f in files:
                 return self[f]
         try:
-            return self[self.default_file]
+            if format == 'html':
+                return self[self.html_file]
+            else:
+                return self[self.default_file]
         except KeyError:
             return None
 
