@@ -9,6 +9,15 @@ def upgrade_<current-version>_to_<next-version>(module_editor):
     return <successful?>
 """
 import logging
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
+from OFS.Image import File
+from lxml import etree
+from rhaptos.cnxmlutils.xml2xhtml import MODULE_BODY_XPATH
+from rhaptos.cnxmlutils.xml2xhtml import makeXsl
+
 
 NEWEST = 2
 logger = logging.getLogger('RhaptosModuleEditor upgrades')
@@ -42,7 +51,6 @@ def upgrade(module_editor):
                              % (module_editor, i, next_version))
             func(module_editor)
             set_version(module_editor, next_version)
-    return True
 
 def upgrade_0_to_1(module_editor):
     """Upgrades the module editor to use a basic object versioning setup."""
@@ -55,11 +63,21 @@ def upgrade_1_to_2(module_editor):
     With this change, it can use the dual format (cnxml and html)
     formatting and storage.
     """
+    source = module_editor.getDefaultFile().getSource()
+    source = StringIO(source)
+    xml = etree.parse(source)
+
     # Run the CNXML to HTML transform
+    xslt = makeXsl('cnxml2xhtml.xsl')
+    content = xslt(xml)
+    content = MODULE_BODY_XPATH(content)
 
     # TODO Roll over all index.<lang>.cnxml files
 
     # Store the transformed content to the index.html file
-
+    file = module_editor.getDefaultFile(format='html')
+    module_editor['index.html'] = File('index.html',
+                                       'Converted CNXML Document',
+                                       etree.tostring(content[0]))
 
 _upgrades[(1,2,)] = upgrade_1_to_2

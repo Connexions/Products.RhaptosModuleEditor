@@ -27,6 +27,7 @@ setup(name='Products.RhaptosModuleEditor',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'rhaptos.cnxmlutils',
       ],
       tests_require = [
            'zope.testing>=3.5',
@@ -35,4 +36,3 @@ setup(name='Products.RhaptosModuleEditor',
       # -*- Entry points: -*-
       """,
       )
-
