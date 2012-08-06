@@ -750,12 +750,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         if getattr(self, 'editor_version', 0) < NEWEST:
             upgrade_object(self)
 
-    def hasHtmlContent(self):
-        """Retuns a boolean value that shows if the object contains
-        both cnxml and html content.
-        """
-        return self.getDefaultFile('html') is not None
-
     def getDefaultFile(self, format='cnxml'):
         """Return the file object used in the default 'view' of this module"""
         if format not in ('cnxml', 'html'):
@@ -774,6 +768,16 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                 return self[self.default_file]
         except KeyError:
             return None
+
+    def updateHtml(self, contents, REQUEST=None):
+        """Update the html contents."""
+        file = self.getDefaultFile(format='html')
+        file.update_data(contents)
+        # Run the html to cnxml conversion.
+
+        # Return the user to the main view.
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('view')
 
     def getLanguageWithSubtypes(self,lang,*args,**kwargs):
         """get language codes w/ subtypes"""

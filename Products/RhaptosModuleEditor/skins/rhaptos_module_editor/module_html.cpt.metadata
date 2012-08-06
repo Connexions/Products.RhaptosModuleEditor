@@ -1,10 +1,10 @@
 [default]
-title=Edit Text
+title=Edit HTML
 
-[validators]
-validators = validate_module_save
+#[validators]
+#validators = validate_module_save
 
 [actions]
-action.success = traverse_to:string:update_text
+action.success = traverse_to:string:updateHtml
 action.failure = traverse_to_action:string:view
 
