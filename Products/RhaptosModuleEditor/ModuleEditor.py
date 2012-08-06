@@ -107,6 +107,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                  {'id':'import_authors','type':'lines', 'mode': 'w'},
                  {'id':'is_imported','type':'boolean', 'mode': 'w'},
                  {'id':'has_attribution_note','type':'boolean', 'mode': 'w'},
+                 {'id':'editor_version','type':'int','mode': 'w'},
                  )
 
     # Compatibility attributes
@@ -146,6 +147,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                           'import_authors': [],
                           'is_imported': False,
                           'has_attribution_note': False,
+                          'editor_version': 1,  # XXX Change to upgrades.NEWEST
                           }
 
         # Store object properties
@@ -746,6 +748,11 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """Upgrade to the next version of the module product"""
         pass
 
+    def hasHtmlContent(self):
+        """Retuns a boolean value that shows if the object contains
+        both cnxml and html content.
+        """
+        return self.getDefaultFile('html') is not None
 
     def getDefaultFile(self, format='cnxml'):
         """Return the file object used in the default 'view' of this module"""
