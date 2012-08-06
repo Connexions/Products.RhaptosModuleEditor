@@ -241,9 +241,20 @@ can edit or delete this if desired).</li>
         </div>
         <div id="eipTopEditingMode">
           <tal:span tal:condition="not:validation_errors">
-            <a href="module_text" i18n:translate="text_edit_in_place" id="eipEditInPlaceEditingMode">Edit-in-Place</a> |
+            <a href="module_text"
+               id="eipEditInPlaceEditingMode"
+               i18n:translate="text_edit_in_place">
+              Edit-in-Place</a> |
           </tal:span>
-          <span i18n:translate="text_full_source_editing" id="eipFullSourceEditingMode">Full-Source Editing</span>
+          <span id="eipFullSourceEditingMode"
+                i18n:translate="text_full_source_editing">
+            Full-Source Editing</span> |
+          <span>
+            <a href="module_text"
+               id="htmlEditingMode"
+               i18n:translate="text_html_editing_mode">
+              HTML Editor</a>
+          </span>
         </div>
           <p id='javascript_warning'
             i18n:translate="text_edit_in_place_not_supported">
