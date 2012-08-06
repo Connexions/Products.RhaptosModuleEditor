@@ -46,7 +46,7 @@ except ImportError:
 
 # Import permission names
 from Products.CMFCore import CMFCorePermissions
-import permissions 
+import permissions
 
 
 def addModuleEditor(self, id, REQUEST=None):
@@ -113,7 +113,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     # Add a computed "roles" attribute so that optional roles on ModuleEditors
     # can be accessed in the same way as optional role on ModuleViews
     roles = ComputedAttribute(lambda self: self.getRolesDict(),1)
-    
+
     # Force portal content to be true (even though we're a folder) so discussion threads work
     isPortalContent = 1
 
@@ -124,7 +124,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         self.objectId = None
 
         user = getSecurityManager().getUser().getUserName()
-        # Setup default properties  
+        # Setup default properties
         self._defaults = {'title' : '(Untitled)',
                           'created': DateTime(),
                           'revised': DateTime(),
@@ -188,7 +188,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             del self._properties
         except AttributeError, KeyError:
             pass
-        
+
         # Change back to properties for role storage
         if 'authors' not in self.__dict__.keys():
             self.authors = self.users_with_local_role('Author')
@@ -227,7 +227,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         if not hasattr(self, 'import_authors'):
             setattr(self, 'import_authors', [])
             setattr(self, 'is_imported', False)
-        
+
         if not hasattr(self, 'has_attribution_note'):
             setattr(self, 'has_attribution_note', False)
 
@@ -236,7 +236,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         Based currently on value of 'state' attribute.
         """
         return self.state == 'public'
-    
+
     security.declarePublic('SearchableText')
     def SearchableText(self):
         """Return the text of the module for searching"""
@@ -295,7 +295,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             l.remove(f)
             l.insert(0, f)
         return l
-                          
+
 
     def edit(self):
         """Change the instance's properties """
@@ -352,7 +352,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def getParentId(self):
         return self._parent_id
-    
+
     def createTemplate(self):
         """Create a template for the module.  Overwrites module contents."""
         self.invokeFactory('CNXML Document', self.default_file)  # FIXME: fails if exists
@@ -377,25 +377,25 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         # ...look inside the optional roles: translators, editors typically
         for role, members in self.roles.items():
             metadata[role] = members
-        
+
         # ... and calculate others
         curFiles = self.objectIds()
         metadata['added'] = [x for x in curFiles if x not in self._files]
         metadata['removed'] = [x for x in self._files if x not in curFiles]
-        
+
         repos = getToolByName(self, 'content')
         metadata['repository'] = repos.absolute_url()
-        
+
         pubobj = self.getPublishedObject()
         if pubobj:
             metadata['url'] = pubobj.url
-        
+
         pobj = self.getParent()
         parent = {}
         if pobj:
             parent['url'] = pobj.url
         metadata['parent'] = parent
-        
+
         return metadata
 
     def updateProperties(self, dict):
@@ -425,24 +425,24 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def isImported(self):
         """ A flag if the module is imported. """
         return getattr(self,'is_imported',False)
-    
+
     security.declarePublic('setImported')
     def setImported(self, isImported):
         """ set whether or not the document has been imported """
         self.is_imported = isImported
         self._p_changed = 1
-        
+
     security.declarePublic('has_attribution_note')
     def has_attribution_note(self):
         """ A flag if the module is imported. """
         return getattr(self,'is_imported',False)
-    
+
     security.declarePublic('set_has_attribution_note')
     def set_has_attribution_note(self, flag):
         """ set whether or not the document has an auto-generated attribution note as a result of import """
         self.has_attribution_note = flag
         self._p_changed = 1
-    
+
 
     def getLinks(self):
         """Get overlay links"""
@@ -463,7 +463,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         self._links = [{'url':l.target, 'title':l.title, 'type':l.category.lower(), 'strength':l.strength} for l in links]
         self._p_changed = 1
         self.getDefaultFile().setFeaturedLinks(self._links)
-        
+
     def getRolesDict(self):
         """Return the optional roles for this object"""
 
@@ -478,7 +478,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def resetOptionalRoles(self):
         """Set all the optional roles on the object to empty"""
-        
+
         opt_roles = getattr(self,'optional_roles',{})
         for role in opt_roles.keys():
             role_name = role.lower()+'s'
@@ -495,14 +495,14 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def _getSource(self):
         """Get the published source, or local source if modified"""
         # If the module is published, use the repository copy
-        if self.state == 'published': 
+        if self.state == 'published':
             module = self.content.getRhaptosObject(self.objectId, 'latest')
             source = module.normalize()
         else: # Otherwise use the local copy
             source = self.getDefaultFile().getSource()
 
         return source
-    
+
 
     def getSourceLines(self):
         """Display lines of module source."""
@@ -520,7 +520,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         opt_roles = [r.lower()+'s' for r in getattr(self,'optional_roles', {}).keys()]
         collab = []
         roles={}
-        
+
         # Default ordering for roles: Authors before Maintainers before Licensors... optional roles last
         for role in def_roles:
             for u in list(getattr(module,role)):
@@ -540,7 +540,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                 if c in getattr(module,role):
                     role_list.append(c)
                     roles[role]=role_list
-                    
+
         for role in opt_roles:
             role_list = list(roles.setdefault(role,[]))
             for c in collab:
@@ -549,23 +549,23 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                     if c in users:
                         role_list.append(c)
                         roles[role]=role_list
-            
+
 
         self.manage_changeProperties({'title': module.name,
                                       'created': module.created,
                                       'revised': module.revised,
-                                      'authors': roles['authors'], 
-                                      'maintainers': roles['maintainers'],        
+                                      'authors': roles['authors'],
+                                      'maintainers': roles['maintainers'],
                                       'licensors': roles['licensors'],
-                                      'parentAuthors': module.parentAuthors, 
+                                      'parentAuthors': module.parentAuthors,
                                       'version': module.version,
                                       'abstract': module.abstract,
                                       'keywords': module.keywords,
                                       'license': module.license,
                                       'language': module.language,
-                                      'pub_authors': roles['authors'], 
-                                      'pub_maintainers': roles['maintainers'],    
-                                      'pub_licensors': roles['licensors'],        
+                                      'pub_authors': roles['authors'],
+                                      'pub_maintainers': roles['maintainers'],
+                                      'pub_licensors': roles['licensors'],
                                       'collaborators': collab
                                       }
                                      )
@@ -620,7 +620,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         # Get latest links
         self.updateAuthorLinks()
 
-        # Get the latest version of metadata 
+        # Get the latest version of metadata
         self.updateMetadata()
 
         # Note the checkout in the properties and clear the description
@@ -657,7 +657,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         exclude = ['CVS', '.change_set', 'index.cnxml.pre-v06', 'index.cnxml.pre-v07','index_auto_generated.cnxml']
         exclude.extend(self.objectIds('Collaboration Request'))
         return exclude
-        
+
     def validate(self):
         """Validate this module.
         Returns list of (linenumber, error) tuples if error; empty list if valid.
@@ -665,7 +665,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         f = self.getDefaultFile()
         if f:
             return f.validate()
-    
+
     def wellformed(self):
         """Say if this module is correct XML; weaker than validation.
         Returns error string if not well-formed; None if good.
@@ -761,25 +761,25 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def getLanguageWithSubtypes(self,lang,*args,**kwargs):
         """get language codes w/ subtypes"""
-        
+
         c = availablelanguages.countries
         locales = [(l[0],c[l[0][3:].upper()]) for l in availablelanguages.combined.items() if l[0].startswith(lang)]
         locales.sort(lambda x, y: cmp(x[1], y[1]))
-        
+
         if len(locales):
             locales.insert(0,(lang,'None'))
         else:
             locales = [(lang,'(none available)')]
         return DisplayList(locales)
-        
+
     def getLanguagesWithoutSubtypes(self):
         """get language codes that have no subtypes"""
-        
+
         sl={}.fromkeys([l[:2] for l in availablelanguages.combined.keys()]).keys()
         langs = [l for l in availablelanguages.languages.keys() if l not in sl]
         langs.sort()
         return langs
-    
+
     # internal functions #######################################################
     def _writeMetadata(self):
         """Write out metadata to CNXML file"""
@@ -823,7 +823,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
             actions.append({'id':'discard', 'url':url+'/confirm_discard', 'name':'Discard'})
         return actions
-            
+
 
     def getViewActions(self):
         if self.state != 'published':
@@ -848,7 +848,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             if hasattr(obj.aq_base, "get_size"):
                 size += obj.get_size()
         return size
-    
+
     def ModificationDate(self):
         """DC/Plone hook for modification date; so catalog will play nice"""
         return self.timestamp
@@ -902,4 +902,3 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
             return None
 
 InitializeClass(ModuleEditor)
-
