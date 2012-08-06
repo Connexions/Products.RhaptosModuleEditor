@@ -1,0 +1,306 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" 
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/module_template/macros/master"
+      i18n:domain="rhaptos">
+
+  <metal:block fill-slot="css_slot">
+    <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('pragma','no-cache')" />
+    <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0')" />
+    <tal:cache tal:define="dummy python:request.RESPONSE.setHeader('Expires', 'Mon, 26, Jul 1997 05:00:00 GMT')"/>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/plone/content.css" 
+          tal:attributes="href string:$portal_url/stylesheets/plone/content.css;"/>
+    <link rel="stylesheet" type="text/css" href="/extjs/resources/css/ext-all.css" 
+          tal:attributes="href string:$portal_url/extjs/resources/css/ext-all.css;" />
+    <link rel="stylesheet" type="text/css" href="/eip/editInPlace.css" 
+          tal:attributes="href string:$portal_url/eip/editInPlace.css;" />
+  </metal:block>
+
+  <tal:js metal:fill-slot="javascript_head_slot" tal:condition="python:here.state != 'published'">
+    <meta http-equiv="X-UA-Compatible" content="IE=IE7"/>
+    <script type="text/javascript" src="/eip/prototype.js"
+            tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
+    <script type="text/javascript" src="/eip/sarissa.js"
+            tal:attributes="src string:$portal_url/eip/sarissa.js;"> </script>
+    <script type="text/javascript" src="/eip/sarissa_ieemu_xpath.js"
+            tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js;"> </script>
+    <script type="text/javascript" src="/extjs/ext.js"
+            tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
+    <script type="text/javascript" src="/MathJax/MathJax.js"
+            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
+        MathJax.Hub.Config({
+            extensions: ["mml2jax-bugfix.js"],
+            menuSettings: {zoom:"none", context: "Browser"},
+            "HTML-CSS": {scale:110},
+            delayStartupUntil: "onload",
+            jax: ["input/MathML","output/HTML-CSS"]
+        });
+    </script>
+
+
+    <script type="text/javascript" src="/eip/xmlHttpCheck.js"
+            tal:attributes="src string:$portal_url/eip/xmlHttpCheck.js;"> </script>
+    <script type="text/javascript" src="/eip/editInPlace.js"
+            tal:attributes="src string:$portal_url/eip/editInPlace.js;"> </script>
+    <script type="text/javascript" src="/eip/module_init_eip.js"
+            tal:attributes="src string:$portal_url/eip/module_init_eip.js;"> </script>
+    <link rel="content" title="EIP" type="text/xml"
+          tal:attributes="href string:${here/absolute_url}/module_eip_content;" />
+    <link rel="update" title="Update" type="text/xml"
+          tal:attributes="href string:${here/absolute_url}/handleEipRequest;"/>
+    <link rel="source_fragment" title="Source Fragment" type="text/xml"
+          tal:attributes="href string:${here/absolute_url}/module_source_fragment;"/>
+  </tal:js>
+
+  <body>
+
+    <div metal:fill-slot="main" id="edit-main"
+         tal:define="versioninfo context/rmeVersionInfo;
+                     upgrade python:context.ninjaUpgrade(versioninfo);
+                     versioninfo python:upgrade and context.rmeVersionInfo() or versioninfo;
+                     publishBlocked python:context.publishBlocked(versioninfo);
+                     publishBlockFailType publishBlocked/failtype | nothing;
+                     editBlockedForUpgrade python:publishBlockFailType == 'cnxmlfive' or False;
+                     validation_errors here/validate;
+                     show_validation_errors python:validation_errors and publishBlockFailType != 'brokencnxmlfive';
+                     edit_source options/edit_source | request/edit_source | nothing;">
+      <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
+        and thus the validation, etc, needs to be after that.</tal:comment>
+
+      <div class="import-recs" 
+           tal:condition="context/isImported|nothing">
+        <p>
+          <strong>You have imported this module from another site.  We recommend you review the following:</strong>
+        </p>
+        <ul>
+          <li tal:condition="context/has_attribution_note"><strong>Citation:</strong> Review the citation to the original location that we've inserted at the bottom of the module (you 
+can edit or delete this if desired).</li>
+          <li><strong>Roles:</strong> <a href="content_roles">Review the "Roles" page</a> to ensure that all authors are credited.</li> 
+          <li><strong>Preview:</strong> <a href="module_preview">Preview the content</a> to ensure the document was imported correctly.</li>
+        </ul>
+      </div>
+
+      <p tal:condition="not:context/isImported|nothing"
+         tal:define="t template/getId" i18n:translate="text_module_editing_options">
+	There are three ways to edit modules: 
+	<span i18n:name="edit_in_place">
+	  <strong>
+	    <a tal:attributes="href t" 
+	      i18n:translate="label_edit_in_place">Edit In Place</a></strong></span>, 
+	where you select specific elements of the module to edit; 
+	<span i18n:name="full_source">
+	  <strong>
+	    <a tal:attributes="href string:${t}?edit_source=1" 
+	      i18n:translate="label_full_source_edit">full-source XML editing</a>
+	  </strong>
+	</span> online; and our 
+	<span i18n:name="import_export">
+	  <strong i18n:translate="text_import_export_explanation">import/export</strong>
+	</span>
+	facility (in the box below). 
+        <span i18n:name="editing_help"
+              tal:define="help nocall:portal/help/authoring/editmodule | nothing"
+              tal:condition="nocall:help">
+          <tal:comment tal:replace="nothing">
+            the above condition prevents shrinkwRaptos from showing the help link.
+            the "a" below works for both JS and nonJS environments.</tal:comment>
+          <a href="/help/authoring/editmodule"
+             onclick="javascript:"
+             tal:define="help_url help/absolute_url;"
+             tal:attributes="href     help_url;
+                             onclick  string:window.open('${help_url}','eip_help', 'scrollbars=yes,resizable=yes,height=400,width=800');; return false;;"
+             i18n:translate="help_editing_modules">Help on editing</a>
+        </span>
+      </p>
+
+      <tal:editblocked tal:condition="editBlockedForUpgrade">
+        <!-- Most instances of the blocker message appear further down the page; this one's special. -->
+        <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+      </tal:editblocked>
+
+      <tal:notimported tal:condition="not:context/isImported|nothing">
+      <div class="importexport"
+           metal:define-macro="importexport">
+        <table style="margin: 0; padding: 0">
+	<tr style="font-size: 90%; vertical-align: top">
+          <td>
+          <p style="font-weight: bold; margin-bottom: 0px"
+             i18n:translate="text_impexpbox_import">IMPORT</p>
+          <span i18n:translate="text_impexpbox_convertexisting">Convert an existing non-CNXML document into a module.</span>
+          <ul>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_wordfiles">Word files</span>
+              (<a i18n:translate="label_impexpbox_help"
+                  href="/help/authoring/wordimporter">help</a>,
+               <a i18n:translate="label_impexpbox_templateforword"
+                  href="/help/authoring/templates/Connexions-Document.dot">template for Word</a>)
+            </li>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_oofiles">OpenOffice files</span>
+              (<a i18n:translate="label_impexpbox_help"
+                  href="/help/authoring/ooimporter">help</a>)
+            </li>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_oofiles">LaTeX</span>
+              (<a i18n:translate="label_impexpbox_help"
+                  href="/help/authoring/lateximporter">help</a>,
+               <a i18n:translate="label_impexpbox_templateforlatex"
+                  href="/help/authoring/templates/LaTeX_template.tex">template for LaTeX</a>)
+            </li>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_multifiles">Uploading multiple files into a module</span>
+              (<a i18n:translate="label_impexpbox_help"
+                  href="/help/authoring/import-export#zip">help</a>)
+            </li>
+          </ul>
+          </td>
+          <td style="padding-left: 1em">
+          <p style="font-weight: bold; margin-bottom: 0px"
+             i18n:translate="text_impexpbox_export">EXPORT</p>
+          <span i18n:translate="text_impexpbox_downloadtoedit">Download a module to edit on your own computer.</span>
+          <ul>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_modulefiles">a module's files</span>
+              (<a i18n:translate="label_impexpbox_zipexporthelp"
+                  href="/help/authoring/import-export#zip">Zip export help</a>)
+            </li>
+            <li style="padding: 0px; margin: 0px">
+              <span i18n:translate="text_impexpbox_moduleasxml">the module text as XML</span>
+              <tal:comment replace="nothing"><a i18n:translate="label_impexpbox_authentichelp"
+                  href="/help/authoring/import-export#altova">Authentic</a>, <!-- see #7855, #7856 --></tal:comment>
+              (<a i18n:translate="label_impexpbox_plainxml"
+                  href="/help/authoring/import-export#plainxml">plain CNXML</a>)
+            </li>
+          </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top: 0.5em">
+	  <form action="module_import_form" style="display: inline;">
+	    <select name="format">
+	      <option selected="selected" value="msword"
+		i18n:translate="text_microsoft_word">Microsoft Word</option>
+	      <option value="openoffice"
+		i18n:translate="text_openoffice_writer">OpenOffice Writer</option>
+              <option value="latex"
+                      i18n:translate="text_latex">LaTeX</option>
+	      <option value="authentic" tal:condition="nothing"
+		i18n:translate="text_xmlspy_suthentic">XMLSpy/Authentic</option> <!-- see #7855, #7856 -->
+	      <option tal:condition="python:user.has_role('Manager')" value="xhtml"
+		i18n:translate="text_xhtml">XHTML</option>
+	      <option value="plain" 
+		i18n:translate="text_plain_xml">Plain CNXML</option>
+	      <option value="zip" 
+		i18n:translate="text_zip_file">Zip File</option>
+	      <option tal:condition="python:user.has_role('Manager')" value="trustedzip" 
+		i18n:translate="text_zip_file">Trusted Zip File</option>
+	    </select>
+	    <input type="hidden" name="came_from" value="module_text" tal:attributes="value template/id" />
+	    <input class="context" type="submit" name="import"
+	    value="Import" i18n:attributes="value value_import"/>
+	  </form>
+	  </td>
+          <td style="padding-top: 0.5em; padding-left: 1em">
+	  <form action="module_export">
+	    <select name="format">
+	      <option selected="selected" value="authentic" tal:condition="nothing"
+		i18n:translate="text_xmlspy_suthentic">XMLSpy/Authentic</option> <!-- see #7855, #7856 -->
+	      <option value="plain" 
+		i18n:translate="text_plain_xml">Plain CNXML</option>
+	      <option value="zip" 
+		i18n:translate="text_zip_file">Zip File</option>
+	      <option value="xhtml" tal:condition="nothing"
+		i18n:translate="text_xhtml_viewable">Viewable (XHTML) Zip File</option>
+	      <option value="ims" tal:condition="nothing"
+		i18n:translate="text_ims_package_experimental">IMS Package (Experimental)</option>
+	    </select>
+	    <input class="context" type="submit" name="export"
+	    value="Export" i18n:attributes="value value_export"/>
+	  </form>
+          </td>
+        </tr>
+      </table>
+      </div>
+      </tal:notimported>
+
+      <tal:editnotblocked tal:condition="not:editBlockedForUpgrade">
+        <div id="eipTopEditHelpLink"
+             tal:define="help nocall:portal/help/authoring/editmodule | nothing"
+             tal:condition="nocall:help">
+          <tal:comment tal:replace="nothing">
+            the above condition prevents shrinkwRaptos from showing the help link.
+            the "a" below works for both JS and nonJS environments.</tal:comment>
+          <a href="/help/authoring/editmodule"
+             onclick="javascript:"
+             tal:define="help_url help/absolute_url;"
+             tal:attributes="href     help_url;
+                             onclick  string:window.open('${help_url}','eip_help', 'scrollbars=yes,resizable=yes,height=400,width=800');; return false;;"
+             i18n:translate="help_editing_modules">Help on editing</a>
+        </div>
+        <div id="eipTopEditingMode">
+          <tal:span tal:condition="not:validation_errors">
+            <a href="module_text"
+               id="eipEditInPlaceEditingMode"
+               i18n:translate="text_edit_in_place">
+              Edit-in-Place</a> |
+          </tal:span>
+          <span id="eipFullSourceEditingMode"
+                i18n:translate="text_full_source_editing">
+            Full-Source Editing</span> |
+          <span>
+            <a href="module_text"
+               id="htmlEditingMode"
+               i18n:translate="text_html_editing_mode">
+              HTML Editor</a>
+          </span>
+        </div>
+          <p id='javascript_warning'
+            i18n:translate="text_edit_in_place_not_supported">
+            Your browser does not support javascript or has it disabled.
+            In order to edit your document using Edit-In-Place, please
+            enable javascript and reload this page.
+          </p>
+
+        <!-- Warning message appears here if it's not an editing blocker -->
+        <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
+
+        <div id="cnx_validation_errors" tal:condition="show_validation_errors">
+          <b i18n:translate="text_please_correct_errors">Please correct the following errors:</b>
+          <p tal:repeat="e validation_errors">
+            <a tal:define="line python:e[0]"
+               tal:attributes="href string:module_source?line:int=${line}#l${line}">
+              <b tal:content="string:Line ${line}">[Line num]</b></a>:
+            <span tal:replace="python:e[1]">[Error message]</span>
+          </p>
+          <b i18n:translate="text_eip_cannot_use_errors">Note: Edit-In-Place cannot be used while errors persist</b>
+        </div>
+
+        <div tal:condition="here/getDefaultFile">
+          <form id="edit_form" method="post" enctype="multipart/form-data"
+                autocomplete="off"
+                tal:attributes="action template/getId">
+            <textarea id='textarea' name="contents:text" wrap="soft" style="width:auto" cols="80" rows="25" 
+                      tal:define="file here/getDefaultFile; sourcenotblank python:file.getSource() != ''"
+                      tal:content="python:validation_errors and (sourcenotblank and file.getSource() or ' ') or file.normalize()">[content]</textarea>
+          <input style="display:block" 
+            class="context" 
+            type="submit" 
+            name="save" 
+            value="Save" 
+            i18n:attributes="value value_module_text"/>
+          <input type="hidden" name="form.submitted" value="1" />
+        </form>
+
+          <tal:valid tal:condition="not:validation_errors">
+            <script type="text/javascript">initEip();</script>
+            <script tal:condition="not:edit_source" type="text/javascript">beginEip();</script>
+          </tal:valid>
+        </div>
+      </tal:editnotblocked>
+	
+  </div>
+  </body>
+</html>
+
