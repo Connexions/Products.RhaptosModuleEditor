@@ -29,6 +29,14 @@
       <tal:comment tal:replace="nothing">note that 'ninjaUpgrade' may change the module text (0.6->-0.7 upgrade),
         and thus the validation, etc, needs to be after that.</tal:comment>
 
+
+      <tal:comment replace="nothing">
+        Imported from another site. This should case should probably
+        be handled by EIP first then the user can be prompted to use
+        the html editor if they would like.
+      </tal:comment>
+
+
       <div class="import-recs" 
            tal:condition="context/isImported|nothing">
         <p>
@@ -42,17 +50,18 @@ can edit or delete this if desired).</li>
         </ul>
       </div>
 
+
       <p tal:condition="not:context/isImported|nothing"
          tal:define="t template/getId" i18n:translate="text_module_editing_options">
 	There are three ways to edit modules: 
 	<span i18n:name="edit_in_place">
 	  <strong>
-	    <a tal:attributes="href t" 
+	    <a href="module_text" 
 	      i18n:translate="label_edit_in_place">Edit In Place</a></strong></span>, 
 	where you select specific elements of the module to edit; 
 	<span i18n:name="full_source">
 	  <strong>
-	    <a tal:attributes="href string:${t}?edit_source=1" 
+	    <a href="module_text?edit_source=1" 
 	      i18n:translate="label_full_source_edit">full-source XML editing</a>
 	  </strong>
 	</span> online; and our 
@@ -75,11 +84,14 @@ can edit or delete this if desired).</li>
         </span>
       </p>
 
+
       <tal:editblocked tal:condition="editBlockedForUpgrade">
         <!-- Most instances of the blocker message appear further down the page; this one's special. -->
         <tal:block metal:use-macro="here/unpublishable/macros/publishblocker" />
       </tal:editblocked>
 
+
+      <tal:xxx-remove-for-now replace="nothing">
       <tal:notimported tal:condition="not:context/isImported|nothing">
       <div class="importexport"
            metal:define-macro="importexport">
@@ -184,6 +196,8 @@ can edit or delete this if desired).</li>
       </table>
       </div>
       </tal:notimported>
+      </tal:xxx-remove-for-now>
+
 
       <tal:editnotblocked tal:condition="not:editBlockedForUpgrade">
         <div id="eipTopEditHelpLink"
@@ -206,18 +220,18 @@ can edit or delete this if desired).</li>
                i18n:translate="text_edit_in_place">
               Edit-in-Place</a> |
           </tal:span>
-          <span id="eipFullSourceEditingMode"
-                i18n:translate="text_full_source_editing">
-            Full-Source Editing</span> |
           <span>
-            <a href="module_text"
-               id="htmlEditingMode"
-               i18n:translate="text_html_editing_mode">
-              HTML Editor</a>
+            <a href="module_text?edit_source=1"
+               id="eipFullSourceEditingMode"
+               i18n:translate="text_full_source_editing">
+              Full-Source Editing</a> |
+          </span>
+          <span>
+            HTML Editor
           </span>
         </div>
           <p id='javascript_warning'
-            i18n:translate="text_edit_in_place_not_supported">
+             i18n:translate="text_edit_in_place_not_supported">
             Your browser does not support javascript or has it disabled.
             In order to edit your document using Edit-In-Place, please
             enable javascript and reload this page.
@@ -244,21 +258,19 @@ can edit or delete this if desired).</li>
             <textarea id='textarea' name="contents:text" wrap="soft" style="width:auto" cols="80" rows="25" 
                       tal:define="file here/getDefaultFile; sourcenotblank python:file.getSource() != ''"
                       tal:content="python:validation_errors and (sourcenotblank and file.getSource() or ' ') or file.normalize()">[content]</textarea>
-          <input style="display:block" 
-            class="context" 
-            type="submit" 
-            name="save" 
-            value="Save" 
-            i18n:attributes="value value_module_text"/>
-          <input type="hidden" name="form.submitted" value="1" />
-        </form>
+            <input style="display:block"
+                   class="context"
+                   type="submit"
+                   name="save"
+                   value="Save"
+                   i18n:attributes="value value_module_text"
+                   />
+            <input type="hidden" name="form.submitted" value="1" />
+          </form>
 
-          <tal:valid tal:condition="not:validation_errors">
-            <script type="text/javascript">initEip();</script>
-            <script tal:condition="not:edit_source" type="text/javascript">beginEip();</script>
-          </tal:valid>
         </div>
       </tal:editnotblocked>
+
 	
   </div>
   </body>
