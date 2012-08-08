@@ -769,15 +769,27 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         except KeyError:
             return None
 
-    def updateHtml(self, contents, REQUEST=None):
+    def updateHtml(self, contents, REQUEST=None, do_transform=True):
         """Update the html contents."""
         file = self.getDefaultFile(format='html')
         file.update_data(contents)
         # Run the html to cnxml conversion.
+        if do_transform:
+            original_source = self.getDefaultFile().getSource()
+            ##cnxml = html_to_cnxml(contents, original_source)
 
         # Return the user to the main view.
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('view')
+
+    def updateHtmlFromDefaultFile(self):
+        """Updates the html content from the default cnxml file."""
+        from Products.RhaptosModuleEditor.utils import cnxml_to_html
+        try:
+            contents = cnxml_to_html(self.getDefaultFile().getSource())
+        except:
+            contents = ''
+        self.updateHtml(contents, do_transform=False)
 
     def getLanguageWithSubtypes(self,lang,*args,**kwargs):
         """get language codes w/ subtypes"""

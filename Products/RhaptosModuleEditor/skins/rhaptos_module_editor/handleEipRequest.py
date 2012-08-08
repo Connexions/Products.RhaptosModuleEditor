@@ -32,14 +32,19 @@ try:
     elif action=='delete' and xpath:
         result = f.xpathDeleteTree(xpath)
     context.logAction('save')
-
 # Bad, bad, bad.  We should have it raise an XMLError or some such thing...
 except Exception, e:
     return e
 
+# transform to html... Erase the html content if the transform fails.
+# XXX This should be handled in a subscriber, but this model wasn't
+#     set up to use a subscriber pattern.
+context.updateHtmlFromDefaultFile()
+
+
 if result is marker:
     contentinplace = f.xpathGetTree(newxpath, namespaces=True)  # because after save we have ids auto-generated
-    
+
     result = context.eip_transform(contentinplace)
     if context.REQUEST.RESPONSE.status in ('Bad Request', 400):
         import transaction
