@@ -34,6 +34,7 @@ from Products.Archetypes.public import DisplayList
 from Products.CNXMLDocument import XMLService
 from Products.CNXMLDocument import CNXML_SEARCHABLE_XSL as baretext
 from Products.RhaptosModuleEditor.interfaces import IModule
+from Products.RhaptosModuleEditor.utils import html_to_cnxml
 from Products.RhaptosModuleEditor.upgrades import NEWEST, upgrade as upgrade_object
 
 try:
@@ -773,10 +774,12 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
         """Update the html contents."""
         file = self.getDefaultFile(format='html')
         file.update_data(contents)
+        contents = self.getDefaultFile(format='html').data
         # Run the html to cnxml conversion.
         if do_transform:
-            original_source = self.getDefaultFile().getSource()
-            ##cnxml = html_to_cnxml(contents, original_source)
+            file = self.getDefaultFile()
+            cnxml = html_to_cnxml(contents, file.getSource())
+            file.setSource(cnxml)
 
         # Return the user to the main view.
         if REQUEST is not None:
