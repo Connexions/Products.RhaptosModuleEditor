@@ -15,7 +15,7 @@ from Globals import package_home
 from AccessControl import ModuleSecurityInfo
 
 from Products.CMFDefault import Portal
-from Products.CMFCore import utils, CMFCorePermissions
+from Products.CMFCore import utils as cmfcore_utils, CMFCorePermissions
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFDiffTool import CMFDiffTool
 
@@ -32,7 +32,7 @@ contentClasses = (ModuleEditor.ModuleEditor,)
 
 product_globals = globals()
 
-z_bases = utils.initializeBasesPhase1(contentClasses, this_module)
+z_bases = cmfcore_utils.initializeBasesPhase1(contentClasses, this_module)
 
 # XSL transform paths for EIP
 MODULE_EIP_XSL =  os.path.join(package_home(globals()), 'www/editInPlace.xsl')
@@ -49,10 +49,8 @@ allow_module('transaction')
 CMFDiffTool.registerDiffType(LinksDiff.LinksDiff)
 
 def initialize(context):
-    utils.initializeBasesPhase2( z_bases, context )
-    utils.ContentInit(ModuleEditor.ModuleEditor.meta_type,
-                      content_types = contentClasses,
-                      permission = permissions.AddModuleEditor,
-                      extra_constructors = contentConstructors).initialize(context)
-    
-
+    cmfcore_utils.initializeBasesPhase2( z_bases, context )
+    cmfcore_utils.ContentInit(ModuleEditor.ModuleEditor.meta_type,
+                              content_types = contentClasses,
+                              permission = permissions.AddModuleEditor,
+                              extra_constructors = contentConstructors).initialize(context)
