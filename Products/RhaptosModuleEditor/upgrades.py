@@ -15,8 +15,7 @@ except ImportError:
     from StringIO import StringIO
 from OFS.Image import File
 from lxml import etree
-from rhaptos.cnxmlutils.xml2xhtml import MODULE_BODY_XPATH
-from rhaptos.cnxmlutils.xml2xhtml import makeXsl
+from Products.RhaptosModuleEditor.utils import cnxml_to_html
 
 
 NEWEST = 2
@@ -65,12 +64,7 @@ def upgrade_1_to_2(module_editor):
     """
     try:
         source = module_editor.getDefaultFile().getSource()
-        source = StringIO(source)
-        xml = etree.parse(source)
-        # Run the CNXML to HTML transform
-        xslt = makeXsl('cnxml2xhtml.xsl')
-        content = xslt(xml)
-        content = MODULE_BODY_XPATH(content)
+        contents = cnxml_to_html(source)
 
         # TODO Roll over all index.<lang>.cnxml files
     except Exception, err:
@@ -81,6 +75,6 @@ def upgrade_1_to_2(module_editor):
     file = module_editor.getDefaultFile(format='html')
     module_editor['index.html'] = File('index.html',
                                        'Converted CNXML Document',
-                                       etree.tostring(content[0]))
+                                       contents)
 
 _upgrades[(1,2,)] = upgrade_1_to_2
