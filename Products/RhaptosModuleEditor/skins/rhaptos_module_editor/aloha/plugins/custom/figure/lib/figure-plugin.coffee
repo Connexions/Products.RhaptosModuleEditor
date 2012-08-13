@@ -1,4 +1,4 @@
-define [ "aloha", "aloha/plugin", 'block/block', "block/blockmanager", 'ui/ui' ], (Aloha, Plugin, block, BlockManager, Ui, i18n, i18nCore) -> 
+define [ "aloha", "jquery", "aloha/plugin", 'block/block', "block/blockmanager", 'ui/ui' ], (Aloha, jQuery, Plugin, block, BlockManager, Ui, i18n, i18nCore) -> 
 
 
   ###
@@ -87,9 +87,11 @@ define [ "aloha", "aloha/plugin", 'block/block', "block/blockmanager", 'ui/ui' ]
 
       initializeFigures = ($figures) ->
         # $figures.find('figcaption').aloha()
+        imgs = $figures.find('img')
+        if (imgs.length <= 0) then return
 
         # register drop handlers to store the dropped file as a data URI
-        $figures.find('img').on 'drop', (dropEvent) ->
+        imgs.on 'drop', (dropEvent) ->
           img = jQuery(dropEvent.target)
           dropEvent.preventDefault()
           
