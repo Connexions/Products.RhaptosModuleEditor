@@ -47,22 +47,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=IE7"/>
     <script type="text/javascript"
             src="aloha-custom/lib/jquery-1.7.2.min.js"
-            tal:attributes="src  string:$portal_url/aloha-custom/lib/jquery-1.7.2.min.js"></script>
-  <script src="aloha/lib/require.js"
-          tal:attributes="src  string:$portal_url/aloha/lib/require.js"></script>
+            tal:attributes="src
+            string:$portal_url/aloha-custom/lib/jquery-1.7.2.min.js"></script>
+    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"
+            type="text/javascript"></script>
+    <script src="aloha/lib/require.js"
+            tal:attributes="src  string:$portal_url/aloha/lib/require.js"></script>
+    <script type="text/javascript"
+            src="aloha/lib/vendor/jquery-ui-1.9m6.js"
+            tal:attributes="src  string:$portal_url/aloha/lib/vendor/jquery-ui-1.9m6.js"></script>
     <script type="text/javascript">
       // Don't conflict with the other version of jQuery running in
       // this site.
       var jq172 = jQuery.noConflict();
       var jq17 = jq172;
       // Used later by requirejs
-      define('jquery', function(){return jq172;});
-      define('jqueryui', function(){return jq172.ui;});
+      define('jquery', function(){return jq17;});
+      define('jqueryui', function(){return jq17.ui;});
     </script>
-    <script type="text/javascript"
-            src="aloha-custom/lib/jquery-ui.min.js"
-            tal:attributes="src  string:$portal_url/aloha-custom/lib/jquery-ui.min.js"></script>
- 
+
   <tal:xxx-settings-removed content="nothing">
     <script type="text/javascript">
       window.Aloha = window.Aloha || {};
@@ -90,7 +93,31 @@
 
   <script src="aloha/lib/aloha.js"
           tal:attributes="src  string:$portal_url/aloha/lib/aloha.js"
-          data-aloha-plugins=""></script>
+          data-aloha-plugins="common/ui,
+                              common/dom-to-xhtml,
+	                      common/format,
+	                      common/table,
+	                      common/list,
+	                      common/link,
+	                      common/highlighteditables,
+	                      common/undo,
+	                      common/paste,
+	                      common/characterpicker,
+	                      common/commands,
+	                      common/block,
+	                      common/image,
+	                      common/abbr,
+	                      common/horizontalruler,
+	                      common/align,
+	                      extra/formatlesspaste,
+	                      extra/toc,
+	                      extra/listenforcer,
+	                      extra/metaview,
+	                      extra/ribbon,
+	                      extra/flag-icons,
+	                      extra/linkbrowser,
+	                      extra/imagebrowser,
+	                      extra/cite"></script>
   <!--
   <script src="aloha-custom/appmenu/appmenu.js"
           tal:attributes="src  string:$portal_url/aloha-custom/appmenu/appmenu.js"></script>
