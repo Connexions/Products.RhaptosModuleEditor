@@ -12,8 +12,97 @@
 
     <link rel="stylesheet" type="text/css" href="/stylesheets/plone/content.css" 
           tal:attributes="href string:$portal_url/stylesheets/plone/content.css;"/>
+    <link rel="stylesheet" type="text/css"
+          href="aloha/css/aloha.css"
+          tal:attributes="href  string:$portal_url/aloha/css/aloha.css" />
+    <!--
+    <link rel="stylesheet" type="text/css"
+          href="aloha-custom/appmenu/appmenu.css"
+          tal:attributes="href
+          string:$portal_url/aloha-custom/appmenu/appmenu.css" />
+    -->
   </metal:block>
 
+  <tal:js metal:fill-slot="javascript_head_slot"
+          tal:condition="python:here.state != 'published'">
+    <script type="text/javascript" src="/eip/prototype.js"
+            tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
+    <script type="text/javascript" src="/eip/sarissa.js"
+            tal:attributes="src string:$portal_url/eip/sarissa.js;"> </script>
+    <script type="text/javascript" src="/eip/sarissa_ieemu_xpath.js"
+            tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js;"> </script>
+    <script type="text/javascript" src="/extjs/ext.js"
+            tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
+    <script type="text/javascript" src="/MathJax/MathJax.js"
+            tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
+        MathJax.Hub.Config({
+            extensions: ["mml2jax-bugfix.js"],
+            menuSettings: {zoom:"none", context: "Browser"},
+            "HTML-CSS": {scale:110},
+            delayStartupUntil: "onload",
+            jax: ["input/MathML","output/HTML-CSS"]
+        });
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=IE7"/>
+    <script type="text/javascript"
+            src="aloha-custom/lib/jquery-1.7.2.min.js"
+            tal:attributes="src  string:$portal_url/aloha-custom/lib/jquery-1.7.2.min.js"></script>
+  <script src="aloha/lib/require.js"
+          tal:attributes="src  string:$portal_url/aloha/lib/require.js"></script>
+    <script type="text/javascript">
+      // Don't conflict with the other version of jQuery running in
+      // this site.
+      var jq172 = jQuery.noConflict();
+      var jq17 = jq172;
+      // Used later by requirejs
+      define('jquery', function(){return jq172;});
+      define('jqueryui', function(){return jq172.ui;});
+    </script>
+    <script type="text/javascript"
+            src="aloha-custom/lib/jquery-ui.min.js"
+            tal:attributes="src  string:$portal_url/aloha-custom/lib/jquery-ui.min.js"></script>
+ 
+  <tal:xxx-settings-removed content="nothing">
+    <script type="text/javascript">
+      window.Aloha = window.Aloha || {};
+      Aloha.settings = Aloha.settings || {};
+
+      // In order to load the toolbar plugin Aloha needs to know where to look it up
+      // Since the toolbar plugin begins with "custom/" in @data-aloha-plugins
+      // This points Aloha to use the current directory to find toolba/lib/toolbar-plugin
+      Aloha.settings.bundles = {
+        'custom': document.location.href.replace(/[a-z]+\.html/, ''),
+      };
+
+      Aloha.settings.plugins = {
+        block: {
+          defaults : {
+            '.default-block': {},
+            'figure': {
+              'aloha-block-type': 'FigureBlock'
+            },
+          }
+        }
+      }
+    </script>
+  </tal:xxx-settings-removed>
+
+  <script src="aloha/lib/aloha.js"
+          tal:attributes="src  string:$portal_url/aloha/lib/aloha.js"
+          data-aloha-plugins=""></script>
+  <!--
+  <script src="aloha-custom/appmenu/appmenu.js"
+          tal:attributes="src  string:$portal_url/aloha-custom/appmenu/appmenu.js"></script>
+  -->
+  <script>
+    // Make the document editable
+    Aloha.ready(function() {
+      Aloha.jQuery('#textarea').aloha();
+    });
+  </script>
+
+  </tal:js>
   <body>
 
     <div metal:fill-slot="main" id="edit-main"
