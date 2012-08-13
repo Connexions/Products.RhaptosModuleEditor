@@ -25,6 +25,12 @@
 
   <tal:js metal:fill-slot="javascript_head_slot"
           tal:condition="python:here.state != 'published'">
+    <script type="text/javascript">
+      // The <base> tag conflicts with the jQuery UI tabs
+      // library. Therefore, we must remove it before any other library
+      // (e.g. require.js) gets its hands on it.
+      document.getElementsByTagName("head")[0].removeChild(document.getElementsByTagName('base')[0]);
+    </script>
     <script type="text/javascript" src="/eip/prototype.js"
             tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
     <script type="text/javascript" src="/eip/sarissa.js"
