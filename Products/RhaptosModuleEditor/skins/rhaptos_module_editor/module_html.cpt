@@ -15,12 +15,10 @@
     <link rel="stylesheet" type="text/css"
           href="aloha/css/aloha.css"
           tal:attributes="href  string:$portal_url/aloha/css/aloha.css" />
-    <!--
     <link rel="stylesheet" type="text/css"
           href="aloha-custom/appmenu/appmenu.css"
           tal:attributes="href
           string:$portal_url/aloha-custom/appmenu/appmenu.css" />
-    -->
   </metal:block>
 
   <tal:js metal:fill-slot="javascript_head_slot"
@@ -72,17 +70,9 @@
       define('jqueryui', function(){return jq17.ui;});
     </script>
 
-  <tal:xxx-settings-removed content="nothing">
     <script type="text/javascript">
       window.Aloha = window.Aloha || {};
       Aloha.settings = Aloha.settings || {};
-
-      // In order to load the toolbar plugin Aloha needs to know where to look it up
-      // Since the toolbar plugin begins with "custom/" in @data-aloha-plugins
-      // This points Aloha to use the current directory to find toolba/lib/toolbar-plugin
-      Aloha.settings.bundles = {
-        'custom': document.location.href.replace(/[a-z]+\.html/, ''),
-      };
 
       Aloha.settings.plugins = {
         block: {
@@ -95,11 +85,12 @@
         }
       }
     </script>
-  </tal:xxx-settings-removed>
 
   <script src="aloha/lib/aloha.js"
           tal:attributes="src  string:$portal_url/aloha/lib/aloha.js"
           data-aloha-plugins="common/ui,
+                              custom/toolbar,
+                              custom/figure,
                               common/dom-to-xhtml,
 	                      common/format,
 	                      common/table,
@@ -124,10 +115,8 @@
 	                      extra/linkbrowser,
 	                      extra/imagebrowser,
 	                      extra/cite"></script>
-  <!--
   <script src="aloha-custom/appmenu/appmenu.js"
           tal:attributes="src  string:$portal_url/aloha-custom/appmenu/appmenu.js"></script>
-  -->
   <script>
     // Make the document editable
     Aloha.ready(function() {
