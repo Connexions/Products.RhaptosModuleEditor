@@ -18,18 +18,13 @@
     <link rel="stylesheet" type="text/css"
           href="aloha-custom/appmenu/appmenu.css"
           tal:attributes="href string:$portal_url/aloha-custom/appmenu/appmenu.css" />
+    <link rel="stylesheet" type="text/css"
+          href="/aloha-custom/custom.css"
+          tal:attributes="href string:$portal_url/aloha-custom/custom.css" />
   </metal:block>
 
   <tal:js metal:fill-slot="javascript_head_slot"
           tal:condition="python:here.state != 'published'">
-    <script type="text/javascript" src="/eip/prototype.js"
-            tal:attributes="src string:$portal_url/eip/prototype.js;"> </script>
-    <script type="text/javascript" src="/eip/sarissa.js"
-            tal:attributes="src string:$portal_url/eip/sarissa.js;"> </script>
-    <script type="text/javascript" src="/eip/sarissa_ieemu_xpath.js"
-            tal:attributes="src string:$portal_url/eip/sarissa_ieemu_xpath.js;"> </script>
-    <script type="text/javascript" src="/extjs/ext.js"
-            tal:attributes="src string:$portal_url/extjs/ext.js;"> </script>
     <script type="text/javascript" src="/MathJax/MathJax.js"
             tal:attributes="src string:$portal_url/++resource++mathjax/MathJax.js;">
         MathJax.Hub.Config({
