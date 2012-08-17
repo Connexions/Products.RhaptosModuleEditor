@@ -1775,16 +1775,21 @@ var requirejs, require, define;
     //default context if no context specified.
     addRequireMethods(req);
 
-    if (isBrowser) {
-        head = s.head = document.getElementsByTagName('head')[0];
-        //If BASE tag is in play, using appendChild is a problem for IE6.
-        //When that browser dies, this can be removed. Details in this jQuery bug:
-        //http://dev.jquery.com/ticket/2709
-        baseElement = document.getElementsByTagName('base')[0];
-        if (baseElement) {
-            head = s.head = baseElement.parentNode;
-        }
-    }
+    // XXX Commented out because it's to difficult to take the base
+    //     element out of the page. And trying to remove it the
+    //     element with javascript works sometimes but not
+    //     others. Therefore, the simplest thing to do is remove the
+    //     problem point.
+    // if (isBrowser) {
+    //     head = s.head = document.getElementsByTagName('head')[0];
+    //     //If BASE tag is in play, using appendChild is a problem for IE6.
+    //     //When that browser dies, this can be removed. Details in this jQuery bug:
+    //     //http://dev.jquery.com/ticket/2709
+    //     baseElement = document.getElementsByTagName('base')[0];
+    //     if (baseElement) {
+    //         head = s.head = baseElement.parentNode;
+    //     }
+    // }
 
     /**
      * Any errors that require explicitly generates will be passed to this
