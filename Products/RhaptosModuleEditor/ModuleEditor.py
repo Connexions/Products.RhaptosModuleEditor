@@ -773,6 +773,9 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def updateHtml(self, contents, REQUEST=None, do_transform=True):
         """Update the html contents."""
         file = self.getDefaultFile(format='html')
+        if not contents.startswith('<body') \
+           and not contents.endswith('</body>'):
+            contents = """<body xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml/0.4" xmlns:qml="http://cnx.rice.edu/qml/1.0" xmlns:mod="http://cnx.rice.edu/#moduleIds" xmlns:bib="http://bibtexml.sf.net/" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:q="http://cnx.rice.edu/qml/1.0" class="content">\n""" + contents.strip() + "\n</body>"
         file.update_data(contents)
         contents = self.getDefaultFile(format='html').data
         # Run the html to cnxml conversion.
