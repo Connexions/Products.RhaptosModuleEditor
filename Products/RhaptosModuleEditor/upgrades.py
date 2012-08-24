@@ -6,7 +6,7 @@ these upgrades are as follows:
 def upgrade_<current-version>_to_<next-version>(module_editor):
     '''Description of the upgrade'''
     <upgrade-logic>
-    return <successful?>
+
 """
 import logging
 try:
@@ -15,7 +15,7 @@ except ImportError:
     from StringIO import StringIO
 from OFS.Image import File
 from lxml import etree
-from Products.RhaptosModuleEditor.utils import cnxml_to_html
+from rhaptos.cnxmlutils.utils import cnxml_to_html
 
 
 NEWEST = 2

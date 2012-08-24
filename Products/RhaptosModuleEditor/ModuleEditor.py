@@ -26,6 +26,8 @@ from Products.CMFCore.WorkflowCore import WorkflowAction
 from Products.CMFDiffTool.ChangeSet import ChangeSet
 from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFCore.utils import getToolByName
+
+from rhaptos.cnxmlutils.utils import html_to_cnxml
 from Products.RhaptosCollaborationTool.CollaborationManager import CollaborationManager
 from Products.RhaptosCollection.types.CollectionBase import CollectionBase
 from Products.LinkMapTool.LinkMapTool import ExtendedLink
@@ -34,7 +36,6 @@ from Products.Archetypes.public import DisplayList
 from Products.CNXMLDocument import XMLService
 from Products.CNXMLDocument import CNXML_SEARCHABLE_XSL as baretext
 from Products.RhaptosModuleEditor.interfaces import IModule
-from Products.RhaptosModuleEditor.utils import html_to_cnxml
 from Products.RhaptosModuleEditor.upgrades import NEWEST, upgrade as upgrade_object
 
 try:
