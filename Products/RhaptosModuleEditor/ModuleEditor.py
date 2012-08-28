@@ -27,7 +27,7 @@ from Products.CMFDiffTool.ChangeSet import ChangeSet
 from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFCore.utils import getToolByName
 
-from rhaptos.cnxmlutils.utils import html_to_cnxml
+from rhaptos.cnxmlutils.utils import cnxml_to_html, html_to_cnxml
 from Products.RhaptosCollaborationTool.CollaborationManager import CollaborationManager
 from Products.RhaptosCollection.types.CollectionBase import CollectionBase
 from Products.LinkMapTool.LinkMapTool import ExtendedLink
@@ -791,7 +791,6 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
 
     def updateHtmlFromDefaultFile(self):
         """Updates the html content from the default cnxml file."""
-        from Products.RhaptosModuleEditor.utils import cnxml_to_html
         try:
             contents = cnxml_to_html(self.getDefaultFile().getSource())
         except:
