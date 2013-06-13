@@ -8075,7 +8075,7 @@ function generalOnClickHandler(e) {
 
     // If the user clicked on a local link, let it bubble up
     href = nodeClicked.getAttribute("href");
-    if ( href != null && href.startsWith("#") || href.startsWith("module_text#") ) {
+    if ( href != null && (href.startsWith("#") || href.startsWith("module_text#")) ) {
       return true;
     }
 
@@ -8784,6 +8784,27 @@ function handleDeleteRequest() {
     alert('handleDeleteRequest() deprecated.');
 }
 
+// From http://stackoverflow.com/a/9883539
+function importNodeOnIE9(node, allChildren) {
+    switch (node.nodeType) {
+        case document.ELEMENT_NODE:
+            var newNode = document.createElementNS(node.namespaceURI, node.nodeName);
+            if(node.attributes && node.attributes.length > 0)
+                for(var i = 0, il = node.attributes.length; i < il; i++)
+                    newNode.setAttribute(node.attributes[i].nodeName, node.getAttribute(node.attributes[i].nodeName));
+            if(allChildren && node.childNodes && node.childNodes.length > 0)
+                for(var i = 0, il = node.childNodes.length; i < il; i++)
+                    newNode.appendChild(importNodeOnIE9(node.childNodes[i], allChildren));
+            return newNode;
+            break;
+        case document.TEXT_NODE:
+        case document.CDATA_SECTION_NODE:
+        case document.COMMENT_NODE:
+            return document.createTextNode(node.nodeValue);
+            break;
+    }
+}
+
 
 function replaceHtml(strHtml, nodeExistingHtml) {
     var nodeNewHtml;
@@ -8801,7 +8822,11 @@ function replaceHtml(strHtml, nodeExistingHtml) {
     //var nodeHtmlRoot = docNewHtml.documentElement;
     //nodeNewHtml = window.document.importNode(nodeHtmlRoot, true);
     if ( nodeParsedHtml != null ) {
-        nodeNewHtml = window.document.importNode(nodeParsedHtml, true);
+        try {
+            nodeNewHtml = window.document.importNode(nodeParsedHtml, true);
+        } catch (e) {
+            nodeNewHtml = importNodeOnIE9(nodeParsedHtml, true);
+        }
     }
 
     if ( Prototype.Browser.IE  ) {
