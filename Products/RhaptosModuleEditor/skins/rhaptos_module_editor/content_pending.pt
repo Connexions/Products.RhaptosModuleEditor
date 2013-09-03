@@ -68,7 +68,7 @@
             (<span tal:content="lang">[language]</span>)
           </td>
         </tr>
-        <tr tal:condition="obj/license"
+        <tr tal:condition="obj/license">
           <th i18n:translate="text_license_header">License:</th>
           <td>
             <a i18n:translate="label_creative_commons_attribution_license"
