@@ -69,11 +69,11 @@
           </td>
         </tr>
         <tr tal:condition="obj/license"
-            tal:define="license_version python:context.license.rstrip('/').split('/')[-1]">
           <th i18n:translate="text_license_header">License:</th>
           <td>
             <a i18n:translate="label_creative_commons_attribution_license"
-               tal:attributes="href obj/getLicense | obj/license">Creative Commons Attribution License</a>
+               tal:attributes="href obj/getLicense | obj/license"
+               tal:content="license_data/name">Creative Commons Attribution License</a>
             (<span tal:replace="license_data/label">[CC-BY 3.0]</span>)
           </td>
         </tr>

@@ -63,7 +63,7 @@
           <span i18n:name="creative_commons_attrib_license">
             <a tal:attributes="href license_url;
                                target link_target|nothing"
-               tal:content="string:Creative Commons ${license_data/name} License ${license_data/version}"
+               tal:content="string:${license_data/name} ${license_data/version}"
                i18n:translate="">Creative Commons Attribution License</a>
           </span>
           (<span i18n:name="cc_label">

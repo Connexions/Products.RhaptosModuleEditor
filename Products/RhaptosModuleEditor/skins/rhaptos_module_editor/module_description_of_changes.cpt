@@ -18,6 +18,7 @@
                                             license_data here/getLicenseData;
                                             license_version license_data/version;
                                             license_label license_data/label;
+                                            license_name license_data/name;
                                             license_url context/license">
 
       <h2 i18n:translate="heading_publish_module">Update description of changes.</h2>

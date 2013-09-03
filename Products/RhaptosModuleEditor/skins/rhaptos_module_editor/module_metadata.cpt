@@ -42,6 +42,7 @@
                   tal:attributes="href here/license" 
                   style="text-decoration: underline;"
                   i18n:translate="label_creative_commons_attribution_license"
+                  tal:content="license_data/name"
                   >Creative Commons Attribution License</a>
                   (<span tal:replace="license_data/label">[CC-BY 3.0]</span>)
               </li>
