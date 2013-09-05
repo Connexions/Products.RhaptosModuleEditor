@@ -8,7 +8,7 @@ response = context.REQUEST.RESPONSE
 current_license = context.getProperty('license') or ''
 context.plone_log('current license is:\n%s' % current_license)
 
-default_license = context.getDefaultLicense()
+default_license = context.getDefaultLicense(current_license)
 context.plone_log('default license is:\n%s' % default_license)
 
 needLicenseAgreement = ( current_license != default_license )
