@@ -102,9 +102,9 @@ current_license = context.getProperty('license') or ''
 if current_license == '':
     err['failtype'] = 'nolicense'
     return err
-elif current_license != context.getDefaultLicense():
+elif current_license != context.getDefaultLicense(current_license):
     err['failtype'] = 'oldlicense'
-    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense()}
+    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense(current_license)}
     return err
 
 # Default return in normal case
