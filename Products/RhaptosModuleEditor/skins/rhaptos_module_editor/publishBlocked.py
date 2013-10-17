@@ -78,12 +78,6 @@ if (not title) or title == '(Untitled)':
     err['failtype'] = 'notitle'
     return err
 
-# Publishing check
-
-if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
-    err['failtype'] = 'notpub'
-    return err
-
 # Maintainership check
 # pubobj is defined above, in "superseded check", and tells us whether there's a published version or not
 if pubobj:
@@ -94,6 +88,12 @@ else:
 
 if not haspermission:
     err['failtype'] = 'notmaint'
+    return err
+
+# Publishing check
+
+if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
+    err['failtype'] = 'notpub'
     return err
 
 # Latest license present
