@@ -7,6 +7,10 @@
 ##parameters=message='', lens_paths=[], **kw
 ##title= Perform all content submission activities
 
+versioninfo = context.rmeVersionInfo()
+if context.publishBlocked(versioninfo):
+    return state.set(status='failure', portal_status_message='publish blocked')
+    
 from Products.CMFCore.utils import getToolByName
 
 portal = context.portal_url.getPortalObject()
