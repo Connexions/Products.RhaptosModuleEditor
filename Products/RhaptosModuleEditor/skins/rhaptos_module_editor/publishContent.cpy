@@ -39,12 +39,6 @@ if hasattr(context,'excludedIds'):
     if excludedexists:
         context.manage_delObjects(excludedexists)
 
-# remove Google Analytics Tracking Code from object
-GoogleAnalyticsTrackingCode = None
-if hasattr(context, 'GoogleAnalyticsTrackingCode'):
-    GoogleAnalyticsTrackingCode = context.getGoogleAnalyticsTrackingCode()
-    context.setGoogleAnalyticsTrackingCode(None)
-
 # publish/republish module
 if newpublish:
     context.setBaseObject(repo.publishObject(context, message))
@@ -52,6 +46,13 @@ if newpublish:
 else:
     object = repo.getRhaptosObject(context.objectId)
     repo.publishRevision(context, message)
+
+# remove Google Analytics Tracking Code from object
+GoogleAnalyticsTrackingCode = None
+if hasattr(context, 'GoogleAnalyticsTrackingCode'):
+    GoogleAnalyticsTrackingCode = context.getGoogleAnalyticsTrackingCode()
+    context.setGoogleAnalyticsTrackingCode(None)
+
 
 # place Google Analytics Tracking Code into object's published folder
 if GoogleAnalyticsTrackingCode is not None:
