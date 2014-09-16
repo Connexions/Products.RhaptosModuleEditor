@@ -162,7 +162,7 @@
 
         </fieldset>
 
-        <input type="hidden" name="license" value="http://creativecommons.org/licenses/by/3.0/"
+        <input type="hidden" name="license" value="http://creativecommons.org/licenses/by/4.0/"
                 tal:attributes="value request/license | here/getDefaultLicense" />
 
         <input type="submit"
