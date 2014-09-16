@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.82
+  - allow GoogleAnalyticsCode to pass to storage layer
+
 RhaptosModuleEditor-0.81
   - modify publish to add additional check after templates, when posting
 
