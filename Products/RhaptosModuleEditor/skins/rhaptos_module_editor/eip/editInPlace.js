@@ -51,7 +51,7 @@ var BIBTEXML_NS = "http://bibtexml.sf.net/";            // xmlns:bib="http://bib
 var MATHML_NS   = "http://www.w3.org/1998/Math/MathML"; // xmlns:m="http://www.w3.org/1998/Math/MathML"
 var XHTML_NS    = "http://www.w3.org/1999/xhtml";
 var QML_NS      = "http://cnx.rice.edu/qml/1.0"         // xmlns:q="http://cnx.rice.edu/qml/1.0"
-var DATA_NS     = "http://dev.w3.org/html5/spec/#custom" // FIXME xmlns:data="http://www.w3.org/TR/html5/dom.html#custom-data-attribute"
+var DATA_NS     = "http://www.w3.org/TR/html5/dom.html#custom-data-attribute" // xmlns:data="http://www.w3.org/TR/html5/dom.html#custom-data-attribute"
 
 var gNameSpaces = 'xmlns=\"'      + CNXML_NS  + '\" ' +
                   'xmlns:m=\"'    + MATHML_NS + '\" ' +
