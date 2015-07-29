@@ -51,10 +51,12 @@ var BIBTEXML_NS = "http://bibtexml.sf.net/";            // xmlns:bib="http://bib
 var MATHML_NS   = "http://www.w3.org/1998/Math/MathML"; // xmlns:m="http://www.w3.org/1998/Math/MathML"
 var XHTML_NS    = "http://www.w3.org/1999/xhtml";
 var QML_NS      = "http://cnx.rice.edu/qml/1.0"         // xmlns:q="http://cnx.rice.edu/qml/1.0"
+var DATA_NS     = "http://www.w3.org/TR/html5/dom.html#custom-data-attribute" // xmlns:data="http://www.w3.org/TR/html5/dom.html#custom-data-attribute"
 
-var gNameSpaces = 'xmlns=\"'   + CNXML_NS  + '\" ' +
-                  'xmlns:m=\"' + MATHML_NS + '\" ' +
-                  'xmlns:q=\"' + QML_NS    + '\"';
+var gNameSpaces = 'xmlns=\"'      + CNXML_NS  + '\" ' +
+                  'xmlns:m=\"'    + MATHML_NS + '\" ' +
+                  'xmlns:q=\"'    + QML_NS    + '\" ' +
+                  'xmlns:data=\"' + DATA_NS   + '\"';
 
 /**
  * Regular expressions used multiple times in
@@ -62,12 +64,13 @@ var gNameSpaces = 'xmlns=\"'   + CNXML_NS  + '\" ' +
  */
 
 var gRegExps = {
-    cnxml:    new RegExp("^(<[\\w\\W]*?)\\sxmlns\\=[\"']"       + CNXML_NS    + "['\"]([\\w\\W]*)")
-  , mathml:   new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:m\\=[\"']"   + MATHML_NS   + "['\"]([\\w\\W]*)")
-  , qml:      new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:q\\=[\"']"   + QML_NS      + "['\"]([\\w\\W]*)")
-  , mdml:     new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:md\\=[\"']"  + MDML_NS     + "['\"]([\\w\\W]*)")
-  , bibtexml: new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:bib\\=[\"']" + BIBTEXML_NS + "['\"]([\\w\\W]*)")
-  , mathml2:  new RegExp("\\sxmlns\\:m\\=[\"']" + MATHML_NS   + "['\"]", "g")
+    cnxml:    new RegExp("^(<[\\w\\W]*?)\\sxmlns\\=[\"']"        + CNXML_NS    + "['\"]([\\w\\W]*)")
+  , mathml:   new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:m\\=[\"']"    + MATHML_NS   + "['\"]([\\w\\W]*)")
+  , qml:      new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:q\\=[\"']"    + QML_NS      + "['\"]([\\w\\W]*)")
+  , mdml:     new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:md\\=[\"']"   + MDML_NS     + "['\"]([\\w\\W]*)")
+  , bibtexml: new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:bib\\=[\"']"  + BIBTEXML_NS + "['\"]([\\w\\W]*)")
+  , data:     new RegExp("^(<[\\w\\W]*?)\\sxmlns\\:data\\=[\"']" + DATA_NS     + "['\"]([\\w\\W]*)")
+  , mathml2:  new RegExp("\\sxmlns\\:m\\=[\"']" + MATHML_NS + "['\"]", "g")
 };
 
 /**
@@ -8676,6 +8679,7 @@ function removeNamespaceAttributesFromText(strXml) {
     strNewXml = strNewXml.replace(gRegExps.qml,      "$1$2");
     strNewXml = strNewXml.replace(gRegExps.mdml,     "$1$2");
     strNewXml = strNewXml.replace(gRegExps.bibtexml, "$1$2");
+    strNewXml = strNewXml.replace(gRegExps.data,     "$1$2");
     //FIXME: a hack, this be.
     strNewXml = strNewXml.replace(gRegExps.mathml2,  "");
     return strNewXml;
