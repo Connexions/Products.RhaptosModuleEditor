@@ -39,6 +39,37 @@ if hasattr(context,'excludedIds'):
     if excludedexists:
         context.manage_delObjects(excludedexists)
 
+# Generate SVGs for MathML
+import requests
+from lxml import etree
+# FIXME Hardcoded URL
+url = "http://localhost:5689/"
+
+file = context.getDefaultFile()
+xml = etree.fromstring(file.getSource())
+mathml_namespace = "http://www.w3.org/1998/Math/MathML"
+mathml_blocks = xml.xpath(
+    '//m:math[not(/m:annotation-xml[@encoding="image/svg+xml"])]',
+    namespaces={'m': mathml_namespace})
+for mathml_block in mathml_blocks:
+    # Submit the MathML block to the SVG generation service.
+    payload = {'MathML': etree.tostring(mathml_block)}
+    response = requests.post(url, data=payload)
+    # Inject the SVG into the MathML as an annotation
+    # only if the resposne was good, otherwise skip over it.
+    semantic_block = mathml_block.getchildren()[0]
+    if response.status_code == 200:
+        svg = response.text
+        content_type = response.headers['content-type']
+        # Insert the svg into the content
+        annotation = etree.SubElement(
+            semantic_block,
+            '{%s}annotation-xml' % mathml_namespace)
+        annotation.set('encoding', content_type)
+        annotation.append(etree.fromstring(svg))
+        file.setSource(etree.tostring(xml))
+file.validate()
+
 # publish/republish module
 if newpublish:
     context.setBaseObject(repo.publishObject(context, message))
