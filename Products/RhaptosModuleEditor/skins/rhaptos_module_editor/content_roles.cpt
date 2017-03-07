@@ -71,12 +71,12 @@
 	  <tal:block tal:repeat="role python:moduleRoles">
 	    <tal:block tal:define="role_collabs python:[];
 	      role_name python:role.lower() + 's';
-	      cur_role python:list(here[role_name]);
+	      cur_role python:list(here.getProperty(role_name));
 	      role_display python:module_role_names[role]">
 	      
 	      <li tal:attributes="class python:test(cur_role, nothing, 'error')">
 		<tal:loop tal:repeat="u here/collaborators">
-		  <tal:test tal:condition="python: u in cur_role + list(here['pub_' + role_name])">
+		  <tal:test tal:condition="python: u in cur_role + list(here.getProperty('pub_' + role_name))">
 		    <tal:add tal:define="blank python:role_collabs.append(u)" tal:replace="nothing">
 		      Make List of members
 		    </tal:add>
