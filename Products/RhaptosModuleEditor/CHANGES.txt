@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.84
+  - Plone hotfix restricted attribute access to subobjects: convert property access to getProperty calls
+
 RhaptosModuleEditor-0.83
   - data-* attribute support with proper URI
 
