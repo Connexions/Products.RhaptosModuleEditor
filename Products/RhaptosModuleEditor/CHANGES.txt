@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.85
+  - Don't allow bad collections to be published - empty or with duplicate chapter names
+
 RhaptosModuleEditor-0.84
   - Plone hotfix restricted attribute access to subobjects: convert property access to getProperty calls
 
