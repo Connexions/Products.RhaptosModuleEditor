@@ -28,11 +28,13 @@ if latest:
         return err
 
 # Maintainership check
+from AccessControl import getSecurityManager
+cur_user = getSecurityManager().getUser().getUserName()
 # pubobj is defined above, in "superseded check", and tells us whether there's a published version or not
 if pubobj:
     haspermission = context.portal_membership.checkPermission('Edit Rhaptos Object', pubobj)
 else:
-    # cur_user is defined above the upconversion check
+    # cur_user is defined above
     haspermission = cur_user in context.maintainers or context.portal_membership.checkPermission('Edit Rhaptos Object', context)
 
 if not haspermission:
@@ -65,25 +67,25 @@ if context.portal_type == 'Collection':
         return err
 
     # Check for dup chapter/unit titles:
-    chap_titles = [c.Title() for c in context.objectValues(['SubCollection'])
+    chap_titles = [c.Title() for c in context.objectValues(['SubCollection'])]
     if '(Untitled)' in chap_titles:
         err['failtype'] = 'notitle'
         return err
 
-    dup_titles = [t for t in chap_titles if chap_titles.count(t)
+    dup_titles = [t for t in chap_titles if chap_titles.count(t)]
     if dup_titles != []:
         err['failtype'] = 'duptitle'
         err['faildata'] = {}.fromkeys(dup_titles).keys()
         return err
 
     # Go one level deeper (can't write proper recursion in restrictedPython
-    for unit in [c.Title() for c in context.objectValues(['SubCollection']):
-        chap_titles = [c.Title() for c in unit.objectValues(['SubCollection'])
+    for unit in [c.Title() for c in context.objectValues(['SubCollection'])]:
+        chap_titles = [c.Title() for c in unit.objectValues(['SubCollection'])]
         if '(Untitled)' in chap_titles:
             err['failtype'] = 'notitle'
             return err
 
-        dup_titles = [t for t in chap_titles if chap_titles.count(t)
+        dup_titles = [t for t in chap_titles if chap_titles.count(t)]
         if dup_titles != []:
             err['failtype'] = 'duptitle'
             err['faildata'] = {}.fromkeys(dup_titles).keys()
@@ -108,8 +110,6 @@ if cnxmlvers == None:
     return err
 
 # Load in list of messages this user has already seen and dismissed for this object
-from AccessControl import getSecurityManager
-cur_user = getSecurityManager().getUser().getUserName()
 allmsgs = getattr(context, 'messagesDismissed', {})
 if allmsgs.has_key(cur_user):
   messagesDismissed = allmsgs[cur_user]
