@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.86
+  - Fix syntax and code errors in publishBlocked.py :-(
+
 RhaptosModuleEditor-0.85
   - Don't allow bad collections to be published - empty or with duplicate chapter names
 
