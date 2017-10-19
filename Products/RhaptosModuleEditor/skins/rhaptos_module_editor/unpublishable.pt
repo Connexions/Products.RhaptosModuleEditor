@@ -23,10 +23,10 @@
             for additional details.
           </span>
         </div>
-
+        
         <div tal:condition="publishblocked"
              tal:define="notetype python:test(publishtemplate, 'PUBLISH BLOCKED', 'WARNING');
-                         baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml','nolicense','oldlicense','nocontent', 'duptitle'];
+                         baderrors python:['cnxmlfivedismissed', 'superseded', 'noindex', 'notcnxml','nolicense','oldlicense'];
                          color python:test(publisherror in baderrors, 'yellow', '#fe7');
                          stylestring python:'border: 2px solid #e70;; background-color: %s;; padding: 0.5em;; margin: 0.5em 0;;' % color">
           <tal:block tal:condition="python:publisherror=='cnxmlfivedismissed'">
@@ -48,7 +48,6 @@ roles, or links. The conversion process will generate a temporary backup.
 </form>
   </div>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='cnxmlfive'">
             <tal:external define="global readonly python:True" />
             <div tal:attributes="style stylestring">
@@ -64,10 +63,10 @@ automatically be in the new language version.</li>
 automatically be converted to the new version.</li>
       <li><b>Open Full Source Editor</b>: You can postpone the upgrade and continue to make changes to your existing CNXML,
        but you will still have to upgrade before publishing. See below for a list of other functions that are disabled until 
-       upgrade.</li>
+upgrade.
     </ul>
-  </p>
-
+  <p>
+    
   <form action="." method="post"
         style="margin-top: 1em; margin-bottom: 0.5em; text-align: center">
     <input class="context" style="margin-right: 0.5em; font-size: 110%" type="submit"              
@@ -138,7 +137,6 @@ published version is <span tal:replace="publishedVersion">1.1</span>.
 </div>
             </tal:define>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='olderversion'">
             <tal:define tal:define="cnxmlversion publisherrorfaildata/cnxmlversion">
             <div tal:attributes="style stylestring">
@@ -150,7 +148,6 @@ of the tag structure may be invalid.
 </div>
             </tal:define>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='notcnxml'">
             <tal:block tal:define="blank python:len(context.getDefaultFile().getSource()) &lt;= 1">
             <div tal:attributes="style stylestring">
@@ -161,7 +158,6 @@ of the import options to generate new contents for the module.
 </div>
             </tal:block>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='noindex'">
             <div tal:attributes="style stylestring">
 
@@ -170,7 +166,6 @@ href="confirm_discard">discard</a> the module and start over, or use one of the 
 the module.
 </div>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='notitle'">
             <div tal:attributes="style stylestring">
 
@@ -178,29 +173,12 @@ the module.
 you enter a title on the <a href="module_metadata">metadata page</a>.
 </div>
           </tal:block>
-
-          <tal:block tal:condition="python:publisherror=='nocontent'">
-            <div tal:attributes="style stylestring">
-
-<b tal:content="string:${notetype}:">WARNING:</b> This collection has no content. You will not be able to publish until you add some.
-</div>
-          </tal:block>
-
-          <tal:block tal:condition="python:publisherror=='duptitle'">
-            <div tal:attributes="style stylestring">
-
-                <b tal:content="string:${notetype}:">WARNING:</b> This collection contains multiple chapters with the same title: <span tal:content="python:publisherrorfaildata"> duplicate titles here</span> You will not be able to publish until you change them to be unique.
-
-</div>
-          </tal:block>
-
           <tal:block tal:condition="python:publisherror=='nolicense' and publishtemplate">
             <div tal:attributes="style stylestring">
 
 <b tal:content="string:${notetype}:">WARNING:</b> You have not yet agreed to a license for this content. Please <a href="module_publish">do so</a> now.
 </div>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='oldlicense' and publishtemplate">
             <div tal:attributes="style stylestring">
 
@@ -210,7 +188,6 @@ you enter a title on the <a href="module_metadata">metadata page</a>.
                 >accept the new license</a> prior to publishing.
 </div>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='notmaint' and publishtemplate">
             <div tal:attributes="style stylestring">
 
@@ -227,7 +204,6 @@ of this object, so you will not be able to publish the current revision. Other o
 </p>
 </div>
           </tal:block>
-
           <tal:block tal:condition="python:publisherror=='notpub' and publishtemplate">
             <div tal:attributes="style stylestring">
 
