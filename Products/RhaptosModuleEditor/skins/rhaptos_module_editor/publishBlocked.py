@@ -10,14 +10,10 @@
 
 err = {'failtype':None, 'faildata':None}  # return value template
 
-# Check moduleness and short-circuit if collection
-if not context.portal_type == 'Module':
-    return False
-
-# Missing index file check
-indexcnxml = versioninfo['indexcnxml']
-if not indexcnxml:
-    err['failtype'] = 'noindex'
+# Title check; used to be in getContentOverridePage.py
+title = context.Title()
+if (not title) or title == '(Untitled)':
+    err['failtype'] = 'notitle'
     return err
 
 # Checks to see if there's a published version of this object
@@ -31,6 +27,94 @@ if latest:
         err['faildata'] = {'thisversion':context.version, 'pubversion':latest.version}
         return err
 
+# Maintainership check
+from AccessControl import getSecurityManager
+cur_user = getSecurityManager().getUser().getUserName()
+# pubobj is defined above, in "superseded check", and tells us whether there's a published version or not
+if pubobj:
+    haspermission = context.portal_membership.checkPermission('Edit Rhaptos Object', pubobj)
+else:
+    # cur_user is defined above
+    haspermission = cur_user in context.maintainers or context.portal_membership.checkPermission('Edit Rhaptos Object', context)
+
+if not haspermission:
+    err['failtype'] = 'notmaint'
+    return err
+
+# Publishing check
+
+if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
+    err['failtype'] = 'notpub'
+    return err
+
+# Checks for collections only
+if context.portal_type == 'Collection':
+    # Disallow Empty Collections - no modules
+    nodes = context.objectValues(['SubCollection','PublishedContentPointer'])
+    if nodes == []:
+        err['failtype'] = 'nocontent'
+        return err
+
+    # Check for dup chapter/unit titles:
+    chap_titles = [c.Title() for c in context.objectValues(['SubCollection'])]
+    if '(Untitled)' in chap_titles:
+        err['failtype'] = 'notitle'
+        return err
+
+    dup_titles = [t for t in chap_titles if chap_titles.count(t) > 1]
+    if dup_titles != []:
+        err['failtype'] = 'duptitle'
+        err['faildata'] = {}.fromkeys(dup_titles).keys()
+        return err
+
+    # Go one level deeper (can't write proper recursion in restrictedPython
+    for unit in context.objectValues(['SubCollection']):
+        # Check for empty top-level chapters (units)
+        nodes = unit.objectValues(['SubCollection','PublishedContentPointer'])
+        if nodes == []:
+            err['failtype'] = 'emptychap'
+            err['faildata'] = unit.getTitle()
+            return err
+        for chap in unit.objectValues(['SubCollection']):
+            # Check for empty second-level chapters
+            nodes = chap.objectValues(['SubCollection','PublishedContentPointer'])
+            if nodes == []:
+                err['failtype'] = 'emptychap'
+                err['faildata'] = chap.getTitle()
+                return err
+
+        chap_titles = [c.Title() for c in unit.objectValues(['SubCollection'])]
+        if '(Untitled)' in chap_titles:
+            err['failtype'] = 'notitle'
+            return err
+
+        dup_titles = [t for t in chap_titles if chap_titles.count(t) > 1]
+        if dup_titles != []:
+            err['failtype'] = 'duptitle'
+            err['faildata'] = {}.fromkeys(dup_titles).keys()
+            return err
+
+    # Done w/ collection checks
+    return False
+
+# Module specific checks
+# Latest license present - collections do license checks in canPublish and publish_collection
+current_license = context.getProperty('license') or context.license or ''
+
+if current_license == '':
+    err['failtype'] = 'nolicense'
+    return err
+elif current_license != context.getDefaultLicense(current_license):
+    err['failtype'] = 'oldlicense'
+    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense(current_license)}
+    return err
+
+# Missing index file check
+indexcnxml = versioninfo['indexcnxml']
+if not indexcnxml:
+    err['failtype'] = 'noindex'
+    return err
+
 # Now that we know we have an index file, get its CNXML version
 cnxmlvers = versioninfo['cnxmlvers']
 
@@ -40,8 +124,6 @@ if cnxmlvers == None:
     return err
 
 # Load in list of messages this user has already seen and dismissed for this object
-from AccessControl import getSecurityManager
-cur_user = getSecurityManager().getUser().getUserName()
 allmsgs = getattr(context, 'messagesDismissed', {})
 if allmsgs.has_key(cur_user):
   messagesDismissed = allmsgs[cur_user]
@@ -70,41 +152,6 @@ if cnxmlvers == '0.5' or cnxmlvers == '0.6':
 if cnxmlvers < '0.5':
     err['failtype'] = 'olderversion'
     err['faildata'] = {'cnxmlversion':cnxmlvers}
-    return err
-
-# Title check; used to be in getContentOverridePage.py
-title = context.Title()
-if (not title) or title == '(Untitled)':
-    err['failtype'] = 'notitle'
-    return err
-
-# Maintainership check
-# pubobj is defined above, in "superseded check", and tells us whether there's a published version or not
-if pubobj:
-    haspermission = context.portal_membership.checkPermission('Edit Rhaptos Object', pubobj)
-else:
-    # cur_user is defined above the upconversion check
-    haspermission = cur_user in context.maintainers or context.portal_membership.checkPermission('Edit Rhaptos Object', context)
-
-if not haspermission:
-    err['failtype'] = 'notmaint'
-    return err
-
-# Publishing check
-
-if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
-    err['failtype'] = 'notpub'
-    return err
-
-# Latest license present
-current_license = context.getProperty('license') or ''
-
-if current_license == '':
-    err['failtype'] = 'nolicense'
-    return err
-elif current_license != context.getDefaultLicense(current_license):
-    err['failtype'] = 'oldlicense'
-    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense(current_license)}
     return err
 
 # Default return in normal case
