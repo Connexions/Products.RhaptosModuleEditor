@@ -1,3 +1,7 @@
+RhaptosModuleEditor-0.87
+  - disallow empty chapters and duplicate chapter names for collections (#14)
+  - Revert "collection publish checks - not empty, no repeating chapter titles"
+
 RhaptosModuleEditor-0.86
   - REVERTED Fix syntax and code errors in publishBlocked.py :-(
 
