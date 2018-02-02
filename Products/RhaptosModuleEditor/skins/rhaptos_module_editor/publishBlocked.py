@@ -41,12 +41,6 @@ if not haspermission:
     err['failtype'] = 'notmaint'
     return err
 
-# Publishing check
-
-if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
-    err['failtype'] = 'notpub'
-    return err
-
 # Checks for collections only
 if context.portal_type == 'Collection':
     # Disallow Empty Collections - no modules
@@ -95,64 +89,73 @@ if context.portal_type == 'Collection':
             return err
 
     # Done w/ collection checks
-    return False
 
-# Module specific checks
-# Latest license present - collections do license checks in canPublish and publish_collection
-current_license = context.getProperty('license') or context.license or ''
+else:  
+    # Module specific checks
+    # Latest license present - collections do license checks in canPublish and publish_collection
+    current_license = context.getProperty('license') or context.license or ''
 
-if current_license == '':
-    err['failtype'] = 'nolicense'
-    return err
-elif current_license != context.getDefaultLicense(current_license):
-    err['failtype'] = 'oldlicense'
-    err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense(current_license)}
-    return err
-
-# Missing index file check
-indexcnxml = versioninfo['indexcnxml']
-if not indexcnxml:
-    err['failtype'] = 'noindex'
-    return err
-
-# Now that we know we have an index file, get its CNXML version
-cnxmlvers = versioninfo['cnxmlvers']
-
-# Not-cnxml check
-if cnxmlvers == None:
-    err['failtype'] = 'notcnxml'
-    return err
-
-# Load in list of messages this user has already seen and dismissed for this object
-allmsgs = getattr(context, 'messagesDismissed', {})
-if allmsgs.has_key(cur_user):
-  messagesDismissed = allmsgs[cur_user]
-else:
-  messagesDismissed = []
-
-# Needs-upconversion check
-if cnxmlvers == '0.5' or cnxmlvers == '0.6':
-    formednesserrors = context.wellformed()
-    if not formednesserrors:  # only on Modules, but we should only be on Modules at this point
-        # CNXML 0.5, upgradable
-        hasDismissedMsg = 'cnxmlfive' in messagesDismissed
-        if not hasDismissedMsg:
-            err['failtype'] = 'cnxmlfive'
-            return err
-        else:
-            err['failtype'] = 'cnxmlfivedismissed'
-            return err
-    else:
-        # CNXML 0.5, not upgradable
-        err['failtype'] = 'brokencnxmlfive'
-        err['faildata'] = {'message':formednesserrors}
+    if current_license == '':
+        err['failtype'] = 'nolicense'
+        return err
+    elif current_license != context.getDefaultLicense(current_license):
+        err['failtype'] = 'oldlicense'
+        err['faildata'] = {'current_license':current_license,'default_license':context.getDefaultLicense(current_license)}
         return err
 
-# Older-version check
-if cnxmlvers < '0.5':
-    err['failtype'] = 'olderversion'
-    err['faildata'] = {'cnxmlversion':cnxmlvers}
+    # Missing index file check
+    indexcnxml = versioninfo['indexcnxml']
+    if not indexcnxml:
+        err['failtype'] = 'noindex'
+        return err
+
+    # Now that we know we have an index file, get its CNXML version
+    cnxmlvers = versioninfo['cnxmlvers']
+
+    # Not-cnxml check
+    if cnxmlvers == None:
+        err['failtype'] = 'notcnxml'
+        return err
+
+    # Load in list of messages this user has already seen and dismissed for this object
+    allmsgs = getattr(context, 'messagesDismissed', {})
+    if allmsgs.has_key(cur_user):
+      messagesDismissed = allmsgs[cur_user]
+    else:
+      messagesDismissed = []
+
+    # Needs-upconversion check
+    if cnxmlvers == '0.5' or cnxmlvers == '0.6':
+        formednesserrors = context.wellformed()
+        if not formednesserrors:  # only on Modules, but we should only be on Modules at this point
+            # CNXML 0.5, upgradable
+            hasDismissedMsg = 'cnxmlfive' in messagesDismissed
+            if not hasDismissedMsg:
+                err['failtype'] = 'cnxmlfive'
+                return err
+            else:
+                err['failtype'] = 'cnxmlfivedismissed'
+                return err
+        else:
+            # CNXML 0.5, not upgradable
+            err['failtype'] = 'brokencnxmlfive'
+            err['faildata'] = {'message':formednesserrors}
+            return err
+
+    # Older-version check
+    if cnxmlvers < '0.5':
+        err['failtype'] = 'olderversion'
+        err['faildata'] = {'cnxmlversion':cnxmlvers}
+        return err
+
+    # Done with module specific checks
+
+# Publishing check - new user first publish - do _after_ all content quality checks
+
+if not context.portal_membership.checkPermission('Publish Rhaptos Object', context):
+    err['failtype'] = 'notpub'
     return err
+
 
 # Default return in normal case
 return False
