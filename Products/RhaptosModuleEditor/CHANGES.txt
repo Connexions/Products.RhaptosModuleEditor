@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.88
+  - move publicher check to after other publsihable tests
+
 RhaptosModuleEditor-0.87
   - disallow empty chapters and duplicate chapter names for collections (#14)
   - Revert "collection publish checks - not empty, no repeating chapter titles"
