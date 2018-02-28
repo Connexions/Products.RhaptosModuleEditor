@@ -1,4 +1,4 @@
-<tal:block tal:define="content_override python:False">
+<tal:block tal:define="content_override python:[False, 'view'][int(context.state != 'pending')]">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
       metal:use-macro="here/module_template/macros/master"
@@ -192,14 +192,14 @@
            <li tal:condition="doesCollXmlExist">
               <span>Collection structure XML:</span>
               <a href="source"
-                 tal:attributes="href string:${vobj/url}/source"
+                 tal:attributes="href string:${obj/url}/source"
                  tal:content="string:${id}_${version}_collection.xml">col10363_3.6_collection.xml</a>
            </li>
            <li tal:condition="doesCompleteExist">
               <span>All collection files (including module XML and media files):</span>
               <a href=""
                  tal:content="string:${id}_${version}_complete.zip"
-                 tal:attributes="href string:${vobj/url}/complete">col10363_3.4_complete.zip</a>
+                 tal:attributes="href string:${obj/url}/complete">col10363_3.4_complete.zip</a>
            </li>
         </ul>
       </tal:block>
