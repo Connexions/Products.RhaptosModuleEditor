@@ -1,4 +1,4 @@
-<tal:block tal:define="content_override python:False">
+<tal:block tal:define="content_override python:[False, 'view'][int(context.state != 'published')]">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
       metal:use-macro="here/module_template/macros/master"
