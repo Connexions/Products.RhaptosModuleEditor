@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.89
+  - don't render pending page if content is not pending
+
 RhaptosModuleEditor-0.88
   - move publicher check to after other publsihable tests
 
