@@ -12,13 +12,15 @@ from Products.CNXMLDocument import XMLService
 
 request = context.REQUEST
 
+versioninfo = context.rmeVersionInfo()
+cnxmlvers = versioninfo ['cnxmlvers']
 if content is None:
     try:
         content = request['BODY']
     except KeyError:
         raise TypeError, "No content provided"
 
-results = XMLService.validate(content, url="http://cnx.rice.edu/technology/cnxml/schema/rng/0.7/cnxml-fragment.rng")
+results = XMLService.validate(content, url="http://cnx.rice.edu/technology/cnxml/schema/rng/%s/cnxml-fragment.rng" % cnxmlvers)
 
 if results:
     request.RESPONSE.setStatus(400, "Invalid CNXML")

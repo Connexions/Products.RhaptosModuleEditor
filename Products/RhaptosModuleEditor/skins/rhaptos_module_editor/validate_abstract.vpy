@@ -13,13 +13,15 @@ from Products.CNXMLDocument.XMLService import validate
                                                   # first import of Products.CNXMLDocument.XMLService!
 
 # validate CNXML pieces
+versioninfo = context.rmeVersionInfo()
+cnxmlvers = versioninfo['cnxmlvers']
 wrappedabstract = """<md:abstract xmlns="http://cnx.rice.edu/cnxml"
                            xmlns:bib="http://bibtexml.sf.net/"
                            xmlns:m="http://www.w3.org/1998/Math/MathML"
                            xmlns:md="http://cnx.rice.edu/mdml"
                            xmlns:q="http://cnx.rice.edu/qml/1.0">%s</md:abstract>""" % abstract
 #wrappedabstract = autoIds(wrappedabstract, force=True)
-results = validate(wrappedabstract, "http://cnx.rice.edu/technology/cnxml/schema/rng/0.7/cnxml-fragment.rng")
+results = validate(wrappedabstract, "http://cnx.rice.edu/technology/cnxml/schema/rng/%s/cnxml-fragment.rng" % cnxmlvers)
 if results:
     state.setError('abstract', context.translate("message_abstract_invalid", domain="rhaptos",
                                                  default="Summary contains invalid CNXML."))
