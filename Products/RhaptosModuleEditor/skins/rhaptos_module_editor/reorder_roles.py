@@ -37,7 +37,7 @@ if position.lower()=='bottom':
     context.manage_changeProperties({'collaborators':tuple(collabs)})
 
 for r in ['authors','maintainers','licensors','pub_authors','pub_maintainers','pub_licensors']:
-    old_role = context[r]
+    old_role = getattr(context,r)
     new_role = []
     for p in collabs:
         if p in old_role:
