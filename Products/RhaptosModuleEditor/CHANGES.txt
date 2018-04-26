@@ -1,5 +1,6 @@
 RhaptosModuleEditor-0.90
   - Support for both cnxml 0.7 and 0.8 
+  - Bugfix: role ordering
 
 RhaptosModuleEditor-0.89
   - don't render pending page if content is not pending
