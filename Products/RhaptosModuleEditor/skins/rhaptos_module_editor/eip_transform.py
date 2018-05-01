@@ -13,7 +13,7 @@ from Products.CNXMLDocument import XMLService
 request = context.REQUEST
 
 versioninfo = context.rmeVersionInfo()
-cnxmlvers = versioninfo ['cnxmlvers']
+cnxmlvers = versioninfo['cnxmlvers'] or '0.7'
 if content is None:
     try:
         content = request['BODY']
