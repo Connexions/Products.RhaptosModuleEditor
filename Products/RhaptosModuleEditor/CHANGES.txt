@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.91
+  - Bug fix: abstract validation for collections
+
 RhaptosModuleEditor-0.90
   - Support for both cnxml 0.7 and 0.8 
   - Bugfix: role ordering
