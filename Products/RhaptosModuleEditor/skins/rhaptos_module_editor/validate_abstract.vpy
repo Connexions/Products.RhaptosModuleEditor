@@ -14,7 +14,7 @@ from Products.CNXMLDocument.XMLService import validate
 
 # validate CNXML pieces
 versioninfo = context.rmeVersionInfo()
-cnxmlvers = versioninfo['cnxmlvers']
+cnxmlvers = versioninfo['cnxmlvers'] or '0.7'
 wrappedabstract = """<md:abstract xmlns="http://cnx.rice.edu/cnxml"
                            xmlns:bib="http://bibtexml.sf.net/"
                            xmlns:m="http://www.w3.org/1998/Math/MathML"
