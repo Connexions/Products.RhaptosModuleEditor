@@ -92,7 +92,7 @@
 		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
 			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></span
@@ -102,7 +102,7 @@
 		      <del><i><a tal:content="user/fullname" 
 			    tal:attributes="href
 			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></tal:block
@@ -111,7 +111,7 @@
 		      ><a tal:content="user/fullname" 
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
-			><tal:block tal:condition="python:here.state != 'created'"
+			><tal:block tal:condition="python:here.state not in ('created', 'pending')"
 			><tal:live_main
 		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
 		      tal:condition="python:obj and a not in obj.latest.maintainers
@@ -156,7 +156,7 @@
 		      <i><a tal:content="user/fullname" 
 			tal:attributes="href
 			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></span
@@ -166,7 +166,7 @@
 		      <del><i><a tal:content="user/fullname" 
 			    tal:attributes="href
 			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state != 'created'"><tal:dagger 
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></tal:block
@@ -175,7 +175,7 @@
 		      ><a tal:content="user/fullname" 
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
-			><tal:block tal:condition="python:here.state != 'created'"
+			><tal:block tal:condition="python:here.state not in ('created', 'pending')"
 			><tal:live_main
 		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
 		      tal:condition="python:obj and a not in obj.latest.maintainers
