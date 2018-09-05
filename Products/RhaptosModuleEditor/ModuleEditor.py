@@ -715,8 +715,8 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
                      'discard':'published'}
 
         # Do state changes unless the current state is 'created' or 'pending'
-        if self.state in ('created','pending') and action not in ['submit','publish']:
-            state = self.state
+        if self.state in ('created','pending') and action not in ['submit','publish','withdraw']:
+            state = 'created'
         else:
             state = nextState[action]
 
