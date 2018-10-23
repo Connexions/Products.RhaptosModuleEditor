@@ -22,12 +22,12 @@
 	padding-top: .15em;
 	padding-bottom: .15em;
       }
-  </style> 
+  </style>
 
   <body>
 
     <div metal:fill-slot="main" tal:define="search request/search | nothing;
-      addWGMembers request/form.button.addWorkgroup | request/addWorkgroup | nothing; 
+      addWGMembers request/form.button.addWorkgroup | request/addWorkgroup | nothing;
       addYourSelf request/form.button.addSelf | request/addSelf | nothing;
       addSelf python:test(member.id in here.getCollaborators(), nothing, addYourSelf);
       newmaintainer python:[];
@@ -54,9 +54,9 @@
 	  <div tal:condition="context/getImportAuthors|nothing"
 	    class="import-recs">
         <p>
-            <strong>Note:</strong> 
-          We found the following creators in the imported document.  
-          Use the <a href="content_roles#collaborator_search">Search for new collaborators</a> section below to add them as authors, maintainers, or copyright holders.  
+            <strong>Note:</strong>
+          We found the following creators in the imported document.
+          Use the <a href="content_roles#collaborator_search">Search for new collaborators</a> section below to add them as authors, maintainers, or copyright holders.
           <a href="/help/authoring/sword-roles/">(help)</a>
         </p>
         <p>
@@ -73,7 +73,7 @@
 	      role_name python:role.lower() + 's';
 	      cur_role python:list(here.getProperty(role_name));
 	      role_display python:module_role_names[role]">
-	      
+
 	      <li tal:attributes="class python:test(cur_role, nothing, 'error')">
 		<tal:loop tal:repeat="u here/collaborators">
 		  <tal:test tal:condition="python: u in cur_role + list(here.getProperty('pub_' + role_name))">
@@ -89,33 +89,33 @@
 		    pending collabs/keys;">
 		    <span tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
-		      <i><a tal:content="user/fullname" 
+		      <i><a tal:content="user/fullname"
 			tal:attributes="href
-			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
+			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></span
 		      ><tal:block tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] ==
 		      'del'">
-		      <del><i><a tal:content="user/fullname" 
+		      <del><i><a tal:content="user/fullname"
 			    tal:attributes="href
-			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
+			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></tal:block
 		      ><tal:block condition="python:user and (a not in pending or role not
 		      in collabs[a].roles)"
-		      ><a tal:content="user/fullname" 
+		      ><a tal:content="user/fullname"
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
 			><tal:block tal:condition="python:here.state not in ('created', 'pending')"
 			><tal:live_main
-		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
+		      tal:define="obj python:here.content.getRhaptosObject(here.id)"
 		      tal:condition="python:obj and a not in obj.latest.maintainers
-		      and role == 'Maintainer'"><tal:dagger 
+		      and role == 'Maintainer'"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:live_main
 			  ></tal:block
@@ -123,11 +123,11 @@
 		      ><tal:comma tal:condition="not:repeat/a/end">, </tal:comma>
 		  </tal:block>
 		</tal:block>
-		
+
 		<span tal:condition="not:cur_role"><i i18n:translate="text_controles_currentlynoroles">
 		  There are currently no <span i18n:name="empty_role_name"
 		    tal:replace="string:${role_display}"/>!  You must add
-		  one before previewing or publishing.</i></span>
+		  one before publishing.</i></span>
 	      </li>
 	    </tal:block>
 	  </tal:block>
@@ -137,7 +137,7 @@
 	      role_name python:role.lower() + 's';
 	      cur_role python:list(getattr(here,role_name,[]));
 	      role_display python:optional_role_dict[role]">
-	      
+
 	      <li tal:condition="cur_role">
 		<tal:loop tal:repeat="u here/collaborators">
 		  <tal:test tal:condition="python: u in cur_role + list(getattr(here,'pub_' + role_name,[]))">
@@ -153,33 +153,33 @@
 		    pending collabs/keys;">
 		    <span tal:condition="python:user and a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] == 'add'">
-		      <i><a tal:content="user/fullname" 
+		      <i><a tal:content="user/fullname"
 			tal:attributes="href
-			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
+			string:/member_profile/${user/id}">[fullname]</a></i>*<tal:maintest
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></span
 		      ><tal:block tal:condition="python:a in pending and role in
 		      collabs[a].roles and collabs[a].roles[role] ==
 		      'del'">
-		      <del><i><a tal:content="user/fullname" 
+		      <del><i><a tal:content="user/fullname"
 			    tal:attributes="href
-			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest 
-			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger 
+			    string:/member_profile/${user/id}">[fullname]</a></i></del>*<tal:maintest
+			tal:condition="python:role=='Maintainer' and here.state not in ('created', 'pending')"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:maintest
 			></tal:block
 		      ><tal:block condition="python:a not in pending or role not
 		      in collabs[a].roles"
-		      ><a tal:content="user/fullname" 
+		      ><a tal:content="user/fullname"
 		      tal:attributes="href
 		      string:/member_profile/${user/id}">[fullname]</a
 			><tal:block tal:condition="python:here.state not in ('created', 'pending')"
 			><tal:live_main
-		      tal:define="obj python:here.content.getRhaptosObject(here.id)" 
+		      tal:define="obj python:here.content.getRhaptosObject(here.id)"
 		      tal:condition="python:obj and a not in obj.latest.maintainers
-		      and role == 'Maintainer'"><tal:dagger 
+		      and role == 'Maintainer'"><tal:dagger
 			  tal:define="blank python:newmaintainer.append(a)">&dagger;</tal:dagger
 			  ></tal:live_main
 			  ></tal:block
@@ -191,7 +191,7 @@
 	    </tal:block>
 	  </tal:block>
 	</ul>
-	
+
       </tal:block>
 
       <form name="people" method="post"
@@ -202,7 +202,7 @@
 	  Change Roles:
           <span style="white-space:nowrap" i18n:name="role_help_link"
               tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
-              href="/help/authoring/authorguide#roles" 
+              href="/help/authoring/authorguide#roles"
               tal:attributes="href string:${help/absolute_url}#roles"
               i18n:translate="label_role_help_link">What do these roles mean?</a>)</span>
       </h4>
@@ -234,7 +234,7 @@
               tal:attributes="class
               python:test(path('repeat/p/odd'),'odd','even')">
 
-	      
+
 	      <tal:block tal:condition="python:len(users) > 1"
 		tal:define="arrowUp portal/arrowUp.gif;
 		arrowDown portal/arrowDown.gif;
@@ -267,12 +267,12 @@
                tal:define="user python:here.desecured.getMemberById(p)"
                tal:on-error="string:(${p})">
 	      <td><strong>
-		  <a tal:content="user/fullname" style="white-space:nowrap" 
+		  <a tal:content="user/fullname" style="white-space:nowrap"
 		    tal:attributes="href string:/member_profile/${user/id}">[fullname]</a></strong>
-		
+
 	      </td>
 
-              <td> 
+              <td>
                   <a href="" tal:attributes="href string:/member_profile/${user/id}"
                      tal:content="string:${user/id}">[userid]</a>
               </td>
@@ -283,7 +283,7 @@
 		role in collabs[p].roles,'pending checkbox','checkbox');">
 		<tal:block tal:define="hasRole python:role in
 		userRoles;">
-		  <span tal:condition="python:p in pending and role in collabs[p].roles" 
+		  <span tal:condition="python:p in pending and role in collabs[p].roles"
 		    style="visibility: hidden;">*</span>
 		  <input tal:attributes="value p; checked
 		    python:test(hasRole, 'checked', nothing);
@@ -297,7 +297,7 @@
 		role in collabs[p].roles,'pending checkbox','checkbox');">
 		<tal:block tal:define="hasRole python:role in
 		userRoles;">
-		  <span tal:condition="python:p in pending and role in collabs[p].roles" 
+		  <span tal:condition="python:p in pending and role in collabs[p].roles"
 		    style="visibility: hidden;">*</span>
 		  <input tal:attributes="value p; checked
 		    python:test(hasRole, 'checked', nothing);
@@ -306,7 +306,7 @@
 		  <span tal:condition="python:p in pending and role in collabs[p].roles">*</span>
 		</tal:block>
 	      </td>
-	      
+
 	      <td class="checkbox">
 		<input type="checkbox" class="noborder notify"
 		  name="deleteRoles:list" value="1" tal:attributes="value p" />
@@ -316,12 +316,12 @@
 		<input type="checkbox" class="noborder notify"
 		  tal:condition="python:p in pending"
 		  name="cancelRoles:list" value="1" tal:attributes="value p" />
-	      </td> 
+	      </td>
 	    </tr>
 	  </tal:block>
-	  
+
 	</table>
-      
+
 	<input type="submit" class="context" name="form.button.update"
 	value="Submit Changes" i18n:attributes="value value_controles_subchgs"/>
 	<input type="hidden" name="search" tal:condition="search" tal:attributes="value search" />
@@ -371,7 +371,7 @@
           <span style="white-space:nowrap"
             i18n:name="roles_help_link"
             tal:define="help nocall:portal/help/authoring/authorguide | nothing" tal:condition="nocall:help">(<a
-              i18n:translate="label_controles_whatrolesmean" 
+              i18n:translate="label_controles_whatrolesmean"
               href="/help/authoring/authorguide#roles"
               tal:attributes="href string:${help/absolute_url}#roles">What do these roles mean?</a>)</span>
 	</p>
@@ -395,16 +395,16 @@
                tal:attributes="href python:&quot;javascript:searchUsers(['%s'])&quot; % '&quot;, &quot;'.join(authors);">Search for all creators found in the imported document</a>
 
             <div style="margin-top: 0.3em;">
-              Search for creators individually: 
+              Search for creators individually:
               <tal:block tal:repeat="name context/getImportAuthors">
                 <a tal:attributes="href python:&quot;javascript:searchUser('%s')&quot; % name;"
-                   tal:content="name">Aura Reggiani</a><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span> 
+                   tal:content="name">Aura Reggiani</a><span tal:replace="string:, " tal:condition="not:repeat/name/end">[, ]</span>
               </tal:block>
             </div>
 
             <div class="import-recs">
               <p>
-                <strong>Note:</strong> 
+                <strong>Note:</strong>
                 Creators found in the imported document will not appear in search results unless they have an account on this site.
                 <a href="/help/authoring/sword-roles/">(help)</a>
              </p>
@@ -419,7 +419,7 @@
 	                             tal:define="wg_results python:[];
 	                                         r_search request/search | nothing">
 
-	
+
 	<tal:testWGmems tal:condition="python:addWGMembers and
 	                             addWGMembers != 'False' and
 	                             addWGMembers != 'None' and here.aq_parent.getPortalTypeName()=='Workgroup'">
@@ -430,10 +430,10 @@
 	    </tal:testWGmem>
 	  </tal:getWGmems>
 	</tal:testWGmems>
-	
+
 	<tal:block tal:define="Batch python:modules['Products.CMFPlone'].Batch;
-	                       b_start python:int(request.get('b_start',0));			  
-	                       b_size python:10;						  
+	                       b_start python:int(request.get('b_start',0));
+	                       b_size python:10;
 	                       results python:test(addSelf,[member],test((wg_results != []),wg_results, here.searchPeople(search)));
                                batch python:Batch(results, b_size, int(b_start), orphan=1);">
 	  <em tal:condition="not:results" i18n:translate="text_controles_nousers">No users found.</em>
@@ -450,11 +450,11 @@
 		<th rowspan="2"> </th>
 	      </tr>
 	      <tr>
-		<th tal:repeat="role_name moduleRoles" 
-                  tal:content="python:module_role_names[role_name]" 
+		<th tal:repeat="role_name moduleRoles"
+                  tal:content="python:module_role_names[role_name]"
                     i18n:translate="">Roles</th>
-                <th tal:repeat="role_name optional_roles" 
-                  tal:content="python:optional_role_dict[role_name]" 
+                <th tal:repeat="role_name optional_roles"
+                  tal:content="python:optional_role_dict[role_name]"
                   i18n:translate="">Roles</th>
 	      </tr>
 	      <tr tal:condition="python:len(results) > 1">
@@ -488,7 +488,7 @@
 		</td>
 		<td/>
 	      </tr>
-	      
+
 	      <tr class="odd" tal:repeat="u batch"
 		tal:attributes="class python:test(path('repeat/u/odd'),'odd','even')">
 		<tal:block tal:define="u_id u/getId;" >
@@ -502,7 +502,7 @@
 			[name]
 		      </a>
 		  </td>
-                  <td> 
+                  <td>
                       <a href="" tal:attributes="href string:/member_profile/${user/id}"
 			tal:content="string:${user/id}">
 			[userid]
@@ -510,14 +510,14 @@
                   </td>
                   </tal:badauthor>
 		  <td class="checkbox" tal:repeat="role moduleRoles">
-		    <input tal:attributes="value u_id; 
+		    <input tal:attributes="value u_id;
 		      name string:newRoles.${role}:list:record"
-		      type="checkbox" class="noborder" 
-                      name="newRoles.roles:list:record" 
+		      type="checkbox" class="noborder"
+                      name="newRoles.roles:list:record"
                       title="required_role"/>
 		  </td>
 		  <td class="checkbox" tal:repeat="role optional_roles">
-		    <input tal:attributes="value u_id; 
+		    <input tal:attributes="value u_id;
 		      name string:newRoles.${role}:list:record"
 		      type="checkbox" class="noborder" name="newRoles.roles:list:record" />
 		  </td>
@@ -664,11 +664,11 @@
     </span>
 
 </div>
-	      
-	    <input type="submit" 
+
+	    <input type="submit"
               class="context"
-              name="form.button.add" 
-              i18n:attributes="value value_button_addpeople" 
+              name="form.button.add"
+              i18n:attributes="value value_button_addpeople"
               value="Add People" />
 	  </tal:block>
 	</tal:block>
@@ -683,7 +683,7 @@
 	<input type="hidden" name="b_start" tal:attributes="value python:int(request.get('b_start',0))" />
 	<input type="hidden" name="form.submitted" value="1" />
       </form>
-      
+
       <p tal:condition="readonly | nothing" i18n:translate="text_roles_readonly">
         Roles editing unavailable. See message above.
       </p>

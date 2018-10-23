@@ -3,15 +3,15 @@
 <object name="Module"
    meta_type="Factory-based Type Information with dynamic views">
    <!-- FIXME FUTURE: i18n properties skipped; apparently not supported in Plone 2.5 -->
-  
+
   <property name="title">Module</property>
   <property name="description">A module is text about a specific topic or one aspect of a complex topic, along with any accompanying files or images.</property>
   <property name="content_meta_type">Module Editor</property>
   <property name="content_icon">module_icon.gif</property>
-  
+
   <property name="product">RhaptosModuleEditor</property>
   <property name="factory">addModuleEditor</property>
-  
+
   <property name="immediate_view"></property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
@@ -95,14 +95,14 @@
           visible="True">
     <permission value="View" />
   </action>
-  <action title="Print"
+  <!--<action title="Print"
           action_id="viewprint"
           url_expr="string:${object_url}/module_view?format=pdf"
           condition_expr=""
           category="object_cnx_view"
           visible="True">
     <permission value="View" />
-  </action>
+  </action>-->
   <action title="Checkout"
           action_id="checkout"
           url_expr="string:${object_url}/checkout"
