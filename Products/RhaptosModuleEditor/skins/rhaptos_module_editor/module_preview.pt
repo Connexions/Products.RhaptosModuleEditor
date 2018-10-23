@@ -2,8 +2,8 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
-      xmlns:metal="http://xml.zope.org/namespaces/metal" 
-      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="here/module_template/macros/master"
       i18n:domain="rhaptos">
@@ -23,7 +23,7 @@
 	  <dt><a href="module_view" i18n:translate="label_online_preview">Online Preview</a></dt>
 	  <dd i18n:translate="description_online_preview">View your
 	  module as it will display on the web, with the changes you've made.</dd>
-          <dt><a href="module_view?format=pdf" i18n:translate="label_print_preview">Print Preview</a></dt> 
+          <!--<dt><a href="module_view?format=pdf" i18n:translate="label_print_preview">Print Preview</a></dt>
 	  <dd i18n:translate="dscription_print_preview">This may take
 	  some time (30 seconds or so).    If a PDF cannot be
 	  generated or if the PDF is invalid, there may be a bug in
@@ -31,7 +31,7 @@
 	  double-check your module (especially any MathML!) and try
 	  again.  If the problem persists, please contact us.
 	  </dd>
-          <tal:alternates tal:condition="ptool/getAlternateStyles">  
+          <tal:alternates tal:condition="ptool/getAlternateStyles">
             <dt i18n:translate="label_print_preview_alternatives">Alternate PDF Preview (Beta)</dt>
             <dd>
               <span i18n:translate="description_print_preview_alternates">We are testing ways to customize the way PDFs are generated in our system. Choose one of the styles from the dropdown and click submit to see the PDF.</span>
@@ -46,7 +46,7 @@
                 <input class="context" type="submit"/>
               </form>
             </dd>
-          </tal:alternates> 
+          </tal:alternates> -->
 	  <tal:block tal:condition="python:here.state != 'created'">
 	  <dt><a href="diff" i18n:translate="label_change_set_view">Change Set</a></dt>
 	  <dd i18n:translate="description_change_set_view">View the
