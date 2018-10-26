@@ -1,3 +1,6 @@
+RhaptosModuleEditor-0.93
+  - Removed PDF preview
+
 RhaptosModuleEditor-0.92
   - don't error on `pending` content that has role issues
 
