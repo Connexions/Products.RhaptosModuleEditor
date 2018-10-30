@@ -44,12 +44,6 @@
 	    <span i18n:name="file_link">
 	      <a href="module_files" i18n:translate="label_files">files</a>
 	    </span> (images, applets, etc.) are uploaded</li>
-	  <li i18n:translate="text_verify_online_and_pdf">Check that the
-	    <span i18n:name="online_link">
-	      <a href="module_view" i18n:translate="label_online">online</a>
-	    </span> <!--and <span i18n:name="print_link">
-	      <a href="module_view?format=pdf" i18n:translate="label_print">print</a>
-	    </span>--> version of the module are correct</li>
 	  <li i18n:translate="text_verify_links_in_module">Verify that the links in your module are not broken</li>
 	</ul>
 
