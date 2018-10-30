@@ -4,12 +4,12 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
-      xmlns:metal="http://xml.zope.org/namespaces/metal" 
-      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="container/module_template/macros/master"
       i18n:domain="rhaptos">
-  
+
   <body>
 
     <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
@@ -28,31 +28,31 @@
       <tal:block tal:condition="not:publishBlocked">
 	<p><strong i18n:translate="text_pre_publish_reminder">Before you publish, did you remember to:</strong></p>
 	<ul>
-	  <li i18n:translate="text_verify_metadata">Edit the 
+	  <li i18n:translate="text_verify_metadata">Edit the
 	    <span i18n:name="metadata_link">
-	      <a href="module_metadata" i18n:translate="label_metadata">metadata</a></span>, 
+	      <a href="module_metadata" i18n:translate="label_metadata">metadata</a></span>,
 	    adding keywords and a summary</li>
-	  <li i18n:translate="text_verify_roles">Verify that the 
+	  <li i18n:translate="text_verify_roles">Verify that the
 	    <span i18n:name="roles_link">
 	      <a href="content_roles" i18n:translate="label_roles">roles</a>
 	    </span> are correct</li>
-	  <li i18n:translate="text_verify_links">Add related 
+	  <li i18n:translate="text_verify_links">Add related
 	    <span i18n:name="links_link">
 	      <a href="module_links" i18n:translate="label_links">links</a>
 	    </span></li>
-	  <li i18n:translate="text_verify_files">Make sure all 
+	  <li i18n:translate="text_verify_files">Make sure all
 	    <span i18n:name="file_link">
 	      <a href="module_files" i18n:translate="label_files">files</a>
 	    </span> (images, applets, etc.) are uploaded</li>
 	  <li i18n:translate="text_verify_online_and_pdf">Check that the
 	    <span i18n:name="online_link">
 	      <a href="module_view" i18n:translate="label_online">online</a>
-	    </span> and <span i18n:name="print_link">
+	    </span> <!--and <span i18n:name="print_link">
 	      <a href="module_view?format=pdf" i18n:translate="label_print">print</a>
-	    </span> versions of the module are correct</li>
+	    </span>--> version of the module are correct</li>
 	  <li i18n:translate="text_verify_links_in_module">Verify that the links in your module are not broken</li>
 	</ul>
-	
+
 	<form action="publish" method="post" tal:attributes="action template/getId">
 
 	  <div class="field"
@@ -66,55 +66,55 @@
 	    <div i18n:translate="help_message_creation" class="formHelp">
 	      Please enter a description of the changes you've made to the module
 	    </div>
-	    
+
 	    <div tal:content="error" i18n:translate="">Validation error output</div>
-	    
-	    <textarea name="message" 
-                          wrap="soft" 
-                          cols="50" 
+
+	    <textarea name="message"
+                          wrap="soft"
+                          cols="50"
 	                  style="width: 50%"
                           rows="5"
                           tal:attributes="tabindex tabindex/next;"
 	                  tal:content="context/description_of_changes | message"></textarea>
 	  </div>
-      
-     <input 
-          type="submit" 
-	      class="context" 
-  	      name="form.button.publish" 
-  	      value="Publish" 
-	      tal:attributes="tabindex tabindex/next;" 
+
+     <input
+          type="submit"
+	      class="context"
+  	      name="form.button.publish"
+  	      value="Publish"
+	      tal:attributes="tabindex tabindex/next;"
 	      i18n:attributes="value value_module_publish"/>
      <input tal:condition="python:here.state=='pending'"
-          type="submit" 
-	      class="context" 
-  	      name="form.button.withdraw" 
-  	      value="Withdraw" 
-	      tal:attributes="tabindex tabindex/next;" 
+          type="submit"
+	      class="context"
+  	      name="form.button.withdraw"
+  	      value="Withdraw"
+	      tal:attributes="tabindex tabindex/next;"
 	      i18n:attributes="value value_module_withdraw"/>
 
 	  <input type="hidden" name="form.submitted" value="1" />
 	</form>
 	<p i18n:translate="text_license_allow"
            style="margin-top: 1em;">This work will now be distributed under the terms of the
-          <span i18n:name="license_name" tal:content="license_name"> Creative Commons Attribution License  
-          </span> 
-          (<span i18n:translate="" 
+          <span i18n:name="license_name" tal:content="license_name"> Creative Commons Attribution License
+          </span>
+          (<span i18n:translate=""
                 tal:content="license_label">[(CC-BY 3.0)]</span>)
-        available at 
+        available at
         <a style="font-style: italic"
           tal:attributes="href license_url"
           tal:content="license_url"
           i18n:name="license_url">[license url]</a>.  I understand
 	      that in doing so I </p>
 		<ol>
-			<li i18n:translate="text_license_retain_copyright"> 
+			<li i18n:translate="text_license_retain_copyright">
 	          retain my copyright in the work and </li>
-	        <li i18n:translate="text_license_owner_permission"> 
+	        <li i18n:translate="text_license_owner_permission">
 	          warrant that I am the author or the owner or have
-		      permission to distribute the work in question and 
+		      permission to distribute the work in question and
 			</li>
-			<li i18n:translate="text_license_work_distributed"> 
+			<li i18n:translate="text_license_work_distributed">
 	          wish this work to be distributed under the terms of the
 	          <span i18n:name="license_link">
 		          <a i18n:translate="" tal:attributes="href license_url"
@@ -122,40 +122,40 @@
 		      </span> license
 		  (<b>including allowing modification of this work and requiring
 		  attribution</b>) and </li>
-		  <li i18n:translate="text_license_proper_attribution"> 
-	          agree that proper attribution of my work is any attribution that includes the authors' names, the title of the work, and the 
-	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
+		  <li i18n:translate="text_license_proper_attribution">
+	          agree that proper attribution of my work is any attribution that includes the authors' names, the title of the work, and the
+	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span>
 	          URL to the work.  </li>
 		</ol>
 	</tal:block>
       <tal:block tal:condition="python:publishBlocked and publishBlocked['failtype']=='notpub'">
 	<p><strong i18n:translate="text_pre_publish_reminder">Before you submit for publication, did you remember to:</strong></p>
 	<ul>
-	  <li i18n:translate="text_verify_metadata">Edit the 
+	  <li i18n:translate="text_verify_metadata">Edit the
 	    <span i18n:name="metadata_link">
-	      <a href="module_metadata" i18n:translate="label_metadata">metadata</a></span>, 
+	      <a href="module_metadata" i18n:translate="label_metadata">metadata</a></span>,
 	    adding keywords and a summary</li>
-	  <li i18n:translate="text_verify_roles">Verify that the 
+	  <li i18n:translate="text_verify_roles">Verify that the
 	    <span i18n:name="roles_link">
 	      <a href="content_roles" i18n:translate="label_roles">roles</a>
 	    </span> are correct</li>
-	  <li i18n:translate="text_verify_links">Add related 
+	  <li i18n:translate="text_verify_links">Add related
 	    <span i18n:name="links_link">
 	      <a href="module_links" i18n:translate="label_links">links</a>
 	    </span></li>
-	  <li i18n:translate="text_verify_files">Make sure all 
+	  <li i18n:translate="text_verify_files">Make sure all
 	    <span i18n:name="file_link">
 	      <a href="module_files" i18n:translate="label_files">files</a>
 	    </span> (images, applets, etc.) are uploaded</li>
 	  <li i18n:translate="text_verify_online_and_pdf">Check that the
 	    <span i18n:name="online_link">
 	      <a href="module_view" i18n:translate="label_online">online</a>
-	    </span> and <span i18n:name="print_link">
+	    <!--</span> and <span i18n:name="print_link">
 	      <a href="module_view?format=pdf" i18n:translate="label_print">print</a>
-	    </span> versions of the module are correct</li>
+	    </span>--> versions of the module are correct</li>
 	  <li i18n:translate="text_verify_links_in_module">Verify that the links in your module are not broken</li>
 	</ul>
-	
+
 	<form action="publish" method="post" tal:attributes="action template/getId">
 
 	  <div class="field"
@@ -169,48 +169,48 @@
 	    <div i18n:translate="help_message_creation" class="formHelp">
 	      Please enter a description of the changes you've made to the module
 	    </div>
-	    
+
 	    <div tal:content="error" i18n:translate="">Validation error output</div>
-	    
-	    <textarea name="message" 
-                          wrap="soft" 
-                          cols="50" 
+
+	    <textarea name="message"
+                          wrap="soft"
+                          cols="50"
 	                  style="width: 50%"
                           rows="5"
                           tal:attributes="tabindex tabindex/next;"
 	                  tal:content="context/description_of_changes | message"></textarea>
 	  </div>
-      
-     <input 
-          type="submit" 
-	      class="context" 
-  	      name="form.button.submit" 
-  	      value="Submit for Publication" 
-	      tal:attributes="tabindex tabindex/next;" 
+
+     <input
+          type="submit"
+	      class="context"
+  	      name="form.button.submit"
+  	      value="Submit for Publication"
+	      tal:attributes="tabindex tabindex/next;"
 	      i18n:attributes="value value_module_publish"/>
 
 	  <input type="hidden" name="form.submitted" value="1" />
 	</form>
 	<p i18n:translate="text_license_allow"
            style="margin-top: 1em;">This work will now be distributed under the terms of the
-          <span i18n:name="license_name" tal:content="license_name"> Creative Commons Attribution License  
-          </span> 
-          (<span i18n:translate="" 
+          <span i18n:name="license_name" tal:content="license_name"> Creative Commons Attribution License
+          </span>
+          (<span i18n:translate=""
                 tal:content="license_label">[(CC-BY 3.0)]</span>)
-        available at 
+        available at
         <a style="font-style: italic"
           tal:attributes="href license_url"
           tal:content="license_url"
           i18n:name="license_url">[license url]</a>.  I understand
 	      that in doing so I </p>
 		<ol>
-			<li i18n:translate="text_license_retain_copyright"> 
+			<li i18n:translate="text_license_retain_copyright">
 	          retain my copyright in the work and </li>
-	        <li i18n:translate="text_license_owner_permission"> 
+	        <li i18n:translate="text_license_owner_permission">
 	          warrant that I am the author or the owner or have
-		      permission to distribute the work in question and 
+		      permission to distribute the work in question and
 			</li>
-			<li i18n:translate="text_license_work_distributed"> 
+			<li i18n:translate="text_license_work_distributed">
 	          wish this work to be distributed under the terms of the
 	          <span i18n:name="license_link">
 		          <a i18n:translate="" tal:attributes="href license_url"
@@ -218,9 +218,9 @@
 		      </span> license
 		  (<b>including allowing modification of this work and requiring
 		  attribution</b>) and </li>
-		  <li i18n:translate="text_license_proper_attribution"> 
-	          agree that proper attribution of my work is any attribution that includes the authors' names, the title of the work, and the 
-	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span> 
+		  <li i18n:translate="text_license_proper_attribution">
+	          agree that proper attribution of my work is any attribution that includes the authors' names, the title of the work, and the
+	          <span i18n:name="portal" tal:replace="portal/title">[portal]</span>
 	          URL to the work.  </li>
 		</ol>
 	</tal:block>
