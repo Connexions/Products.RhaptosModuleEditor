@@ -827,8 +827,7 @@ class ModuleEditor(PloneFolder, CollaborationManager, Referenceable):
     def getViewActions(self):
         if self.state != 'published':
             url = self.absolute_url()
-            actions = [{'id':'view', 'url':url+'/module_view', 'name':'Online'},
-                       {'id':'source', 'url':url+'/module_source', 'name':'Source'},]
+            actions = [{'id':'source', 'url':url+'/module_source', 'name':'Source'}]
             if self.state != 'created':
                 actions.append({'id':'diff', 'url':url+'/diff', 'name':'Changes'})
             return actions

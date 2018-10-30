@@ -71,13 +71,13 @@
           visible="True">
     <permission value="Modify portal content" />
   </action>
-  <action title="Preview"
+  <!--<action title="Preview"
           action_id="preview"
           url_expr="string:${object_url}/module_preview"
           condition_expr=""
           category="object"
           visible="True">
-    <permission value="View" />
+    <permission value="View" />-->
   </action>
   <action title="Publish"
           action_id="publish"
